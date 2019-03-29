@@ -1,12 +1,16 @@
 
 # Fichier exécutable produit
 EXEC=typerabais
+EXECTEST=Rabais_Test
 
 # Répertoire contenant les fichiers source
 SOURCE=src
 
 # Répertoire contenant les fichiers compilés
 BINAIRE=bin
+
+# Répertoire Test
+TESTS=test
 
 # Répertoire contenant les données utilisées par le logiciel
 DONNEES=data
@@ -55,22 +59,25 @@ $(BINAIRE)/afficheur.o: $(SOURCE)/afficheur.cpp $(SOURCE)/afficheur.h $(SOURCE)/
 
 # Enlève l'exécutable et les fichiers objets intermédiaires.
 clean:
-	rm -rf $(BINAIRE)/$(EXEC) $(BINAIRE)/*.o
-
+	rm -rf $(BINAIRE)/*.o
+	rm -rf $(BINAIRE)/$(EXEC)
+	rm -rf $(TESTS)/$(BINAIRE)/*.o
+	rm -rf $(TESTS)/$(BINAIRE)/test.o
 
 # =================
 # Tests du logiciel
 # =================
 
-CXX = g++
-INCLUDES = -I./
-CXXFLAGS = -g $(INCLUDES)
-SRCM = test/src/rabais_test.cpp
-OBJM = $(SRCM:.cpp=.o)
-LINKFLAGS = -lcppunit
+test: $(TESTS)/$(BINAIRE)/$(EXECTEST)
+	./$(TESTS)/$(BINAIRE)/$(EXECTEST)
 
-test: test/src/main.o
-		g++ $(CXXFLAGS) -o $@ main.o 
+$(TESTS)/$(BINAIRE)/$(EXECTEST): $(TESTS)/$(BINAIRE)/main.o $(TESTS)/$(BINAIRE)/rabais_test.o $(BINAIRE)/facture.o $(BINAIRE)/client.o $(BINAIRE)/rabais.o
+	g++ -o $@ $^ -lcppunit
 
-main.o: test/src/main.cpp $(SRCM) test/src/rabais_test.h
-		$(CXX) $(CXXFLAGS) -o $@ -c test/src/main.cpp $(SRCM) 
+$(TESTS)/$(BINAIRE)/main.o: $(TESTS)/$(SOURCE)/main.cpp $(TESTS)/$(SOURCE)/rabais_test.h
+	g++ -o $@ -c $<
+
+$(TESTS)/$(BINAIRE)/rabais_test.o: $(TESTS)/$(SOURCE)/rabais_test.cpp $(TESTS)/$(SOURCE)/rabais_test.h $(SOURCE)/rabais.h
+	g++ -o $@ -c $<
+
+
