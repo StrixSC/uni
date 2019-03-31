@@ -82,7 +82,7 @@ void Rabais::ajouterClient(Client* c) {
 float Rabais::getRabais(Facture f, int code_client) {
 
 	float rabais = 0;
-	
+
 	Client* le_client = this->clients[code_client];
 	
 	// Les ID de plus de 90000 représentent les employéEs.
@@ -115,12 +115,12 @@ float Rabais::getRabais(Facture f, int code_client) {
 	for (int item=0 ; item<f.getSize() ; item++) {
 		total += f.getItem(item);
 	}
-	
+
 	int rabais_achats = total/100;
 	if (rabais_achats > 5) rabais_achats = 5;
 	rabais += float(rabais_achats)/100;
-	
 	return rabais;
+
 }
 
 std::string Rabais::getInfoClient(int code_client) {
