@@ -1,5 +1,5 @@
-SRS01 = <{client.id = 90034}, {rabais=0.2}>     //MIGHT BE THE SAME THING AS THE SECOND ONE
-SRS02 = <{client.id = 90034}, {rabais = 0.2}> //PAS SUR
+SRS01 = <{client.id = 90034}, {rabais=0.2}>     
+SRS02 = <{client.id = 90034}, {rabais = 0.2}> 
 SRS03 = <{client.id = 90102, client.age = 66}, {rabais = 0.2}> 
 SRS04 = <{client.age = 78}, {rabais = 0.05}>
 SRS05 = <{client.zone = 'G0X', client.zone='H4l', client.zone='H2X'}, {rabais=0.02, rabais=0.01, rabais=0.01}>

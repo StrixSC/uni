@@ -18,6 +18,9 @@ DONNEES=data
 # Nom du fichier contenant les données
 CLIENTS=clients.dat
 
+# Extra warnings / Flags
+CFLAGS = -g -Wall -Wextra
+
 # =======================
 # Compilation du logiciel
 # =======================
@@ -69,15 +72,15 @@ clean:
 # =================
 
 test: $(TESTS)/$(BINAIRE)/$(EXECTEST)
-	./$(TESTS)/$(BINAIRE)/$(EXECTEST)
+	./$(TESTS)/$(BINAIRE)/$(EXECTEST) 
 
 $(TESTS)/$(BINAIRE)/$(EXECTEST): $(TESTS)/$(BINAIRE)/main.o $(TESTS)/$(BINAIRE)/rabais_test.o $(BINAIRE)/facture.o $(BINAIRE)/client.o $(BINAIRE)/rabais.o
-	g++ -o $@ $^ -lcppunit
+	g++ -o $@ $^ -lcppunit $(CFLAGS)
 
 $(TESTS)/$(BINAIRE)/main.o: $(TESTS)/$(SOURCE)/main.cpp $(TESTS)/$(SOURCE)/rabais_test.h
-	g++ -o $@ -c $<
+	g++ -o $@ -c $< $(CFLAGS)
 
 $(TESTS)/$(BINAIRE)/rabais_test.o: $(TESTS)/$(SOURCE)/rabais_test.cpp $(TESTS)/$(SOURCE)/rabais_test.h $(SOURCE)/rabais.h
-	g++ -o $@ -c $<
+	g++ -o $@ -c $< $(CFLAGS)
 
 
