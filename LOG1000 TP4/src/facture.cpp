@@ -13,3 +13,4 @@ float Facture::getItem(int index) {
 int Facture::getSize() {
 	return this->items.size();
 }
+d
