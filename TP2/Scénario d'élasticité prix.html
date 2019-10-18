@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Scénario d'élasticité prix</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+
+  <body>
+
+    <header>
+      <h2>Scénarios d'élasticité-prix</h2>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a id="inputsA" href="#" onclick="panel(this, 'inputs','output')" style="font-weight: bold">Inputs</a></li>
+        <li><a id="outputsA" href="#" onclick="panel(this, 'output','inputs')">Output</a></li>
+      </ul>
+    </nav>  
+
+    <div id="inputs">
+
+      <div class="input-col1">
+        <div class="input-field">
+          <!-- à compléter,  Chaque compagnie doit être représentée par un DIV. -->
+          <div class = "alpha">
+            Price Shift Alpha
+            <select class="dropdown">
+              <option value="0" "> 0% </option>
+              <option value="1" "> 5% </option>
+            </select>
+          </div>
+
+          <div class = "beta">
+            Price Shift Beta
+            <select class="dropdown">
+              <option value="0" ">0%</option>
+            </select>     
+          </div>
+
+          <div class = "gamma">
+            Price Shift Gamma
+            <select class="dropdown">
+              <option value="0" " >0%</option>
+            </select>     
+          </div>
+
+          <div class = "epsilon">
+            Price Shift Epsilon
+            <select class="dropdown">
+              <option value="0" ">0%</option>
+            </select>     
+          </div>
+
+          <div class = "mobile">
+            Price Shift Mobile
+            <select class="dropdown">
+              <option value="0" ">0%</option>
+            </select>     
+          </div>
+
+          <div class = "iota">
+            Price Shift Iota
+            <select class="dropdown">
+              <option value="0" >0%</option>
+            </select>     
+          </div>
+
+          <div class = "theta">
+            Price Shift Theta
+            <select class="dropdown">
+              <option value="0" >0%</option>
+            </select>     
+          </div>
+
+          <div class = "kappa">
+            Price Shift Kappa
+            <select class="dropdown">
+              <option value="0" >0%</option>
+            </select>     
+          </div>
+
+          
+        </div>
+      </div>
+
+      <div class="input-col2">
+          <div class="input-field">
+            <!-- à compléter,  Chaque compagnie doit être représentée par un DIV. -->
+            <div class = "alpha">
+              High Data Tariff (Alpha Only)
+              <select class="dropdown">
+                <option value="100GB">100GB</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+      <div class="input-col3">
+          <div class="input-field">
+            <!-- à compléter,  Chaque compagnie doit être représentée par un DIV. -->
+
+            <div class = "alpha">
+              Unlimited Tariff Alpha
+              <select class="dropdown">
+              <option value="N/A">not available</option>
+              </select>
+            </div>
+
+            <div class = "beta">
+              Unlimited Tariff Beta
+              <select class="dropdown">
+              <option value="N/A" >not available</option>
+              </select>
+            </div>
+
+            <div class = "gamma">
+              Unlimited Tariff Gamma
+              <select class="dropdown">
+              <option value="N/A" >not available</option>
+              </select>
+            </div>
+
+            <div class = "epsilon">
+              Unlimited Tariff Epsilon
+              <select class="dropdown">
+              <option value="+5" >Available at +£5</option>
+              </select>
+            </div>
+
+            <div class = "mobile">
+              Unlimited Tariff Mobile
+              <select class="dropdown">
+              <option value="N/A" >not available</option>
+              </select>
+            </div>
+
+            <div class = "iota">
+              Unlimited Tariff Iota
+              <select class="dropdown">
+              <option value="N/A" >not available</option>
+              </select>
+            </div>
+
+            <div class = "theta">
+              Unlimited Tariff Theta
+              <select class="dropdown">
+              <option value="N/A" >not available</option>
+              </select>
+            </div>
+            
+            <div class = "kappa">
+              Unlimited Tariff Kappa
+              <select class="dropdown">
+              <option value="N/A">not available</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      <!-- à compléter --> 
+    </div>
+
+    <div id="output" style="display: none;">
+      <img class="outputimg" src="images/fig3.png">
+    </div>
+
+    <footer>
+    </footer>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type = "text/javascript" src="script.js"></script>
+  </body>
+
+</html>

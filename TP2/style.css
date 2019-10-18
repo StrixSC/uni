@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background-color: #666;
+    padding: 10px;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+
+nav {
+    float: left;
+    width: 15%;
+    height: 300px;
+    background: #ccc;
+    padding: 20px;
+    padding-top: 5px;
+}
+
+nav ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+footer {
+  background-color: #666;
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  
+}
+
+.input-col1, .input-col2, .input-col3 {
+  float: left;
+  width: 28.33%;
+  padding: 10px;
+}
+
+.input-field div {
+  margin-bottom: 15px;
+  margin-top: 10px;
+  
+}
+
+.company {
+/*à compléter*/
+}
+
+.outputimg {
+  border: 1px solid black;
+  margin: 10px;
+  width: 80%;
+}
+.dropdown {
+  background-color: rgb(225,225,220);
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  margin-top: 3px;
+  
+}
+
+/*à compléter*/
+.alpha,
+.beta,
+.gamma,
+.epsilon,
+.mobile,
+.iota,
+.theta,
+.kappa{
+  border: 2px solid black;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.alpha {
+  background: rgb(126 20 12);
+}
+.beta {
+  background: rgb(234 126 58);
+}
+.gamma {
+  background: rgb(254 192 58);
+}
+.epsilon {
+  background: rgb(13 176 234);
+}
+.mobile {
+  background: rgb(0 32 92);
+}
+.iota {
+  background: rgb(109 50 154);
+}
+.theta {
+  background: rgb(252 55 197);
+}
+.kappa {
+  background: rgb(2 0 4);
+}
+
+@media (max-width: 600px) {
+
+  .input-col1 {
+    width: 33.3%;
+  }
+
+  .input-col2 {
+    width: 33.3%;
+  }
+
+  .input-col3 {
+    width: 33.3%;
+  }
+
+  nav {
+    width: 100%;
+    height: auto;
+  }
+  nav ul li {
+    float: left;  
+    padding: 5px;  
+}
+  header {
+    font-size: 20px;
+  }
+}
