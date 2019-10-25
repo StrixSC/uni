@@ -1,2 +1,3 @@
 # log2810
-TP1
+
+Git pour le TP1 du cours de LOG2810
