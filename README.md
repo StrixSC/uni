@@ -16,12 +16,14 @@ Read the TP1.Todo to know read the notes on the project, as well as the TODOs fo
 
 The code is entirely on python.
 
-=========================================================================================================
-============================ The following only applies if you're on VSCODE =============================
+
+The following only applies if you're on VSCODE
+
 In order to run the script:
     Download the following extension: ms-python.python
 
 For the Markups of the TODO file:
     Download the following extension: TODO+
+
 =========================================================================================================
 
