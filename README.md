@@ -25,5 +25,3 @@ In order to run the script:
 For the Markups of the TODO file:
     Download the following extension: TODO+
 
-=========================================================================================================
-
