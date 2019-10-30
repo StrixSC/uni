@@ -46,7 +46,7 @@ To use todos
     The weight for each arc is defined with the following function:
         - T = k * D.
         - Where T = Time in seconds (The path with the shortest time in seconds would ultimately be the path that has to be returned with dijkstra's
-        - Where k = the caracteristic personal to the robot (or drone [pour toi ragib]) that is being used\
+        - Where k = the caracteristic personal to the robot (or drone [pour toi ragib]) that is being used
         - Where D = Distance between two nodes.
 
     - *There is a constant time of 10 seconds to take the objects (For any object & for any robot)*
@@ -67,7 +67,7 @@ To use todos
 
 `TODOS`:
 
-    ☐ creerGraph(): @started(19-10-27 22:22)
+    ☐ creerGraph():
     Creates a graph that represents the different sections of the factory, as well as the links that connect each sections together. 
     This must be done by reading a given text file. 
     
