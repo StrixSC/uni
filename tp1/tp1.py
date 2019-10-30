@@ -18,18 +18,8 @@ class Vertix:
         self.numberObjectsB = objectsB
         self.numberObjectsC = objectsC
     
-
-
-
-
 x = Vertix(1,2,4.5)
 x.id, x.numberObjectsA
-
-
-
-
-
-
 
 liste_noeuds = []
 
