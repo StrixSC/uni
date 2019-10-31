@@ -15,8 +15,6 @@ from commande import Commande
 from Graph import Graph
 
 
-
-
 def read_file(file_name = 'entrepot.txt'):
 	
 	list_vertices 	= []
@@ -35,7 +33,6 @@ def read_file(file_name = 'entrepot.txt'):
 				vertex_objects_C = line[3]
 				v = Vertex(vertex_id,vertex_objects_A,vertex_objects_B,vertex_objects_C)
 				list_vertices.append(v)
-				v.printVertex()
 				
 			elif (len(line) == n_Attributes_Arc):
 				first_vertex_id  	= int(line[0])
@@ -53,16 +50,8 @@ def read_file(file_name = 'entrepot.txt'):
 def main():
 	list_vertices, list_arcs = read_file()
 
-	
-
-	node = list_vertices[0]
-	
-
-	
-
-	for node in list_vertices:
-		for neighbor in node.get_neighbors():
-			print(node.id, neighbor.id)
+	graph = Graph(list_vertices, list_arcs)
+	graph.printGraph()
 
 
 
