@@ -77,7 +77,7 @@ def dijkstra_algorithm(graph, starting_node):
 		neighbors = current_vertex.get_neighbors_distances()
 
 		for neighbor in neighbors:
-			
+			pass
 
 
 
