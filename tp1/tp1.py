@@ -1,38 +1,51 @@
-#############################################################################
-##### 	STRUCTURES DISCRETES - LOG2810									#####
-#####	Travail réalisé par Ragib Ahashan, Pritam Patel, Nawras Kader	#####
-#####	Travail Pratique 1												#####
-#####	Version de Python utilisé: 3.7.3								#####
-#############################################################################
+#####################################################################################
+##### 	STRUCTURES DISCRETES - LOG2810									        #####
+#####	Travail réalisé par Ragib Ahashan, Pritam Patel, Nawras Mohammmed Amin	#####
+#####	Travail Pratique 1												        #####
+#####	Version de Python utilisé: 3.7.3								        #####
+#####################################################################################
 
 
 # Le format représenté dans le fichier externe entrepot.txt est le format d'un CSV file.
 
 import csv
+from Arc import Arc
+from Vertex import Vertex
+from Graph import Graph
 
+n_Attributes_Vertex = 4
+n_Attributes_Arc 	= 3
 
-class Vertix:
-    def __init__(self, vertix_id, objectsA, objectsB, objectsC):
-        self.id = vertix_id
-        self.numberObjectsA = objectsA
-        self.numberObjectsB = objectsB
-        self.numberObjectsC = objectsC
-    
-x = Vertix(1,2,4.5)
-x.id, x.numberObjectsA
-
-liste_noeuds = []
+list_vertices 	= []
+list_arcs 		= []
 
 with open('entrepot.txt') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
-    for row in csv_reader:
-        if line_count == 0:
-            print(f'Column names are {", ".join(row)}')
-            line_count += 1
-        else:
-            print(f'\t{row[0]} works in the {row[1]} department, and was born in {row[2]}.')
-            line_count += 1
-    print(f'Processed {line_count} lines.')
+    for line in csv_reader:
+    	if(len(line) == n_Attributes_Vertex):
+	    	vertex_id 		 = line[0]
+	    	vertex_objects_A = line[1]
+	    	vertex_objects_B = line[2]
+	    	vertex_objects_C = line[3]
+    		v = Vertex(vertex_id,vertex_objects_A,vertex_objects_B,vertex_objects_C)
+    		list_vertices.append(v)
+    		v.printVertex()
+    		
+    	elif (len(line) == n_Attributes_Arc):
+    		first_vertex_id  	= int(line[0])
+    		second_vertex_id 	= int(line[1])
+    		distance_arc  		= int(line[2])
+
+    		first_vertex 	= list_vertices[first_vertex_id]
+    		second_vertex 	= list_vertices[second_vertex_id]
+    		
+    		arc = Arc(first_vertex, second_vertex, distance_arc)
+    		list_arcs.append(arc)
+    		
+for arc in list_arcs:
+	print(arc.firstVertex.id, "  ", arc.secondVertex.id)
+
+
 
 
