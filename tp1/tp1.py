@@ -42,10 +42,4 @@ with open('entrepot.txt') as csv_file:
     		
     		arc = Arc(first_vertex, second_vertex, distance_arc)
     		list_arcs.append(arc)
-    		
-for arc in list_arcs:
-	print(arc.firstVertex.id, "  ", arc.secondVertex.id)
-
-
-
 
