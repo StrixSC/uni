@@ -18,7 +18,6 @@ n_Attributes_Arc 	= 3
 list_vertices 	= []
 list_arcs 		= []
 
-
 with open('entrepot.txt') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
@@ -44,11 +43,75 @@ with open('entrepot.txt') as csv_file:
     		list_arcs.append(arc)
     		
 
+#for arc in list_arcs:
+#	print(arc.firstVertex.id, "  ", arc.secondVertex.id)
+
+commandeObjectsA = 0
+commandeObjectsB = 0
+commandeObjectsC = 0
+
+def afficherCommande():
+	print("Voici votre commande: ")
+	print("                 	 " , int(commandeObjectsA), " objets de type A")
+	print("                 	 " , int(commandeObjectsB), " objets de type A")
+	print("                 	 " , int(commandeObjectsC), " objets de type A")
+	print("Total: " , int(commandeObjectsA + commandeObjectsB + commandeObjectsC))
+
+def prendreCommande():
+
+	commandeObjectsA = int(input("Entrez la quantite d'object de type A: "))
+	commandeObjectsB = int(input("Entrez la quantite d'object de type B: "))
+	commandeObjectsC = int(input("Entrez la quantite d'object de type C: "))
+
+	while(True):
+		#print("Vous avez choisi: ")
+		#print("                  " + str(objectsA), " objets de type A")
+		#print("                  " + str(objectsB), " objets de type A")
+		#print("                  " + str(objectsC), " objets de type A")
+		afficherCommande()
+
+		answer = int(input("Voulez-vous faire une correction de commande? Tappez 1 pour oui, 0 pour non. Votre reponse:"))
+
+		if(answer == 1):
+			objectsA = int(input("Entrez la quantite d'object de type A: "))
+			objectsB = int(input("Entrez la quantite d'object de type B: "))
+			objectsC = int(input("Entrez la quantite d'object de type C: "))
+		else:
+			break
 
 
 
-for arc in list_arcs:
-	print(arc.firstVertex.id, "  ", arc.secondVertex.id)
+prendreCommande()
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
