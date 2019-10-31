@@ -13,6 +13,7 @@ from Arc import Arc
 from Vertex import Vertex
 from commande import Commande
 from Graph import Graph
+import numpy as np
 
 
 def read_file(file_name = 'entrepot.txt'):
@@ -47,11 +48,56 @@ def read_file(file_name = 'entrepot.txt'):
 	
 	return list_vertices, list_arcs
 
+
+
+def find_shortest_distance_unvisited(visited_vertex, shortest_distances_vertices):
+	pass
+
+
+
+
+
+def dijkstra_algorithm(graph, starting_node):
+		amount_of_nodes = len(graph.list_vertex)
+		shortest_distances_from_source_node = ['infinity' for i in range(21)]
+		shortest_distances_from_source_node[int(starting_node.id)] = 0
+
+		shortest_path_from_source_node = [ [int(starting_node.id)] for i in range(21)]
+		#print(shortest_path_from_source_node)
+		iteration = 0
+		
+		visited_vertex	 = ['unvisited' for i in range(21)]
+		visited_vertex[int(starting_node.id)] = 'visited'
+
+		current_vertex = starting_node
+
+		string = ['1', "The shortest distance of this path is: " + str(1)]
+		string[0] += " -> B"
+
+		neighbors = current_vertex.get_neighbors_distances()
+
+		for neighbor in neighbors:
+			
+
+
+
+
+
+
+		print(neighbors)
+			
+
+
+
+
 def main():
 	list_vertices, list_arcs = read_file()
 
 	graph = Graph(list_vertices, list_arcs)
 	graph.printGraph()
+
+
+	dijkstra_algorithm(graph, graph.list_vertex[0])
 
 
 

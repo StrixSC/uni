@@ -1,12 +1,13 @@
 class Arc: 
-    def __init__(self, firstVertex, secondVertex, cost):
+    def __init__(self, firstVertex, secondVertex, distance):
         self.firstVertex    = firstVertex
         self.secondVertex   = secondVertex
-        self.cost           = cost
+        self.distance       = distance
 
         # Adding eachother as neighbors.
-        self.firstVertex.add_neighbor(self.secondVertex)
-        self.secondVertex.add_neighbor(self.firstVertex)
+        self.firstVertex.add_neighbor(self.secondVertex, distance)
+        self.secondVertex.add_neighbor(self.firstVertex, distance)
+
 
 
     def printArc(self):
