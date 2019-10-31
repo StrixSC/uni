@@ -7,3 +7,5 @@ class Vertex:
 
     def printVertex(self):
     	print("(ID,A,B,C) =(" + str(self.id) +","+ str(self.numberObjectsA)+ ","+ str(self.numberObjectsB) + ","+ str(self.numberObjectsC)+")")
+
+    

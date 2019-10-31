@@ -13,12 +13,15 @@ class Commande:
 		print("Total: " , total)
 
 	def prendreCommande(self):
-		objectsA = int(input("Entrez la quantite d'object de type A: "))
-		objectsB = int(input("Entrez la quantite d'object de type B: "))
-		objectsC = int(input("Entrez la quantite d'object de type C: "))
-		self.commandeObjetsA = objectsA
-		self.commandeObjetsB = objectsB
-		self.commandeObjetsC = objectsC
+		objectsA = str(input("Entrez la quantite d'object de type A: "))
+		objectsB = str(input("Entrez la quantite d'object de type B: "))
+		objectsC = str(input("Entrez la quantite d'object de type C: "))
+		if(objectsA == '' or objectsB == '' or objectsC == ''):
+			print("Erreur, recommencez.")
+			self.prendreCommande()
+		self.commandeObjetsA = int(objectsA)
+		self.commandeObjetsB = int(objectsB)
+		self.commandeObjetsC = int(objectsC)
 		
 		print("Votre commande est: ")
 		self.afficherCommande()

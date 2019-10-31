@@ -5,5 +5,4 @@ class Arc:
         self.cost = cost
 
     def printArc(self):
-        print( "First Vertex: " + str(self.firstVertex) + " , Second vertex: " + str(self.secondVertex) + " , Cost = " + str(self.cost) ) 
-
+        print("First Vertex: " + str(self.firstVertex) + " , Second vertex: " + str(self.secondVertex) + " , Cost = " + str(self.cost)) 

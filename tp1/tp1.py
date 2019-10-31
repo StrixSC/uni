@@ -1,9 +1,9 @@
-#############################################################################
-##### 	STRUCTURES DISCRETES - LOG2810									#####
-#####	Travail réalisé par Ragib Ahashan, Pritam Patel, Nawras Kader	#####
-#####	Travail Pratique 1												#####
-#####	Version de Python utilisé: 3.7.3								#####
-#############################################################################
+#####################################################################################
+##### 	STRUCTURES DISCRETES - LOG2810									        #####
+#####	Travail réalisé par Ragib Ahashan, Pritam Patel, Nawras Mohammmed Amin	#####
+#####	Travail Pratique 1												        #####
+#####	Version de Python utilisé: 3.7.3								        #####
+#####################################################################################
 
 
 # Le format représenté dans le fichier externe entrepot.txt est le format d'un CSV file.
@@ -12,6 +12,7 @@ import csv
 from Arc import Arc
 from Vertex import Vertex
 from commande import Commande
+from Graph import Graph
 
 n_Attributes_Vertex = 4
 n_Attributes_Arc 	= 3
@@ -42,38 +43,3 @@ with open('entrepot.txt') as csv_file:
     		
     		arc = Arc(first_vertex, second_vertex, distance_arc)
     		list_arcs.append(arc)
-    		
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
