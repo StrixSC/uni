@@ -2,6 +2,8 @@ import numpy
 
 class Graph:
     def __init__(self, list_vertex, list_arcs):
+        self.list_vertex = list_vertex
+        self.list_arcs   = list_arcs
         self.graph = [[0 for c in range(len(list_vertex))]
                       for r in range(len(list_vertex))]
                       
@@ -21,7 +23,7 @@ class Graph:
             print(i)
             for j in range(len(self.graph[i])):
                 
-                print(self.graph[i][j], end=' ')
+                print(self.graph[i][j], end='')
 
             print("\n")
 
