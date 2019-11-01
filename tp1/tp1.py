@@ -49,7 +49,22 @@ def read_file(file_name = 'entrepot.txt'):
 	return list_vertices, list_arcs
 
 
-def dijkstra(graph, departure_node):
+
+
+def printPaths(computational_matrix_data, node_id, source_id ):
+	
+	vertex_index 			= 0
+	visited_index 			= 1
+	shortest_distance_index = 2
+	previous_node_index 	= 3
+	if computational_matrix_data[node_id][previous_node_index] == str(source_id):
+		return  str(source_id) + '->' + str(node_id)
+	else:
+		prev_node = computational_matrix_data[node_id][previous_node_index]	
+		return printPaths(computational_matrix_data, int(prev_node), source_id) + "->" + str(node_id)
+
+
+def compute_fastest_paths_dijstra(graph, departure_node):
 	
 
 	#[ VertexObject (Class:Vertex), Visited (Type:Boolean), shortest_distance (type:int), previous_node (type:string)  ]
@@ -112,28 +127,16 @@ def dijkstra(graph, departure_node):
 
 
 	#fastest_routes_from_source = [[ computational_matrix_data[i][0].id , computational_matrix_data[i][2] , computational_matrix_data[i][3]] for i in range(len(graph.list_vertex))]
-
-	return computational_matrix_data
-
-
-
-
-def printPaths(computational_matrix_data, node_id = 20):
 	
-	vertex_index 			= 0
-	visited_index 			= 1
-	shortest_distance_index = 2
-	previous_node_index 	= 3
+	nodes 				= np.array([ [computational_matrix_data[i][vertex_index]] for i in range(len(computational_matrix_data))])
+	shortest_distances  = np.array([[computational_matrix_data[i][shortest_distance_index]] for i in range(len(computational_matrix_data))])
+	fastest_paths       = np.array([[printPaths(computational_matrix_data, i, int(departure_node.id))] for i in range(len(computational_matrix_data))])
+	
 
-	print("Hi")
 
-	if computational_matrix_data[node_id][previous_node_index] == '0':
-		return '0' + '->' + str(node_id)
+	return nodes, shortest_distances, fastest_paths
 
-	else:
-		prev_node = computational_matrix_data[node_id][previous_node_index]	
-		print("recursion")
-		return printPaths(computational_matrix_data, node_id = int(prev_node)) + "->" + str(node_id)
+
 
 
 
@@ -153,29 +156,9 @@ def main():
 
 
 
-	#dijkstra_algorithm(graph, graph.list_vertex[0])
-	computational_matrix_data = dijkstra(graph, graph.list_vertex[0])
-	#print(computational_matrix_data)
-
+	nodes, shortest_distances, fastest_paths = compute_fastest_paths_dijstra(graph, graph.list_vertex[10])
 	
-	for n in computational_matrix_data:
-		print(n[0].id, n[1], n[2], n[3])
-
-	string = printPaths(computational_matrix_data, 20)
-	print(string)
-
-	array = np.array([[printPaths(computational_matrix_data, i)] for i in range(len(computational_matrix_data)-1)])
-	print(array)
-
-	vertex_index 			= 0
-	visited_index 			= 1
-	shortest_distance_index = 2
-	previous_node_index 	= 3
-
-	if computational_matrix_data[0][previous_node_index] == '0':
-		print('stop')
-
-
+	print(fastest_paths)
 
 
 	
