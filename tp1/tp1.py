@@ -90,16 +90,66 @@ def dijkstra_algorithm(graph, starting_node):
 
 
 
+def dijkstra(graph, departure_node):
+	list_nodes = []
+
+	for node in graph.list_vertex[:]:
+		list_nodes.append([node , 1000000])
+
+
+	list_nodes[int(departure_node.id)][1] = 0
+
+
+	list_nodes = np.array(list_nodes)
+	#print(list_nodes)
+
+	shortest_distances = [ 1000000 for i in range(len(graph.list_vertex))]
+	shortest_distances[int(departure_node.id)] = 0
+	previous_nodes 	   = [ 'unknown' for i in range(len(graph.list_vertex))]
+
+	current_shortest = 1000000
+	
+	visiting_node = 0
+
+	for i in range(25):
+
+		visiting_node = departure_node
+
+		for node in list_nodes:
+			if node[1] < current_shortest and node[0] != 'visited':
+				visiting_node = node[0]
+				print(visiting_node.id)
+				list_nodes[0][0] = 'visited'
+
+
+		print("asdad: ", visiting_node.id)
+
+
+		for neighbor in visiting_node.get_neighbors_distances():
+			total_distance = list_nodes[int(visiting_node.id)][1] + neighbor[1]
+			if( total_distance < list_nodes[int(neighbor[0].id)][1]):
+				list_nodes[int(neighbor[0].id)][1] = total_distance
+
+
+
+	print(list_nodes)
+
+
+
+
+
+
 def main():
 	list_vertices, list_arcs = read_file()
 
 	graph = Graph(list_vertices, list_arcs)
-	graph.printGraph()
+	#graph.printGraph()
 
 
-	dijkstra_algorithm(graph, graph.list_vertex[0])
+	#dijkstra_algorithm(graph, graph.list_vertex[0])
+	dijkstra(graph, graph.list_vertex[0])
 
-
+	
 
 main()
 
