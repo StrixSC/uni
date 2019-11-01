@@ -118,16 +118,16 @@ def dijkstra(graph, departure_node):
 	current_vertex 	   = departure_node
 
 
-	for k in range(7):
+	for k in range(21):
 		shortest_dist_path = 1000000
 		for node in computational_matrix_data:
 			if (node[shortest_distance_index] < shortest_dist_path) and (node[visited_index] == False):
 				shortest_dist_path  = node[shortest_distance_index]
 				path_vertex	    = node[vertex_index]
-				node[visited_index] = True
 		
-		print("\n shortest_dist_path chosen: ", shortest_dist_path)
-		print("Visiting the vertex: ", path_vertex.id)
+		computational_matrix_data[int(path_vertex.id)][visited_index] = True
+		
+		print("\n shortest_dist_path chosen: ", shortest_dist_path, " ------  Visiting the vertex: ", path_vertex.id)
 
 		for neighbor in path_vertex.get_neighbors_distances():
 			# neighbor[0] : returns an object Vertex. Returns a neighbor our current vertex 
@@ -142,9 +142,10 @@ def dijkstra(graph, departure_node):
 
 		
 
-
-
-		print("printing computational_matrix_data matrix: ", k , "\n", computational_matrix_data , "\n")
+		print("printing computational_matrix_data matrix: iteration ", k)
+		for n in computational_matrix_data:
+			print(n[0].id, n[1], n[2], n[3])
+		#print("printing computational_matrix_data matrix: ", k , "\n", computational_matrix_data , "\n")
 
 
 
