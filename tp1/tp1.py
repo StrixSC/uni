@@ -77,6 +77,7 @@ def compute_fastest_paths_dijstra(graph, departure_node):
 	visited_index 			= 1
 	shortest_distance_index = 2
 	previous_node_index 	= 3
+	# computational_matrix_data[vertex_index][visited_index][shortest_distance_index][previous_node_index]
 
 
 	# Doesn't affect the inner logic, but beautifies the prints of the matrix. Which makes it more understandable.
@@ -100,8 +101,7 @@ def compute_fastest_paths_dijstra(graph, departure_node):
 		
 		computational_matrix_data[int(path_vertex.id)][visited_index] = True
 		
-	#	print("\n shortest_dist_path chosen: ", shortest_dist_path, " ------  Visiting the vertex: ", path_vertex.id)
-
+	
 		for neighbor in path_vertex.get_neighbors_distances():
 			# neighbor[0] : returns an object Vertex. Returns a neighbor our current vertex. See Vertex class in Vertex.py for more info.
 			# neighbor[1] : returns the distance of the arc between our current vertex and it's neighbor. See Vertex class in Vertex.py for more info.
@@ -115,26 +115,18 @@ def compute_fastest_paths_dijstra(graph, departure_node):
 
 
 
-	#	print("printing computational_matrix_data matrix: iteration ", k)
-	#	for n in computational_matrix_data:
-	#		print(n[0].id, n[1], n[2], n[3])
-	#print("printing computational_matrix_data matrix: ", k , "\n", computational_matrix_data , "\n")
-
-	# Reminder.
-	# computational_matrix_data is a 4x21 matrix.
-	# Each line contains:
-	#[ VertexObject (Class:Vertex), Visited (Type:Boolean), shortest_distance (type:int), previous_node (type:string)  ]
-
-
-	#fastest_routes_from_source = [[ computational_matrix_data[i][0].id , computational_matrix_data[i][2] , computational_matrix_data[i][3]] for i in range(len(graph.list_vertex))]
 	
-	nodes 				= np.array([ [computational_matrix_data[i][vertex_index]] for i in range(len(computational_matrix_data))])
-	shortest_distances  = np.array([[computational_matrix_data[i][shortest_distance_index]] for i in range(len(computational_matrix_data))])
-	fastest_paths       = np.array([[printPaths(computational_matrix_data, i, int(departure_node.id))] for i in range(len(computational_matrix_data))])
 	
+	nodes 				 = np.array([ [computational_matrix_data[i][vertex_index]] for i in range(len(computational_matrix_data))])
+	shortest_distances   = np.array([[computational_matrix_data[i][shortest_distance_index]] for i in range(len(computational_matrix_data))])
+	fastest_paths        = np.array([[printPaths(computational_matrix_data, i, int(departure_node.id))] for i in range(len(computational_matrix_data))])
+	fastest_paths_matrix = np.array([ [nodes[i], shortest_distances[i], fastest_paths[i]] for i in range(len(computational_matrix_data))])
 
-
-	return nodes, shortest_distances, fastest_paths
+	# fastest_paths_matrix is a 3x21 matrix in the scope of our assignment.
+	# the first  column contains all the vertices. 									[Object type: Vertex. (See Vertex class in Vertex.py file)]
+	# the second column contains all the shortest distances for the i-th vertex 	[Object type: integer]
+	# the third  column contains the shortest path. From departure to destination.	[Object type: string]
+	return fastest_paths_matrix
 
 
 
@@ -156,7 +148,7 @@ def main():
 
 
 
-	nodes, shortest_distances, fastest_paths = compute_fastest_paths_dijstra(graph, graph.list_vertex[10])
+	fastest_paths = compute_fastest_paths_dijstra(graph, graph.list_vertex[10])
 	
 	print(fastest_paths)
 
