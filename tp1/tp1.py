@@ -1,9 +1,11 @@
-#####################################################################################
-##### 	STRUCTURES DISCRETES - LOG2810									        #####
-#####	Travail réalisé par Ragib Ahashan, Pritam Patel, Nawras Mohammmed Amin	#####
-#####	Travail Pratique 1												        #####
-#####	Version de Python utilisé: 3.7.3								        #####
-#####################################################################################
+########################################################################################################
+############# 	LOG2810 - STRUCTURES DISCRETES								        		############
+#############	Travail réalisé par Ragib Ahashan, Pritam Patel, Nawras Mohammmed Amin		############
+#############	Travail Pratique 1															############
+#############																				############
+#############	Version de Python utilisé: 3.7.3								        	############
+#############	La librairie NumPy de Python est *NECESSAIRE* pour exécuter ce programme! 	############
+########################################################################################################
 
 
 # Le format représenté dans le fichier externe entrepot.txt est le format d'un CSV file.
@@ -14,6 +16,7 @@ from commande import Commande
 from Graph import Graph
 from Dijkstra import printPaths, compute_fastest_paths_dijstra
 from drone import Drone
+from flightManager import FlightManager
 import numpy as np
 
 
@@ -55,6 +58,12 @@ def main():
 	list_vertices, list_arcs = read_file()
 
 	graph = Graph(list_vertices, list_arcs)
+
+	source = list_vertices[0]
+	destinaion = list_vertices[10]
+
+
+
 	#path = PathFinder(graph, list_vertices[0])
 	#fast = path.compute_fastest_paths_dijstra(graph, list_vertices[0])
 	#graph.printGraph()
@@ -66,12 +75,20 @@ def main():
 
 	fastest_paths = compute_fastest_paths_dijstra(graph, graph.list_vertex[10])
 	
-	droneX = Drone('X', mass = 5)
-	droneX.printDrone()
-	#droneY = Drone('Y', mass = 10)
-	#droneZ = Drone('Z', mass = 25)
+	#droneX = Drone('X', mass = 5)
+	#droneX.printDrone()
 
-	
+	#commande = Commande(1,1,1)
+
+	#flight = FlightManager(commande, droneX, graph)
+	#flight.flight_mission()
+
+
+	#x = flight.plusCourtChemin(source, destinaion)
+	#x[1].sort()
+	#for i in range(len(x))
+
+	#print(fastest_paths[0][0].id)
 
 main()
 

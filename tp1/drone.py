@@ -44,6 +44,6 @@ class Drone:
 
 	def printDrone(self):
 		if self.correct_drone_choice == True:
-			print("Drone Type: ", self.typeDrone, "   maximum load capacity: ", self.maxCharge, "   Constant K: ", self.constant_K, ". It is/will carry", self.carry_mass, "kg for the current/next mission.")
+			print("Drone Type: ", self.typeDrone, "   maximum load capacity: ", self.maxCharge, "   Constant K: ", self.constant_K, ". It's currently carrying", self.carry_mass, "kg.")
 		else:
 			print("----- ERROR: THIS DRONE CANNOT BE USED OR DOESN'T EXIST! ----")
