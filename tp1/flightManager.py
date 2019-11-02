@@ -37,7 +37,7 @@ class FlightManager:
 
 	def plusCourtChemin(self, depart, arrivee):
 		fastest_paths = compute_fastest_paths_dijstra(self.graph, depart)
-		return fastest_paths
+		return self.sort_accending_distances(fastest_paths)
 
 	def flight_mission(self):
 		mass_A = 1
@@ -50,3 +50,20 @@ class FlightManager:
 		print("La mission du robot..")
 		self.commande.afficherCommande()
 		print("La masse total est: ", total_mass, "kg \n")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

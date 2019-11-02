@@ -35,8 +35,8 @@ class Drone:
 			self.correct_drone_choice = False
 			print("\n ERROR: TYPE OF DRONE ", typeDrone, "DOES NOT EXIST! \n")
 
-		if self.correct_drone_choice == True:
-			print("Drone Type: ", self.typeDrone, "   maxCharge: ", self.maxCharge, "   Constant K: ", self.constant_K)
+		#if self.correct_drone_choice == True:
+		#	print("Drone Type: ", self.typeDrone, "   maxCharge: ", self.maxCharge, "   Constant K: ", self.constant_K)
 
 
 	def change_mass(self, mass):

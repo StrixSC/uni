@@ -6,6 +6,9 @@ def printPaths(computational_matrix_data, node_id, source_id ):
 	visited_index 			= 1
 	shortest_distance_index = 2
 	previous_node_index 	= 3
+	if str(node_id) == str(source_id):
+		return str(source_id)
+
 	if computational_matrix_data[node_id][previous_node_index] == str(source_id):
 		return  str(source_id) + '->' + str(node_id)
 	else:
