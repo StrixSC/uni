@@ -71,7 +71,7 @@ def compute_fastest_paths_dijstra(graph, departure_node):
 	fastest_paths        = np.array([ printPaths(computational_matrix_data, i, int(departure_node.id)) for i in range(len(computational_matrix_data))])
 	fastest_paths_matrix = np.array([ [nodes[i], shortest_distances[i], fastest_paths[i]] for i in range(len(computational_matrix_data))])
 
-	print(fastest_paths_matrix[0][0].id)
+	#print(fastest_paths_matrix[0][0].id)
 
 
 

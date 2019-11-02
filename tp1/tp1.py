@@ -59,7 +59,7 @@ def main():
 
 	graph = Graph(list_vertices, list_arcs)
 
-	source = list_vertices[0]
+	source = list_vertices[10]
 	destinaion = list_vertices[10]
 
 
@@ -75,20 +75,60 @@ def main():
 
 	fastest_paths = compute_fastest_paths_dijstra(graph, graph.list_vertex[10])
 	
-	#droneX = Drone('X', mass = 5)
+
+	droneX = Drone('X', mass = 5)
 	#droneX.printDrone()
 
-	#commande = Commande(1,1,1)
+	commande = Commande(1,1,1)
 
-	#flight = FlightManager(commande, droneX, graph)
+	flight = FlightManager(commande, droneX, graph)
 	#flight.flight_mission()
 
 
-	#x = flight.plusCourtChemin(source, destinaion)
-	#x[1].sort()
-	#for i in range(len(x))
+	x = flight.plusCourtChemin(source, destinaion)
 
-	#print(fastest_paths[0][0].id)
+	lol = [0 for i in range(len(x))]
+
+	current_min = 1000
+	new_mat = []
+	visited = []
+	node = 0
+
+	copy = x[:]
+	index = 0
+	order_indexes = []
+
+	for k in range(len(copy)):
+		current_min = 10000
+		for i in range(len(copy)):
+		
+			#if x[i][1] == 99.9129:
+			#	print("skip")
+			#print(x[i][1], '<', current_min, "   ", x[i][1] < current_min, "  ", lol[i])
+			if (x[i][1] < current_min) and (lol[i] == 0):
+				current_min = x[i][1]
+				index = i
+		lol[index] = 1
+		order_indexes.append(index)
+			
+
+		print(current_min)
+	print(copy)
+	print(order_indexes)
+
+	for i in order_indexes:
+		new_mat.append(copy[i])
+	new_mat = np.array(new_mat)
+
+	for n in new_mat:
+		print(n[0].id, n[1], n[2])
+
+	#print(new_mat)
+
+
+	print("===============")
+	y = flight.sort_accending_distances(x)
+	print(y)
 
 main()
 
