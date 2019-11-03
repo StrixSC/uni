@@ -74,6 +74,9 @@ def main():
 
 
 	print(fastest_paths)
+	for node in fastest_paths:
+		print(node[0].id, node[1], node[2])
+	
 
 	
 
