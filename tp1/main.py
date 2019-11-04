@@ -29,7 +29,7 @@ def read_file(file_name = 'entrepot.txt'):
 
 	with open('entrepot.txt') as csv_file:
 		csv_reader = csv.reader(csv_file, delimiter=',')
-		line_count = 0
+		#line_count = 0
 		for line in csv_reader:
 			if(len(line) == n_Attributes_Vertex):
 				vertex_id 		 = line[0]
@@ -58,24 +58,27 @@ def main():
 	list_vertices, list_arcs = read_file()
 
 	graph = Graph(list_vertices, list_arcs)
-
+	
+	#print(graph.list_vertex)
+	
 	id_source 		= 0
 	id_destination  = 20
 
 	source 		= list_vertices[id_source]
-	destinaion  = list_vertices[id_destination]
+	print(source)
+	#destinaion  = list_vertices[id_destination]
 
+	flight   = FlightManager(graph)
 
-	commande = Commande(1,2,3)
-	droneX   = Drone('X', 3)
-	flight   = FlightManager(commande, droneX, graph)
-
-	fastest_paths = flight.plusCourtChemin(source, destinaion)
-
-
-	print(fastest_paths)
+	fastest_paths = flight.plusCourtChemin(source)
+	
+	flight.print_optimal()
 
 	
+	#print('['+ path[0].numberObjectsA, path[0].numberObjectsB, path[0].numberObjectsC + ']', path[1], path[2], '['+ totalA + ']', totalB + ' ', totalC ,']')
+
+
+	#print(fastest_paths)
 
 main()
 
