@@ -77,6 +77,13 @@ def main():
 	
 	#print('['+ path[0].numberObjectsA, path[0].numberObjectsB, path[0].numberObjectsC + ']', path[1], path[2], '['+ totalA + ']', totalB + ' ', totalC ,']')
 
+<<<<<<< HEAD
+=======
+	print(fastest_paths)
+	for node in fastest_paths:
+		print(node[0].id, node[1], node[2])
+	
+>>>>>>> c3b105a49d6ee43127fe726bf3554a92921ac970
 
 	#print(fastest_paths)
 
