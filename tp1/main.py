@@ -14,7 +14,7 @@ from Arc import Arc
 from Vertex import Vertex
 from commande import Commande
 from Graph import Graph
-from Dijkstra import printPaths, compute_fastest_paths_dijstra
+#from Dijkstra import printPaths, compute_fastest_paths_dijstra
 from drone import Drone
 from flightManager import FlightManager
 import numpy as np
@@ -54,15 +54,30 @@ def read_file(file_name = 'entrepot.txt'):
 
 
 
-def main():
-	list_vertices, list_arcs = read_file()
+def interface_graphique_C4():
+	# Creer le graphe: 
+	# Afficher le graphe:
+	# Prendre une commande:
+	# Afficher la commande:
+	# Trouver le plus court chemin:
+	# Quitter
 
-	graph = Graph(list_vertices, list_arcs)
+	print("Choissisez une action: ")
+
+
+
+
+def main():
 	
+	# Lire le fichier entrepot.txt est initialiser le graph.
+	list_vertices, list_arcs = read_file()
+	graph = Graph(list_vertices, list_arcs)
+
+
 
 	flight   = FlightManager(graph)
 
-	#fastest_paths = flight.plusCourtChemin(source)
+	
 	
 	while(True):
 		best_drone_choice = flight.flight_mission()
