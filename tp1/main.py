@@ -59,20 +59,19 @@ def main():
 
 	graph = Graph(list_vertices, list_arcs)
 	
-	print( graph.get_number_objects())
-	
-	id_source 		= 0
-	id_destination  = 20
-
-	source 		= list_vertices[id_source]
-	print(source)
-	
 
 	flight   = FlightManager(graph)
 
-	fastest_paths = flight.plusCourtChemin(source)
+	#fastest_paths = flight.plusCourtChemin(source)
 	
-	flight.print_optimal()
+	while(True):
+		best_drone_choice = flight.flight_mission()
+		flight.print_optimal(best_drone_choice)
+		exit_permission = input("Voulez vous faire une autre commande? Entrez [OUI] ou [NON]: ")
+		if( (exit_permission == 'NON') or (exit_permission == 'non')):
+			break
+		
+
 	
 
 main()

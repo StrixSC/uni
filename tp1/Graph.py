@@ -26,6 +26,10 @@ class Graph:
             for neighbor in node.get_neighbors():
                 self.matrix_adjacence[int(node.id)][int(neighbor.id)] = 1
         
+        # (Noeud0, NbObjetA, nbObjetB, nbObjetC, ((noeud voisin1 0, distance1 0), (noeud voisin2 0, distance2 0),
+        # (noeud voisinn 0, distancen 0)))
+
+
         print(self.matrix_adjacence)
         print("\n")
 
@@ -38,8 +42,8 @@ class Graph:
             totalObjectB += int(self.list_vertex[i].numberObjectsB)
             totalObjectC += int(self.list_vertex[i].numberObjectsC)
 
-        total = totalObjectA + totalObjectB + totalObjectC
-        return totalObjectA, totalObjectB, totalObjectC, total
+        #total = totalObjectA + totalObjectB + totalObjectC
+        return totalObjectA, totalObjectB, totalObjectC#, total
 	    
         
 

@@ -8,7 +8,7 @@ class Commande:
 		self.totalA = totalA
 		self.totalB = totalB
 		self.totalC = totalC
-		self.totalObjets = totalObjets
+		self.totalObjets = totalA + totalB + totalC
 
 
 	def afficherCommande(self):
@@ -24,7 +24,7 @@ class Commande:
 		#self.totalA = self.commandeObjetsA
 		objectsA = str(input("Entrez la quantite d'objets de type A ("+ str(self.totalA) +" disponibles, poids de 1kg chacun): "))
 		if(int(objectsA) > self.totalA):
-			print("Il n'y a pas assez de cette objet dans l'entrepot, voulez-vous "+ str(int(self.totalA)) +" à la place?")
+			print("Il n'y a pas assez de cette objet dans l'entrepot, voulez-vous " + str(int(self.totalA)) +" a la place?")
 			answer = str(input("Tappez 1 pour oui, 0 pour non. Votre reponse: "))
 			if(answer == '1'): 
 				objectsA = self.totalA
@@ -36,7 +36,7 @@ class Commande:
 
 		objectsB = str(input("Entrez la quantite d'objets de type B ("+ str(int(self.totalB)) +" disponibles, poids de 3kg chacun): "))
 		if(int(objectsB) > self.totalB):
-			print("Il n'y a pas assez de cette objet dans l'entrepot, voulez-vous "+ str(int(self.totalB)) +" à la place?")
+			print("Il n'y a pas assez de cette objet dans l'entrepot, voulez-vous "+ str(int(self.totalB)) +" a la place?")
 			answer = str(input("Tappez 1 pour oui, 0 pour non. Votre reponse: "))
 			if(answer == '1'): 
 				objectsB = self.totalB
@@ -48,7 +48,7 @@ class Commande:
 
 		objectsC = str(input("Entrez la quantite d'objets de type C ("+ str(int(self.totalC)) +" disponibles, poids de 6kg chacun): "))
 		if(int(objectsC) > self.totalC):
-			print("Il n'y a pas assez de cette objet dans l'entrepot, voulez-vous "+ str(int(self.totalC)) +" à la place?")
+			print("Il n'y a pas assez de cette objet dans l'entrepot, voulez-vous "+ str(int(self.totalC)) +" a la place?")
 			answer = str(input("Tappez 1 pour oui, 0 pour non. Votre reponse: "))
 			if(answer == '1'): 
 				objectsC = self.totalC
@@ -66,6 +66,5 @@ class Commande:
 		answer = str(input("Voulez-vous faire une correction de commande? Tappez 1 pour oui, 0 pour non. Votre reponse: "))
 		if(answer == '1'):
 			self.prendreCommande()
-		else:
-			None
+		
 

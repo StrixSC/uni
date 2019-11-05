@@ -7,6 +7,11 @@ from Dijkstra import printPaths, compute_fastest_paths_dijstra
 class FlightManager:
 	def __init__(self, graph):
 		self.graph 	  = graph 
+		totalA, totalB, totalC= self.graph.get_number_objects()
+		self.totalA = totalA
+		self.totalB = totalB
+		self.totalC = totalC
+		self.commande = Commande(totalA, totalB, totalC)
 
 	def sort_accending_distances(self, fastest_paths):
 		
@@ -49,9 +54,31 @@ class FlightManager:
 	def flight_mission(self):
 		
 		# Prendre la commande
-		totalA, totalB, totalC, totalObjets = self.graph.get_number_objects()
-		commande = Commande(totalA, totalB, totalC, totalObjets)
-		commande.prendreCommande()
+		#totalA, totalB, totalC, totalObjets = self.graph.get_number_objects()
+		#commande = Commande(totalA, totalB, totalC, totalObjets)
+		droneX = Drone('X')
+		droneY = Drone('Y')
+		droneZ = Drone('Z')
+		
+		if (self.totalA + self.totalB + self.totalC) == 0:
+			return 
+		
+		
+		self.commande.prendreCommande()
+		commande = self.commande
+
+		if self.commande.totalA == 0 and self.commande.commandeObjetsA > 0:
+			print("Il n'y a plus d'objets de type A")
+			self.commande.commandeObjetsA = 0
+
+		if self.commande.totalB == 0 and self.commande.commandeObjetsB > 0:
+			print("Il n'y a plus d'objets de type B")
+			self.commande.commandeObjetsB = 0
+
+		if self.commande.totalC == 0 and self.commande.commandeObjetsC > 0:
+			print("Il n'y a plus d'objets de type C")
+			self.commande.commandeObjetsC = 0
+			
 
 		mass_A = commande.commandeObjetsA * 1
 		mass_B = commande.commandeObjetsB * 3
@@ -87,6 +114,12 @@ class FlightManager:
 			print("ERREUR! VOUS AVEZ MIS UNE MASSE TROP GRANDE!")
 			# Recommencer a
 			self.flight_mission()
+
+		# Updating total objects in inventory
+		self.commande.totalA -= self.commande.commandeObjetsA
+		self.commande.totalB -= self.commande.commandeObjetsB
+		self.commande.totalC -= self.commande.commandeObjetsC
+		
 			
 		# Start from vertex 0
 		current_vertex = self.graph.list_vertex[0]
@@ -350,8 +383,8 @@ class FlightManager:
 			else:
 				return droneZ
 	
-	def print_optimal(self):
-		fastestDrone = self.flight_mission()
+	def print_optimal(self, fastestDrone):
+		#fastestDrone = self.flight_mission()
 		#print(fastestDrone)
 
 		typeDrone, mass, chemin, time = fastestDrone.printDroneMission()
