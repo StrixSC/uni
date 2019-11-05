@@ -1,6 +1,7 @@
 from commande import Commande
 from drone import Drone
 import numpy as np
+import math
 from Dijkstra import printPaths, compute_fastest_paths_dijstra
 
 class FlightManager:
@@ -33,15 +34,23 @@ class FlightManager:
 
 
 
-	def plusCourtChemin(self, depart):
+	def plusCourtChemin(self, depart, arrive = 0):
 		fastest_paths = compute_fastest_paths_dijstra(self.graph, depart)
 		return self.sort_accending_distances(fastest_paths)
+
+	def getShortestPath(self, source, destination):
+		fastest_paths_home = compute_fastest_paths_dijstra(self.graph, source)
+		
+		distance = int(fastest_paths_home[int(destination.id)][1])
+		path = str(fastest_paths_home[int(destination.id)][2])
+		return path, distance
 	
 
 	def flight_mission(self):
 		
 		# Prendre la commande
-		commande = Commande(0, 0, 0)
+		totalA, totalB, totalC, totalObjets = self.graph.get_number_objects()
+		commande = Commande(totalA, totalB, totalC, totalObjets)
 		commande.prendreCommande()
 
 		mass_A = commande.commandeObjetsA * 1
@@ -76,20 +85,20 @@ class FlightManager:
 	
 		else:
 			print("ERREUR! VOUS AVEZ MIS UNE MASSE TROP GRANDE!")
+			# Recommencer a
+			self.flight_mission()
 			
 		# Start from vertex 0
 		current_vertex = self.graph.list_vertex[0]
 
 		# Calculate shortest time for drones
 		while(commande.commandeObjetsA != 0) or (commande.commandeObjetsB != 0) or (commande.commandeObjetsC != 0):
-			print('while')
 
 			# fastest paths from current vertex in ascending order
 			fastest_path = self.plusCourtChemin(current_vertex)
 
 			if(commande.commandeObjetsA > 0):
 				for i in range(21):
-					print("helloA")
 					# if closest vertex has object A
 					if(int(fastest_path[i][0].numberObjectsA) > 0):
 						number_of_objectsA = int(fastest_path[i][0].numberObjectsA)
@@ -100,19 +109,16 @@ class FlightManager:
 
 						# update time if you stop and save path
 						if(droneX.correct_drone_choice):
-							print('X')
 							droneX.chemin.append(fastest_path[i])
 							droneX.distance_from_previous = fastest_path[i][1]
 							droneX.time += droneX.constant_K * droneX.distance_from_previous
 					
 						elif(droneY.correct_drone_choice):
-							print('Y')
 							droneY.chemin.append(fastest_path[i])
 							droneY.distance_from_previous = fastest_path[i][1]
 							droneY.time += droneY.constant_K * droneY.distance_from_previous
 							
 						elif(droneZ.correct_drone_choice):
-							print('Z')
 							droneZ.chemin.append(fastest_path[i])
 							droneZ.distance_from_previous = fastest_path[i][1]
 							droneZ.time += droneZ.constant_K * droneZ.distance_from_previous
@@ -121,15 +127,15 @@ class FlightManager:
 						while(number_of_objectsA != 0):
 							if(droneX.correct_drone_choice):
 								droneX.change_mass(number_of_objectsA/number_of_objectsA)
-								droneX.chemin.append('collecting A')
+								droneX.chemin.append('collecting item A')
 								
 							elif(droneY.correct_drone_choice):
 								droneY.change_mass(number_of_objectsA/number_of_objectsA)
-								droneY.chemin.append('collecting A')
+								droneY.chemin.append('collecting item A')
 							
 							elif(droneZ.correct_drone_choice):
 								droneZ.change_mass(number_of_objectsA/number_of_objectsA)
-								droneZ.chemin.append('collecting A')
+								droneZ.chemin.append('collecting item A')
 								
 							commande.commandeObjetsA -= 1
 							number_of_objectsA -= 1
@@ -144,15 +150,15 @@ class FlightManager:
 								while(number_of_objectsB != 0):
 									if(droneX.correct_drone_choice):
 										droneX.change_mass(number_of_objectsB/number_of_objectsB)
-										droneZ.chemin.append('collecting B')
+										droneZ.chemin.append('collecting item B')
 										
 									elif(droneY.correct_drone_choice):
 										droneY.change_mass(number_of_objectsB/number_of_objectsB)
-										droneZ.chemin.append('collecting B')
+										droneZ.chemin.append('collecting item B')
 									
 									elif(droneZ.correct_drone_choice):
 										droneZ.change_mass(number_of_objectsB/number_of_objectsB)
-										droneZ.chemin.append('collecting B')
+										droneZ.chemin.append('collecting item B')
 									
 									commande.commandeObjetsB -= 1
 									number_of_objectsB -= 1
@@ -166,15 +172,15 @@ class FlightManager:
 								while(number_of_objectsC != 0):
 									if(droneX.correct_drone_choice):
 										droneX.change_mass(number_of_objectsC/number_of_objectsC)
-										droneZ.chemin.append('collecting C')
+										droneZ.chemin.append('collecting item C')
 										
 									elif(droneY.correct_drone_choice):
 										droneY.change_mass(number_of_objectsC/number_of_objectsC)
-										droneZ.chemin.append('collecting C')
+										droneZ.chemin.append('collecting item C')
 									
 									elif(droneZ.correct_drone_choice):
 										droneZ.change_mass(number_of_objectsC/number_of_objectsC)
-										droneZ.chemin.append('collecting C')
+										droneZ.chemin.append('collecting item C')
 									
 									commande.commandeObjetsC -= 1
 									number_of_objectsC -= 1	
@@ -187,7 +193,6 @@ class FlightManager:
 
 			elif(commande.commandeObjetsB > 0):
 				for i in range(21):
-					print("helloB")
 					# if closest vertex has object A
 					if(int(fastest_path[i][0].numberObjectsB) > 0):
 						number_of_objectsB = int(fastest_path[i][0].numberObjectsB)
@@ -197,19 +202,16 @@ class FlightManager:
 
 						# update time if you stop and save path
 						if(droneX.correct_drone_choice):
-							print('X')
 							droneX.chemin.append(fastest_path[i])
 							droneX.distance_from_previous = fastest_path[i][1]
 							droneX.time += droneX.constant_K * droneX.distance_from_previous
 					
 						elif(droneY.correct_drone_choice):
-							print('Y')
 							droneY.chemin.append(fastest_path[i])
 							droneY.distance_from_previous = fastest_path[i][1]
 							droneY.time += droneY.constant_K * droneY.distance_from_previous
 							
 						elif(droneZ.correct_drone_choice):
-							print('Z')
 							droneZ.chemin.append(fastest_path[i])
 							droneZ.distance_from_previous = fastest_path[i][1]
 							droneZ.time += droneZ.constant_K * droneZ.distance_from_previous
@@ -218,15 +220,15 @@ class FlightManager:
 						while(number_of_objectsB != 0):
 							if(droneX.correct_drone_choice):
 								droneX.change_mass(number_of_objectsB/number_of_objectsB)
-								droneX.chemin.append('collecting B')
+								droneX.chemin.append('collecting item B')
 								
 							elif(droneY.correct_drone_choice):
 								droneY.change_mass(number_of_objectsB/number_of_objectsB)
-								droneY.chemin.append('collecting B')
+								droneY.chemin.append('collecting item B')
 							
 							elif(droneZ.correct_drone_choice):
 								droneZ.change_mass(number_of_objectsB/number_of_objectsB)
-								droneZ.chemin.append('collecting B')
+								droneZ.chemin.append('collecting item B')
 								
 							commande.commandeObjetsB -= 1
 							number_of_objectsB -= 1
@@ -240,15 +242,15 @@ class FlightManager:
 								while(number_of_objectsC != 0):
 									if(droneX.correct_drone_choice):
 										droneX.change_mass(number_of_objectsC/number_of_objectsC)
-										droneZ.chemin.append('collecting C')
+										droneZ.chemin.append('collecting item C')
 										
 									elif(droneY.correct_drone_choice):
 										droneY.change_mass(number_of_objectsC/number_of_objectsC)
-										droneZ.chemin.append('collecting C')
+										droneZ.chemin.append('collecting item C')
 									
 									elif(droneZ.correct_drone_choice):
 										droneZ.change_mass(number_of_objectsC/number_of_objectsC)
-										droneZ.chemin.append('collecting C')
+										droneZ.chemin.append('collecting item C')
 									
 									commande.commandeObjetsC -= 1
 									number_of_objectsC -= 1	
@@ -260,7 +262,6 @@ class FlightManager:
 				
 			elif(commande.commandeObjetsC > 0):
 				for i in range(21):
-					print("helloC")
 					# if closest vertex has object A
 					if(int(fastest_path[i][0].numberObjectsC) > 0):
 						number_of_objectsC = int(fastest_path[i][0].numberObjectsC)
@@ -269,13 +270,11 @@ class FlightManager:
 
 						# update time if you stop and save path
 						if(droneY.correct_drone_choice):
-							print('Y')
 							droneY.chemin.append(fastest_path[i])
 							droneY.distance_from_previous = fastest_path[i][1]
 							droneY.time += droneY.constant_K * droneY.distance_from_previous
 							
 						elif(droneZ.correct_drone_choice):
-							print('Z')
 							droneZ.chemin.append(fastest_path[i])
 							droneZ.distance_from_previous = fastest_path[i][1]
 							droneZ.time += droneZ.constant_K * droneZ.distance_from_previous
@@ -300,11 +299,25 @@ class FlightManager:
 							
 						break
 		
-		#return to vertex 0  with shortest path from current vertex                                                  
-		fastest_path = self.plusCourtChemin(current_vertex)                                
+		#return to vertex 0  with shortest path from current vertex    
+		                                              
+		path, distance =  self.getShortestPath(current_vertex, self.graph.list_vertex[0])
+		
 
 		# sort and output the fastest according to which robots were used
 		if(droneX.correct_drone_choice):
+			droneX.distance_from_previous = distance
+			droneX.time += droneX.constant_K * droneX.distance_from_previous
+			droneX.chemin.append(path)
+
+			droneY.distance_from_previous = distance
+			droneY.time += droneX.constant_K * droneX.distance_from_previous
+			droneY.chemin.append(path)
+
+			droneZ.distance_from_previous = distance
+			droneZ.time += droneX.constant_K * droneX.distance_from_previous
+			droneZ.chemin.append(path)
+			
 			fastestDrone = [droneX.time, droneY.time, droneZ.time]
 			fastestDrone.sort()
 			if(droneX.time == fastestDrone[2]):
@@ -315,37 +328,53 @@ class FlightManager:
 				return droneZ
 
 		elif(not droneX.correct_drone_choice) and (not droneY.correct_drone_choice):
+			droneZ.distance_from_previous = distance
+			droneZ.time += droneX.constant_K * droneX.distance_from_previous
+			droneZ.chemin.append(path)
 			return droneZ			
 		
 		else:
+			droneY.distance_from_previous = distance
+			droneY.time += droneX.constant_K * droneX.distance_from_previous
+			droneY.chemin.append(path)
+
+			droneZ.distance_from_previous = distance
+			droneZ.time += droneX.constant_K * droneX.distance_from_previous
+			droneZ.chemin.append(path)
+
 			fastestDrone = [droneY.time, droneZ.time]
 			fastestDrone.sort()
+
 			if(droneY.time == fastestDrone[1]):
 				return droneY
 			else:
 				return droneZ
-
-	
 	
 	def print_optimal(self):
 		fastestDrone = self.flight_mission()
-		print("chemin : ", end="")
-		for i in range(len(fastestDrone.chemin)): 
-			print(fastestDrone.chemin[i][2]," ", end="")
-		print("")
-		print("robot utilise : Type", fastestDrone.typeDrone)
-		print("temps :", int(fastestDrone.time))
+		#print(fastestDrone)
+
+		typeDrone, mass, chemin, time = fastestDrone.printDroneMission()
+
+		print("typeDrone", typeDrone)
+		travel_plan = np.array(chemin)
+		i = 0
+		
+		print("Flight mission plan: \n")
+
+		for i in range(len(travel_plan)-1):
+
+			string = str(travel_plan[i])
+			if string.find("collecting") != 0:
+				print("\n 	Flying to the next station. Flight Path: ", travel_plan[i][2])
+				id_vertex = travel_plan[i][0].id
+			else:
+				print("		Stopping at the station " + str(id_vertex) +". " , travel_plan[i])
 
 
-
-
-
-
-
-
-
-
-
-
-
+		
+		print("The drone has finished loading all items. Now returning home to station 0. \n flight path: ")
+		print("			", travel_plan[len(travel_plan)-1])
+		
+		print("Total mission time: " , str(math.floor(int(time)/60)) + ":" + str(int(time)%60) , " min.")
 

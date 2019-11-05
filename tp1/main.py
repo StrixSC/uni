@@ -59,33 +59,21 @@ def main():
 
 	graph = Graph(list_vertices, list_arcs)
 	
-	#print(graph.list_vertex)
+	print( graph.get_number_objects())
 	
 	id_source 		= 0
 	id_destination  = 20
 
 	source 		= list_vertices[id_source]
 	print(source)
-	#destinaion  = list_vertices[id_destination]
+	
 
 	flight   = FlightManager(graph)
 
 	fastest_paths = flight.plusCourtChemin(source)
 	
 	flight.print_optimal()
-
 	
-	#print('['+ path[0].numberObjectsA, path[0].numberObjectsB, path[0].numberObjectsC + ']', path[1], path[2], '['+ totalA + ']', totalB + ' ', totalC ,']')
-
-<<<<<<< HEAD
-=======
-	print(fastest_paths)
-	for node in fastest_paths:
-		print(node[0].id, node[1], node[2])
-	
->>>>>>> c3b105a49d6ee43127fe726bf3554a92921ac970
-
-	#print(fastest_paths)
 
 main()
 

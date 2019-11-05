@@ -1,8 +1,14 @@
+import Graph
 class Commande:
-	def __init__(self, objetsA=0, objetsB=0, objetsC=0):
-		self.commandeObjetsA = objetsA
-		self.commandeObjetsB = objetsB
-		self.commandeObjetsC = objetsC
+	def __init__(self, totalA=0, totalB=0, totalC=0, totalObjets=0):
+		self.commandeObjetsA = 0
+		self.commandeObjetsB = 0
+		self.commandeObjetsC = 0
+
+		self.totalA = totalA
+		self.totalB = totalB
+		self.totalC = totalC
+		self.totalObjets = totalObjets
 
 
 	def afficherCommande(self):
@@ -15,7 +21,7 @@ class Commande:
 
 	def prendreCommande(self):
 
-		self.totalA = 17
+		#self.totalA = self.commandeObjetsA
 		objectsA = str(input("Entrez la quantite d'objets de type A ("+ str(self.totalA) +" disponibles, poids de 1kg chacun): "))
 		if(int(objectsA) > self.totalA):
 			print("Il n'y a pas assez de cette objet dans l'entrepot, voulez-vous "+ str(int(self.totalA)) +" à la place?")
@@ -26,7 +32,7 @@ class Commande:
 				print("Erreur, recommencez.")
 				self.prendreCommande()
 				return True
-		self.totalB = (25 - int(objectsA) * 1) / 3
+		#self.totalB = (25 - int(objectsA) * 1) / 3
 
 		objectsB = str(input("Entrez la quantite d'objets de type B ("+ str(int(self.totalB)) +" disponibles, poids de 3kg chacun): "))
 		if(int(objectsB) > self.totalB):
@@ -38,7 +44,7 @@ class Commande:
 				print("Erreur, recommencez.")
 				self.prendreCommande()
 				return True
-		self.totalC = (25 - int(objectsA) * 1 - int(objectsB) * 3) / 6
+		#self.totalC = (25 - int(objectsA) * 1 - int(objectsB) * 3) / 6
 
 		objectsC = str(input("Entrez la quantite d'objets de type C ("+ str(int(self.totalC)) +" disponibles, poids de 6kg chacun): "))
 		if(int(objectsC) > self.totalC):

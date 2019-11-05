@@ -1,6 +1,6 @@
 import numpy as np
 class Vertex:
-    def __init__(self, Vertex_id, objectsA, objectsB, objectsC):
+    def __init__(self, Vertex_id = 0, objectsA = 0, objectsB = 0, objectsC = 0):
         self.id = Vertex_id
         self.numberObjectsA = objectsA
         self.numberObjectsB = objectsB

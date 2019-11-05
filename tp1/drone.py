@@ -4,7 +4,7 @@ class Drone:
 		self.correct_drone_choice = True
 		self.typeDrone  = typeDrone
 		self.mass = mass
-		self.chemin = []
+		self.chemin = []	#string
 		self.time = time
 		self.distance_from_previous = distance_from_previous			
 		
@@ -64,3 +64,6 @@ class Drone:
 			print("Drone Type: ", self.typeDrone, "   maximum load capacity: ", self.maxCharge, "   Constant K: ", self.constant_K, ". It's currently carrying", self.mass, "kg.")
 		else:
 			print("----- ERROR: THIS DRONE CANNOT BE USED OR DOESN'T EXIST! ----")
+
+	def printDroneMission(self):
+		return self.typeDrone, self.mass, self.chemin, self.time
