@@ -87,28 +87,6 @@ def interface_graphique_C4():
 
 
 def main():
-	
-	# Lire le fichier entrepot.txt est initialiser le graph.
-	#file_name = str(input("Entrez le nom du fichier .txt à lire pour créer le graphe: "))
-	#if(file_name.find(".txt") == -1):
-	#	file_name += ".txt"
-
-
-	#list_vertices, list_arcs = read_file(file_name)
-	#if(list_vertices == False and list_arcs == False):
-	#	reponse = str(input("Vouliez vous lire le fichier 'entrepot.txt'? Tappez [1] pour 'OUI' ou [0] pour 'NON': "))
-	#	if(reponse == '1'):
-	#		list_vertices, list_arcs = read_file('entrepot.txt')
-	#	else:
-	#		print("\n Recommencez. \n")
-	#		main()
-
-
-	#graph 	 = Graph(list_vertices, list_arcs)
-	#flight   = FlightManager(graph)
-
-	#user_action = interface_graphique_C4()
-
 
 	CHOIX_CREER_GRAPHE 		= 1
 	CHOIX_AFFICHER_GRAPHE   = 2
@@ -158,7 +136,6 @@ def main():
 			print("\n Vous avez choisi de faire une commande.\n")
 			commande.prendreCommande()
 			flight_manager.commande = commande
-			best_drone_choice = flight_manager.plusCourtChemin()
 		
 		if user_action == 4:
 			print("\n Vous avez choisi de faire une commande.\n")
@@ -166,7 +143,7 @@ def main():
 		
 		
 		if user_action == CHOIX_PLUS_COURT_CHEMIN:
-			#best_drone_choice = flight_manager.plusCourtChemin()
+			best_drone_choice = flight_manager.plusCourtChemin()
 			flight_manager.print_optimal(best_drone_choice)
 		
 		
@@ -174,24 +151,6 @@ def main():
 		if user_action == CHOIX_QUITTER_PROGRAMME:
 			print("Exiting program.")
 			break
-
-
-
-	#print(user_action)
-	#while(True):
-
-	#	best_drone_choice = flight.flight_mission()
-	#	flight.print_optimal(best_drone_choice)
-	#	exit_permission = input("Voulez vous faire une autre commande? Entrez [OUI] ou [NON]: ")
-	#	if( (exit_permission == 'OUI') or (exit_permission == 'oui') ):
-	#		print("Vous avez choisis de faire un autre commande.")
-	#	elif( (exit_permission == 'NON') or (exit_permission == 'non') ):
-	#		break
-	#	else:
-	#		break
-		
-
-	
 	
 
 main()

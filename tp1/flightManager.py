@@ -1,8 +1,7 @@
 from commande import CommandManager
 from drone import Drone
-import numpy as np
 import math
-from Dijkstra import printPaths, compute_fastest_paths_dijstra
+from Dijkstra import stringify_path, compute_fastest_paths_dijstra
 
 class FlightManager:
 	def __init__(self, graph):
@@ -33,15 +32,10 @@ class FlightManager:
 
 		for i in ordered_indexes:
 			new_mat.append(copy[i])
-		new_mat = np.array(new_mat)
+		
 
 		return new_mat
 
-
-
-	#def plusCourtChemin(self, depart):
-	#	fastest_paths = compute_fastest_paths_dijstra(self.graph, depart)
-	#	return self.sort_accending_distances(fastest_paths)
 
 	def getShortestPath(self, source, destination):
 		fastest_paths_home = compute_fastest_paths_dijstra(self.graph, source)
@@ -53,7 +47,7 @@ class FlightManager:
 
 	def plusCourtChemin(self):
 		
-		# Prendre la commande
+		# Initialiser un drone. Le drone drone pour le travail sera choisi.
 		droneX = Drone('X')
 		droneY = Drone('Y')
 		droneZ = Drone('Z')
@@ -387,13 +381,9 @@ class FlightManager:
 	
 	def print_optimal(self, fastestDrone):
 		
-
-		typeDrone, mass, chemin, time = fastestDrone.printDroneMission()
-
+		typeDrone, mass, travel_plan, time = fastestDrone.printDroneMission()
 		print("\n \n Best drone: ", typeDrone)
-		travel_plan = np.array(chemin)
 		i = 0
-		
 		print("Flight mission plan: \n")
 
 		for i in range(len(travel_plan)-1):
@@ -401,15 +391,11 @@ class FlightManager:
 			string = str(travel_plan[i])
 			if string.find("collecting") != 0:
 				print("\n 	Flying to the next station. Flight Path: ", travel_plan[i][2])
-				print("       Stopping at the station ", travel_plan[i][0].id)
+				print("        Stopping at the station ", travel_plan[i][0].id)
 				id_vertex = travel_plan[i][0].id
 			else:
 				print("		                        " , travel_plan[i])
 
-
-		
-		print("\nThe drone has finished loading all items. Now returning home to station 0. \n Flight path:", travel_plan[len(travel_plan)-1])
-	
-		
-		print("Total mission time: (" ,math.floor(time),"seconds) or (", str(math.floor(int(time)/60)) + ":" + str(int(time)%60) , ") min.\n")
+		print("\nThe drone has finished loading all items. Now returning home to station 0. \nFlight path:", travel_plan[len(travel_plan)-1])
+		print("Total mission time: (" + str(math.floor(int(time))) + "seconds) or (" +  str(math.floor(int(time)/60)) + "min" + str(int(time)%60) + "s).\n")
 
