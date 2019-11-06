@@ -1,8 +1,15 @@
+#########################################################################################
+#	Class Graph. Cette classe contient la liste des arcs et sommets
+#########################################################################################
 class Graph:
     def __init__(self, list_vertex, list_arcs):
         self.list_vertex = list_vertex
         self.list_arcs   = list_arcs
 
+    #########################################################################################
+    #	methode printGraph: Affiche le graphe. Fait partie du Composant 1
+    #	params [self]
+    #########################################################################################
     def printGraph(self):
         print("\n")
         print("Voici l'information des noeuds dans ce graphe: ")
@@ -11,6 +18,11 @@ class Graph:
 
         print("\n")
 
+    #########################################################################################
+    #	methode get_number_objects: indique le nombre d'objets disponible dans l'entrepot,
+    #                               pour chaque type d'objets.
+    #	params [self]
+    #########################################################################################
     def get_number_objects(self):
         totalObjectA = 0
         totalObjectB = 0

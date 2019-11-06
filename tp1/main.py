@@ -178,6 +178,7 @@ def main():
 			else:
 				commande.prendreCommande()
 				flight_manager.commande = commande
+				best_drone_choice = flight_manager.plusCourtChemin()
 				commande_existe = True
 				print("\n          Votre commande est enregistré.")
 			input("\n          Appuyez sur 'Enter' pour retourner au menu.\n")
@@ -193,8 +194,11 @@ def main():
 		
 		if user_action == CHOIX_PLUS_COURT_CHEMIN:
 			if commande_existe == True:
-				best_drone_choice = flight_manager.plusCourtChemin()
-				flight_manager.print_drone_mission(best_drone_choice)
+				#best_drone_choice = flight_manager.plusCourtChemin()
+				if best_drone_choice == False:
+					print("ERREUR, MASSE SUPÉRIEUR À 25kg!")
+				else:
+					flight_manager.print_drone_mission(best_drone_choice)
 			else:
 				print("Vous n'avez pas fait de commande.")
 			input("\nAppuyez sur 'Enter' pour retourner au menu.\n")

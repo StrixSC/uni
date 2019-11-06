@@ -1,4 +1,8 @@
 import Graph
+#########################################################################################
+#	Class CommandManager: C'est une classe gestionnaire. Elle est responsable des 
+#					      commandes des utilisaters.
+#########################################################################################
 class CommandManager:
 	def __init__(self, totalA=0, totalB=0, totalC=0, totalObjets=0):
 		self.commandeObjetsA = 0
@@ -10,7 +14,10 @@ class CommandManager:
 		self.totalC = totalC
 		self.totalObjets = self.commandeObjetsA + self.commandeObjetsB + self.commandeObjetsC
 
-
+	#########################################################################################
+    #	methode afficherCommande: Affiche la commande
+    #	params [self]
+    #########################################################################################
 	def afficherCommande(self):
 		print("Voici votre commande: ")
 		print("                 	 " , self.commandeObjetsA , " objets de type A")
@@ -19,6 +26,11 @@ class CommandManager:
 		total = self.commandeObjetsA + self.commandeObjetsB + self.commandeObjetsC
 		print("                          Total:" , total, "objets \n")
 
+	#########################################################################################
+    #	methode prendreCommande: Fait partie du composant 1. Cette methode prend une commande
+	#							 de l'usager.
+    #	params [self]
+    #########################################################################################
 	def prendreCommande(self):
 
 		acceptable_input = [str(i) for i in range(26)]
