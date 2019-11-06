@@ -379,7 +379,7 @@ class FlightManager:
 			else:
 				return droneZ
 	
-	def print_optimal(self, fastestDrone):
+	def print_drone_mission(self, fastestDrone):
 		
 		typeDrone, mass, travel_plan, time = fastestDrone.printDroneMission()
 		print("\n \n Best drone: ", typeDrone)

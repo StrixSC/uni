@@ -95,8 +95,10 @@ def main():
 	CHOIX_PLUS_COURT_CHEMIN = 5
 	CHOIX_QUITTER_PROGRAMME = 6
 
-	graph  = 'invalid'
-	flight = 'invalid'
+	graph_exist				   = False
+	flight_module_permission   = False
+	commande_existe            = False
+	afficher_chemin_permission = False
 
 	while(True):
 
@@ -116,35 +118,49 @@ def main():
 					flight_manager   = FlightManager(graph)
 					totalA, totalB, totalC = graph.get_number_objects()
 					commande = CommandManager(totalA, totalB, totalC)
+					graph_exist = True
 				else:
 					print("\n RECOMMENCEZ AVEC UN FICHIER .txt LISIBLE. \n")
 					print("*** Le fichier 'entrepot.txt' est le nom du fichier qui contient les informations sur le graphe de ce TP.")
-		
+			input("\nAppuyez sur Enter pour retourner au menu.\n")
 		
 		if user_action == CHOIX_AFFICHER_GRAPHE:
 			print("\n Vous avez choisi d'afficher le graphe.\n")
-			if(graph == 'invalid'):
+			if(graph_exist == False):
 				print("Le graphe n'existe pas. Créez le graphe pour l'afficher!\n")
 			else:
 				graph.printGraph()
-
-				#Initialiser CommandManager avec les objets disponibles dans le graphe
+			input("\nAppuyez sur Enter pour retourner au menu.\n")
 				
 
 		
 		if user_action == CHOIX_PRENDRE_COMMANDE:
 			print("\n Vous avez choisi de faire une commande.\n")
-			commande.prendreCommande()
-			flight_manager.commande = commande
+			if(graph_exist == False):
+				print("Aucun graphe est choisi. Créez un graphe pour faire une commande.")
+			else:
+				commande.prendreCommande()
+				flight_manager.commande = commande
+				commande_existe = True
+				print("\n          Votre commande est enregistré.")
+			input("\n          Appuyez sur Enter pour retourner au menu.\n")
 		
 		if user_action == 4:
 			print("\n Vous avez choisi de faire une commande.\n")
-			flight_manager.commande.afficherCommande()
+			if commande_existe == False:
+				print("Aucune commande n'existe. Faites une commande pour afficher la commande.")
+			else:
+				flight_manager.commande.afficherCommande()
+			input("\nAppuyez sur Enter pour retourner au menu.\n")
 		
 		
-		if user_action == CHOIX_PLUS_COURT_CHEMIN:
-			best_drone_choice = flight_manager.plusCourtChemin()
-			flight_manager.print_optimal(best_drone_choice)
+		if user_action == 5:
+			if commande_existe == True:
+				best_drone_choice = flight_manager.plusCourtChemin()
+				flight_manager.print_drone_mission(best_drone_choice)
+			else:
+				print("Vous n'avez pas fait de commande.")
+			input("\nAppuyez sur Enter pour retourner au menu.\n")
 		
 		
 		

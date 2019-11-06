@@ -8,7 +8,7 @@ class CommandManager:
 		self.totalA = totalA
 		self.totalB = totalB
 		self.totalC = totalC
-		self.totalObjets = totalA + totalB + totalC
+		self.totalObjets = self.commandeObjetsA + self.commandeObjetsB + self.commandeObjetsC
 
 
 	def afficherCommande(self):
