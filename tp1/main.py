@@ -17,7 +17,11 @@ from Graph import Graph
 from drone import Drone
 from flightManager import FlightManager
 
-
+############################################################################################
+#	fonction read_file: lis un fichier de type CSV et retourne la liste des arcs et sommets
+#	params [file_name (String)]
+#	return	list_vertices, list_arcs
+############################################################################################
 def read_file(file_name = 'entrepot.txt'):
 	
 	list_vertices 	= []

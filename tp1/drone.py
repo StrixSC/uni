@@ -1,3 +1,6 @@
+#########################################################################################
+#	Class Drone: Permet les objets drones avec les constreints.
+#########################################################################################
 class Drone:
 	def __init__(self, typeDrone, mass=0, time=0, distance_from_previous=0):
 		# Error handling.
@@ -8,7 +11,7 @@ class Drone:
 		self.time = time
 		self.distance_from_previous = distance_from_previous			
 		
-		# 
+		# Contraintes
 		if typeDrone == 'X':
 			if(mass > 5):
 				self.correct_drone_choice = False
@@ -39,10 +42,11 @@ class Drone:
 			self.correct_drone_choice = False
 			print("\n ERROR: TYPE OF DRONE ", typeDrone, "DOES NOT EXIST! \n")
 
-		#if self.correct_drone_choice == True:
-		#	print("Drone Type: ", self.typeDrone, "   maxCharge: ", self.maxCharge, "   Constant K: ", self.constant_K)
 
-
+	#############################################################################################
+    #	methode change_mass: Permet de changer la charge pris par le robot
+    #	params [self, mass (Integer)]
+    #############################################################################################
 	def change_mass(self, mass):
 		self.mass += mass
 		#print("MASS:",self.mass)
@@ -58,12 +62,20 @@ class Drone:
 		elif self.typeDrone == 'Z':
 			self.constant_K = 2.5 + 0.2*self.mass
 
-
+	#############################################################################################
+    #	methode printDrone: Affiche un Drone
+    #	params [self]
+    #############################################################################################
 	def printDrone(self):
 		if self.correct_drone_choice == True:
 			print("Drone Type: ", self.typeDrone, "   maximum load capacity: ", self.maxCharge, "   Constant K: ", self.constant_K, ". It's currently carrying", self.mass, "kg.")
 		else:
 			print("----- ERROR: THIS DRONE CANNOT BE USED OR DOESN'T EXIST! ----")
 
+	#############################################################################################
+    #	methode printDroneMission: retourne les information importante de la mission
+    #	params [self]
+	# 	return typeDrone (Char), mass (Integer), chemin (String), time (Integer)
+    #############################################################################################
 	def printDroneMission(self):
 		return self.typeDrone, self.mass, self.chemin, self.time

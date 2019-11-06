@@ -80,8 +80,6 @@ class FlightManager:
 		if (self.totalA + self.totalB + self.totalC) == 0:
 			return 
 		
-		
-		#self.commande.prendreCommande()
 		commande = self.commande
 
 		objets_commande_A = self.commande.commandeObjetsA
@@ -146,7 +144,7 @@ class FlightManager:
 			self.commande.totalA -= objets_commande_A
 			self.commande.totalB -= objets_commande_B
 			self.commande.totalC -= objets_commande_C
-			
+
 			# Calculate shortest time for drones
 			while(objets_commande_A != 0) or (objets_commande_B != 0) or (objets_commande_C != 0):
 

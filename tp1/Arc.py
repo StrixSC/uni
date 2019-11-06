@@ -1,3 +1,6 @@
+#########################################################################################
+#	Class Arc: Contient les arcs
+#########################################################################################
 class Arc: 
     def __init__(self, firstVertex, secondVertex, distance):
         self.firstVertex    = firstVertex
@@ -9,6 +12,8 @@ class Arc:
         self.secondVertex.add_neighbor(self.firstVertex, distance)
 
 
-
+    #########################################################################################
+    #	methode printArc: Affiche un arc
+    #########################################################################################
     def printArc(self):
         print("First Vertex: " + str(self.firstVertex) + " , Second vertex: " + str(self.secondVertex) + " , Cost = " + str(self.distance)) 

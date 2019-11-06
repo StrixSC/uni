@@ -1,3 +1,10 @@
+#########################################################################################
+#	fonction stringify_path: Construit le chemin le plus court recursivement.
+#							 Cette fonction ne fait pas d'algorithme de Dijsktra, 
+#						     Elle est utilisé dans compute_fastest_paths_dijstra()
+#	params [self,node_id (Vertex), source_id, (Interger)]
+# 	return path (String)
+#########################################################################################
 def stringify_path(computational_matrix_data, node_id, source_id ):
 	
 	vertex_index 			= 0
@@ -14,6 +21,11 @@ def stringify_path(computational_matrix_data, node_id, source_id ):
 		return stringify_path(computational_matrix_data, int(prev_node), source_id) + "->" + str(node_id)
 
 
+#########################################################################################
+#	fonction compute_fastest_paths_dijstra: On implémente l'algorithme de Dijsktra ici
+#	params [self,departure_node (Vertex)]
+# 	return fastest_paths_matrix (Voir au bas de la page.)
+#########################################################################################
 def compute_fastest_paths_dijstra(graph, departure_node):
 	
 
