@@ -44,6 +44,8 @@ class CommandManager:
 		objectsB = 0
 		objectsC = 0
 		
+		# S'il n'y a pas 0 objets A dans l'inventaire, on prend les inputs de l'usager de facon à ne pas avoir 
+		# des erreurs.
 		print("\nMasse disponible à charger: ",self.maxMass, "kg")
 		if self.totalA == 0:
 			print("Il n'y a plus d'objets de type A disponible!")
@@ -64,6 +66,9 @@ class CommandManager:
 				objectsA = 0
 				input_error = True
 		
+
+		# S'il n'y a pas 0 objets B dans l'inventaire, on prend les inputs de l'usager de facon à ne pas avoir 
+		# des erreurs.
 		if self.totalB == 0:
 			print("Il n'y a plus d'objets de type B disponible!")
 		else:
@@ -83,6 +88,9 @@ class CommandManager:
 				objectsB = 0
 				input_error = True
 
+
+		# S'il n'y a pas 0 objets C dans l'inventaire, on prend les inputs de l'usager de facon à ne pas avoir 
+		# des erreurs.
 		if self.totalC == 0:
 			print("Il n'y a plus d'objets de type C disponible!")
 		else:
@@ -102,13 +110,25 @@ class CommandManager:
 				objectsC = 0
 				input_error = True
 		
+
+
+		# On update les commandes dans les attributs.
 		self.commandeObjetsA = int(objectsA)
 		self.commandeObjetsB = int(objectsB)
 		self.commandeObjetsC = int(objectsC)
+		
+
+		# On affiche la commande pour indiquer à l'usager ce qui est enregistré afin qu'il puisse faire des changements
+		# s'il veut.
 		print("\nLa masse total est: ", int(objectsA)*self.massA + int(objectsB)*self.massB + int(objectsC)*self.massC, "kg")
 		self.afficherCommande()
+		
+		# Si l'usager n'a pas tappé un entier entre 0 et 25, on lui demande de verifier la commande pour un correction.
 		if input_error == True:
 			answer = str(input("Vous avez fait une erreur en entré. Voulez-vous faire une correction de commande? Tappez 1 pour oui, 0 pour non. Votre reponse: "))
+		
+		
+		# Confirmer la commande, si l'usager veut faire un changement, on recommence cette fonction.
 		else:
 			answer = str(input("Voulez-vous modifier votre commande? Tappez 1 pour oui, 0 pour non. Votre reponse: "))
 		if(answer == '1'):
