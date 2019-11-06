@@ -50,6 +50,7 @@ def read_file(file_name = 'entrepot.txt'):
 					
 					arc = Arc(first_vertex, second_vertex, distance_arc)
 					list_arcs.append(arc)
+		print("Le ficher est lu!")
 	except Exception as e:
 		print("Erreur de lecture du fichier! Le fichier '" + file_name + "' ne peut pas être lu.")
 		return False, False
@@ -59,7 +60,7 @@ def read_file(file_name = 'entrepot.txt'):
 
 
 
-def interface_graphique_C4():
+def interface_graphique_C4(afficher_graph,commander,afficher_commande,chemins):
 	# Creer le graphe: 
 	# Afficher le graphe:
 	# Prendre une commande:
@@ -69,13 +70,29 @@ def interface_graphique_C4():
 	reponses_possibles = ['1','2','3','4','5','6']
 	reponse_acceptable = False
 
+	if afficher_graph == False:
+		msg_interface_aff_graphe 	  = "Pour afficher le graphe:            Tappez [2]		[accès restreint]"
+		msg_interface_commander       = "Pour faire une commande:            Tappez [3]		[accès restreint]"
+	else:
+		msg_interface_aff_graphe 	  = "Pour afficher le graphe:            Tappez [2]"
+		msg_interface_commander       = "Pour faire une commande:            Tappez [3]"
+		
+	if afficher_commande == False:
+		msg_interface_aff_commande 	  = "Pour afficher la derniere commande: Tappez [4]		[accès restreint]"
+		msg_interface_chemins 		  = "Pour afficher le plus court chemin: Tappez [5]		[accès restreint]"
+	else:
+		msg_interface_aff_commande 	  = "Pour afficher la derniere commande: Tappez [4]"
+		msg_interface_chemins 		  = "Pour afficher le plus court chemin: Tappez [5]"
+	
+	
+	
 	while(True):
 		print("\n		MENU PRINCIPAL		")
 		print("\nPour creer un nouveau graphe:       Tappez [1]")
-		print("Pour afficher le graphe:            Tappez [2]")
-		print("Pour faire une commande:            Tappez [3]")
-		print("Pour afficher la derniere commande: Tappez [4]")
-		print("Pour afficher le plus court chemin: Tappez [5]")
+		print(msg_interface_aff_graphe)
+		print(msg_interface_commander)
+		print(msg_interface_aff_commande)
+		print(msg_interface_chemins)
 		print("Pour quitter le programme:          Tappez [6]\n")
 
 		reponse_output = str(input("Entrez votre choix: "))
@@ -102,7 +119,7 @@ def main():
 
 	while(True):
 
-		user_action = interface_graphique_C4()
+		user_action = interface_graphique_C4(graph_exist,flight_module_permission,commande_existe,afficher_chemin_permission)
 
 		if user_action == CHOIX_CREER_GRAPHE:
 			print("\nVous avez choisi de créer un nouvel graphe.")
@@ -114,6 +131,7 @@ def main():
 				reponse = str(input("Vouliez vous lire le fichier 'entrepot.txt'? Tappez [1] pour 'OUI' ou [0] pour 'NON': "))
 				if(reponse == '1'):
 					list_vertices, list_arcs = read_file('entrepot.txt')
+					print("\nLe graphe est crée. Vous pouvez maintenant accéder aux autres fonctionnalités du programme. \n")
 					graph = Graph(list_vertices, list_arcs)
 					flight_manager   = FlightManager(graph)
 					totalA, totalB, totalC = graph.get_number_objects()
@@ -122,7 +140,9 @@ def main():
 				else:
 					print("\n RECOMMENCEZ AVEC UN FICHIER .txt LISIBLE. \n")
 					print("*** Le fichier 'entrepot.txt' est le nom du fichier qui contient les informations sur le graphe de ce TP.")
-			input("\nAppuyez sur Enter pour retourner au menu.\n")
+			else:
+				print("\nLe graphe est crée. Vous pouvez maintenant accéder aux autres fonctionnalités du programme. \n")
+			input("\nAppuyez sur 'Enter' pour retourner au menu.\n")
 		
 		if user_action == CHOIX_AFFICHER_GRAPHE:
 			print("\n Vous avez choisi d'afficher le graphe.\n")
@@ -130,7 +150,7 @@ def main():
 				print("Le graphe n'existe pas. Créez le graphe pour l'afficher!\n")
 			else:
 				graph.printGraph()
-			input("\nAppuyez sur Enter pour retourner au menu.\n")
+			input("\nAppuyez sur 'Enter' pour retourner au menu.\n")
 				
 
 		
@@ -143,7 +163,7 @@ def main():
 				flight_manager.commande = commande
 				commande_existe = True
 				print("\n          Votre commande est enregistré.")
-			input("\n          Appuyez sur Enter pour retourner au menu.\n")
+			input("\n          Appuyez sur 'Enter' pour retourner au menu.\n")
 		
 		if user_action == 4:
 			print("\n Vous avez choisi de faire une commande.\n")
@@ -151,7 +171,7 @@ def main():
 				print("Aucune commande n'existe. Faites une commande pour afficher la commande.")
 			else:
 				flight_manager.commande.afficherCommande()
-			input("\nAppuyez sur Enter pour retourner au menu.\n")
+			input("\nAppuyez sur 'Enter' pour retourner au menu.\n")
 		
 		
 		if user_action == 5:
@@ -160,7 +180,7 @@ def main():
 				flight_manager.print_drone_mission(best_drone_choice)
 			else:
 				print("Vous n'avez pas fait de commande.")
-			input("\nAppuyez sur Enter pour retourner au menu.\n")
+			input("\nAppuyez sur 'Enter' pour retourner au menu.\n")
 		
 		
 		
