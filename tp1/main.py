@@ -78,29 +78,29 @@ def menu_principal(afficher_graph,afficher_commande):
 
 	# On change le menu dépendement des actions des usagers.
 	if afficher_graph == False:
-		msg_interface_aff_graphe 	  = "Pour afficher le graphe:            Tappez [2]		[accès restreint]"
-		msg_interface_commander       = "Pour faire une commande:            Tappez [3]		[accès restreint]"
+		msg_interface_aff_graphe 	  = "          Pour afficher le graphe:            Tappez [2]	[accès restreint]"
+		msg_interface_commander       = "          Pour faire une commande:            Tappez [3]	[accès restreint]"
 	else:
-		msg_interface_aff_graphe 	  = "Pour afficher le graphe:            Tappez [2]"
-		msg_interface_commander       = "Pour faire une commande:            Tappez [3]"
+		msg_interface_aff_graphe 	  = "          Pour afficher le graphe:            Tappez [2]"
+		msg_interface_commander       = "          Pour faire une commande:            Tappez [3]"
 
 	if afficher_commande == False:
-		msg_interface_aff_commande 	  = "Pour afficher la derniere commande: Tappez [4]		[accès restreint]"
-		msg_interface_chemins 		  = "Pour afficher le plus court chemin: Tappez [5]		[accès restreint]"
+		msg_interface_aff_commande 	  = "          Pour afficher la derniere commande: Tappez [4]	[accès restreint]"
+		msg_interface_chemins 		  = "          Pour afficher le plus court chemin: Tappez [5]	[accès restreint]"
 	else:
-		msg_interface_aff_commande 	  = "Pour afficher la derniere commande: Tappez [4]"
-		msg_interface_chemins 		  = "Pour afficher le plus court chemin: Tappez [5]"
+		msg_interface_aff_commande 	  = "          Pour afficher la derniere commande: Tappez [4]"
+		msg_interface_chemins 		  = "          Pour afficher le plus court chemin: Tappez [5]"
 	
 	
 	# Tant qu'on ne recoit pas une bonne reponse de l'usager, on lui demande la meme question.
 	while(True):
-		print("\n		MENU PRINCIPAL		")
-		print("\nPour creer un nouveau graphe:       Tappez [1]")
+		print("\n          		MENU PRINCIPAL		")
+		print("\n          Pour creer un nouveau graphe:       Tappez [1]")
 		print(msg_interface_aff_graphe)
 		print(msg_interface_commander)
 		print(msg_interface_aff_commande)
 		print(msg_interface_chemins)
-		print("Pour quitter le programme:          Tappez [6]\n")
+		print("          Pour quitter le programme:          Tappez [6]\n")
 
 		reponse_output = str(input("Entrez votre choix: "))
 		if reponse_output in reponses_possibles:

@@ -8,7 +8,7 @@ class CommandManager:
 		self.commandeObjetsA = 0
 		self.commandeObjetsB = 0
 		self.commandeObjetsC = 0
-
+		
 		self.totalA = totalA
 		self.totalB = totalB
 		self.totalC = totalC
@@ -49,7 +49,7 @@ class CommandManager:
 		else:
 			objectsA = 0
 			input_error = True
-
+		
 		objectsB = str(input("Entrez la quantite d'objets de type B ("+ str(int(self.totalB)) +" disponibles, poids de 3kg chacun): "))
 		if objectsB in acceptable_input:
 			if(int(objectsB) > self.totalB):
@@ -65,6 +65,7 @@ class CommandManager:
 			objectsB = 0
 			input_error = True
 
+		
 		objectsC = str(input("Entrez la quantite d'objets de type C ("+ str(int(self.totalC)) +" disponibles, poids de 6kg chacun): "))
 		if objectsC in acceptable_input:
 			if(int(objectsC) > self.totalC):
@@ -83,7 +84,7 @@ class CommandManager:
 		self.commandeObjetsA = int(objectsA)
 		self.commandeObjetsB = int(objectsB)
 		self.commandeObjetsC = int(objectsC)
-		
+		print("La masse total est: ", self.commandeObjetsA * self.commandeObjetsB * self.commandeObjetsC, "kg")
 		self.afficherCommande()
 		if input_error == True:
 			answer = str(input("Vous avez fait une erreur en entré. Voulez-vous faire une correction de commande? Tappez 1 pour oui, 0 pour non. Votre reponse: "))
