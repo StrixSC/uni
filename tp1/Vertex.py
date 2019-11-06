@@ -1,4 +1,3 @@
-import numpy as np
 class Vertex:
     def __init__(self, Vertex_id = 0, objectsA = 0, objectsB = 0, objectsC = 0):
         self.id = Vertex_id
@@ -34,6 +33,5 @@ class Vertex:
     def get_neighbors_distances(self):
         neighbors_distances = []
         for i in range(len(self.neighbors)):
-            neighbors_distances.append( [self.neighbors[i], self.distances[i]] )
-        neighbors_distances = np.array(neighbors_distances)
+            neighbors_distances.append([self.neighbors[i], self.distances[i]])
         return neighbors_distances

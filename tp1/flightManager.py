@@ -385,7 +385,7 @@ class FlightManager:
 		print("\n \n Best drone: ", typeDrone)
 		i = 0
 		print("Flight mission plan: \n")
-
+	
 		for i in range(len(travel_plan)-1):
 
 			string = str(travel_plan[i])
@@ -395,7 +395,8 @@ class FlightManager:
 				id_vertex = travel_plan[i][0].id
 			else:
 				print("		                        " , travel_plan[i])
-
-		print("\nThe drone has finished loading all items. Now returning home to station 0. \nFlight path:", travel_plan[len(travel_plan)-1])
+		
+		
+		print("\nThe drone has finished loading all items. Now returning home to station 0. \nFlight path back home:", travel_plan[len(travel_plan)-1])
 		print("Total mission time: (" + str(math.floor(int(time))) + "seconds) or (" +  str(math.floor(int(time)/60)) + "min" + str(int(time)%60) + "s).\n")
 

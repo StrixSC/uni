@@ -4,7 +4,6 @@
 #############	Travail Pratique 1															############
 #############																				############
 #############	Version de Python utilisé: 3.7.3								        	############
-#############	La librairie NumPy de Python est *NECESSAIRE* pour exécuter ce programme! 	############
 ########################################################################################################
 
 
@@ -17,7 +16,6 @@ from Graph import Graph
 #from Dijkstra import printPaths, compute_fastest_paths_dijstra
 from drone import Drone
 from flightManager import FlightManager
-import numpy as np
 
 
 def read_file(file_name = 'entrepot.txt'):
@@ -59,24 +57,33 @@ def read_file(file_name = 'entrepot.txt'):
 	return list_vertices, list_arcs
 
 
-
-def interface_graphique_C4(afficher_graph,commander,afficher_commande,chemins):
+#########################################################################################
+#	menu_principal affiche le menu. Le menu est dynamiquement changé selon l'ordre 
+#	des opérations fait par l'usager.
+#	Il fait partie du composant 4 qui est à implémenter.
+#	params afficher_graph (bool), afficher_commande (bool)
+#########################################################################################
+def menu_principal(afficher_graph,afficher_commande):
 	# Creer le graphe: 
 	# Afficher le graphe:
 	# Prendre une commande:
 	# Afficher la commande:
 	# Trouver le plus court chemin:
 	# Quitter
+
+	# Si les valeurs à l'interieur de cet liste n'est pas un input de l'usager, on refuse la reponse.
 	reponses_possibles = ['1','2','3','4','5','6']
 	reponse_acceptable = False
 
+
+	# On change le menu dépendement des actions des usagers.
 	if afficher_graph == False:
 		msg_interface_aff_graphe 	  = "Pour afficher le graphe:            Tappez [2]		[accès restreint]"
 		msg_interface_commander       = "Pour faire une commande:            Tappez [3]		[accès restreint]"
 	else:
 		msg_interface_aff_graphe 	  = "Pour afficher le graphe:            Tappez [2]"
 		msg_interface_commander       = "Pour faire une commande:            Tappez [3]"
-		
+
 	if afficher_commande == False:
 		msg_interface_aff_commande 	  = "Pour afficher la derniere commande: Tappez [4]		[accès restreint]"
 		msg_interface_chemins 		  = "Pour afficher le plus court chemin: Tappez [5]		[accès restreint]"
@@ -85,7 +92,7 @@ def interface_graphique_C4(afficher_graph,commander,afficher_commande,chemins):
 		msg_interface_chemins 		  = "Pour afficher le plus court chemin: Tappez [5]"
 	
 	
-	
+	# Tant qu'on ne recoit pas une bonne reponse de l'usager, on lui demande la meme question.
 	while(True):
 		print("\n		MENU PRINCIPAL		")
 		print("\nPour creer un nouveau graphe:       Tappez [1]")
@@ -98,11 +105,17 @@ def interface_graphique_C4(afficher_graph,commander,afficher_commande,chemins):
 		reponse_output = str(input("Entrez votre choix: "))
 		if reponse_output in reponses_possibles:
 			return int(reponse_output)
-		print("\n", str(reponse_output), " n'est pas une option. Recommencez. \n")
+		print("\n '", str(reponse_output), "' n'est pas une option. Recommencez. \n")
 
 
 
 
+
+#########################################################################################
+#	main(). C'est la classe main, qui execute notre programme. 
+#	Il fait partie du composant 4 qui est à implémenter.
+#	params aucun
+#########################################################################################
 def main():
 
 	CHOIX_CREER_GRAPHE 		= 1
@@ -119,7 +132,7 @@ def main():
 
 	while(True):
 
-		user_action = interface_graphique_C4(graph_exist,flight_module_permission,commande_existe,afficher_chemin_permission)
+		user_action = menu_principal(graph_exist,commande_existe)
 
 		if user_action == CHOIX_CREER_GRAPHE:
 			print("\nVous avez choisi de créer un nouvel graphe.")
@@ -131,7 +144,6 @@ def main():
 				reponse = str(input("Vouliez vous lire le fichier 'entrepot.txt'? Tappez [1] pour 'OUI' ou [0] pour 'NON': "))
 				if(reponse == '1'):
 					list_vertices, list_arcs = read_file('entrepot.txt')
-					print("\nLe graphe est crée. Vous pouvez maintenant accéder aux autres fonctionnalités du programme. \n")
 					graph = Graph(list_vertices, list_arcs)
 					flight_manager   = FlightManager(graph)
 					totalA, totalB, totalC = graph.get_number_objects()
@@ -141,6 +153,11 @@ def main():
 					print("\n RECOMMENCEZ AVEC UN FICHIER .txt LISIBLE. \n")
 					print("*** Le fichier 'entrepot.txt' est le nom du fichier qui contient les informations sur le graphe de ce TP.")
 			else:
+				graph = Graph(list_vertices, list_arcs)
+				flight_manager   = FlightManager(graph)
+				totalA, totalB, totalC = graph.get_number_objects()
+				commande = CommandManager(totalA, totalB, totalC)
+				graph_exist = True
 				print("\nLe graphe est crée. Vous pouvez maintenant accéder aux autres fonctionnalités du programme. \n")
 			input("\nAppuyez sur 'Enter' pour retourner au menu.\n")
 		
@@ -165,7 +182,7 @@ def main():
 				print("\n          Votre commande est enregistré.")
 			input("\n          Appuyez sur 'Enter' pour retourner au menu.\n")
 		
-		if user_action == 4:
+		if user_action == CHOIX_AFFICHER_COMMANDE:
 			print("\n Vous avez choisi de faire une commande.\n")
 			if commande_existe == False:
 				print("Aucune commande n'existe. Faites une commande pour afficher la commande.")
@@ -174,7 +191,7 @@ def main():
 			input("\nAppuyez sur 'Enter' pour retourner au menu.\n")
 		
 		
-		if user_action == 5:
+		if user_action == CHOIX_PLUS_COURT_CHEMIN:
 			if commande_existe == True:
 				best_drone_choice = flight_manager.plusCourtChemin()
 				flight_manager.print_drone_mission(best_drone_choice)
@@ -190,24 +207,5 @@ def main():
 	
 
 main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
