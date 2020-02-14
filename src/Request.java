@@ -21,13 +21,15 @@ public class Request {
     }
 
     public static File input() {
-        Scanner input = new Scanner(System.in);
+        String imgPath = null;
         System.out.println("[*] Entrez le nom du fichier que vous voulez envoyer au serveur " +
-                "(son nom dans le repertoire (doit être un jpg))");
-        String imgPath = input.nextLine();
-        while(!Validator.exists(imgPath) && !Validator.isJpeg(new File(imgPath))){
-            System.out.println("Erreur, fichier invalide. Entrez le nom d'un nouveau fichier!");
-            imgPath = input.nextLine();
+                "(son nom dans le repertoire de cet executable et doit être un JPG/JPEG!)");
+
+        Boolean goodFile = false;
+        while (!goodFile) {
+            imgPath = Client.getInput().nextLine();
+            if (Validator.exists(new File(imgPath)) && Validator.isJpeg(new File(imgPath)))
+                    goodFile = true;
         }
 
         return new File(imgPath);

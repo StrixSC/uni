@@ -1,9 +1,7 @@
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
+import javafx.util.Pair;
+
 import java.io.*;
 import java.net.Socket;
-import java.nio.Buffer;
-import java.nio.ByteBuffer;
 import java.util.Scanner;
 
 public class Client {
@@ -13,8 +11,7 @@ public class Client {
     private static BufferedReader fromServer;
 
     public static void main(String args[]) throws IOException, InterruptedException {
-        while(!Validator.validate());
-        connect();
+        connect(Validator.validate());
         while(!UI.initOptions());
         while(!UI.showMenu());
     }
@@ -24,15 +21,17 @@ public class Client {
     public static BufferedReader getFromServer() { return fromServer; }
     public static Socket getServer() { return server; }
 
-    public static void connect() throws IOException {
+    public static void connect(Pair<String, Integer> ipAndPort) throws IOException {
         System.out.println("[*] Connexion au serveur en progres...");
+        System.out.println("[*] Veuillez patienté...");
         try {
-            server = new Socket(Validator.getIp(), Validator.getPort());
+            server = new Socket(ipAndPort.getKey(), ipAndPort.getValue());
             toServer = new PrintWriter(server.getOutputStream(), true);
             fromServer = new BufferedReader( new InputStreamReader(server.getInputStream()));
-            System.out.println("[*] Connexion au serveur réussie");
+            System.out.println("[*] Connexion au serveur réussie!");
         } catch (IOException e) {
-            System.out.println("[X] Le serveur ne roule pas en ce moment...");
+            System.out.println("[!] Le serveur ne roule pas en ce moment " +
+                    "ou bien les paramètres de IP et de Port entrés ne correspondent pas a un serveur actif...");
             System.exit(0);
         }
     }
@@ -42,27 +41,7 @@ public class Client {
         System.exit(0);
     }
 
-    public static boolean register() throws IOException{
-        String username = "", password = "";
-        Boolean usernameEntered = false, passwordEntered = false;
-        System.out.println("[*] Bienvenue sur le serveur Sobel!");
-
-        while(!usernameEntered) {
-            System.out.println("[*] Entrez un nom d'utilisateur unique: ");
-            username = input.nextLine().trim();
-            if(Validator.verify(username)){
-                usernameEntered = true;
-            }
-        }
-
-        while(!passwordEntered) {
-            System.out.println("[*] Entrez un mot de passe secure:");
-            password = input.nextLine().trim();
-            if(Validator.verify(password)){
-                passwordEntered= true;
-            }
-        }
-
+    public static boolean register(String username, String password) throws IOException{
         toServer.println(username);
         toServer.println(password);
         String userExists = "";
@@ -84,24 +63,7 @@ public class Client {
         else return false;
     }
 
-    public static boolean auth() throws IOException {
-        String username = null, password = null;
-        boolean usernameEntered = false, passwordEntered = false;
-
-        System.out.println("[*] Entrez votre nom d'utilisateur: ");
-        while(!usernameEntered){
-            username = input.nextLine();
-            if(Validator.verify(username))
-                usernameEntered = true;
-        }
-
-        System.out.println("[*] Entrez votre mot de passe:");
-        while(!passwordEntered){
-            password = input.nextLine();
-            if(Validator.verify(password))
-                passwordEntered = true;
-        }
-
+    public static boolean auth(String username, String password) throws IOException {
         toServer.println(username);
         toServer.println(password);
 
@@ -112,7 +74,6 @@ public class Client {
             if(userExists.equals("false") || userExists.equals("true"))
                 response = true;
         }
-
         if(userExists.equals("false")) {
             System.out.format("[!] Erreur, cet utilisateur n'existe pas.\n");
             return false;

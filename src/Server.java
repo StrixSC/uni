@@ -1,3 +1,5 @@
+import javafx.util.Pair;
+
 import java.io.*;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -14,19 +16,28 @@ public class Server {
     public static void main(String[] args) throws IOException {
 
         server = new ServerSocket();
+        Pair<String, Integer> ipAndPort = Validator.validate();
+
+        Validator.setIp(ipAndPort.getKey());
+        Validator.setPort(ipAndPort.getValue());
+
         server.setReuseAddress(true);
-        InetAddress ip = InetAddress.getByName(serverIp);
+        InetAddress ip = InetAddress.getByName(ipAndPort.getKey());
 
-        server.bind(new InetSocketAddress(ip, port));
-
-        System.out.format("Le serveur roule sur %s:%d%n", ip, port);
+        try {
+            server.bind(new InetSocketAddress(ip, ipAndPort.getValue()));
+            System.out.format("[*] Le serveur roule sur %s:%d%n", ipAndPort.getKey(), ipAndPort.getValue());
+        } catch (Exception e) {
+            System.out.println("[!] Erreur: Mauvais hôte de l'IP");
+        }
 
         try {
             while(true){
                 new ClientHandler(server.accept(), clientCounter++).start();
             }
         } catch(IOException e){
-            System.out.println("Erreur dans la reception du client" + e);
+            System.out.println("[!] Erreur dans la reception du client: " + e);
+            System.out.println("[*] Fermeture du programe en cours... ");
         }
         finally {
             server.close();
