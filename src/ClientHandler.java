@@ -43,7 +43,6 @@ public class ClientHandler extends Thread {
         try {
             //To send messages to client
             outToClient.println("[*] Serveur prêt, en attente des requêtes du client...\n");
-            System.out.println(this.users);
             while(!handleClient());
 
         } catch (Exception e) {
@@ -63,7 +62,7 @@ public class ClientHandler extends Thread {
     public boolean handleClient() throws IOException {
         System.out.println("[*] En attente d'entree de l'utilisateur... ");
         String selectedOption = inFromClient.readLine();
-        System.out.println(selectedOption);
+        System.out.format("[*] Client %d - Option choisie: %s\n", clientNumber, selectedOption);
         String username = null, password = null;
 
         if(selectedOption.equals("register") && !authentified) {
@@ -76,7 +75,6 @@ public class ClientHandler extends Thread {
                 authentified = true;
             }
             else {
-                System.out.println("[!] Utilisateur existe deja...");
                 outToClient.println("true");
             }
         }
@@ -86,6 +84,7 @@ public class ClientHandler extends Thread {
             if(findUser(username, password)) {
                 outToClient.println("true");
                 authentified = true;
+                System.out.println("[*] Authenthification faite avec succès!");
             }
             else
                 outToClient.println("false");
@@ -110,7 +109,7 @@ public class ClientHandler extends Thread {
         byte[] img = new byte[imgSize];
         in.read(img);
 
-        System.out.format("New image file received from client #%d\n", clientNumber);
+        System.out.format("[!] Fichier image reçue du client #%d\n", clientNumber);
         BufferedImage receivedImg = ImageIO.read(new ByteArrayInputStream(img));
         outToClient.println("received");        //Alert le client de la reception de l'image.
 
@@ -148,7 +147,7 @@ public class ClientHandler extends Thread {
             return true;
         }
         else {
-            System.out.println("L'utilisateur existe deja...");
+            System.out.println("[!] L'utilisateur existe deja.");
             return false;
         }
     }

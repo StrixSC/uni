@@ -9,8 +9,6 @@ import java.net.Socket;
 
 public class Server {
     private static ServerSocket server;
-    private static String serverIp = "127.0.0.1";
-    private static int port = 5000;
     private static int clientCounter = 0;
 
     public static void main(String[] args) throws IOException {

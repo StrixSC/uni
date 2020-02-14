@@ -78,7 +78,7 @@ public class Validator {
         regexMatcher = regex.matcher(port.toString());
 
         if(port > 5050 || port < 5000){
-            System.out.println("[X] Port Invalide, saisir un nouveau port (entre 5000 et 5050)...");
+            System.out.println("[!] Port Invalide, saisir un nouveau port (entre 5000 et 5050)...");
             return null;
         }
         else if(regexMatcher.find()) {

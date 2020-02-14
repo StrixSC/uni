@@ -16,13 +16,22 @@ public class Client {
         while(!UI.showMenu());
     }
 
+    /*
+    Getter et setters pour obtenir les buffers d'ecriture pour le end-to-end communication.
+     */
     public static Scanner getInput() { return input; }
     public static PrintWriter getToServer() { return toServer; }
     public static BufferedReader getFromServer() { return fromServer; }
     public static Socket getServer() { return server; }
 
+    /*
+    * @brief: On utilise les ips validés par le validator pour se connecter au serveur avec les deux ips obtenus.
+    * Une fois la connection réussie, on créer les nouveaux buffers pour envoyer et recevoir du serveur.
+    * @param: Pair<String, Integer>;
+    * @return: void;
+     * */
     public static void connect(Pair<String, Integer> ipAndPort) throws IOException {
-        System.out.println("[*] Connexion au serveur en progres...");
+        System.out.println("[*] Connexion au serveur en cours...");
         System.out.println("[*] Veuillez patienté...");
         try {
             server = new Socket(ipAndPort.getKey(), ipAndPort.getValue());
