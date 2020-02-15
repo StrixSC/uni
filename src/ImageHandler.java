@@ -5,6 +5,11 @@ import java.nio.ByteBuffer;
 
 public class ImageHandler {
 
+    /*
+    @Brief: Envoie une image au serveur à travers le outputStreamBuffer du socket du serveur.
+    @Param: Void;
+    @Return void;
+    */
     public static void sendImg() throws IOException, InterruptedException {
         String imgPath = UI.getImg();
         OutputStream out = Client.getServer().getOutputStream();
@@ -19,6 +24,7 @@ public class ImageHandler {
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
         ImageIO.write(imgNoSobel,"jpg", byteOut);
 
+        //Plus d'information sur cette partie expliquée dans le ClientHandler.receiveImg() et Clienthandler.sendImg();
         byte size[] = ByteBuffer.allocate(4).putInt(byteOut.size()).array();
         out.write(size);
         out.write(byteOut.toByteArray());
@@ -36,6 +42,11 @@ public class ImageHandler {
 
     }
 
+    /*
+    @Brief: Reçois une image au serveur à travers le inputStreamBuffer du socket du serveur.
+    @Param: Void;
+    @Return void;
+    */
     public static void receiveImg() throws IOException {
         Boolean response = false;
         while(!response){
@@ -46,7 +57,7 @@ public class ImageHandler {
         }
 
         InputStream in = Client.getServer().getInputStream();
-
+        //Plus d'information sur cette partie dans le ClientHandler.receiveImg();
         byte[] bytes = new byte[4];
         in.read(bytes);
         Integer imgSize = ByteBuffer.wrap(bytes).asIntBuffer().get();

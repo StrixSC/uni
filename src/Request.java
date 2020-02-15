@@ -4,6 +4,14 @@ import java.util.Scanner;
 
 public class Request {
 
+    //IMPORTANT:
+    //Le fichier de l'image doit absolument être dans le fichier de l'executable, sinon IMAGE.IO ne pourra pas lire l'image.
+
+    /*
+    @Brief: Permet l'ouverture d'un FileDialog tant et aussi longtemps que l'image choisie n'est pas valide.
+    @Param: Void;
+    @Return un File object contenant le fichier que l'utilisateur a choisie.
+    */
     public static File dialog(){
         FileDialog imageChooser = new FileDialog((Frame)null,"Choisir l'image");
         imageChooser.setVisible(true);
@@ -20,6 +28,11 @@ public class Request {
         return imgFile;
     }
 
+    /*
+    @Brief: Permet l'entrée d'un nom de fichier tant et aussi longtemps que l'image choisie n'est pas valide.
+    @Param: Void;
+    @Return un File object contenant le fichier que l'utilisateur a choisie.
+    */
     public static File input() {
         String imgPath = null;
         System.out.println("[*] Entrez le nom du fichier que vous voulez envoyer au serveur " +

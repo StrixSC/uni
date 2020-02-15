@@ -16,6 +16,11 @@ public class Validator {
     public static void setPort(Integer port) { portNum = port; };
     public static void setIp(String ip) { ipAdr = ip; };
 
+    /*
+    @Brief: Appel ValidateIP et ValidatePort tant que les deux ne sont pas valide.
+    @Params: Void
+    @Return: La pair de IP et Port validé.
+    */
     public static Pair<String, Integer> validate() {
         String adr = null;
         Integer port = null;
@@ -31,6 +36,11 @@ public class Validator {
         return new Pair<String, Integer>(adr, port);
     }
 
+    /*
+    @Brief: Valide que l'extension de l'image en paramètre est un JPG ou JPEG.
+    @Params: Fichier a validé (File)
+    @Return: Boolean pour dire si le fichier un JPG/JPEG ou non.
+    */
     public static boolean isJpeg(File file) {
         String name = file.getName();
         if(
@@ -44,6 +54,11 @@ public class Validator {
         }
     }
 
+    /*
+    @Brief: Valide l'adresse IP entrée par l'utilisateur grâce a Regex Pattern et Matcher.
+    @Params: void
+    @Return: L'IP validé
+    */
     public static String validateIP() {
         //get user input:
         Scanner input = new Scanner(System.in);
@@ -57,7 +72,7 @@ public class Validator {
         */
         regex = Pattern.compile("^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$");
         regexMatcher = regex.matcher(ip);
-        boolean matched = regexMatcher.find();
+        boolean matched = regexMatcher.find();      //Verifie si le pattern est trouvé dans l'entré
         if(matched){
             System.out.println("[*] IP Valide...");
             return ip;
@@ -68,6 +83,12 @@ public class Validator {
         }
     }
 
+    /*
+    @Brief: Valide le port entrée par l'utilisateur grâce a Regex Pattern et Matcher.
+    Utilise la même logique que pour ValidateIP.
+    @Params: void
+    @Return: Le port validé
+    */
     public static Integer validatePort() {
         //get user input:
         Scanner input = new Scanner(System.in);
@@ -91,6 +112,11 @@ public class Validator {
         }
     }
 
+    /*
+    @Brief: Verifie si le fichier existe ou non.
+    @Params: File fichier a verifier.
+    @Return: Boolean disant si le fichier existe ou non.
+    */
     public static boolean exists(File file){
         if(!file.isDirectory() && file.exists())
             return true;
@@ -100,6 +126,11 @@ public class Validator {
         }
     }
 
+    /*
+    @Brief: Verifie que l'entrée saisie par l'utilisateur est valide sous quelques conditions.
+    @Params: String entrée quelconque.
+    @Return: Retourne boolean pour dire si valide ou non.
+    */
     public static boolean verifyInput(String input) {
         int min = 4;
         int max = 16;
@@ -114,6 +145,12 @@ public class Validator {
         return false;
     }
 
+    /*
+    @Brief: Permet de faire la correspondance entre le client et le serveur (savoir si les deux on le même IP et port).
+    Par contre, nous ne l'avons pas utilisé, car connect() fait la tâche pour nous.
+    @Params: String du IP du client et le port saisie par le client aussi.
+    @Return: Retourne boolean contenant le resultat de la correspondance.
+    */
     public static boolean correspondsToServer(String ip, Integer port){
         if(ipAdr == ip && portNum == port)
             return true;

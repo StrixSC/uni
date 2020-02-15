@@ -17,7 +17,7 @@ public class Client {
     }
 
     /*
-    Getter et setters pour obtenir les buffers d'ecriture pour le end-to-end communication.
+    Getter et setters pour obtenir les buffers d'écriture pour le end-to-end communication.
      */
     public static Scanner getInput() { return input; }
     public static PrintWriter getToServer() { return toServer; }
@@ -25,11 +25,11 @@ public class Client {
     public static Socket getServer() { return server; }
 
     /*
-    * @brief: On utilise les ips validés par le validator pour se connecter au serveur avec les deux ips obtenus.
-    * Une fois la connection réussie, on créer les nouveaux buffers pour envoyer et recevoir du serveur.
-    * @param: Pair<String, Integer>;
-    * @return: void;
-     * */
+     * @brief: On utilise les IPs validés par le validator pour se connecter au serveur avec les deux ips obtenus.
+     * Une fois la connection réussie, on créer les nouveaux buffers pour envoyer et recevoir du serveur.
+     * @param: Pair<String, Integer> contenant le ip et le port saisie et validé par le Validateur.
+     * @return: void;
+     */
     public static void connect(Pair<String, Integer> ipAndPort) throws IOException {
         System.out.println("[*] Connexion au serveur en cours...");
         System.out.println("[*] Veuillez patienté...");
@@ -45,11 +45,19 @@ public class Client {
         }
     }
 
-    public static void exit() {
+    public static void exit() throws IOException {
         System.out.println("[*] Fermeture du programme...");
+        server.close();
         System.exit(0);
     }
 
+    /*
+     * @brief: Cette méthode recoit les parametres username et password saisie par le UI et les envoie au serveur
+     * pour validation. Le serveur envoie une reponse "true" ou "false", dépendamment de si la pair d'information existe
+     * deja dans la base de donnée.
+     * @param: String username et String password.
+     * @return: boolean indiquant is la registration à été faite ou non.
+     */
     public static boolean register(String username, String password) throws IOException{
         toServer.println(username);
         toServer.println(password);
@@ -72,6 +80,12 @@ public class Client {
         else return false;
     }
 
+    /*
+     * @brief: Même processus que pour la registration, cependant dans le cas de réponse false du serveur,
+     * la méthodologie est différente: l'utilisateur et son password sont automatiquement entrée dans la base de donnée.
+     * @param: String username et String password.
+     * @return: boolean indiquant is la authentification à été faite ou non.
+     */
     public static boolean auth(String username, String password) throws IOException {
         toServer.println(username);
         toServer.println(password);
