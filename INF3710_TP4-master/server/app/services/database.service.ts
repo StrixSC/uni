@@ -27,34 +27,34 @@ export class DatabaseService {
 
         METHODES DE DEBUG
     */
-    public createSchema(): Promise<pg.QueryResult> {
+    public async createSchema(): Promise<pg.QueryResult> {
 
         return this.pool.query(schema);
     }
 
-    public populateDb(): Promise<pg.QueryResult> {
+    public async populateDb(): Promise<pg.QueryResult> {
 
         return this.pool.query(data);
     }
 
-    public getAllFromTable(tableName: string): Promise<pg.QueryResult> {
+    public async getAllFromTable(tableName: string): Promise<pg.QueryResult> {
 
         return this.pool.query(`SELECT * FROM HOTELDB.${tableName};`);
     }
 
     // HOTEL
-    public getHotels(): Promise<pg.QueryResult> {
+    public async getHotels(): Promise<pg.QueryResult> {
 
         return this.pool.query('SELECT * FROM HOTELDB.Hotel;');
     }
 
-    public getHotelNo(): Promise<pg.QueryResult> {
+    public async getHotelNo(): Promise<pg.QueryResult> {
 
         return this.pool.query('SELECT hotelNo FROM HOTELDB.Hotel;');
 
     }
 
-    public createHotel(hotelNo: string, hotelName: string, city: string): Promise<pg.QueryResult> {
+    public async createHotel(hotelNo: string, hotelName: string, city: string): Promise<pg.QueryResult> {
         const values: string[] = [
             hotelNo,
             hotelName,
@@ -65,7 +65,7 @@ export class DatabaseService {
         return this.pool.query(queryText, values);
     }
 	
-	public deleteHotel(/*Todo*/): void /*TODO*/  {
+	public async deleteHotel(/*Todo*/): void /*TODO*/  {
 		/*TODO*/
 	}
 
@@ -127,11 +127,13 @@ export class DatabaseService {
     }
 
     // GUEST
-    public createGuest(guestNo: string,
-                       nas: string,
-                       guestName: string,
-                       gender: string,
-                       guestCity: string): Promise<pg.QueryResult> {
+    public async createGuest(
+        guestNo: string,
+        nas: string,
+        guestName: string,
+        gender: string,
+        guestCity: string
+    ): Promise<pg.QueryResult> {
         // this.pool.connect();
         const values: string[] = [
             guestNo,
@@ -146,11 +148,13 @@ export class DatabaseService {
     }
 
     // BOOKING
-    public createBooking(hotelNo: string,
-                         guestNo: string,
-                         dateFrom: Date,
-                         dateTo: Date,
-                         roomNo: string): Promise<pg.QueryResult> {
+    public async createBooking(
+        hotelNo: string,
+        guestNo: string,
+        dateFrom: Date,
+        dateTo: Date,
+        roomNo: string
+    ): Promise<pg.QueryResult> {
         const values: string[] = [
             hotelNo,
             guestNo,

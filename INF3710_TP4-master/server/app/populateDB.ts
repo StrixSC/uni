@@ -1,28 +1,19 @@
-export const data: string = `SET search_path = hotelDB;
+export const data: string = `
 
-INSERT INTO HOTELDB.Hotel VALUES ('H111', 'Grosvenor Hotel', 'London');
-INSERT INTO HOTELDB.Hotel VALUES ('H112', 'Kingston Hotel', 'Kingston');
-INSERT INTO HOTELDB.Hotel VALUES ('H113', 'Hotel des pas perdus', 'Montreal');
+INSERT INTO Netflix_Poly.Membre VALUES (DEFAULT, 'MavisePlaisance@teleworm.us', encode(sha256('rexouw3No'::bytea), 'hex'),
+'Mavise Plaisance', '4495 Hyde Park Road', 'London', 'N6E 1A9', FALSE);
+INSERT INTO Netflix_Poly.Membre VALUES (DEFAULT, 'OlivierAllard@armyspy.com', encode(sha256('ietaixeeZ5'::bytea), 'hex'), 'Olivier Allard',
+'430 Island Hwy', 'Campbell River', 'V9W 2C9', FALSE);
+INSERT INTO Netflix_Poly.Membre VALUES (DEFAULT, 'PorterLussier@teleworm.us', encode(sha256('Yu7shohmei'::bytea), 'hex'), 'Porter Lussier',
+'2593 Fallon Drive', 'Dungannon', 'N0M 1R0', FALSE);
+INSERT INTO Netflix_Poly.Membre VALUES (DEFAULT, 'AyaSaindon@rhyta.com', encode(sha256('eYu2oog8'::bytea), 'hex'), 'Aya Saindon',
+'3387 Nelson Street', 'Bala', 'P0C 1A0', FALSE);
+INSERT INTO Netflix_Poly.Membre VALUES (DEFAULT, 'ReneProvencher@gmail.com', encode(sha256('uax1AheeChae'::bytea), 'hex'),
+'René Provencher', '1296 Boulevard Cremazie', 'Quebec', 'G1R 1B8', FALSE);
+INSERT INTO Netflix_Poly.Membre VALUES (DEFAULT, 'DonatRaymond@jourrapide.com', encode(sha256('nae7Lip8ie'::bytea), 'hex'),
+'Donat Raymond', '3701 Papineau Avenue', 'Montreal', 'H2K 4J5', FALSE);
 
-INSERT INTO HOTELDB.Room VALUES ('1', 'H111', 'S', 72.00);
-INSERT INTO HOTELDB.Room VALUES ('2', 'H111', 'S', 100.00);
-INSERT INTO HOTELDB.Room VALUES ('3', 'H111', 'D', 200.00);
-INSERT INTO HOTELDB.Room VALUES ('4', 'H111', 'D', 250.00);
-INSERT INTO HOTELDB.Room VALUES ('1', 'H112', 'D', 450.00);
-INSERT INTO HOTELDB.Room VALUES ('2', 'H112', 'D', 450.00);
-INSERT INTO HOTELDB.Room VALUES ('3', 'H112', 'D', 450.00);
+INSERT INTO Netflix_Poly.Membre VALUES (1, '', '', '', '', '');
 
-INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender, guestCity) VALUES ('G111', '123', 'John Smith', 'M', 'London');
-INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender,  guestCity)VALUES ('G112', '213', 'Alex L', 'M', 'Kingston');
-INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender,  guestCity)VALUES ('G113', '233', 'Idris S',  'M', 'Montreal');
-INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender, guestCity) VALUES ('G114', '312', 'Guillaume D', 'M',  'Quebec');
-INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender, guestCity)VALUES ('G115', '122', 'Katrine S.',  'F', 'Kingston');
-INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender, guestCity)VALUES ('G116', '111', 'Simon D', 'M',  'Kingston');
-
-INSERT INTO HOTELDB.Booking VALUES ('H111', 'G111', DATE'2020-06-01', DATE'2020-06-04', '1');
-INSERT INTO HOTELDB.Booking VALUES ('H111', 'G114', DATE'2020-06-01', DATE'2020-06-05', '3');
-INSERT INTO HOTELDB.Booking VALUES ('H111', 'G116', DATE'2020-06-03', DATE'2020-06-06', '4');
-INSERT INTO HOTELDB.Booking (hotelNo, guestNo, dateFrom, roomNo) VALUES ('H112', 'G115', DATE'2020-05-03',  '1');
-
-UPDATE HOTELDB.Guest set guestName = 'Alexandra L.' where guestNo='G112';
-;`;
+TODO: FILL REST OF DB
+`;
