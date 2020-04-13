@@ -1,4 +1,3 @@
-export const schema: string = `
 -- Database: Netflix_Poly
 
 SET search_path = Netflix_Poly;
@@ -133,4 +132,3 @@ CREATE TABLE IF NOT EXISTS Netflix_Poly.Visionnement (
     FOREIGN KEY (ID_Membre) REFERENCES Netflix_Poly.Membre(ID_Membre)
 );
 
-`;

@@ -1,4 +1,3 @@
-export const data: string = `
 
 INSERT INTO Netflix_Poly.Membre VALUES (DEFAULT, 'MavisePlaisance@teleworm.us', encode(sha256('rexouw3No'::bytea), 'hex'),
 'Mavise Plaisance', '4495 Hyde Park Road', 'London', 'N6E 1A9', FALSE);
@@ -153,5 +152,3 @@ INSERT INTO Netflix_Poly.Visionnement VALUES(6, 7, '2020-03-20', '00:43');
 INSERT INTO Netflix_Poly.Visionnement VALUES(4, 4, '2020-01-20', '01:01');
 
 
-
-`;
