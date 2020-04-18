@@ -19,13 +19,13 @@ export class AppComponent implements OnInit {
             } else {
               this.route = "";
             }
-          });
+        });
     }
 
     public readonly title: string = "INF3710 TP5";
     public hotels: Hotel[] = [];
     public ngOnInit(): void {
-        this.communicationService.listen().subscribe((m:any) => {
+        this.communicationService.listen().subscribe((m: any) => {
             console.log(m);
             this.getHotels();
         });
@@ -35,10 +35,6 @@ export class AppComponent implements OnInit {
         this.communicationService.getHotels().subscribe((hotels: Hotel[]) => {
             this.hotels = hotels;
         });
-    }
-
-    public deleteHotel(): void {
-        // TODO
     }
 
     public createDB(): void {

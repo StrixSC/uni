@@ -10,9 +10,9 @@ export class DatabaseService {
 
     // A MODIFIER POUR VOTRE BD
     public connectionConfig: pg.ConnectionConfig = {
-        user: "sysadmin",
-        database: "pg_exemple",
-        password: "1234",
+        user: "tp4",
+        database: "Netflix_Poly",
+        password: "tp4",
         port: 5432,
         host: "127.0.0.1",
         keepAlive : true
@@ -21,24 +21,27 @@ export class DatabaseService {
     private pool: pg.Pool = new pg.Pool(this.connectionConfig);
 
     public constructor() {
-        this.pool.connect();
+        this.pool.connect()
+        .then(() => {
+            console.log('Connected');
+        })
+        .catch((err: Error) => {
+            console.log('Connection failure', err);
+        });
     }
     /*
 
         METHODES DE DEBUG
     */
     public async createSchema(): Promise<pg.QueryResult> {
-
         return this.pool.query(schema);
     }
 
     public async populateDb(): Promise<pg.QueryResult> {
-
         return this.pool.query(data);
     }
 
     public async getAllFromTable(tableName: string): Promise<pg.QueryResult> {
-
         return this.pool.query(`SELECT * FROM HOTELDB.${tableName};`);
     }
 
@@ -64,13 +67,9 @@ export class DatabaseService {
 
         return this.pool.query(queryText, values);
     }
-	
-	public async deleteHotel(/*Todo*/): void /*TODO*/  {
-		/*TODO*/
-	}
 
     // ROOM
-    public getRoomFromHotel(hotelNo: string, roomType: string, price: number): Promise<pg.QueryResult> {
+    public async getRoomFromHotel(hotelNo: string, roomType: string, price: number): Promise<pg.QueryResult> {
 
         let query: string =
         `SELECT * FROM HOTELDB.room
@@ -88,7 +87,7 @@ export class DatabaseService {
         return this.pool.query(query);
     }
 
-    public getRoomFromHotelParams(params: object): Promise<pg.QueryResult> {
+    public async getRoomFromHotelParams(params: object): Promise<pg.QueryResult> {
 
         let query: string = 'SELECT * FROM HOTELDB.room \n';
         const keys: string[] = Object.keys(params);
@@ -114,7 +113,7 @@ export class DatabaseService {
 
     }
 
-    public createRoom(room: Room): Promise<pg.QueryResult> {
+    public async createRoom(room: Room): Promise<pg.QueryResult> {
         const values: string[] = [
             room.roomno,
             room.hotelno,

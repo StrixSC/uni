@@ -128,7 +128,7 @@ INSERT INTO Netflix_Poly.Nomination_oscar VALUES(4, 6, 'Meilleur Producteur', FA
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(14, 5, 'Meilleur Acteur dans un second rôle', TRUE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(9, 6, 'Meilleur Metteur en scène', FALSE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(7, 7, 'Meilleur Maquilleur', FALSE);
-INSERT INTO Netflix_Poly.Nomination_oscar VALUES(8, 8, 'Meilleur Actrice', FALSE);
+INSERT INTO Netflix_Poly.Nomination_oscar VALUES(8, 8, 'Meilleure Actrice', FALSE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(2, 6, 'Meilleur effets visuels', FALSE);
 
 INSERT INTO Netflix_Poly.Visionnement VALUES(1, 3, '2019-03-20', '00:55');
@@ -151,7 +151,4 @@ INSERT INTO Netflix_Poly.Visionnement VALUES(2, 2, '2019-08-20', '00:19');
 INSERT INTO Netflix_Poly.Visionnement VALUES(5, 1, '2019-05-20', '01:25');
 INSERT INTO Netflix_Poly.Visionnement VALUES(6, 7, '2020-03-20', '00:43');
 INSERT INTO Netflix_Poly.Visionnement VALUES(4, 4, '2020-01-20', '01:01');
-
-
-
 `;

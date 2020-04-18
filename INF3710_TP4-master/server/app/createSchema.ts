@@ -132,5 +132,4 @@ CREATE TABLE IF NOT EXISTS Netflix_Poly.Visionnement (
     Duree_Visionnement TIME NOT NULL,
     FOREIGN KEY (ID_Membre) REFERENCES Netflix_Poly.Membre(ID_Membre)
 );
-
 `;
