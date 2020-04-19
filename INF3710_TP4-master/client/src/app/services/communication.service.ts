@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 // tslint:disable-next-line:ordered-imports
 import { concat, Observable, Subject } from "rxjs";
-import { Filme } from './../../../../common/tables/filme';
+import { Filme } from "./../../../../common/tables/filme";
 import { Membre } from "./../../../../common/tables/membre";
 import { LoggingInUser } from "./../models/user";
 
@@ -58,5 +58,17 @@ export class CommunicationService {
 
     public deleteMovie(movie: Filme): Observable<any> {
         return this.http.delete(`${this.BASE_URL}/delete/movie/${movie.noFilme}`);
+    }
+
+    public addFilm(film: Filme): Observable<any> {
+        return this.http.post(`${this.BASE_URL}/add/movie`, film);
+    }
+
+    public updateFilm(film: Filme): Observable<any> {
+        return this.http.patch(`${this.BASE_URL}/update/movie`, film);
+    }
+
+    public addMember(member: Membre): Observable<any> {
+        return this.http.post(`${this.BASE_URL}/add/member`, member);
     }
 }

@@ -1,3 +1,4 @@
+import { AddMemberModalComponent } from './../member-modal/add-member-modal/add-member-modal.component';
 import { Component, OnInit } from "@angular/core";
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { Filme } from "./../../../../../common/tables/filme";
@@ -6,6 +7,7 @@ import { CommunicationService } from "./../../services/communication.service";
 import { SelectedMemberService } from "./../../services/selected-member.service";
 import { SelectedMovieService } from "./../../services/selected-movie.service";
 import { MemberModalComponent } from "./../member-modal/member-modal.component";
+import { AddMovieModalComponent } from "./../movie-modal/add-movie-modal/add-movie-modal.component";
 import { MovieModalComponent } from "./../movie-modal/movie-modal.component";
 
 @Component({
@@ -67,6 +69,28 @@ export class AdminPageComponent implements OnInit {
     this.matDialog.open(MovieModalComponent, config).afterClosed().subscribe(async () => {
       this.matDialog.closeAll();
       await this.getMovies();
+    });
+  }
+
+  public triggerAddMovieModal(): void {
+    const config: MatDialogConfig = new MatDialogConfig();
+    config.width = "600px";
+    config.height = "600px";
+    config.id = "admin-add-movie-dialog";
+    this.matDialog.open(AddMovieModalComponent, config).afterClosed().subscribe(async () => {
+      this.matDialog.closeAll();
+      await this.getMovies();
+    });
+  }
+
+  public triggerAddMemberModal(): void {
+    const config: MatDialogConfig = new MatDialogConfig();
+    config.width = "600px";
+    config.height = "600px";
+    config.id = "admin-add-member-dialog";
+    this.matDialog.open(AddMemberModalComponent, config).afterClosed().subscribe(async () => {
+      this.matDialog.closeAll();
+      await this.getMembers();
     });
   }
 }

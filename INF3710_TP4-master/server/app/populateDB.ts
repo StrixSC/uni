@@ -1,6 +1,8 @@
 export const data: string = `
 INSERT INTO Netflix_Poly.Membre VALUES (DEFAULT, 'admin@poly.com', encode(sha256('AdminPoly1'::bytea), 'hex'),
 'Admin', 'Admin', 'Admin', 'Admin', TRUE);
+INSERT INTO Netflix_Poly.Membre VALUES (DEFAULT, 'membre@poly.com', encode(sha256('MembrePoly1'::bytea), 'hex'),
+'Membre', 'Membre', 'Membre', 'Membre', FALSE);
 INSERT INTO Netflix_Poly.Membre VALUES (DEFAULT, 'MavisePlaisance@teleworm.us', encode(sha256('rexouw3No'::bytea), 'hex'),
 'Mavise Plaisance', '4495 Hyde Park Road', 'London', 'N6E 1A9', FALSE);
 INSERT INTO Netflix_Poly.Membre VALUES (DEFAULT, 'OlivierAllard@armyspy.com', encode(sha256('ietaixeeZ5'::bytea), 'hex'), 'Olivier Allard',

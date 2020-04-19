@@ -24,7 +24,7 @@
                 <div class="movie-attr duree">Duree: {{movie.duree}}</div>
             </mat-card>
 
-        <mat-card class="addMovie">
+        <mat-card class="addMovie" (click)="triggerAddMovieModal()">
             <i class="material-icons icon md-48">
                 add
             </i>
@@ -48,6 +48,12 @@
                 <div class="member-attr">Code Postal: {{member.codepostal}}</div>
                 <div class="member-attr">Est administrateur: {{member.estAdmin}}</div>
             </mat-card>
+            <mat-card class="addMovie" (click)="triggerAddMemberModal()">
+                <i class="material-icons icon md-48">
+                    add
+                </i>
+            </mat-card>
         </mat-card-content>
+        
     </mat-card>
 </div>

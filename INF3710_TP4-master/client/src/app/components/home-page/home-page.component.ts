@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
+import { MatSnackBar } from "@angular/material";
 import { Router } from "@angular/router";
 import { REGEXP_EMAIL_PATTERN } from "./../../../../../common/models/patterns";
 import { Membre } from "./../../../../../common/tables/membre";
@@ -17,7 +18,8 @@ export class HomePageComponent implements OnInit {
   public email: FormControl;
   public password: FormControl;
 
-  public constructor(private comService: CommunicationService, private router: Router, private storageService: StorageService) { }
+  public constructor(private comService: CommunicationService, private snackBar: MatSnackBar,
+                     private router: Router, private storageService: StorageService) { }
 
   public async ngOnInit(): Promise<void> {
     this.loading = false;
@@ -41,6 +43,7 @@ export class HomePageComponent implements OnInit {
 
   public async login(): Promise<void> {
     this.loading = true;
+    this.storageService.clearAll();
     this.comService.login({
       email: this.email.value,
       password: this.password.value
@@ -55,6 +58,11 @@ export class HomePageComponent implements OnInit {
       }
       this.loading = false;
     },           () => {
+      this.snackBar.open("Le courriel/Mot de passe est invalide.", "OK", {
+        verticalPosition: "bottom",
+        horizontalPosition: "center",
+        duration: 500
+      });
       this.loading = false;
     });
   }

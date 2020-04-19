@@ -3,6 +3,8 @@ import * as pg from "pg";
 import "reflect-metadata";
 import {schema} from "../createSchema";
 import {data} from "../populateDB";
+import { Filme } from './../../../common/tables/filme';
+import { Membre } from './../../../common/tables/membre';
 
 @injectable()
 export class DatabaseService {
@@ -39,7 +41,6 @@ export class DatabaseService {
 
     public async loginUser(email: string, password: string): Promise<pg.QueryResult<pg.QueryResultRow>> {
         const queryText: string = `SELECT * FROM Netflix_Poly.Membre MEM WHERE MEM.Courriel = '${email}';`;
-
         return this.pool.query(queryText);
     }
 
@@ -69,6 +70,27 @@ export class DatabaseService {
 
     public async deleteMember(id: number): Promise<pg.QueryResult<pg.QueryResultRow>> {
         const queryText: string = `DELETE FROM Netflix_Poly.Membre MEM WHERE MEM.ID_Membre = ${id};`;
+
+        return this.pool.query(queryText);
+    }
+
+    public async addMovie(filme: Filme): Promise<pg.QueryResult<pg.QueryResultRow>> {
+        const queryText: string = `INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, '${filme.titre}', '${filme.genre}',
+        '${filme.date_production}', '${filme.duree}');`;
+
+        return this.pool.query(queryText);
+    }
+
+    public async addMember(membre: Membre): Promise<pg.QueryResult<pg.QueryResultRow>> {
+        const queryText: string = `INSERT INTO Netflix_Poly.Membre VALUES (DEFAULT, '${membre.courriel}', '${membre.motdepasse}',
+        '${membre.nom}', '${membre.rue}', '${membre.ville}', '${membre.codepostal}', FALSE);`;
+
+        return this.pool.query(queryText);
+    }
+
+    public async updateFilm(film: Filme): Promise<pg.QueryResult<pg.QueryResultRow>> {
+        const queryText: string = `UPDATE Netflix_Poly.Filme F SET "titre" = '${film.titre}', "genre" = '${film.genre}',
+        "date_production" = '${film.date_production}', "duree" = '${film.duree}' WHERE F.NoFilme = '${film.noFilme}';`;
 
         return this.pool.query(queryText);
     }

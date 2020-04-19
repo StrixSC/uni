@@ -3,8 +3,8 @@ export interface Membre {
     courriel: string;
     motdepasse: string;
     nom: string;
-    rue?: string;
-    ville?: string;
-    codepostal?: string;
+    rue: string;
+    ville: string;
+    codepostal: string;
     estAdmin: boolean;
 };
