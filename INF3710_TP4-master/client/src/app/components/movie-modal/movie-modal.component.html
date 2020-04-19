@@ -1,0 +1,15 @@
+<div>
+    <mat-card>
+        <mat-card-title>
+            {{selectedMovieService.selectedFilm.titre}}
+        </mat-card-title>
+        <mat-card-content>
+            <div class="attr">Genre: {{selectedMovieService.selectedFilm.genre}}</div>
+            <div class="attr">Date de Production: {{selectedMovieService.selectedFilm.date_production | date}}</div>
+            <div class="attr">Durée: {{selectedMovieService.selectedFilm.duree}}</div>
+            <mat-card-actions>
+                <button mat-raised-button color="warn" (click)="deleteMovie()" [disabled]="deleting"> Supprimer </button>
+            </mat-card-actions>
+        </mat-card-content>
+    </mat-card>
+</div>

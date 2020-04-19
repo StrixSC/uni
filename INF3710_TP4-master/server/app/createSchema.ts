@@ -40,14 +40,16 @@ CREATE TABLE IF NOT EXISTS  Netflix_Poly.MembreMensuel (
 	DateFin		DATE,
 	Echeance	DATE	    NOT NULL,
     PRIMARY KEY (ID_Membre),
-	FOREIGN KEY (ID_Membre) REFERENCES Netflix_Poly.Membre(ID_Membre)
+    FOREIGN KEY (ID_Membre) REFERENCES Netflix_Poly.Membre(ID_Membre)
+    ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS  Netflix_Poly.MembrePPV (
 	ID_Membre INT NOT NULL,
 	film_payperview INT NOT NULL,
     PRIMARY KEY(ID_Membre),
-	FOREIGN KEY (ID_Membre) REFERENCES Netflix_Poly.Membre(ID_Membre)
+    FOREIGN KEY (ID_Membre) REFERENCES Netflix_Poly.Membre(ID_Membre)
+    ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Netflix_Poly.CarteCredit (
@@ -58,6 +60,7 @@ CREATE TABLE IF NOT EXISTS Netflix_Poly.CarteCredit (
     CCV         VARCHAR(3) NOT NULL,
     PRIMARY KEY (NoCarte),
     FOREIGN KEY (ID_Membre) REFERENCES Netflix_Poly.Membre(ID_Membre)
+    ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Netflix_Poly.Commande (
@@ -69,6 +72,7 @@ CREATE TABLE IF NOT EXISTS Netflix_Poly.Commande (
     Cout DECIMAL(12,2) NOT NULL,
     PRIMARY KEY (NoCommande),
     FOREIGN KEY (ID_Membre) REFERENCES Netflix_Poly.Membre(ID_Membre)
+    ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Netflix_Poly.Filme (
@@ -94,6 +98,7 @@ CREATE TABLE IF NOT EXISTS Netflix_Poly.DVD (
     NoFilme INT NOT NULL,
     PRIMARY KEY (ID_Dvd),
     FOREIGN KEY (NoFilme) REFERENCES Netflix_Poly.Filme(NoFilme)
+    ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Netflix_Poly.FilmeParticipant (
@@ -104,6 +109,7 @@ CREATE TABLE IF NOT EXISTS Netflix_Poly.FilmeParticipant (
     PRIMARY KEY (NAS, NoFilme),
     FOREIGN KEY (NAS) REFERENCES Netflix_Poly.Participant(NAS),
     FOREIGN KEY (NoFilme) REFERENCES Netflix_Poly.Filme(NoFilme)
+    ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Netflix_Poly.Oscar (
@@ -121,7 +127,8 @@ CREATE TABLE IF NOT EXISTS Netflix_Poly.Nomination_Oscar (
     Gagnant BOOLEAN NOT NULL,
 
     PRIMARY KEY (NoFilme, ID_Oscar),
-    FOREIGN KEY (NoFilme) REFERENCES Netflix_Poly.Filme(NoFilme),
+    FOREIGN KEY (NoFilme) REFERENCES Netflix_Poly.Filme(NoFilme)
+    ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (ID_Oscar) REFERENCES Netflix_Poly.Oscar(ID_Oscar)
 );
 
@@ -131,5 +138,6 @@ CREATE TABLE IF NOT EXISTS Netflix_Poly.Visionnement (
     Date_Visionnement DATE NOT NULL,
     Duree_Visionnement TIME NOT NULL,
     FOREIGN KEY (ID_Membre) REFERENCES Netflix_Poly.Membre(ID_Membre)
+    ON UPDATE CASCADE ON DELETE CASCADE
 );
 `;

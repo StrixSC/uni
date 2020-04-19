@@ -1,0 +1,28 @@
+header {
+    background-color: black;
+    width: 100%;
+    padding: 10px;
+
+    div {
+        color: white;
+        text-align: right;
+        font-family: monospace;
+    }
+}
+
+main {
+    display: grid;
+    grid-template-rows: 0.5fr 1fr 0.5fr;
+    row-gap: 100px;
+    .search-bar {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 0.5fr 1fr 0.5fr;
+        align-items: center;
+    }
+    .film-table {
+        display: grid;
+        grid-template-columns: 0.5fr 1fr 0.5fr;
+        justify-content: center;
+    }
+}

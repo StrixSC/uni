@@ -1,0 +1,38 @@
+.options {
+    text-align: center;
+}
+
+button {
+    outline: none;
+}
+
+.selected {
+    background-color: maroon;
+}
+
+.movie-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    mat-card {
+        cursor: pointer;
+        margin: 10px;
+        .member-attr,
+        .movie-attr {
+            font-size: large;
+            font-family: monospace;
+            font-weight: bold;
+        }
+    }
+    
+    mat-card:hover {
+        background-color: darken($color: white, $amount: 10);
+    }
+}
+
+.icon {
+    padding-top: 5px;
+    font-size: 100px !important;
+    opacity: 0.5;
+}

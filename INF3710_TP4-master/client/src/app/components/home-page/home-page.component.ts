@@ -19,22 +19,23 @@ export class HomePageComponent implements OnInit {
 
   public constructor(private comService: CommunicationService, private router: Router, private storageService: StorageService) { }
 
-  public ngOnInit(): void {
+  public async ngOnInit(): Promise<void> {
     this.loading = false;
     this.email = new FormControl("", [Validators.required, Validators.pattern(REGEXP_EMAIL_PATTERN)]);
     this.password = new FormControl("", [Validators.required]);
+    if (this.storageService.loggedIn) {
+      await this.router.navigateByUrl("membre");
+    }
   }
 
   public async initDatabase(): Promise<void> {
     this.loading = true;
     this.comService.setUpDatabase().subscribe(
-    (res) => {
+    () => {
       this.loading = false;
-      console.log(res);
     },
-    (err) => {
+    () => {
       this.loading = false;
-      console.log(err);
     });
   }
 
@@ -45,9 +46,14 @@ export class HomePageComponent implements OnInit {
       password: this.password.value
     }).subscribe(async (res: Membre) => {
       this.comService.currentUser = res;
-      this.loading = false;
       this.storageService.saveUser(this.comService.currentUser);
-      await this.router.navigateByUrl("membre");
+      const result: Boolean = await this.comService.isAdmin().toPromise();
+      if (result.valueOf()) {
+        await this.router.navigateByUrl("administrateur");
+      } else {
+        await this.router.navigateByUrl("membre");
+      }
+      this.loading = false;
     },           () => {
       this.loading = false;
     });

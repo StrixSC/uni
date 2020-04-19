@@ -1,7 +1,6 @@
 import { injectable } from "inversify";
 import * as pg from "pg";
 import "reflect-metadata";
-import { Room } from "../../../common/tables/Room";
 import {schema} from "../createSchema";
 import {data} from "../populateDB";
 
@@ -29,10 +28,7 @@ export class DatabaseService {
             console.log('Connection failure', err);
         });
     }
-    /*
 
-        METHODES DE DEBUG
-    */
     public async createSchema(): Promise<pg.QueryResult> {
         return this.pool.query(schema);
     }
@@ -41,135 +37,40 @@ export class DatabaseService {
         return this.pool.query(data);
     }
 
-    public async getAllFromTable(tableName: string): Promise<pg.QueryResult> {
-        return this.pool.query(`SELECT * FROM HOTELDB.${tableName};`);
-    }
-
     public async loginUser(email: string, password: string): Promise<pg.QueryResult<pg.QueryResultRow>> {
-        const queryText: string = `SELECT * FROM Netflix_Poly.Membre MEM WHERE MEM.Courriel = '${email}'`;
+        const queryText: string = `SELECT * FROM Netflix_Poly.Membre MEM WHERE MEM.Courriel = '${email}';`;
 
         return this.pool.query(queryText);
     }
 
-    // HOTEL
-    public async getHotels(): Promise<pg.QueryResult> {
+    public async checkIfAdmin(id: number): Promise<pg.QueryResult<pg.QueryResultRow>> {
+        const queryText: string = `SELECT MEM.estAdmin FROM Netflix_Poly.Membre MEM WHERE MEM.id_membre = ${id};`;
 
-        return this.pool.query('SELECT * FROM HOTELDB.Hotel;');
+        return this.pool.query(queryText);
     }
 
-    public async getHotelNo(): Promise<pg.QueryResult> {
+    public async getAllMovies(): Promise<pg.QueryResult<pg.QueryResultRow>> {
+        const queryText: string = `SELECT * FROM Netflix_Poly.Filme;`;
 
-        return this.pool.query('SELECT hotelNo FROM HOTELDB.Hotel;');
-
+        return this.pool.query(queryText);
     }
 
-    public async createHotel(hotelNo: string, hotelName: string, city: string): Promise<pg.QueryResult> {
-        const values: string[] = [
-            hotelNo,
-            hotelName,
-            city
-        ];
-        const queryText: string = `INSERT INTO HOTELDB.Hotel VALUES($1, $2, $3);`;
+    public async getAllUsers(): Promise<pg.QueryResult<pg.QueryResultRow>> {
+        const queryText: string = `SELECT * FROM Netflix_Poly.Membre;`;
 
-        return this.pool.query(queryText, values);
+        return this.pool.query(queryText);
     }
 
-    // ROOM
-    public async getRoomFromHotel(hotelNo: string, roomType: string, price: number): Promise<pg.QueryResult> {
+    public async deleteMovie(id: number): Promise<pg.QueryResult<pg.QueryResultRow>> {
+        const queryText: string = `DELETE FROM Netflix_Poly.Filme F WHERE F.NoFilme = ${id};`;
 
-        let query: string =
-        `SELECT * FROM HOTELDB.room
-        WHERE hotelno=\'${hotelNo}\'`;
-        if (roomType !== undefined) {
-            query = query.concat('AND ');
-            query = query.concat(`typeroom=\'${roomType}\'`);
-        }
-        if (price !== undefined) {
-            query = query.concat('AND ');
-            query = query.concat(`price =\'${price}\'`);
-        }
-        console.log(query);
-
-        return this.pool.query(query);
+        return this.pool.query(queryText);
     }
 
-    public async getRoomFromHotelParams(params: object): Promise<pg.QueryResult> {
+    public async deleteMember(id: number): Promise<pg.QueryResult<pg.QueryResultRow>> {
+        const queryText: string = `DELETE FROM Netflix_Poly.Membre MEM WHERE MEM.ID_Membre = ${id};`;
 
-        let query: string = 'SELECT * FROM HOTELDB.room \n';
-        const keys: string[] = Object.keys(params);
-        if (keys.length > 0) {
-            query = query.concat(`WHERE ${keys[0]} =\'${params[keys[0]]}\'`);
-        }
-
-        // On enleve le premier element
-        keys.shift();
-
-        // tslint:disable-next-line:forin
-        for (const param in keys) {
-            const value: string = keys[param];
-            query = query.concat(`AND ${value} = \'${params[value]}\'`);
-            if (param === 'price') {
-                query = query.replace('\'', '');
-            }
-        }
-
-        console.log(query);
-
-        return this.pool.query(query);
-
+        return this.pool.query(queryText);
     }
-
-    public async createRoom(room: Room): Promise<pg.QueryResult> {
-        const values: string[] = [
-            room.roomno,
-            room.hotelno,
-            room.typeroom,
-            room.price.toString()
-        ];
-        const queryText: string = `INSERT INTO HOTELDB.ROOM VALUES($1,$2,$3,$4);`;
-
-        return this.pool.query(queryText, values);
-    }
-
-    // GUEST
-    public async createGuest(
-        guestNo: string,
-        nas: string,
-        guestName: string,
-        gender: string,
-        guestCity: string
-    ): Promise<pg.QueryResult> {
-        // this.pool.connect();
-        const values: string[] = [
-            guestNo,
-            nas,
-            guestName,
-            gender,
-            guestCity
-        ];
-        const queryText: string = `INSERT INTO HOTELDB.ROOM VALUES($1,$2,$3,$4,$5);`;
-
-        return this.pool.query(queryText, values);
-    }
-
-    // BOOKING
-    public async createBooking(
-        hotelNo: string,
-        guestNo: string,
-        dateFrom: Date,
-        dateTo: Date,
-        roomNo: string
-    ): Promise<pg.QueryResult> {
-        const values: string[] = [
-            hotelNo,
-            guestNo,
-            dateFrom.toString(),
-            dateTo.toString(),
-            roomNo
-        ];
-        const queryText: string = `INSERT INTO HOTELDB.ROOM VALUES($1,$2,$3,$4,$5);`;
-
-        return this.pool.query(queryText, values);
-        }
 
 }

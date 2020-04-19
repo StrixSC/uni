@@ -1,27 +1,23 @@
-#error{
-    color: red;
-}
-
-#hts{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-#ht{
-    margin-top: 20px;
-}
-.title {
-    color: red;
-  }
-
 header {
     cursor: pointer;
     text-align: center;
     padding-top: 30px;
+    padding-bottom: 30px;
     border-bottom: 1px solid black;
     background: darken($color: grey, $amount: 100); 
     color: lighten($color: maroon, $amount: 10);
     font-size: xx-large;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-bottom: 100px;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+
+    .logo {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+    
+    .deconnect {
+        text-align: right;
+        font-size: 20px;
+        padding-right: 20px;
+    }
 }
