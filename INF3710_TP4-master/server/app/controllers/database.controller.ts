@@ -1,12 +1,18 @@
+import * as crypto from "crypto";
 import { NextFunction, Request, Response, Router } from "express";
 import { inject, injectable } from "inversify";
 import * as pg from "pg";
+import { REGEXP_EMAIL_PATTERN, REGEXP_PASSWD_PATTERN } from '../../../common/models/patterns';
+import { Membre } from './../../../common/tables/membre';
 
 import {Hotel} from "../../../common/tables/Hotel";
 import {Room} from '../../../common/tables/Room';
 
 import { DatabaseService } from "../services/database.service";
 import Types from "../types";
+
+const OK: number = 200;
+const NOT_FOUND: number = 404;
 
 @injectable()
 export class DatabaseController {
@@ -71,8 +77,31 @@ export class DatabaseController {
                         res.json(-1);
                     });
         });
-		
-		router.delete("/hotel/insert", /*TODO*/);
+
+        router.post("/login", (req: Request, res: Response, next: NextFunction) => {
+            if (this.validateEntry(req.body.email, req.body.password)) {
+                this.databaseService.loginUser(req.body.email, req.body.password)
+                .then((queryResult: pg.QueryResult<pg.QueryResultRow>) => {
+                    if (queryResult.rowCount !== 0) {
+                        const pswd: string = queryResult.rows[0]['motdepasse'];
+                        const hashPaswd: string = crypto.createHash('sha256').update(req.body.password).digest('hex');
+                        if (hashPaswd === pswd) {
+                            res.status(OK).send(this.setupMember(queryResult.rows));
+                        } else {
+                            res.status(NOT_FOUND).send(NOT_FOUND);
+                        }
+                    } else {
+                        res.status(NOT_FOUND).send(NOT_FOUND);
+                    }
+                })
+                .catch((err: Error) => {
+                    console.log(err);
+                    res.status(NOT_FOUND).send(NOT_FOUND);
+                });
+            } else {
+                res.status(NOT_FOUND).send();
+            }
+        });
 
         router.get("/rooms",
                    (req: Request, res: Response, next: NextFunction) => {
@@ -122,5 +151,30 @@ export class DatabaseController {
             });
 
         return router;
+    }
+
+    private setupMember(rows: pg.QueryResultRow): Membre {
+        return {
+            id_membre: rows[0]["id_membre"],
+            courriel: rows[0]["courriel"],
+            motdepasse: rows[0]["motdepasse"],
+            nom: rows[0]["nom"],
+            rue: rows[0]["rue"],
+            ville: rows[0]["ville"],
+            codepostal: rows[0]["codepostal"],
+            estAdmin: rows[0]["estadmin"]
+        };
+    }
+
+    private validateEntry (email: string, password: string): boolean {
+        if (REGEXP_EMAIL_PATTERN.test(email)) {
+            if (REGEXP_PASSWD_PATTERN.test(password)) {
+                console.log('password and email validated');
+
+                return true;
+            }
+        }
+
+        return false;
     }
 }

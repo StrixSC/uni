@@ -1,0 +1,27 @@
+#error{
+    color: red;
+}
+
+#hts{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#ht{
+    margin-top: 20px;
+}
+.title {
+    color: red;
+  }
+
+header {
+    cursor: pointer;
+    text-align: center;
+    padding-top: 30px;
+    border-bottom: 1px solid black;
+    background: darken($color: grey, $amount: 100); 
+    color: lighten($color: maroon, $amount: 10);
+    font-size: xx-large;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 100px;
+}

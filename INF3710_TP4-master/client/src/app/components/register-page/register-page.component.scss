@@ -1,0 +1,26 @@
+
+main {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 150px;
+
+
+    .center-div {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: center;
+
+        .second-row-center-div {
+            width: 450px;
+            .login-box {
+                mat-form-field {
+                    width: 100%;
+                }
+                background-color: lightgrey;
+                padding: 10px;
+            }
+        }
+       
+
+    }
+}

@@ -1,0 +1,45 @@
+<main>
+    <div class="center-div">
+        <div></div>
+        <div class="second-row-center-div">
+            <mat-card>
+                <mat-card-title>
+                    Identification
+                </mat-card-title>
+                <br>
+                <mat-card-content>
+                    <mat-form-field appearance="outline">
+                        <mat-label>
+                            Courriel
+                        </mat-label>
+                        <input matInput placeholder="Entrez votre courriel" [formControl]="email" required>
+                        <mat-error *ngIf="email.invalid">
+                            <p>Le courriel entré n'est pas un courriel valide</p>
+                        </mat-error>
+                    </mat-form-field>
+                    <br>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>
+                            Mot de passe
+                        </mat-label>
+                        <input matInput placeholder="Entrez votre mot de passe" [formControl]="password" required>
+                        <mat-error *ngIf="password.invalid">
+                            <p>Entrez un mot de passe</p>
+                        </mat-error>
+                    </mat-form-field>
+                </mat-card-content>
+                <br>
+                <mat-card-actions>
+                    <button class="login-btn" mat-raised-button color="primary" (click)="login()" [disabled]="loading"> S'Identifier </button>
+                    <button class="login-btn" mat-raised-button color="primary" (click)="register()" [disabled]="loading"> S'Inscrire </button>
+                    <span class="db-btn">
+                        <button mat-raised-button color="warn" (click)="initDatabase()" [disabled]="loading"> Reinitialiser la base de donnée </button>
+                    </span>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+        <div></div>
+    </div>
+    <div></div>
+</main>

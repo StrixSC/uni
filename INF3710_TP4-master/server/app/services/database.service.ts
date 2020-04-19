@@ -45,6 +45,12 @@ export class DatabaseService {
         return this.pool.query(`SELECT * FROM HOTELDB.${tableName};`);
     }
 
+    public async loginUser(email: string, password: string): Promise<pg.QueryResult<pg.QueryResultRow>> {
+        const queryText: string = `SELECT * FROM Netflix_Poly.Membre MEM WHERE MEM.Courriel = '${email}'`;
+
+        return this.pool.query(queryText);
+    }
+
     // HOTEL
     public async getHotels(): Promise<pg.QueryResult> {
 
@@ -165,4 +171,5 @@ export class DatabaseService {
 
         return this.pool.query(queryText, values);
         }
+
 }

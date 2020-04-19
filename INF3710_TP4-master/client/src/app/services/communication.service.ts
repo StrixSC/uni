@@ -1,16 +1,31 @@
+import { Membre } from "./../../../../common/tables/membre";
+import { LoggingInUser } from "./../models/user";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import {Hotel} from "../../../common/tables/Hotel";
+import {Hotel} from "../../../../common/tables/Hotel";
 // tslint:disable-next-line:ordered-imports
-import { of, Observable,concat, Subject } from "rxjs";
+import { of, Observable, concat, Subject } from "rxjs";
 import { catchError } from "rxjs/operators";
-import { Room } from "../../../common/tables/Room";
+import { Room } from "../../../../common/tables/Room";
 
 @Injectable()
 export class CommunicationService {
 
+    public currentUser: Membre;
+
     private readonly BASE_URL: string = "http://localhost:3000/database";
-    public constructor(private http: HttpClient) { }
+    public constructor(private http: HttpClient) {
+        this.currentUser = {
+            id_membre: -1,
+            courriel: "null",
+            motdepasse: "null",
+            nom: "null",
+            rue: "null",
+            ville: "null",
+            codepostal: "null",
+            estAdmin: false,
+        };
+    }
 
     private _listners: any = new Subject<any>();
 
@@ -21,7 +36,6 @@ export class CommunicationService {
     public filter(filterBy: string): void {
        this._listners.next(filterBy);
     }
-
 
     public getHotels(): Observable<any[]> {
 
@@ -51,7 +65,6 @@ export class CommunicationService {
 
     public deleteHotel(): void {
     }
-    
 
     public setUpDatabase(): Observable<any> {
         return concat(this.http.post<any>(this.BASE_URL + "/createSchema", []),
@@ -63,5 +76,9 @@ export class CommunicationService {
         return (error: Error): Observable<T> => {
             return of(result as T);
         };
+    }
+
+    public login(user: LoggingInUser): Observable<object> {
+        return this.http.post(this.BASE_URL + "/login", user);
     }
 }
