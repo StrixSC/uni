@@ -10,23 +10,12 @@ import { StorageService } from "./services/storage.service";
 })
 export class AppComponent implements OnInit {
     public route: string;
-    public constructor(private router: Router, private communicationService: CommunicationService, private storage: StorageService) {
+    public constructor(private router: Router, private communicationService: CommunicationService,
+                       private storage: StorageService) {
     }
 
-    public async ngOnInit(): Promise<void> {
-        if (this.storage.loggedIn) {
-            this.communicationService.currentUser = this.storage.getUser();
-            if (this.communicationService.isAdmin()) {
-                await this.router.navigateByUrl("administrateur");
-                this.route = this.router.url;
-            } else {
-                await this.router.navigateByUrl("membre");
-                this.route = this.router.url;
-            }
-
-        } else {
-            await this.router.navigateByUrl("");
-        }
+    public ngOnInit(): void {
+        /***/
     }
 
     public async deconnect(): Promise<void> {

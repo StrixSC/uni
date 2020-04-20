@@ -2,7 +2,7 @@ import { DatePipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { MatDialog, MatSnackBar, MatSnackBarConfig } from "@angular/material";
-import { REGEXP_DATE_PATTERN, REGEXP_TIME_PATTERN, REGEXP_TITLE_PATTERN } from "./../../../../../common/models/patterns";
+import { REGEXP_DATE_PATTERN, REGEXP_TIME_PATTERN, REGEXP_TITLE_PATTERN } from "../../../../../common/utils/patterns";
 import { CommunicationService } from "./../../services/communication.service";
 import { SelectedMovieService } from "./../../services/selected-movie.service";
 

@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AdminPageComponent } from "./components/admin-page/admin-page.component";
+import { FilmPageComponent } from "./components/film-page/film-page.component";
 import { HomePageComponent } from "./components/home-page/home-page.component";
 import { RegisterPageComponent } from "./components/register-page/register-page.component";
 import { UserPageComponent } from "./components/user-page/user-page.component";
@@ -12,6 +13,8 @@ const routes: Routes = [
   { path: "administrateur", component: AdminPageComponent, canActivate: [AdminGuardService]},
   { path: "inscrire", component: RegisterPageComponent },
   { path: "membre", component: UserPageComponent, canActivate: [UserGuardService] },
+  { path: "regarder/:id", component: FilmPageComponent, canActivate: [UserGuardService]},
+  { path: "**", component: HomePageComponent},
 ];
 
 @NgModule({

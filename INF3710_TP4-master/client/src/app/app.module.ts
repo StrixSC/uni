@@ -13,6 +13,7 @@ import { MatVideoModule } from "mat-video";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AdminPageComponent } from "./components/admin-page/admin-page.component";
+import { FilmPageComponent } from "./components/film-page/film-page.component";
 import { HomePageComponent } from "./components/home-page/home-page.component";
 import { AddMemberModalComponent } from "./components/member-modal/add-member-modal/add-member-modal.component";
 import { MemberModalComponent } from "./components/member-modal/member-modal.component";
@@ -36,6 +37,7 @@ import { StorageService } from "./services/storage.service";
     MovieModalComponent,
     AddMovieModalComponent,
     AddMemberModalComponent,
+    FilmPageComponent,
   ],
   imports: [
     MatOptionModule,

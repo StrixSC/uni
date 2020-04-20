@@ -2,8 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { Router } from "@angular/router";
-import { REGEXP_EMAIL_PATTERN } from "./../../../../../common/models/patterns";
+import { REGEXP_EMAIL_PATTERN } from "../../../../../common/utils/patterns";
 import { Membre } from "./../../../../../common/tables/membre";
+import { AdminGuardService } from './../../services/authentication/admin-guard.service';
 import { CommunicationService } from "./../../services/communication.service";
 import { StorageService } from "./../../services/storage.service";
 
@@ -18,7 +19,7 @@ export class HomePageComponent implements OnInit {
   public email: FormControl;
   public password: FormControl;
 
-  public constructor(private comService: CommunicationService, private snackBar: MatSnackBar,
+  public constructor(private comService: CommunicationService, private adminGuard: AdminGuardService, private snackBar: MatSnackBar,
                      private router: Router, private storageService: StorageService) { }
 
   public async ngOnInit(): Promise<void> {
@@ -47,17 +48,17 @@ export class HomePageComponent implements OnInit {
     this.comService.login({
       email: this.email.value,
       password: this.password.value
-    }).subscribe(async (res: Membre) => {
+    }).toPromise().then(async (res: Membre) => {
       this.comService.currentUser = res;
       this.storageService.saveUser(this.comService.currentUser);
-      const result: Boolean = await this.comService.isAdmin().toPromise();
-      if (result.valueOf()) {
+      const result: boolean = await this.adminGuard.canActivate();
+      console.log(result);
+      if (result) {
         await this.router.navigateByUrl("administrateur");
       } else {
         await this.router.navigateByUrl("membre");
-      }
-      this.loading = false;
-    },           () => {
+      }})
+      .catch((err) => {
       this.snackBar.open("Le courriel/Mot de passe est invalide.", "OK", {
         verticalPosition: "bottom",
         horizontalPosition: "center",

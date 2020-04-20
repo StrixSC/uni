@@ -52,6 +52,10 @@ export class CommunicationService {
         return this.http.get(`${this.BASE_URL}/members/all`);
     }
 
+    public getInfo(film: Filme): Observable<any> {
+        return this.http.get(`${this.BASE_URL}/movies/${film.noFilme}`);
+    }
+
     public deleteMember(member: Membre): Observable<any> {
         return this.http.delete(`${this.BASE_URL}/delete/member/${member.id_membre}`);
     }
@@ -70,5 +74,9 @@ export class CommunicationService {
 
     public addMember(member: Membre): Observable<any> {
         return this.http.post(`${this.BASE_URL}/add/member`, member);
+    }
+
+    public getFilmInfo(userId: number, filmId: number): Observable<any> {
+        return this.http.get(`${this.BASE_URL}/movie/${userId}/${filmId}`);
     }
 }

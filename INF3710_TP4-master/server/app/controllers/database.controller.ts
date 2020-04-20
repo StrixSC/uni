@@ -3,9 +3,8 @@ import { NextFunction, Request, Response, Router } from "express";
 import * as httpCodes from "http-status-codes";
 import { inject, injectable } from "inversify";
 import * as pg from "pg";
-import { REGEXP_EMAIL_PATTERN, REGEXP_PASSWD_PATTERN } from '../../../common/models/patterns';
-import { REGEXP_CITY_PATTERN, REGEXP_DATE_PATTERN, REGEXP_FILTER,
-    REGEXP_NAME_PATTERN, REGEXP_POSTAL_CODE_PATTERN, REGEXP_TIME_PATTERN } from './../../../common/models/patterns';
+import {REGEXP_CITY_PATTERN, REGEXP_DATE_PATTERN, REGEXP_EMAIL_PATTERN, REGEXP_FILTER, REGEXP_NAME_PATTERN,
+        REGEXP_PASSWD_PATTERN, REGEXP_POSTAL_CODE_PATTERN, REGEXP_TIME_PATTERN } from '../../../common/utils/patterns';
 import { Filme } from './../../../common/tables/filme';
 import { Membre } from './../../../common/tables/membre';
 
@@ -68,7 +67,7 @@ export class DatabaseController {
                 console.log("validated");
                 res.sendStatus(httpCodes.BAD_REQUEST);
             } else {
-                this.databaseService.addMovie(req.body)
+                this.databaseService.addFilm(req.body)
                 .then((response: pg.QueryArrayResult) => {
                     res.status(httpCodes.OK);
                     res.send({
@@ -126,12 +125,11 @@ export class DatabaseController {
         });
         router.get("/admin/:id", (req: Request, res: Response, next: NextFunction) => {
             if (req.params.id === -1) {
-                console.log('not here');
                 res.status(httpCodes.NOT_FOUND).send(false);
             } else {
                 this.databaseService.checkIfAdmin(req.params.id)
                 .then((result: pg.QueryResult) => {
-                    res.status(httpCodes.OK).send(result.rows[0]['estadmin']);
+                    res.status(httpCodes.OK).send({result: result.rows[0]['estadmin']});
                 }).catch((e: Error) => {
                     res.status(httpCodes.NOT_FOUND).send(false);
                     console.error(e.stack);
@@ -176,13 +174,24 @@ export class DatabaseController {
             });
         });
 
+        router.get("/movies/:id", (req: Request, res: Response, next: NextFunction) => {
+            this.databaseService.getFilmInfo(req.params.id)
+            .then((result: pg.QueryResultRow[]) => {
+                res.status(httpCodes.OK).send(result);
+            })
+            .catch((error: Error) => {
+                console.log(error);
+                res.status(httpCodes.NOT_FOUND).send(error);
+            });
+        });
+
         router.delete("/delete/movie/:id", (req: Request, res: Response, next: NextFunction) => {
             if (req.params.id === -1) {
                 res.send({
                     status: httpCodes.BAD_REQUEST
                 });
             } else {
-                this.databaseService.deleteMovie(req.params.id)
+                this.databaseService.deleteFilm(req.params.id)
                 .then((result: pg.QueryResult) => {
                     res.send({
                         status: httpCodes.OK
@@ -196,13 +205,27 @@ export class DatabaseController {
             }
         });
 
+        router.get("/movie/:userId/:filmId", (req: Request, res: Response, next: NextFunction) => {
+            if (req.params.userId === -1 || req.params.filmId === -1) {
+                res.sendStatus(httpCodes.BAD_REQUEST);
+            } else {
+                this.databaseService.getMemberWatchInformation(req.params.userId, req.params.filmId)
+                .then((result: pg.QueryResult) => {
+                    res.status(httpCodes.OK);
+                    res.send(result.rows);
+                }).catch((e: Error) => {
+                    res.sendStatus(httpCodes.NOT_FOUND);
+                    console.error(e.message);
+                });
+            }
+        });
+
         router.delete("/delete/member/:id", (req: Request, res: Response, next: NextFunction) => {
             if (req.params.id === -1) {
                 res.status(httpCodes.BAD_REQUEST).send(false);
             } else {
                 this.databaseService.deleteMember(req.params.id)
                 .then((result: pg.QueryResult) => {
-                    console.log(result);
                     res.status(httpCodes.OK).send();
                 }).catch((e: Error) => {
                     res.status(httpCodes.INTERNAL_SERVER_ERROR).send(false);
@@ -256,4 +279,5 @@ export class DatabaseController {
 
         return courrielValidated && mdpValidated && nomValidated && !rueValidated && villeValidated && codepostalValidated;
     }
+
 }

@@ -1,6 +1,5 @@
-import { Observable } from 'rxjs';
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from "@angular/router";
+import { CanActivate } from "@angular/router";
 import { CommunicationService } from "./../communication.service";
 
 @Injectable({
@@ -9,8 +8,17 @@ import { CommunicationService } from "./../communication.service";
 export class AdminGuardService implements CanActivate {
 
   public constructor(private commService: CommunicationService) {/***/}
-  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-    return this.commService.isAdmin();
+  public async canActivate(): Promise<boolean> {
+    let resultObj: any = {
+      result: false
+    };
+    try {
+      resultObj = await this.commService.isAdmin().toPromise();
+    } catch (err) {
+      /***/
+    }
+
+    return resultObj.result ? true : false;
   }
 
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { MatDialog, MatSnackBar, MatSnackBarConfig } from "@angular/material";
 import { REGEXP_CITY_PATTERN, REGEXP_EMAIL_PATTERN, REGEXP_NAME_PATTERN,
-  REGEXP_PASSWD_PATTERN, REGEXP_POSTAL_CODE_PATTERN, REGEXP_STREET_PATTERN } from "./../../../../../../common/models/patterns";
+  REGEXP_PASSWD_PATTERN, REGEXP_POSTAL_CODE_PATTERN, REGEXP_STREET_PATTERN } from "../../../../../../common/utils/patterns";
 import { CommunicationService } from "./../../../services/communication.service";
 
 @Component({

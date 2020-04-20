@@ -15,6 +15,7 @@ export class StorageService {
             window.localStorage.setItem("city", `${member.ville}`);
             window.localStorage.setItem("postalcode", `${member.codepostal}`);
             window.localStorage.setItem("street", `${member.rue}`);
+            window.localStorage.setItem("loggedIn", "true");
         }
     }
 
@@ -54,6 +55,7 @@ export class StorageService {
     }
 
     public get loggedIn(): boolean {
-        return window.localStorage.length !== 0 && window.localStorage.getItem("id") !== "-1" ? true : false;
+        return window.localStorage.length !== 0 && window.localStorage.getItem("id") !== "-1"  &&
+        window.localStorage.getItem("loggedIn") === "true" ? true : false;
     }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { MatDialog, MatSelectChange, MatSnackBar, MatSnackBarConfig } from "@angular/material";
-import { REGEXP_DATE_PATTERN, REGEXP_TIME_PATTERN, REGEXP_TITLE_PATTERN } from "./../../../../../../common/models/patterns";
+import { REGEXP_DATE_PATTERN, REGEXP_TIME_PATTERN, REGEXP_TITLE_PATTERN } from "../../../../../../common/utils/patterns";
 import { CommunicationService } from "./../../../services/communication.service";
 
 @Component({
@@ -65,7 +65,7 @@ export class AddMovieModalComponent implements OnInit {
       }).toPromise()
       .then((res: Response) => {
         console.log(res);
-        const OK: number = 200;
+      const OK: number = 200;
         if (res.status === OK) {
           this.openSnackBar("success");
           this.loading = false;

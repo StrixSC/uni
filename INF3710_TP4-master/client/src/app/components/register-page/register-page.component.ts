@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { PASS_MAX_LENGTH, PASS_MIN_LENGTH, PASS_PATTERN } from "../../../../../common/models/patterns";
-import { REGEXP_EMAIL_PATTERN } from "./../../../../../common/models/patterns";
+import { PASS_MAX_LENGTH, PASS_MIN_LENGTH, PASS_PATTERN } from "../../../../../common/utils/patterns";
+import { REGEXP_EMAIL_PATTERN } from "../../../../../common/utils/patterns";
 import { Membre } from "./../../../../../common/tables/membre";
 
 @Component({

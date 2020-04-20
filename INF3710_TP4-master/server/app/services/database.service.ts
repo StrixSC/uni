@@ -41,6 +41,7 @@ export class DatabaseService {
 
     public async loginUser(email: string, password: string): Promise<pg.QueryResult<pg.QueryResultRow>> {
         const queryText: string = `SELECT * FROM Netflix_Poly.Membre MEM WHERE MEM.Courriel = '${email}';`;
+        
         return this.pool.query(queryText);
     }
 
@@ -62,7 +63,7 @@ export class DatabaseService {
         return this.pool.query(queryText);
     }
 
-    public async deleteMovie(id: number): Promise<pg.QueryResult<pg.QueryResultRow>> {
+    public async deleteFilm(id: number): Promise<pg.QueryResult<pg.QueryResultRow>> {
         const queryText: string = `DELETE FROM Netflix_Poly.Filme F WHERE F.NoFilme = ${id};`;
 
         return this.pool.query(queryText);
@@ -74,7 +75,7 @@ export class DatabaseService {
         return this.pool.query(queryText);
     }
 
-    public async addMovie(filme: Filme): Promise<pg.QueryResult<pg.QueryResultRow>> {
+    public async addFilm(filme: Filme): Promise<pg.QueryResult<pg.QueryResultRow>> {
         const queryText: string = `INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, '${filme.titre}', '${filme.genre}',
         '${filme.date_production}', '${filme.duree}');`;
 
@@ -91,6 +92,32 @@ export class DatabaseService {
     public async updateFilm(film: Filme): Promise<pg.QueryResult<pg.QueryResultRow>> {
         const queryText: string = `UPDATE Netflix_Poly.Filme F SET "titre" = '${film.titre}', "genre" = '${film.genre}',
         "date_production" = '${film.date_production}', "duree" = '${film.duree}' WHERE F.NoFilme = '${film.noFilme}';`;
+
+        return this.pool.query(queryText);
+    }
+
+    public async getFilmInfo(id: number): Promise<pg.QueryResultRow[]> {
+        const results: pg.QueryResultRow[] = [];
+
+        const queryTextOne: string = `SELECT * FROM Netflix_Poly.Nomination_Oscar NOM_O
+        NATURAL JOIN Netflix_Poly.Oscar O
+        WHERE NOM_O.NoFilme = ${id};`;
+        const resultOne: pg.QueryResultRow = (await this.pool.query(queryTextOne)).rows;
+
+        const queryTextTwo: string = `SELECT * FROM Netflix_Poly.FilmeParticipant FP
+        NATURAL JOIN Netflix_Poly.Participant PAR
+        WHERE FP.NoFilme = ${id};`;
+        const resultTwo: pg.QueryResultRow = (await this.pool.query(queryTextTwo)).rows;
+
+        results.push(resultOne);
+        results.push(resultTwo);
+
+        return results;
+    }
+
+    public async getMemberWatchInformation(memberId: number, filmId: number): Promise<pg.QueryResult> {
+        const queryText: string = `SELECT * FROM Netflix_Poly.Visionnement V
+        WHERE V.NoFilme = ${filmId} AND V.ID_membre = ${memberId};`;
 
         return this.pool.query(queryText);
     }
