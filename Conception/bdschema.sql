@@ -76,6 +76,7 @@ CREATE TABLE IF NOT EXISTS Netflix_Poly.Filme (
     Genre Netflix_Poly.genre DEFAULT('Action'),
     Date_Production DATE,
     Duree TIME NOT NULL,
+    Prix DECIMAL(4,2) NOT NULL,
     PRIMARY KEY(NoFilme)
 );
 
