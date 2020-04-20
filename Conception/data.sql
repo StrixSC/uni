@@ -1,4 +1,3 @@
-
 INSERT INTO Netflix_Poly.Membre VALUES (DEFAULT, 'MavisePlaisance@teleworm.us', encode(sha256('rexouw3No'::bytea), 'hex'),
 'Mavise Plaisance', '4495 Hyde Park Road', 'London', 'N6E 1A9', FALSE);
 INSERT INTO Netflix_Poly.Membre VALUES (DEFAULT, 'OlivierAllard@armyspy.com', encode(sha256('ietaixeeZ5'::bytea), 'hex'), 'Olivier Allard',
@@ -43,21 +42,21 @@ INSERT INTO Netflix_Poly.Commande VALUES (DEFAULT, 2, 4, '2020-04-10', 11.40,  1
 INSERT INTO Netflix_Poly.Commande VALUES (DEFAULT, 5, 3, '2020-03-29', 32.40, 32.40 * 0.25);
 INSERT INTO Netflix_Poly.Commande VALUES (DEFAULT, 1, 6, '2020-03-27', 28.00, 28.00 * 0.25);
 
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Bohemian Rhapsody', 'Drame', '2018-10-24', '02:13');
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Avengers: Endgame', 'Action', '2019-04-26', '03:02');
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Avengers: Infinity War', 'Action', '2017-04-27', '02:40');
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Titanic', 'Drame', '1997-11-18', '03:15');
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Jojo Rabbit', 'Comédie', '2020-02-04', '01:48');
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Deadpool', 'Action', '2016-02-12', '01:49');
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Cold Blood', 'Thriller', '2019-07-05', '01:31');
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'The Purge', 'Thriller', '2013-06-07', '01:25');
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'IT Chapter Two', 'Horreur', '2019-08-26', '02:50');
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'The Lion King', 'Animation', '2019-07-9', '01:58');
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'The Martian', 'Science-fiction', '2019-09-24', '02:31');
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Ford v Ferrari', 'Action', '2019-08-30', '02:32');
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, '1917', 'Historique', '2020-01-10', '01:59');
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Big Hero 6', 'Animation', '2014-11-07', '01:48');
-INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Doctor Strange', 'Science-fiction', '2016-10-13', '01:55');
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Bohemian Rhapsody', 'Drame', '2018-10-24', '02:13', 8.00);
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Avengers: Endgame', 'Action', '2019-04-26', '03:02', 12.00);
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Avengers: Infinity War', 'Action', '2017-04-27', '02:40', 9.50);
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Titanic', 'Drame', '1997-11-18', '03:15', 8.50);
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Jojo Rabbit', 'Comédie', '2020-02-04', '01:48', 7.50);
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Deadpool', 'Action', '2016-02-12', '01:49', 8.50);
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Cold Blood', 'Thriller', '2019-07-05', '01:31', 9.25);
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'The Purge', 'Thriller', '2013-06-07', '01:25', 6.75);
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'IT Chapter Two', 'Horreur', '2019-08-26', '02:50', 7.75);
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'The Lion King', 'Animation', '2019-07-9', '01:58', 10.00);
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'The Martian', 'Science-fiction', '2019-09-24', '02:31', 11.50);
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Ford v Ferrari', 'Action', '2019-08-30', '02:32', 11.00);
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, '1917', 'Historique', '2020-01-10', '01:59', 11.00);
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Big Hero 6', 'Animation', '2014-11-07', '01:48', 8.00);
+INSERT INTO Netflix_Poly.Filme VALUES (DEFAULT, 'Doctor Strange', 'Science-fiction', '2016-10-13', '01:55', 7.95);
 
 INSERT INTO Netflix_Poly.DVD VALUES (DEFAULT, 1);
 INSERT INTO Netflix_Poly.DVD VALUES (DEFAULT, 2);
@@ -83,6 +82,10 @@ INSERT INTO Netflix_Poly.Participant VALUES ('396012676', 'Edward Ross', 42, 'Ho
 INSERT INTO Netflix_Poly.Participant VALUES ('961854650', 'Nicholas Taylor', 43, 'Homme', 'Angleterre');
 INSERT INTO Netflix_Poly.Participant VALUES ('363131624', 'Valeria Wilson', 59 , 'Femme', 'États-Unis');
 INSERT INTO Netflix_Poly.Participant VALUES ('646966259', 'Adele Hamilton', 49, 'Femme', 'France');
+INSERT INTO Netflix_Poly.Participant VALUES ('645566259', 'Woody Allen', 84, 'Homme', 'États-Unis');
+INSERT INTO Netflix_Poly.Participant VALUES ('245566259', 'Fleurette Tremblay', 24, 'Femme', 'Quebec');
+INSERT INTO Netflix_Poly.Participant VALUES ('345566259', 'Helene Tremblay', 34, 'Femme', 'Quebec');
+INSERT INTO Netflix_Poly.Participant VALUES ('445566259', 'Janette Tremblay', 44, 'Femme', 'Quebec');
 
 INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('219638939', 6, 'Réalisateur', 106969.00);
 INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('761059237', 4, 'Acteur(e)', 154730.00);
@@ -98,6 +101,17 @@ INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('396012676', 7, 'Réalisateur'
 INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('961854650', 5, 'Écrivain(e)', 147822.00);
 INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('363131624', 4, 'Caméraman', 32494.00);
 INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('646966259', 11, 'Acteur(e)', 181164.00);
+INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('645566259', 10, 'Réalisateur', 281164.00);
+INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('645566259', 9, 'Acteur(e)', 381164.00);
+INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('245566259', 10, 'Acteur(e)', 181164.00);
+INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('345566259', 10, 'Acteur(e)', 181164.00);
+INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('445566259', 10, 'Acteur(e)', 181164.00);
+INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('245566259', 11, 'Acteur(e)', 381164.00);
+INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('345566259', 11, 'Acteur(e)', 681164.00);
+INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('219638939', 11, 'Réalisateur', 981164.00);
+INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('645566259', 12, 'Réalisateur', 881164.00);
+INSERT INTO Netflix_Poly.FilmeParticipant VALUES ('761059237', 12, 'Acteur(e)', 381164.00);
+
 
 INSERT INTO Netflix_Poly.Oscar VALUES (DEFAULT, '2012-02-26', 'Los Angeles, CA, États-Unis', 'Billy Crystal');
 INSERT INTO Netflix_Poly.Oscar VALUES (DEFAULT, '2013-02-24', 'Los Angeles, CA, États-Unis', 'Seth MacFarlane');
@@ -110,15 +124,19 @@ INSERT INTO Netflix_Poly.Oscar VALUES (DEFAULT, '2019-02-24', 'Los Angeles, CA, 
 INSERT INTO Netflix_Poly.Oscar VALUES (DEFAULT, '2020-02-09', 'Los Angeles, CA, États-Unis', NULL);
 
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(11, 1, 'Meilleure Actrice', TRUE);
+INSERT INTO Netflix_Poly.Nomination_oscar VALUES(11, 2, 'Meilleure Actrice dans un second rôle', TRUE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(3, 5, 'Meilleure Actrice dans un second rôle', FALSE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(2, 3, 'Meilleur Réalisateur', FALSE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(12, 6, 'Meilleur Metteur en scène', TRUE);
+INSERT INTO Netflix_Poly.Nomination_oscar VALUES(12, 3, 'Meilleur Acteur dans un second rôle', TRUE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(1, 7, 'Meilleur Acteur dans un second rôle', FALSE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(5, 2, 'Meilleure Costumes', FALSE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(7, 6, 'Meilleure Choréographie', TRUE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(5, 4, 'Meilleure Chanson Originale', FALSE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(9, 4, 'Meilleur Acteur', FALSE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(13, 2, 'Meilleur Réalisateur', FALSE);
+INSERT INTO Netflix_Poly.Nomination_oscar VALUES(6, 2, 'Meilleur Réalisateur', FALSE);
+INSERT INTO Netflix_Poly.Nomination_oscar VALUES(7, 2, 'Meilleur Réalisateur', FALSE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(4, 1, 'Meilleur Producteur', TRUE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(8, 3, 'Meilleur effets visuels', FALSE);
 INSERT INTO Netflix_Poly.Nomination_oscar VALUES(6, 4, 'Meilleur Acteur', FALSE);
@@ -150,5 +168,13 @@ INSERT INTO Netflix_Poly.Visionnement VALUES(2, 2, '2019-08-20', '00:19');
 INSERT INTO Netflix_Poly.Visionnement VALUES(5, 1, '2019-05-20', '01:25');
 INSERT INTO Netflix_Poly.Visionnement VALUES(6, 7, '2020-03-20', '00:43');
 INSERT INTO Netflix_Poly.Visionnement VALUES(4, 4, '2020-01-20', '01:01');
-
-
+INSERT INTO Netflix_Poly.Visionnement VALUES(4, 10, '2019-09-20', '01:34'); INSERT INTO Netflix_Poly.Visionnement VALUES(4, 10, '2019-09-20', '01:39');
+INSERT INTO Netflix_Poly.Visionnement VALUES(4, 10, '2019-09-20', '01:35'); INSERT INTO Netflix_Poly.Visionnement VALUES(4, 10, '2019-09-20', '01:40');
+INSERT INTO Netflix_Poly.Visionnement VALUES(4, 10, '2019-09-20', '01:36'); INSERT INTO Netflix_Poly.Visionnement VALUES(4, 10, '2019-09-20', '01:44');
+INSERT INTO Netflix_Poly.Visionnement VALUES(4, 10, '2019-09-20', '01:37'); INSERT INTO Netflix_Poly.Visionnement VALUES(4, 10, '2019-09-20', '01:54');
+INSERT INTO Netflix_Poly.Visionnement VALUES(4, 10, '2019-09-20', '01:38'); INSERT INTO Netflix_Poly.Visionnement VALUES(4, 10, '2019-09-20', '01:56');
+INSERT INTO Netflix_Poly.Visionnement VALUES(5, 11, '2019-09-20', '01:34'); INSERT INTO Netflix_Poly.Visionnement VALUES(5, 11, '2019-09-20', '01:39');
+INSERT INTO Netflix_Poly.Visionnement VALUES(5, 11, '2019-09-20', '01:35'); INSERT INTO Netflix_Poly.Visionnement VALUES(5, 11, '2019-09-20', '01:40');
+INSERT INTO Netflix_Poly.Visionnement VALUES(5, 11, '2019-09-20', '01:36'); INSERT INTO Netflix_Poly.Visionnement VALUES(5, 11, '2019-09-20', '01:44');
+INSERT INTO Netflix_Poly.Visionnement VALUES(5, 11, '2019-09-20', '01:37'); INSERT INTO Netflix_Poly.Visionnement VALUES(5, 11, '2019-09-20', '01:54');
+INSERT INTO Netflix_Poly.Visionnement VALUES(5, 11, '2019-09-20', '01:38'); INSERT INTO Netflix_Poly.Visionnement VALUES(5, 11, '2019-09-20', '01:56');
