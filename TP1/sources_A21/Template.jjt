@@ -145,7 +145,8 @@ void Stmt() : { }
 	AssignStmt() <SEMICOLON> |
     WhileStmt() |
     DoWhileStmt() |
-    IfStmt()
+    IfStmt() |
+    ForStmt()
 }
 
 ASTProgram Program() : { }
@@ -155,6 +156,7 @@ ASTProgram Program() : { }
 
 void Block() : { }
 {
+    // TODO: Un block peut avoir 0 statements dedans non? Changer (Stmt())+ -> (Stmt())* ?
 	 (Stmt())+
 }
 
@@ -162,12 +164,12 @@ void Block() : { }
 
 void WhileStmt() : {}
 {
-     <WHILE> FnctHead() (FnctBody())
+     <WHILE> FnctHead() FnctBody()
 }
 
 void DoWhileStmt() : {}
 {
-    <DO> (FnctBody()) <WHILE> FnctHead() <SEMICOLON>
+    <DO> FnctBody() <WHILE> FnctHead() <SEMICOLON>
 }
 
 void IfStmt(): {}
@@ -175,6 +177,11 @@ void IfStmt(): {}
    <IF> FnctHead() FnctBody()
    //trop gros lookahead, a voir les modif
    (LOOKAHEAD(50) ElseIfHead() FnctBody())* (<ELSE> FnctBody() | {})
+}
+
+void ForStmt(): {}
+{
+    <FOR> <LPAREN> (AssignStmt())? <SEMICOLON> (Expr())? <SEMICOLON> (AssignStmt())? <RPAREN> FnctBody()
 }
 
 void FnctHead(): {}
