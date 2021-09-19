@@ -1,5 +1,0 @@
-// Error test for while 
-
-// missing parenthesis
-while a==1
-    a = 0;

@@ -1,2 +1,0 @@
-// Tests on function statement
-a = () -> { return 0.3; };
