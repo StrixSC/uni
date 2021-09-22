@@ -1,0 +1,271 @@
+options {
+	JAVA_UNICODE_ESCAPE=true;
+	STATIC=false;					// 1 seul parseur actif a la fois (+ rapide)
+	MULTI=true;						// type noeud = f(nom noeud)
+	VISITOR=true;					// Cree une methode accept(visiteur)
+}
+
+//
+// PARSER DEFINITION
+//
+
+PARSER_BEGIN(Parser)
+
+package analyzer.ast;
+
+public class Parser
+{
+	public static ASTProgram ParseTree(java.io.InputStream input) throws ParseException
+	{
+		Parser c = new Parser(input);
+		return c.Program();
+	}
+}
+
+PARSER_END(Parser)
+
+//
+// LEXICAL ANALYSIS
+//
+
+// White space
+
+SKIP :
+{
+	< ( " " | "\t" | "\n" | "\r" )+	>
+}
+
+// Comments
+
+MORE :
+{
+  "//" : IN_SINGLE_LINE_COMMENT
+|
+  <"/**" ~["/"]> { input_stream.backup(1); } : IN_FORMAL_COMMENT
+|
+  "/*" : IN_MULTI_LINE_COMMENT
+}
+
+<IN_SINGLE_LINE_COMMENT>
+SPECIAL_TOKEN :
+{
+  <SINGLE_LINE_COMMENT: "\n" | "\r" | "\r\n" > : DEFAULT
+}
+
+<IN_FORMAL_COMMENT>
+SPECIAL_TOKEN :
+{
+  <FORMAL_COMMENT: "*/" > : DEFAULT
+}
+
+<IN_MULTI_LINE_COMMENT>
+SPECIAL_TOKEN :
+{
+  <MULTI_LINE_COMMENT: "*/" > : DEFAULT
+}
+
+<IN_SINGLE_LINE_COMMENT,IN_FORMAL_COMMENT,IN_MULTI_LINE_COMMENT>
+MORE :
+{
+  < ~[] >
+}
+
+
+
+
+// Keywords
+TOKEN :
+{
+	< PRINT: "print" > |
+	< INPUT: "input" > |
+    < FOR: "for" > |
+    < WHILE: "while" > |
+    < DO: "do"> |
+	< IF: "if" > |
+	< ELSE: "else" > |
+	< INT: "int" > |
+	< FLOAT: "float"> |
+	< BOOL: "bool" > |
+	< RETURN: "return" >
+
+	// À compléter au besoin
+}
+
+// Operators
+TOKEN :
+{
+	< ASSIGN: < EQUAL >  > |
+	< COMPARE: < LESS > | < LESSEQUAL > | < GREAT > | <GREATEQUAL > | < DIFF > | < EQUALEQUAL > > |
+    < LOGIC: < AND > | < OR > > |
+	< #LESS: "<" > |
+	< #LESSEQUAL: "<=" > |
+	< #GREAT: ">" > |
+	< #GREATEQUAL: ">=" > |
+	< #DIFF: "!=" > |
+	< #EQUALEQUAL: "==" > |
+	< LAMBDA: <MINUS> <GREAT> > |
+
+	< PLUS: "+" > |
+	< MINUS: "-" > |
+	< FOIS: "*" > |
+	< DIV: "/" > |
+    < NOT: "!" > |
+
+	< #EQUAL: "=" > |
+	< LPAREN: "(" > |
+	< RPAREN: ")" > |
+	< LACC: "{" > |
+	< RACC: "}" > |
+	< COLON: ":" > |
+	< SEMICOLON: ";" > |
+	< COMMA: "," > |
+	< #AND: "&&" > |
+	< #OR: "||" >
+	// À compléter au besoin
+}
+
+
+// Identifiers and numbers
+TOKEN :
+{
+	< IDENTIFIER: <LETTER> ( <LETTER> | <DIGIT> )* > |
+	< #LETTER: ["a"-"z","A"-"Z","_"] > |
+	< #DIGIT: ["0"-"9"] > |
+	< INTEGER: ["1"-"9"] (["0"-"9"])* | "0" > |
+	//TODO: Caution! Allows numbers such as "0000.23"... to fix!!!
+	< REAL: (<MINUS>)?((["1"-"9"] (<INTEGER>)*) | ("0") | "" )"." (["0"-"9"])* (<EXPONENT>)? |
+    			  (<INTEGER>)+ <EXPONENT> > |
+    < #EXPONENT: ["e","E"] (["+","-"])? (["0"-"9"])+ >
+}
+
+//
+// SYNTAX ANALYSIS
+//
+
+
+
+// à compléter
+void Stmt() : { }
+{
+	LOOKAHEAD(3) AssignStmt() <SEMICOLON> |
+    WhileStmt() |
+    DoWhileStmt() |
+    IfStmt() |
+    ForStmt() |
+    LambdaStmt() <SEMICOLON> |
+    ReturnStmt() <SEMICOLON>
+}
+
+ASTProgram Program() : { }
+{
+	Block() <EOF> { return jjtThis;  }
+}
+
+void Block() : { }
+{
+	 (Stmt())*
+}
+
+// à finir -- commencez ici!
+
+void WhileStmt() : {}
+{
+     <WHILE> FnctHead() FnctBody()
+}
+
+void DoWhileStmt() : {}
+{
+    <DO> FnctBody() <WHILE> FnctHead() <SEMICOLON>
+}
+
+void IfStmt(): {}
+{
+     <IF> FnctHead() "{" Block() "}" [<ELSE> FnctBody()]
+//     <IF> FnctHead() FnctBody() [<ELSE> FnctBody()]
+
+
+//      <IF> FnctHead() FnctBody() (<ELSE> IfStmt())* (<ELSE> FnctBody())*
+
+
+//   <IF> FnctHead() FnctBody()
+//   //trop gros lookahead, a voir les modif
+//   (LOOKAHEAD(50) ElseIfHead() FnctBody())* (<ELSE> FnctBody() | {})
+}
+
+void ForStmt(): {}
+{
+    <FOR> <LPAREN> (AssignStmt())? <SEMICOLON> (Expr())? <SEMICOLON> (AssignStmt())? <RPAREN> FnctBody()
+}
+
+void LambdaStmt(): {}
+{
+    Identifier() <ASSIGN> <LPAREN> ((<INT> | <BOOL> | <FLOAT>) Identifier() (<COMMA>)?)* <RPAREN> <LAMBDA> FnctBody()
+}
+
+void FnctHead(): {}
+{
+    <LPAREN> Expr() <RPAREN>
+}
+
+void FnctBody(): {}
+{
+    <LACC> Block() <RACC>
+    |
+    Stmt()
+}
+
+void ReturnStmt(): {}
+{
+    <RETURN> Expr()
+}
+
+void ElseIfHead() : { }
+{
+    // pourquoi ca marche pas?
+    <ELSE> IfStmt()
+//    <ELSE> <IF> FnctHead()
+}
+
+void AssignStmt() : { }
+{
+    Identifier() <ASSIGN> Expr()
+}
+
+void Expr() : {}
+{
+    IntExpr()
+}
+
+void IntExpr() : { }
+{
+    IntLogicExpr()
+}
+
+void IntLogicExpr() : { }
+{
+    IntBasicExpr() (LOOKAHEAD(2)
+         <LOGIC> IntBasicExpr()
+    )*
+}
+
+void IntBasicExpr() : { }
+{
+	Identifier() |
+	IntValue() |
+	RealValue()
+}
+
+void Identifier() : { }
+{
+	<IDENTIFIER>
+}
+
+void IntValue() : { }
+{
+	<INTEGER>
+}
+
+void RealValue() : { }
+{
+    <REAL>
+}
