@@ -227,13 +227,20 @@ void Expr() : {}
 
 void IntExpr() : { }
 {
-    IntLogicExpr()
+    IntBasicExpr() (LOOKAHEAD(2)
+         LogicOrCompare() IntBasicExpr()
+    )*
 }
 
-void IntLogicExpr() : { }
+void LogicOrCompare(): {}
+{
+    (<LOGIC>) | (<COMPARE>)
+}
+
+void IntCompareExpr() : { }
 {
     IntBasicExpr() (LOOKAHEAD(2)
-         <LOGIC> IntBasicExpr()
+         <COMPARE> IntBasicExpr()
     )*
 }
 
