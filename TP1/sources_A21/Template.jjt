@@ -178,20 +178,6 @@ void DoWhileStmt() : {}
     <DO> FnctBody() <WHILE> FnctHead() <SEMICOLON>
 }
 
-void IfStmt(): {}
-{
-     <IF> FnctHead() "{" Block() "}" [<ELSE> FnctBody()]
-//     <IF> FnctHead() FnctBody() [<ELSE> FnctBody()]
-
-
-//      <IF> FnctHead() FnctBody() (<ELSE> IfStmt())* (<ELSE> FnctBody())*
-
-
-//   <IF> FnctHead() FnctBody()
-//   //trop gros lookahead, a voir les modif
-//   (LOOKAHEAD(50) ElseIfHead() FnctBody())* (<ELSE> FnctBody() | {})
-}
-
 void ForStmt(): {}
 {
     <FOR> <LPAREN> (AssignStmt())? <SEMICOLON> (Expr())? <SEMICOLON> (AssignStmt())? <RPAREN> FnctBody()
@@ -200,6 +186,16 @@ void ForStmt(): {}
 void LambdaStmt(): {}
 {
     Identifier() <ASSIGN> <LPAREN> ((<INT> | <BOOL> | <FLOAT>) Identifier() (<COMMA>)?)* <RPAREN> <LAMBDA> FnctBody()
+}
+
+void IfStmt(): {}
+{
+   <IF> FnctHead() FnctBody()
+           (
+             <ELSE> ( LOOKAHEAD(2) (FnctBody()) | (IfStmt()))
+             |
+             {}
+           )
 }
 
 void FnctHead(): {}
@@ -217,13 +213,6 @@ void FnctBody(): {}
 void ReturnStmt(): {}
 {
     <RETURN> Expr()
-}
-
-void ElseIfHead() : { }
-{
-    // pourquoi ca marche pas?
-    <ELSE> IfStmt()
-//    <ELSE> <IF> FnctHead()
 }
 
 void AssignStmt() : { }
