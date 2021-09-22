@@ -147,7 +147,7 @@ TOKEN :
 // à compléter
 void Stmt() : { }
 {
-	LOOKAHEAD(3) AssignStmt() <SEMICOLON> |
+	AssignStmt() <SEMICOLON> |
     WhileStmt() |
     DoWhileStmt() |
     IfStmt() |
@@ -185,7 +185,7 @@ void ForStmt(): {}
 
 void LambdaStmt(): {}
 {
-    Identifier() <ASSIGN> <LPAREN> ((<INT> | <BOOL> | <FLOAT>) Identifier() (<COMMA>)?)* <RPAREN> <LAMBDA> FnctBody()
+    <LPAREN> ((<INT> | <BOOL> | <FLOAT>) Identifier() (<COMMA>)?)* <RPAREN> <LAMBDA> FnctBody()
 }
 
 void IfStmt(): {}
@@ -217,7 +217,7 @@ void ReturnStmt(): {}
 
 void AssignStmt() : { }
 {
-    Identifier() <ASSIGN> Expr()
+    Identifier() <ASSIGN> (Expr() | LambdaStmt())
 }
 
 void Expr() : {}
