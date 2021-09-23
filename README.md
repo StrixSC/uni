@@ -4,5 +4,5 @@
 [X] 2.3 For  
 [X] 2.4 Fonctions anonymes (Lambdas)  
 [X] 2.5 Assignations  
-[ ] 2.6 Priorités des opérations  
+[X] 2.6 Priorités des opérations  
 [X] 2.7 Nombres réels  
