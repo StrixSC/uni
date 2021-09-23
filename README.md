@@ -6,3 +6,5 @@
 [X] 2.5 Assignations  
 [X] 2.6 Priorités des opérations  
 [X] 2.7 Nombres réels  
+[ ] 2.8 Nettoyer  
+[ ] 2.7 Tester plus?  
