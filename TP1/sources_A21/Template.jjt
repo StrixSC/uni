@@ -190,12 +190,7 @@ void LambdaStmt(): {}
 
 void IfStmt(): {}
 {
-   <IF> FnctHead() FnctBody()
-           (
-             <ELSE> ( LOOKAHEAD(2) (FnctBody()) | (IfStmt()))
-             |
-             {}
-           )
+   <IF> FnctHead() FnctBody() (<ELSE> ( LOOKAHEAD(2) (FnctBody()) | (IfStmt())) | {})
 }
 
 void FnctHead(): {}
@@ -217,38 +212,68 @@ void ReturnStmt(): {}
 
 void AssignStmt() : { }
 {
-    Identifier() <ASSIGN> (Expr() | LambdaStmt())
+    Identifier() <ASSIGN> (LOOKAHEAD(2) Expr() | LambdaStmt())
 }
 
 void Expr() : {}
 {
-    IntExpr()
+    ComparisionExpr()
 }
 
-void IntExpr() : { }
+void AddExpr() : { Token t;}
 {
-    IntBasicExpr() (LOOKAHEAD(2)
-         LogicOrCompare() IntBasicExpr()
+    MultExpr() (
+        (t = "+" | t = "-") MultExpr()
+        {
+            jjtThis.addOp(t.image);
+        }
     )*
 }
 
-void LogicOrCompare(): {}
+void MultExpr() : { Token t;}
 {
-    (<LOGIC>) | (<COMPARE>)
-}
-
-void IntCompareExpr() : { }
-{
-    IntBasicExpr() (LOOKAHEAD(2)
-         <COMPARE> IntBasicExpr()
+    PowExpr() (
+        (t = "*" | t = "/") PowExpr()
+        {
+            jjtThis.addOp(t.image);
+        }
     )*
 }
 
-void IntBasicExpr() : { }
+void PowExpr() : {}
 {
-	Identifier() |
+	NegExpr() ( "^" NegExpr() )*
+}
+
+void NegExpr() : {}
+{
+	(
+	    "-" BasicExpr()
+	    {
+	        jjtThis.setNeg();
+	    }
+	) |
+	BasicExpr()
+}
+
+void ComparisionExpr() : { }
+{
+    AddExpr() (LOOKAHEAD(2)
+         (<LOGIC> | <COMPARE>) AddExpr())*
+}
+
+void BasicExpr() : {}
+{
+	LOOKAHEAD(2) FctExpr() |
+	Identifier()|
 	IntValue() |
-	RealValue()
+	RealValue() |
+	"(" Expr() ")"
+}
+
+void FctExpr(): { Token t;}
+{
+	t=<IDENTIFIER> {jjtThis.setValue(t.image);} "(" Expr() [ "," Expr() ] ")"
 }
 
 void Identifier() : { }
@@ -265,3 +290,4 @@ void RealValue() : { }
 {
     <REAL>
 }
+
