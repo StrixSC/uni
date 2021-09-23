@@ -7,4 +7,4 @@
 [X] 2.6 Priorités des opérations  
 [X] 2.7 Nombres réels  
 [ ] 2.8 Nettoyer  
-[ ] 2.7 Tester plus?  
+[ ] 2.9 Tester plus?  
