@@ -120,7 +120,8 @@ options {
  	< SEMICOLON: ";" > |
  	< COMMA: "," > |
  	< #AND: "&&" > |
- 	< #OR: "||" >
+ 	< #OR: "||" > |
+ 	< POWER: "^">
  	// À compléter au besoin
  }
 
@@ -233,39 +234,29 @@ void IntLogicExpr() : { }
     )*
  }
 
- void AddExpr() : { Token t;}
+ void AddExpr() : { }
  {
      MultExpr() (
-         (t = "+" | t = "-") MultExpr()
-         {
-             jjtThis.addOp(t.image);
-         }
+         (<PLUS> | <MINUS>) MultExpr()
      )*
  }
 
- void MultExpr() : { Token t;}
+ void MultExpr() : { }
  {
      PowExpr() (
-         (t = "*" | t = "/") PowExpr()
-         {
-             jjtThis.addOp(t.image);
-         }
+         (<FOIS> | <DIV>) PowExpr()
      )*
  }
 
  void PowExpr() : {}
  {
- 	NegExpr() ( "^" NegExpr() )*
+ 	NegExpr() ( <POWER> NegExpr() )*
  }
 
  void NegExpr() : {}
  {
- 	(
- 	    ("-")+ NotExpr()
- 	    {
- 	        jjtThis.setNeg();
- 	    }
- 	) |
+ 	(("-")+ NotExpr())
+ 	|
  	NotExpr()
  }
 
@@ -280,12 +271,12 @@ void IntLogicExpr() : { }
  	Identifier()|
  	IntValue() |
  	RealValue() |
- 	"(" Expr() ")"
+ 	FnctHead()
  }
 
- void FctExpr(): { Token t;}
+ void FctExpr(): { }
  {
- 	t=<IDENTIFIER> {jjtThis.setValue(t.image);} "(" Expr() [ "," Expr() ] ")"
+ 	<IDENTIFIER> "(" Expr() [ "," Expr() ] ")"
  }
 
  void Identifier() : { }
