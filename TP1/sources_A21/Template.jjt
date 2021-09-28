@@ -191,12 +191,12 @@ options {
 
  void IfStmt(): {}
  {
-    <IF> ParanthesisExpr() FnctBody() (<ELSE> ( LOOKAHEAD(2) FnctBody()#elseExpr(>1) | IfStmt()#elseif) | {})
+    <IF> ParanthesisExpr() FnctBody() (<ELSE> ( LOOKAHEAD(2) FnctBody()#Else(>1) | IfStmt()#ElseIf) | {})
  }
 
  void ParanthesisExpr() #void: {}
  {
-     (<LPAREN> Expr() <RPAREN>)#ParanthesisExpr(>1)
+     (<LPAREN> Expr() <RPAREN>)#ParenthesisExpr(>1)
  }
 
  void FnctBody() #void: {}
@@ -237,20 +237,20 @@ void IntLogicExpr() #void: { }
  void AddExpr() #void: { }
  {
      (MulExpr() (
-         (<PLUS> | <MINUS>) MulExpr() #Addition(>1)
-     )*)#AddMin(>1)
+         (<PLUS> | <MINUS>) MulExpr() #AdditionExpr(>1)
+     )*)#AddSubExpr(>1)
  }
 
  void MulExpr()  #void: { }
  {
      (PowExpr() (
          (<FOIS> | <DIV>) PowExpr() #MultExpr(>1)
-     )*)#MulDiv(>1)
+     )*)#MultDivExpr(>1)
  }
 
  void PowExpr() #void : {}
  {
- 	(NegExpr() ( <POWER> NegExpr() )*)#Powred(>1)
+ 	(NegExpr() ( <POWER> NegExpr() )*)#PowerExpr(>1)
  }
 
  void NegExpr() #void: {}
