@@ -191,7 +191,7 @@ options {
 
  void IfStmt(): {}
  {
-    <IF> ParanthesisExpr() FnctBody() <ELSE> ( LOOKAHEAD(2) FnctBody()#elseExpr(>1) | IfStmt()#elseif | {})
+    <IF> ParanthesisExpr() FnctBody() (<ELSE> ( LOOKAHEAD(2) FnctBody()#elseExpr(>1) | IfStmt()#elseif) | {})
  }
 
  void ParanthesisExpr() #void: {}
