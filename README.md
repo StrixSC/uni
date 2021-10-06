@@ -25,7 +25,7 @@
 
 ### Barème: 
 
-| Métriques                                                      | 2 points |
+| Métriques                                                      |  |
 |----------------------------------------------------------------|----------|
 | Verification de la declaration unique                          | 2 points |
 | Type des operandes dans les expressiosn                        | 4 points |
