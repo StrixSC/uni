@@ -29,6 +29,8 @@ public class SemantiqueVisitor implements ParserVisitor {
     private int FOR = 0;
     private int OP = 0;
 
+    final String UNDEFINED_ERROR = "Invalid use of undefined Identifier \"%s\"";
+
     public SemantiqueVisitor(PrintWriter writer) {
         this.writer = writer;
     }
@@ -70,8 +72,12 @@ public class SemantiqueVisitor implements ParserVisitor {
     public Object visit(ASTNormalDeclaration node, Object data) {
         String varName = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
 
+        if(symbolTable.containsKey(varName)) {
+            throw new Error("Invalid declaration... variable \"" + varName +  "\" already exists");
+        }
 
         symbolTable.put(varName, node.getValue().equals("num") ? VarType.num : VarType.bool);
+        VAR++;
         return null;
     }
 
@@ -90,7 +96,6 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTStmt node, Object data) {
-
         node.childrenAccept(this, data);
         return null;
     }
@@ -108,7 +113,7 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     /*
     Ici faites attention!! Lisez la grammaire, c'est votre meilleur ami :)
-     */
+    */
     @Override
     public Object visit(ASTForStmt node, Object data) {
         return null;
@@ -146,6 +151,11 @@ public class SemantiqueVisitor implements ParserVisitor {
      */
     @Override
     public Object visit(ASTAssignStmt node, Object data) {
+        String nodeValue = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
+        if(!this.symbolTable.containsKey(nodeValue)) {
+            throw new Error(String.format(this.UNDEFINED_ERROR, nodeValue));
+        }
+
         node.childrenAccept(this, data);
 
         return null;
@@ -253,8 +263,11 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTIdentifier node, Object data) {
-        node.childrenAccept(this, data);
+        String nodeValue = node.getValue();
+        if(!this.symbolTable.containsKey(nodeValue))
+            throw new Error(String.format(this.UNDEFINED_ERROR, nodeValue));
 
+        node.childrenAccept(this, data);
         return null;
     }
 
@@ -263,7 +276,6 @@ public class SemantiqueVisitor implements ParserVisitor {
         node.childrenAccept(this, data);
         return null;
     }
-
 
     //des outils pour vous simplifier la vie et vous enligner dans le travail
     public enum VarType {
