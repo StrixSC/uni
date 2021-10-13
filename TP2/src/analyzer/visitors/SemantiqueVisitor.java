@@ -4,6 +4,7 @@ import analyzer.SemantiqueError;
 import analyzer.ast.*;
 
 import javax.lang.model.element.VariableElement;
+import javax.xml.crypto.Data;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +32,8 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     final String VARIABLE_ALREADY_EXISTS_ERROR = "Invalid declaration... variable %s already exists";
     final String UNDEFINED_ERROR = "Invalid use of undefined Identifier %s";
-    final String ARRAY_TYPE_INCOMPATIBLE_ERROR = "Array type %s is incompatible with declared variable of type %s";
+    final String ARRAY_TYPE_INCOMPATIBLE_ERROR = "Array type %s is incompatible with declared variable of type %s...";
+    final String INVALID_CONDITION_TYPE_ERROR = "Invalid type in condition";
 
     public SemantiqueVisitor(PrintWriter writer) {
         this.writer = writer;
@@ -48,7 +50,7 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(SimpleNode node, Object data) {
-//        node.childrenAccept(this, data);
+        node.childrenAccept(this, data);
         return null;
     }
 
@@ -74,8 +76,8 @@ public class SemantiqueVisitor implements ParserVisitor {
     public Object visit(ASTNormalDeclaration node, Object data) {
         String nodeValue = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
 
-        if(this.symbolTable.containsKey(nodeValue)) {
-            throw new Error(String.format(this.VARIABLE_ALREADY_EXISTS_ERROR, nodeValue));
+        if (this.symbolTable.containsKey(nodeValue)) {
+            throw new SemantiqueError(String.format(this.VARIABLE_ALREADY_EXISTS_ERROR, nodeValue));
         }
 
         symbolTable.put(nodeValue, node.getValue().equals("num") ? VarType.num : VarType.bool);
@@ -85,13 +87,15 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTListDeclaration node, Object data) {
+        // Check if variable exists in symbol table:
         String nodeValue = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
-        if(this.symbolTable.containsKey(nodeValue)) {
-            throw new Error(String.format(this.VARIABLE_ALREADY_EXISTS_ERROR, nodeValue));
+        if (this.symbolTable.containsKey(nodeValue)) {
+            throw new SemantiqueError(String.format(this.VARIABLE_ALREADY_EXISTS_ERROR, nodeValue));
         }
 
+        // Variable doesn't exist, add it to the symbol table:
         symbolTable.put(nodeValue, node.getValue().equals("listnum") ? VarType.listnum : VarType.listbool);
-        VAR++;
+        this.VAR++;
         return null;
     }
 
@@ -115,18 +119,18 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTForEachStmt node, Object data) {
-        // Check if variable exists:
+        // Check if variable exists in symbol table:
         String listVariable = ((ASTIdentifier) node.jjtGetChild(1)).getValue();
-        if(!this.symbolTable.containsKey(listVariable))
+        if (!this.symbolTable.containsKey(listVariable))
             throw new SemantiqueError(String.format(this.UNDEFINED_ERROR, listVariable));
 
-        // Variable exists, check if iterator type matches the declared array type:
+        // Variable exists in symbol table, check if iterator type matches the declared array type:
         String iteratorVariableType = ((ASTNormalDeclaration) node.jjtGetChild(0)).getValue();
         VarType listVariableType = this.symbolTable.get(listVariable);
         if (!(iteratorVariableType.equals(listVariableType.name()))) {
             throw new SemantiqueError(String.format(this.ARRAY_TYPE_INCOMPATIBLE_ERROR, listVariableType.name(), iteratorVariableType));
         }
-        
+
         this.FOR++;
         return null;
     }
@@ -136,6 +140,7 @@ public class SemantiqueVisitor implements ParserVisitor {
     */
     @Override
     public Object visit(ASTForStmt node, Object data) {
+        this.FOR++;
         return null;
     }
 
@@ -144,24 +149,29 @@ public class SemantiqueVisitor implements ParserVisitor {
     -pas que la qualité du code est évalué :)
      */
     private void callChildenCond(SimpleNode node) {
-
+        // Condition node contains the Expression & Block. First child is the expression.
+        // Accept the first child and evaluate that the type of the expression is boolean by storing the type in ds
+        DataStruct ds = new DataStruct();
+        node.jjtGetChild(0).jjtAccept(this, ds);
+        if (ds.type != VarType.bool)
+            throw new SemantiqueError(this.INVALID_CONDITION_TYPE_ERROR);
     }
 
     /*
-    les structures conditionnelle doivent vérifier que leur expression de condition est de type booléenne
-    On doit aussi compter les conditions dans les variables IF et WHILE
-     */
+        les structures conditionnelle doivent vérifier que leur expression de condition est de type booléenne
+        On doit aussi compter les conditions dans les variables IF et WHILE
+    */
     @Override
     public Object visit(ASTIfStmt node, Object data) {
-       node.childrenAccept(this, data);
-
+        this.callChildenCond(node);
+        this.IF++;
         return null;
     }
 
     @Override
     public Object visit(ASTWhileStmt node, Object data) {
-        node.childrenAccept(this, data);
-
+        this.callChildenCond(node);
+        this.WHILE++;
         return null;
     }
 
@@ -172,8 +182,8 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTAssignStmt node, Object data) {
         String nodeValue = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
-        if(!this.symbolTable.containsKey(nodeValue)) {
-            throw new Error(String.format(this.UNDEFINED_ERROR, nodeValue));
+        if (!this.symbolTable.containsKey(nodeValue)) {
+            throw new SemantiqueError(String.format(this.UNDEFINED_ERROR, nodeValue));
         }
 
         node.childrenAccept(this, data);
@@ -284,8 +294,8 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTIdentifier node, Object data) {
         String nodeValue = node.getValue();
-        if(!this.symbolTable.containsKey(nodeValue))
-            throw new Error(String.format(this.UNDEFINED_ERROR, nodeValue));
+        if (!this.symbolTable.containsKey(nodeValue))
+            throw new SemantiqueError(String.format(this.UNDEFINED_ERROR, nodeValue));
 
         node.childrenAccept(this, data);
         return null;
