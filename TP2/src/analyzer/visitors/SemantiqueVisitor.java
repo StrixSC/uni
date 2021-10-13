@@ -29,7 +29,9 @@ public class SemantiqueVisitor implements ParserVisitor {
     private int FOR = 0;
     private int OP = 0;
 
-    final String UNDEFINED_ERROR = "Invalid use of undefined Identifier \"%s\"";
+    final String VARIABLE_ALREADY_EXISTS_ERROR = "Invalid declaration... variable %s already exists";
+    final String UNDEFINED_ERROR = "Invalid use of undefined Identifier %s";
+    final String ARRAY_TYPE_INCOMPATIBLE_ERROR = "Array type %s is incompatible with declared variable of type %s";
 
     public SemantiqueVisitor(PrintWriter writer) {
         this.writer = writer;
@@ -70,20 +72,26 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTNormalDeclaration node, Object data) {
-        String varName = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
+        String nodeValue = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
 
-        if(symbolTable.containsKey(varName)) {
-            throw new Error("Invalid declaration... variable \"" + varName +  "\" already exists");
+        if(this.symbolTable.containsKey(nodeValue)) {
+            throw new Error(String.format(this.VARIABLE_ALREADY_EXISTS_ERROR, nodeValue));
         }
 
-        symbolTable.put(varName, node.getValue().equals("num") ? VarType.num : VarType.bool);
+        symbolTable.put(nodeValue, node.getValue().equals("num") ? VarType.num : VarType.bool);
         VAR++;
         return null;
     }
 
     @Override
     public Object visit(ASTListDeclaration node, Object data) {
-        node.childrenAccept(this, data);
+        String nodeValue = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
+        if(this.symbolTable.containsKey(nodeValue)) {
+            throw new Error(String.format(this.VARIABLE_ALREADY_EXISTS_ERROR, nodeValue));
+        }
+
+        symbolTable.put(nodeValue, node.getValue().equals("listnum") ? VarType.listnum : VarType.listbool);
+        VAR++;
         return null;
     }
 
@@ -107,7 +115,19 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTForEachStmt node, Object data) {
-        node.childrenAccept(this, data);
+        // Check if variable exists:
+        String listVariable = ((ASTIdentifier) node.jjtGetChild(1)).getValue();
+        if(!this.symbolTable.containsKey(listVariable))
+            throw new SemantiqueError(String.format(this.UNDEFINED_ERROR, listVariable));
+
+        // Variable exists, check if iterator type matches the declared array type:
+        String iteratorVariableType = ((ASTNormalDeclaration) node.jjtGetChild(0)).getValue();
+        VarType listVariableType = this.symbolTable.get(listVariable);
+        if (!(iteratorVariableType.equals(listVariableType.name()))) {
+            throw new SemantiqueError(String.format(this.ARRAY_TYPE_INCOMPATIBLE_ERROR, listVariableType.name(), iteratorVariableType));
+        }
+        
+        this.FOR++;
         return null;
     }
 
