@@ -16,12 +16,14 @@
 
 ### TODO: 
 
-- [ ] 2.1 Calcul de metriques de programme
-- [ ] 2.2 Verification de la declaration unique
-- [ ] 2.3 Verification du types des operandes
-- [ ] 2.4 Verification du types des assignations
-- [ ] 2.5 Verification du type booleen dans les expressions de conditions
-- [ ] 2.6 Verification du fonctionnement du foreach
+- [X] 2.1 Calcul de metriques de programme
+- [X] 2.2 Verification de la declaration unique
+- [X] 2.3 Verification du types des operandes
+- [X] 2.4 Verification du types des assignations
+- [X] 2.5 Verification du type booleen dans les expressions de conditions
+- [X] 2.6 Verification du fonctionnement du foreach
+
+MANQUE METRIQUES & FOR LOOPS (ATTENTE DE CORRECTION D'ERREURS)
 
 ### Barème: 
 
