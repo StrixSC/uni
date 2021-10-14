@@ -283,7 +283,7 @@ public class SemantiqueVisitor implements ParserVisitor {
      */
     @Override
     public Object visit(ASTAddExpr node, Object data) {
-        if(node.getOps().isEmpty())
+        if (node.getOps().isEmpty())
             node.childrenAccept(this, data);
         else
             this.callChildren(node, data, VarType.num);
@@ -292,7 +292,7 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTMulExpr node, Object data) {
-        if(node.getOps().isEmpty())
+        if (node.getOps().isEmpty())
             node.childrenAccept(this, data);
         else
             this.callChildren(node, data, VarType.num);
@@ -301,7 +301,7 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTBoolExpr node, Object data) {
-        if(node.getOps().isEmpty())
+        if (node.getOps().isEmpty())
             node.childrenAccept(this, data);
         else
             this.callChildren(node, data, VarType.bool);
@@ -320,7 +320,8 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTNotExpr node, Object data) {
         boolean hasOps = node.getOps().isEmpty();
-        this.checkOpsTypes(node, hasOps, VarType.bool);
+        if(!hasOps)
+            this.checkOpsTypes(node, VarType.bool);
         node.childrenAccept(this, data);
         return null;
     }
@@ -328,7 +329,8 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTUnaExpr node, Object data) {
         boolean hasOps = node.getOps().isEmpty();
-        this.checkOpsTypes(node, hasOps, VarType.num);
+        if(!hasOps)
+            this.checkOpsTypes(node, VarType.num);
         node.childrenAccept(this, data);
         return null;
     }
@@ -380,15 +382,13 @@ public class SemantiqueVisitor implements ParserVisitor {
         listbool
     }
 
-    public void checkOpsTypes(SimpleNode node, boolean hasOps, VarType type) {
-        if(!hasOps) {
-            DataStruct ds = new DataStruct();
-            node.jjtGetChild(0).jjtAccept(this, ds);
-            if(ds.type != type)
-                throw new SemantiqueError(INVALID_EXPRESSION_TYPE_ERROR);
-        }
-
+    public void checkOpsTypes(SimpleNode node, VarType type) {
+        DataStruct ds = new DataStruct();
+        node.jjtGetChild(0).jjtAccept(this, ds);
+        if (ds.type != type)
+            throw new SemantiqueError(INVALID_EXPRESSION_TYPE_ERROR);
     }
+
     private class DataStruct {
         public VarType type;
 
