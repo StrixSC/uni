@@ -129,7 +129,7 @@ public class SemantiqueVisitor implements ParserVisitor {
         // Variable exists in symbol table, check if iterator type matches the declared array type:
         String iteratorVariableType = ((ASTNormalDeclaration) node.jjtGetChild(0)).getValue();
         VarType listVariableType = this.symbolTable.get(listVariable);
-        if (!(iteratorVariableType.equals(listVariableType.name()))) {
+        if (!(("list" + iteratorVariableType).equals(listVariableType.name()))) {
             throw new SemantiqueError(String.format(this.ARRAY_TYPE_INCOMPATIBLE_ERROR, listVariableType.name(), iteratorVariableType));
         }
 
@@ -142,6 +142,7 @@ public class SemantiqueVisitor implements ParserVisitor {
     */
     @Override
     public Object visit(ASTForStmt node, Object data) {
+        node.childrenAccept(this, data);
         this.FOR++;
         return null;
     }
@@ -195,13 +196,13 @@ public class SemantiqueVisitor implements ParserVisitor {
         // Variable exists in the symbol table; check for type mismatch:
         VarType identifierType = this.symbolTable.get(identifierName);
         DataStruct ds = new DataStruct();
-        node.jjtGetChild(1).jjtAccept(this, ds);
+        node.childrenAccept(this, ds);
+
         if (ds.type != identifierType)
             throw new SemantiqueError(
                     String.format(this.INVALID_ASSIGNMENT_TYPE_ERROR, identifierName, identifierType, ds.type)
             );
 
-        node.childrenAccept(this, ds);
         return null;
     }
 
@@ -223,7 +224,6 @@ public class SemantiqueVisitor implements ParserVisitor {
         */
 
         int childrenCount = node.jjtGetNumChildren();
-
         /* si il n'a qu'un seul enfant, le noeud a pour type le type de son enfant. */
         if (childrenCount == 1) {
             node.childrenAccept(this, data);
@@ -252,7 +252,7 @@ public class SemantiqueVisitor implements ParserVisitor {
             if (!(operator.equals("==") || operator.equals("!=")))
                 throw new SemantiqueError(this.INVALID_EXPRESSION_TYPE_ERROR);
         }
-
+        ((DataStruct) data).type = VarType.bool;
         this.OP++;
         return null;
     }
@@ -272,7 +272,11 @@ public class SemantiqueVisitor implements ParserVisitor {
             if (ds.type != validType)
                 throw new SemantiqueError(INVALID_EXPRESSION_TYPE_ERROR);
         }
-        this.OP++;
+
+        if (data == null)
+            throw new SemantiqueError(INVALID_CONDITION_TYPE_ERROR);
+
+        this.OP += node.jjtGetNumChildren() - 1;
         ((DataStruct) data).type = validType;
     }
 
@@ -320,8 +324,10 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTNotExpr node, Object data) {
         boolean hasOps = node.getOps().isEmpty();
-        if(!hasOps)
+        if(!hasOps) {
             this.checkOpsTypes(node, VarType.bool);
+            this.OP++;
+        }
         node.childrenAccept(this, data);
         return null;
     }
@@ -329,8 +335,10 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTUnaExpr node, Object data) {
         boolean hasOps = node.getOps().isEmpty();
-        if(!hasOps)
+        if(!hasOps){
             this.checkOpsTypes(node, VarType.num);
+        this.OP++;
+        }
         node.childrenAccept(this, data);
         return null;
     }
@@ -400,3 +408,4 @@ public class SemantiqueVisitor implements ParserVisitor {
         }
     }
 }
+
