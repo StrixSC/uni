@@ -132,7 +132,11 @@ public class SemantiqueVisitor implements ParserVisitor {
         if (!(("list" + iteratorVariableType).equals(listVariableType.name()))) {
             throw new SemantiqueError(String.format(this.ARRAY_TYPE_INCOMPATIBLE_ERROR, listVariableType.name(), iteratorVariableType));
         }
+        else{
+            node.jjtGetChild(0).jjtAccept(this, data);
+        }
 
+        node.jjtGetChild(2).jjtAccept(this, data);
         this.FOR++;
         return null;
     }
@@ -252,7 +256,8 @@ public class SemantiqueVisitor implements ParserVisitor {
             if (!(operator.equals("==") || operator.equals("!=")))
                 throw new SemantiqueError(this.INVALID_EXPRESSION_TYPE_ERROR);
         }
-        ((DataStruct) data).type = VarType.bool;
+        if(data!=null)
+            ((DataStruct) data).type = VarType.bool;
         this.OP++;
         return null;
     }
@@ -324,22 +329,25 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTNotExpr node, Object data) {
         boolean hasOps = node.getOps().isEmpty();
-        if(!hasOps) {
+        if (!hasOps) {
             this.checkOpsTypes(node, VarType.bool);
-            this.OP++;
-        }
-        node.childrenAccept(this, data);
+            ((DataStruct) data).type = VarType.bool;
+            OP += node.getOps().size();
+        } else
+            node.childrenAccept(this, data);
         return null;
     }
 
     @Override
     public Object visit(ASTUnaExpr node, Object data) {
         boolean hasOps = node.getOps().isEmpty();
-        if(!hasOps){
+        if (!hasOps) {
+            DataStruct ds = new DataStruct();
             this.checkOpsTypes(node, VarType.num);
-        this.OP++;
-        }
-        node.childrenAccept(this, data);
+            ((DataStruct) data).type = VarType.num;
+            OP += node.getOps().size();
+        } else
+            node.childrenAccept(this, data);
         return null;
     }
 
