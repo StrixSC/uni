@@ -1,5 +1,0 @@
-Declaration
-num b;
-EndDeclaration
-
-b = 3 * 4;

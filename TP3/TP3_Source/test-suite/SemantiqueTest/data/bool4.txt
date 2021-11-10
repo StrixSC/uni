@@ -1,6 +1,0 @@
-Declaration
-bool a;
-EndDeclaration
-//expression avec des comparaison
-
-a = true || -1 <= 2 + 2;

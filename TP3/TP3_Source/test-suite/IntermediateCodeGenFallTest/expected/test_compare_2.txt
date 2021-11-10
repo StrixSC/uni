@@ -1,6 +1,0 @@
-ifFalse b != c goto _L1
-a = 1
-goto _L0
-_L1
-a = 0
-_L0

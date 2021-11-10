@@ -1,9 +1,0 @@
-Declaration
-num a;
-bool b;
-EndDeclaration
-
-while(b) {
-  a = 42;
-}
-  

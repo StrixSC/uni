@@ -1,8 +1,0 @@
-Declaration
-bool a;
-bool b;
-EndDeclaration
-
-a = !!!true;
-a = !!!false;
-a = !!!b;
