@@ -7,3 +7,13 @@ gen-src/
 
 #Run files
 test-suite/**/result
+
+# Ignore everything
+**
+
+# But not these files...
+!.gitignore
+
+
+#tp
+!src/**
