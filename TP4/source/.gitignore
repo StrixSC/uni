@@ -1,5 +1,5 @@
 #User-specific
-.idea/**/workspace.xml
+.idea/**
 
 #Gen files
 out/
