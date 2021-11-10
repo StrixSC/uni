@@ -1,7 +1,9 @@
 # Ignore everything
 *
-
+*/.
 # But not these files...
 !.gitignore
-#tp1
+
+
+#tp
 !./src
