@@ -1,5 +1,5 @@
 #User-specific
-.idea/**
+.idea/**/workspace.xml
 
 #Gen files
 out/
@@ -7,8 +7,3 @@ gen-src/
 
 #Run files
 test-suite/**/result
-
-# Ignore everything
-*
-#tp
-!src/**

@@ -2,7 +2,6 @@ package analyzer.visitors;
 
 import analyzer.SemantiqueError;
 import analyzer.ast.*;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.io.PrintWriter;
 import java.util.HashMap;
