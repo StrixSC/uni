@@ -82,6 +82,7 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
 
         // TODO: Modify CODE to add the needed MachLine.
         //       here the type of Assignment is "assigned = left op right"
+        CODE.add(new MachLine(op, assign, left, right));
         return null;
     }
 
@@ -95,7 +96,7 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         // TODO: Modify CODE to add the needed MachLine.
         //       here the type of Assignment is "assigned = - right"
         //       suppose the left part to be the constant #O
-
+        CODE.add(new MachLine("-", assign, "#0", right));
         return null;
     }
 
@@ -109,6 +110,7 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         // TODO: Modify CODE to add the needed MachLine.
         //       here the type of Assignment is "assigned = right"
         //       suppose the left part to be the constant #O
+        CODE.add(new MachLine("+", assign, "#0", right));
         return null;
     }
 
@@ -232,16 +234,21 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         // /!\ TODO this function should generate the LD and ST when needed
 
         // TODO: if var is a constant (starts with '#'), return var
-
+        if(var.toCharArray()[0] == '#') return var;
         // TODO: if REGISTERS contains var, return "R"+index
-
+        if(REGISTERS.contains(var)) return "R"+REGISTERS.indexOf(var);
         // TODO: if REGISTERS size is not max (<REG), add var to REGISTERS and return "R"+index
-
+        if(REGISTERS.size() < REG) {
+            REGISTERS.add(var);
+            return "R"+REGISTERS.indexOf(var);
+        }
         // TODO: if REGISTERS has max size,
         //          put var in space of an other variable which is not used anymore
         //          or
         //          put var in space of var which as the largest next-use
+        if(REGISTERS.size() == REG){
 
+        }
         return null;
     }
 
