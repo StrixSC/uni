@@ -41,6 +41,11 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         compute_NextUse();   // Next-Use computation from the backward visit of CODE
         print_machineCode(); // generate the machine code from the forward visit of CODE
 
+        // stokage des variable modifié
+        for (String reg:REGISTERS) {
+            if (RETURNED.contains(reg) && MODIFIED.contains(reg))
+                m_writer.println("ST "+ reg + ", R" + REGISTERS.indexOf(reg));
+        }
         return null;
     }
 
@@ -227,7 +232,7 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         // TODO: Implement LifeVariable algorithm on the CODE array (for basic bloc)
         for (MachLine code:CODE) {
             code.Life_IN = new HashSet<String>();
-            code.Life_OUT=new HashSet<String>();
+            code.Life_OUT= new HashSet<String>();
         }
 
         CODE.get(CODE.size() - 1).Life_OUT.addAll(RETURNED);
@@ -253,17 +258,14 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
             if(i<CODE.size()-1)
                 CODE.get(i).Next_OUT = CODE.get(i+1).Next_IN;
 
-            for (Map.Entry<String, ArrayList<Integer>> entry:CODE.get(i).Next_OUT.nextuse.entrySet()) {
+            for (Map.Entry<String, ArrayList<Integer>> entry:CODE.get(i).Next_OUT.nextuse.entrySet())
                 if(!CODE.get(i).DEF.contains(entry.getKey()))
                     CODE.get(i).Next_IN.addAll(entry.getKey(), entry.getValue());
-            }
 
-            for (String ref:CODE.get(i).REF) {
+            for (String ref:CODE.get(i).REF)
                 CODE.get(i).Next_IN.add(ref, i);
-            }
         }
     }
-
 
     // choose_register function: will be used in the print_machineCode function
     // returns the register assigned to var.
@@ -289,20 +291,19 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         //          or
         //          put var in space of var which as the largest next-use
         if(REGISTERS.size() == REG){
+            int i;
+            for (i= 0; i < REGISTERS.size(); i++)
+                if (!life.contains(REGISTERS.get(i)))
+                    break;
 
+            if (MODIFIED.remove(REGISTERS.get(i)) && life.contains(REGISTERS.get(i)))
+                m_writer.println("ST "+ REGISTERS.get(i) + ", R" + i);
+
+            REGISTERS.set(i, var);
+            return "R" + i;
         }
         return null;
     }
-
-//    public void print_machineCode() {
-//        // TODO: Print the machine code (this function needs to be change)
-//        for (int i = 0; i < CODE.size(); i++) { // print the output
-//            m_writer.println("// Step " + i);
-//
-//            m_writer.println(CODE.get(i));
-//        }
-//    }
-
 
     public void print_machineCode() {
         // TODO: Print the machine code (this function needs to be change)
@@ -313,17 +314,10 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
             String right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
             String assign = choose_register(CODE.get(i).ASSIGN, CODE.get(i).Life_OUT, CODE.get(i).Next_OUT, false);
 
-            Boolean isAddSubZero = (left.equals("#0") || right.equals("#0")) && (CODE.get(i).OP.equals("ADD") || CODE.get(i).OP.equals("SUB"));
-            if (!((assign.equals(left) || assign.equals(right)) && isAddSubZero))
-                m_writer.println(CODE.get(i).OP + " " + assign + ", " + left + ", " + right);
-
+            m_writer.println(CODE.get(i).OP + " " + assign + ", " + left + ", " + right);
             MODIFIED.add(CODE.get(i).ASSIGN);
-            m_writer.println(CODE.get(i));
-        }
 
-        for (int i = 0; i < REGISTERS.size(); i++) {
-            if (MODIFIED.contains(REGISTERS.get(i)) && RETURNED.contains(REGISTERS.get(i)))
-                m_writer.println("ST "+ REGISTERS.get(i) + ", R" + i);
+            m_writer.println(CODE.get(i));
         }
     }
 

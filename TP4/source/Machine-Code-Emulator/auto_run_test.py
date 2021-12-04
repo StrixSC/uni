@@ -43,10 +43,3 @@ s = "Test with 5 registers limitation"
 print("-" * len(s) + '\n' + s +'\n' + "-" * len(s))
 out_file(5)
 os.system("python3 run_tests.py 5")
-
-
-# Marche avec Contrainte 5 registres (3 points)
-s = "Test with 5 registers limitation"
-print("-" * len(s) + '\n' + s +'\n' + "-" * len(s))
-out_file(11)
-os.system("python3 run_tests.py 11")
