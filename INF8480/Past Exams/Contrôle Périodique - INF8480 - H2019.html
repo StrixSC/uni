@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&cmid=20879 -->
+<html dir="ltr" lang="fr" xml:lang="fr" class="yui3-js-enabled">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Contrôle Périodique - INF8480 - H2019</title>
+    <link rel="shortcut icon" href="https://moodlequiz.polymtl.ca/theme/image.php/boost/theme/1551712393/favicon">
+
+    <meta name="keywords" content="moodle, Contrôle Périodique - INF8480 - H2019">
+    <link rel="stylesheet" type="text/css" href="./Contrôle Périodique - INF8480 - H2019_files/yui_combo.php">
+    <link charset="utf-8" rel="stylesheet" id="yui_3_17_2_1_1555682812132_8" href="./Contrôle Périodique - INF8480 - H2019_files/yui_combo(1).php">
+    <script charset="utf-8" id="yui_3_17_2_1_1555682812132_9" src="./Contrôle Périodique - INF8480 - H2019_files/yui_combo(2).php" async=""></script>
+    <script charset="utf-8" id="yui_3_17_2_1_1555682812132_25" src="./Contrôle Périodique - INF8480 - H2019_files/yui_combo(3).php" async=""></script>
+    <script charset="utf-8" id="yui_3_17_2_1_1555682812132_27" src="./Contrôle Périodique - INF8480 - H2019_files/flags.js" async=""></script>
+    <script charset="utf-8" id="yui_3_17_2_1_1555682812132_164" src="./Contrôle Périodique - INF8480 - H2019_files/qengine.js" async=""></script>
+    <script charset="utf-8" id="yui_3_17_2_1_1555682812132_165" src="./Contrôle Périodique - INF8480 - H2019_files/module.js" async=""></script>
+    <script charset="utf-8" id="yui_3_17_2_1_1555682812132_166" src="./Contrôle Périodique - INF8480 - H2019_files/yui_combo(4).php" async=""></script>
+    <script charset="utf-8" id="yui_3_17_2_1_1555682812132_168" src="./Contrôle Périodique - INF8480 - H2019_files/module(1).js" async=""></script>
+    <script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script>
+    <link rel="stylesheet" type="text/css" href="./Contrôle Périodique - INF8480 - H2019_files/all">
+    <script type="text/javascript">
+        //<![CDATA[
+        var M = {};
+        M.yui = {};
+        M.pageloadstarttime = new Date();
+        M.cfg = {
+            "wwwroot": "https:\/\/moodlequiz.polymtl.ca",
+            "sesskey": "hJMxVoDNkD",
+            "themerev": "1551712393",
+            "slasharguments": 1,
+            "theme": "boost",
+            "iconsystemmodule": "core\/icon_system_fontawesome",
+            "jsrev": "1552497931",
+            "admin": "admin",
+            "svgicons": true,
+            "usertimezone": "Am\u00e9rique\/Montr\u00e9al",
+            "contextid": 145958
+        };
+        var yui1ConfigFn = function(me) {
+            if (/-skin|reset|fonts|grids|base/.test(me.name)) {
+                me.type = 'css';
+                me.path = me.path.replace(/\.js/, '.css');
+                me.path = me.path.replace(/\/yui2-skin/, '/assets/skins/sam/yui2-skin')
+            }
+        };
+        var yui2ConfigFn = function(me) {
+            var parts = me.name.replace(/^moodle-/, '').split('-'),
+                component = parts.shift(),
+                module = parts[0],
+                min = '-min';
+            if (/-(skin|core)$/.test(me.name)) {
+                parts.pop();
+                me.type = 'css';
+                min = ''
+            }
+            if (module) {
+                var filename = parts.join('-');
+                me.path = component + '/' + module + '/' + filename + min + '.' + me.type
+            } else {
+                me.path = component + '/' + component + '.' + me.type
+            }
+        };
+        YUI_config = {
+            "debug": false,
+            "base": "https:\/\/moodlequiz.polymtl.ca\/lib\/yuilib\/3.17.2\/",
+            "comboBase": "https:\/\/moodlequiz.polymtl.ca\/theme\/yui_combo.php?",
+            "combine": true,
+            "filter": null,
+            "insertBefore": "firstthemesheet",
+            "groups": {
+                "yui2": {
+                    "base": "https:\/\/moodlequiz.polymtl.ca\/lib\/yuilib\/2in3\/2.9.0\/build\/",
+                    "comboBase": "https:\/\/moodlequiz.polymtl.ca\/theme\/yui_combo.php?",
+                    "combine": true,
+                    "ext": false,
+                    "root": "2in3\/2.9.0\/build\/",
+                    "patterns": {
+                        "yui2-": {
+                            "group": "yui2",
+                            "configFn": yui1ConfigFn
+                        }
+                    }
+                },
+                "moodle": {
+                    "name": "moodle",
+                    "base": "https:\/\/moodlequiz.polymtl.ca\/theme\/yui_combo.php?m\/1552497931\/",
+                    "combine": true,
+                    "comboBase": "https:\/\/moodlequiz.polymtl.ca\/theme\/yui_combo.php?",
+                    "ext": false,
+                    "root": "m\/1552497931\/",
+                    "patterns": {
+                        "moodle-": {
+                            "group": "moodle",
+                            "configFn": yui2ConfigFn
+                        }
+                    },
+                    "filter": null,
+                    "modules": {
+                        "moodle-core-actionmenu": {
+                            "requires": ["base", "event", "node-event-simulate"]
+                        },
+                        "moodle-core-blocks": {
+                            "requires": ["base", "node", "io", "dom", "dd", "dd-scroll", "moodle-core-dragdrop", "moodle-core-notification"]
+                        },
+                        "moodle-core-checknet": {
+                            "requires": ["base-base", "moodle-core-notification-alert", "io-base"]
+                        },
+                        "moodle-core-chooserdialogue": {
+                            "requires": ["base", "panel", "moodle-core-notification"]
+                        },
+                        "moodle-core-dock": {
+                            "requires": ["base", "node", "event-custom", "event-mouseenter", "event-resize", "escape", "moodle-core-dock-loader", "moodle-core-event"]
+                        },
+                        "moodle-core-dock-loader": {
+                            "requires": ["escape"]
+                        },
+                        "moodle-core-dragdrop": {
+                            "requires": ["base", "node", "io", "dom", "dd", "event-key", "event-focus", "moodle-core-notification"]
+                        },
+                        "moodle-core-event": {
+                            "requires": ["event-custom"]
+                        },
+                        "moodle-core-formchangechecker": {
+                            "requires": ["base", "event-focus", "moodle-core-event"]
+                        },
+                        "moodle-core-handlebars": {
+                            "condition": {
+                                "trigger": "handlebars",
+                                "when": "after"
+                            }
+                        },
+                        "moodle-core-languninstallconfirm": {
+                            "requires": ["base", "node", "moodle-core-notification-confirm", "moodle-core-notification-alert"]
+                        },
+                        "moodle-core-lockscroll": {
+                            "requires": ["plugin", "base-build"]
+                        },
+                        "moodle-core-maintenancemodetimer": {
+                            "requires": ["base", "node"]
+                        },
+                        "moodle-core-notification": {
+                            "requires": ["moodle-core-notification-dialogue", "moodle-core-notification-alert", "moodle-core-notification-confirm", "moodle-core-notification-exception", "moodle-core-notification-ajaxexception"]
+                        },
+                        "moodle-core-notification-dialogue": {
+                            "requires": ["base", "node", "panel", "escape", "event-key", "dd-plugin", "moodle-core-widget-focusafterclose", "moodle-core-lockscroll"]
+                        },
+                        "moodle-core-notification-alert": {
+                            "requires": ["moodle-core-notification-dialogue"]
+                        },
+                        "moodle-core-notification-confirm": {
+                            "requires": ["moodle-core-notification-dialogue"]
+                        },
+                        "moodle-core-notification-exception": {
+                            "requires": ["moodle-core-notification-dialogue"]
+                        },
+                        "moodle-core-notification-ajaxexception": {
+                            "requires": ["moodle-core-notification-dialogue"]
+                        },
+                        "moodle-core-popuphelp": {
+                            "requires": ["moodle-core-tooltip"]
+                        },
+                        "moodle-core-tooltip": {
+                            "requires": ["base", "node", "io-base", "moodle-core-notification-dialogue", "json-parse", "widget-position", "widget-position-align", "event-outside", "cache-base"]
+                        },
+                        "moodle-core_availability-form": {
+                            "requires": ["base", "node", "event", "event-delegate", "panel", "moodle-core-notification-dialogue", "json"]
+                        },
+                        "moodle-backup-backupselectall": {
+                            "requires": ["node", "event", "node-event-simulate", "anim"]
+                        },
+                        "moodle-backup-confirmcancel": {
+                            "requires": ["node", "node-event-simulate", "moodle-core-notification-confirm"]
+                        },
+                        "moodle-course-categoryexpander": {
+                            "requires": ["node", "event-key"]
+                        },
+                        "moodle-course-dragdrop": {
+                            "requires": ["base", "node", "io", "dom", "dd", "dd-scroll", "moodle-core-dragdrop", "moodle-core-notification", "moodle-course-coursebase", "moodle-course-util"]
+                        },
+                        "moodle-course-formatchooser": {
+                            "requires": ["base", "node", "node-event-simulate"]
+                        },
+                        "moodle-course-management": {
+                            "requires": ["base", "node", "io-base", "moodle-core-notification-exception", "json-parse", "dd-constrain", "dd-proxy", "dd-drop", "dd-delegate", "node-event-delegate"]
+                        },
+                        "moodle-course-modchooser": {
+                            "requires": ["moodle-core-chooserdialogue", "moodle-course-coursebase"]
+                        },
+                        "moodle-course-util": {
+                            "requires": ["node"],
+                            "use": ["moodle-course-util-base"],
+                            "submodules": {
+                                "moodle-course-util-base": {},
+                                "moodle-course-util-section": {
+                                    "requires": ["node", "moodle-course-util-base"]
+                                },
+                                "moodle-course-util-cm": {
+                                    "requires": ["node", "moodle-course-util-base"]
+                                }
+                            }
+                        },
+                        "moodle-form-dateselector": {
+                            "requires": ["base", "node", "overlay", "calendar"]
+                        },
+                        "moodle-form-passwordunmask": {
+                            "requires": []
+                        },
+                        "moodle-form-shortforms": {
+                            "requires": ["node", "base", "selector-css3", "moodle-core-event"]
+                        },
+                        "moodle-form-showadvanced": {
+                            "requires": ["node", "base", "selector-css3"]
+                        },
+                        "moodle-question-chooser": {
+                            "requires": ["moodle-core-chooserdialogue"]
+                        },
+                        "moodle-question-preview": {
+                            "requires": ["base", "dom", "event-delegate", "event-key", "core_question_engine"]
+                        },
+                        "moodle-question-qbankmanager": {
+                            "requires": ["node", "selector-css3"]
+                        },
+                        "moodle-question-searchform": {
+                            "requires": ["base", "node"]
+                        },
+                        "moodle-availability_completion-form": {
+                            "requires": ["base", "node", "event", "moodle-core_availability-form"]
+                        },
+                        "moodle-availability_date-form": {
+                            "requires": ["base", "node", "event", "io", "moodle-core_availability-form"]
+                        },
+                        "moodle-availability_grade-form": {
+                            "requires": ["base", "node", "event", "moodle-core_availability-form"]
+                        },
+                        "moodle-availability_group-form": {
+                            "requires": ["base", "node", "event", "moodle-core_availability-form"]
+                        },
+                        "moodle-availability_grouping-form": {
+                            "requires": ["base", "node", "event", "moodle-core_availability-form"]
+                        },
+                        "moodle-availability_profile-form": {
+                            "requires": ["base", "node", "event", "moodle-core_availability-form"]
+                        },
+                        "moodle-mod_assign-history": {
+                            "requires": ["node", "transition"]
+                        },
+                        "moodle-mod_forum-subscriptiontoggle": {
+                            "requires": ["base-base", "io-base"]
+                        },
+                        "moodle-mod_quiz-autosave": {
+                            "requires": ["base", "node", "event", "event-valuechange", "node-event-delegate", "io-form"]
+                        },
+                        "moodle-mod_quiz-dragdrop": {
+                            "requires": ["base", "node", "io", "dom", "dd", "dd-scroll", "moodle-core-dragdrop", "moodle-core-notification", "moodle-mod_quiz-quizbase", "moodle-mod_quiz-util-base", "moodle-mod_quiz-util-page", "moodle-mod_quiz-util-slot", "moodle-course-util"]
+                        },
+                        "moodle-mod_quiz-modform": {
+                            "requires": ["base", "node", "event"]
+                        },
+                        "moodle-mod_quiz-questionchooser": {
+                            "requires": ["moodle-core-chooserdialogue", "moodle-mod_quiz-util", "querystring-parse"]
+                        },
+                        "moodle-mod_quiz-quizbase": {
+                            "requires": ["base", "node"]
+                        },
+                        "moodle-mod_quiz-repaginate": {
+                            "requires": ["base", "event", "node", "io", "moodle-core-notification-dialogue"]
+                        },
+                        "moodle-mod_quiz-toolboxes": {
+                            "requires": ["base", "node", "event", "event-key", "io", "moodle-mod_quiz-quizbase", "moodle-mod_quiz-util-slot", "moodle-core-notification-ajaxexception"]
+                        },
+                        "moodle-mod_quiz-util": {
+                            "requires": ["node", "moodle-core-actionmenu"],
+                            "use": ["moodle-mod_quiz-util-base"],
+                            "submodules": {
+                                "moodle-mod_quiz-util-base": {},
+                                "moodle-mod_quiz-util-slot": {
+                                    "requires": ["node", "moodle-mod_quiz-util-base"]
+                                },
+                                "moodle-mod_quiz-util-page": {
+                                    "requires": ["node", "moodle-mod_quiz-util-base"]
+                                }
+                            }
+                        },
+                        "moodle-message_airnotifier-toolboxes": {
+                            "requires": ["base", "node", "io"]
+                        },
+                        "moodle-filter_glossary-autolinker": {
+                            "requires": ["base", "node", "io-base", "json-parse", "event-delegate", "overlay", "moodle-core-event", "moodle-core-notification-alert", "moodle-core-notification-exception", "moodle-core-notification-ajaxexception"]
+                        },
+                        "moodle-filter_mathjaxloader-loader": {
+                            "requires": ["moodle-core-event"]
+                        },
+                        "moodle-editor_atto-editor": {
+                            "requires": ["node", "transition", "io", "overlay", "escape", "event", "event-simulate", "event-custom", "node-event-html5", "node-event-simulate", "yui-throttle", "moodle-core-notification-dialogue", "moodle-core-notification-confirm", "moodle-editor_atto-rangy", "handlebars", "timers", "querystring-stringify"]
+                        },
+                        "moodle-editor_atto-plugin": {
+                            "requires": ["node", "base", "escape", "event", "event-outside", "handlebars", "event-custom", "timers", "moodle-editor_atto-menu"]
+                        },
+                        "moodle-editor_atto-menu": {
+                            "requires": ["moodle-core-notification-dialogue", "node", "event", "event-custom"]
+                        },
+                        "moodle-editor_atto-rangy": {
+                            "requires": []
+                        },
+                        "moodle-report_eventlist-eventfilter": {
+                            "requires": ["base", "event", "node", "node-event-delegate", "datatable", "autocomplete", "autocomplete-filters"]
+                        },
+                        "moodle-report_loglive-fetchlogs": {
+                            "requires": ["base", "event", "node", "io", "node-event-delegate"]
+                        },
+                        "moodle-gradereport_grader-gradereporttable": {
+                            "requires": ["base", "node", "event", "handlebars", "overlay", "event-hover"]
+                        },
+                        "moodle-gradereport_history-userselector": {
+                            "requires": ["escape", "event-delegate", "event-key", "handlebars", "io-base", "json-parse", "moodle-core-notification-dialogue"]
+                        },
+                        "moodle-tool_capability-search": {
+                            "requires": ["base", "node"]
+                        },
+                        "moodle-tool_lp-dragdrop-reorder": {
+                            "requires": ["moodle-core-dragdrop"]
+                        },
+                        "moodle-tool_monitor-dropdown": {
+                            "requires": ["base", "event", "node"]
+                        },
+                        "moodle-assignfeedback_editpdf-editor": {
+                            "requires": ["base", "event", "node", "io", "graphics", "json", "event-move", "event-resize", "transition", "querystring-stringify-simple", "moodle-core-notification-dialog", "moodle-core-notification-alert", "moodle-core-notification-warning", "moodle-core-notification-exception", "moodle-core-notification-ajaxexception"]
+                        },
+                        "moodle-atto_accessibilitychecker-button": {
+                            "requires": ["color-base", "moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_accessibilityhelper-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_align-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_bold-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_charmap-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_clear-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_collapse-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_emoticon-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_equation-button": {
+                            "requires": ["moodle-editor_atto-plugin", "moodle-core-event", "io", "event-valuechange", "tabview", "array-extras"]
+                        },
+                        "moodle-atto_generico-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_html-beautify": {},
+                        "moodle-atto_html-button": {
+                            "requires": ["promise", "moodle-editor_atto-plugin", "moodle-atto_html-beautify", "moodle-atto_html-codemirror", "event-valuechange"]
+                        },
+                        "moodle-atto_html-codemirror": {
+                            "requires": ["moodle-atto_html-codemirror-skin"]
+                        },
+                        "moodle-atto_image-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_indent-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_italic-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_link-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_managefiles-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_managefiles-usedfiles": {
+                            "requires": ["node", "escape"]
+                        },
+                        "moodle-atto_media-button": {
+                            "requires": ["moodle-editor_atto-plugin", "moodle-form-shortforms"]
+                        },
+                        "moodle-atto_noautolink-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_orderedlist-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_recordrtc-button": {
+                            "requires": ["moodle-editor_atto-plugin", "moodle-atto_recordrtc-recording"]
+                        },
+                        "moodle-atto_recordrtc-recording": {
+                            "requires": ["moodle-atto_recordrtc-button"]
+                        },
+                        "moodle-atto_rtl-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_strike-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_subscript-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_superscript-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_table-button": {
+                            "requires": ["moodle-editor_atto-plugin", "moodle-editor_atto-menu", "event", "event-valuechange"]
+                        },
+                        "moodle-atto_title-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_underline-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_undo-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        },
+                        "moodle-atto_unorderedlist-button": {
+                            "requires": ["moodle-editor_atto-plugin"]
+                        }
+                    }
+                },
+                "gallery": {
+                    "name": "gallery",
+                    "base": "https:\/\/moodlequiz.polymtl.ca\/lib\/yuilib\/gallery\/",
+                    "combine": true,
+                    "comboBase": "https:\/\/moodlequiz.polymtl.ca\/theme\/yui_combo.php?",
+                    "ext": false,
+                    "root": "gallery\/1552497931\/",
+                    "patterns": {
+                        "gallery-": {
+                            "group": "gallery"
+                        }
+                    }
+                }
+            },
+            "modules": {
+                "core_filepicker": {
+                    "name": "core_filepicker",
+                    "fullpath": "https:\/\/moodlequiz.polymtl.ca\/lib\/javascript.php\/1552497931\/repository\/filepicker.js",
+                    "requires": ["base", "node", "node-event-simulate", "json", "async-queue", "io-base", "io-upload-iframe", "io-form", "yui2-treeview", "panel", "cookie", "datatable", "datatable-sort", "resize-plugin", "dd-plugin", "escape", "moodle-core_filepicker", "moodle-core-notification-dialogue"]
+                },
+                "core_comment": {
+                    "name": "core_comment",
+                    "fullpath": "https:\/\/moodlequiz.polymtl.ca\/lib\/javascript.php\/1552497931\/comment\/comment.js",
+                    "requires": ["base", "io-base", "node", "json", "yui2-animation", "overlay", "escape"]
+                },
+                "mathjax": {
+                    "name": "mathjax",
+                    "fullpath": "https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/mathjax\/2.7.2\/MathJax.js?delayStartupUntil=configured"
+                },
+                "core_question_flags": {
+                    "name": "core_question_flags",
+                    "fullpath": "https:\/\/moodlequiz.polymtl.ca\/lib\/javascript.php\/1552497931\/question\/flags.js",
+                    "requires": ["base", "dom", "event-delegate", "io-base"]
+                },
+                "core_question_engine": {
+                    "name": "core_question_engine",
+                    "fullpath": "https:\/\/moodlequiz.polymtl.ca\/lib\/javascript.php\/1552497931\/question\/qengine.js",
+                    "requires": ["node", "event"]
+                },
+                "mod_quiz": {
+                    "name": "mod_quiz",
+                    "fullpath": "https:\/\/moodlequiz.polymtl.ca\/lib\/javascript.php\/1552497931\/mod\/quiz\/module.js",
+                    "requires": ["base", "dom", "event-delegate", "event-key", "core_question_engine", "moodle-core-formchangechecker"]
+                }
+            }
+        };
+        M.yui.loader = {
+            modules: {}
+        };
+
+        //]]>
+    </script>
+    <style></style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="core/first" src="./Contrôle Périodique - INF8480 - H2019_files/first.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="core/event" src="./Contrôle Périodique - INF8480 - H2019_files/event.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ config: ["Accessible.js", "Safe.js"], errorSettings: { message: ["!"] }, skipStartupTypeset: true, messageStyle: "none" });
+    </script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="./Contrôle Périodique - INF8480 - H2019_files/jquery-3.2.1.min.js"></script>
+</head>
+
+
+<body id="page-mod-quiz-review" class="format-topics path-mod path-mod-quiz chrome dir-ltr lang-fr yui-skin-sam yui3-skin-sam moodlequiz-polymtl-ca pagelayout-incourse course-653 context-145958 cmid-20879 category-19 drawer-open-left jsenabled">
+
+    <div id="page-wrapper">
+
+        <div>
+            <a class="sr-only sr-only-focusable" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#maincontent">Passer au contenu principal</a>
+        </div>
+        <script type="text/javascript" src="./Contrôle Périodique - INF8480 - H2019_files/yui_combo(5).php"></script>
+        <script type="text/javascript" src="./Contrôle Périodique - INF8480 - H2019_files/javascript-static.js"></script>
+        <script type="text/javascript">
+            //<![CDATA[
+            document.body.className += ' jsenabled';
+            //]]>
+        </script>
+
+
+
+        <nav class="fixed-top navbar navbar-light bg-white navbar-expand moodle-has-zindex" aria-label="Navigation du site">
+
+            <div data-region="drawer-toggle" class="d-inline-block mr-3">
+                <button aria-expanded="true" aria-controls="nav-drawer" type="button" class="btn nav-link float-sm-left mr-1 btn-light bg-gray" data-action="toggle-drawer" data-side="left" data-preference="drawer-open-nav"><i class="icon fa fa-bars fa-fw " aria-hidden="true"></i><span class="sr-only">Panneau latéral</span></button>
+            </div>
+
+            <a href="https://moodlequiz.polymtl.ca/" class="navbar-brand has-logo
+                    ">
+                <span class="logo d-none d-sm-inline">
+                        <img src="./Contrôle Périodique - INF8480 - H2019_files/logo_small_boost.png" alt="MoodleQuiz">
+                    </span>
+                <span class="site-name d-none d-md-inline">MoodleQuiz</span>
+            </a>
+
+            <ul class="navbar-nav d-none d-md-flex">
+                <!-- custom_menu -->
+                <li class="dropdown nav-item">
+                    <a class="dropdown-toggle nav-link" id="drop-down-5cb9d5fbc60ba5cb9d5fbbda7a4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#" aria-controls="drop-down-menu-5cb9d5fbc60ba5cb9d5fbbda7a4">
+        Cours
+    </a>
+                    <div class="dropdown-menu" role="menu" id="drop-down-menu-5cb9d5fbc60ba5cb9d5fbbda7a4" aria-labelledby="drop-down-5cb9d5fbc60ba5cb9d5fbbda7a4">
+                        <a class="dropdown-item" role="menuitem" href="https://moodlequiz.polymtl.ca/my" title="Mes cours">Mes cours</a>
+                        <a class="dropdown-item" role="menuitem" href="https://moodlequiz.polymtl.ca/course/index.php" title="Liste complète de cours">Liste complète de cours</a>
+                    </div>
+                </li>
+                <li class="dropdown nav-item">
+                    <a class="dropdown-toggle nav-link" id="drop-down-5cb9d5fbc61fe5cb9d5fbbda7a5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#" aria-controls="drop-down-menu-5cb9d5fbc61fe5cb9d5fbbda7a5">
+        Aide
+    </a>
+                    <div class="dropdown-menu" role="menu" id="drop-down-menu-5cb9d5fbc61fe5cb9d5fbbda7a5" aria-labelledby="drop-down-5cb9d5fbc61fe5cb9d5fbbda7a5">
+                        <a class="dropdown-item" role="menuitem" href="https://moodle.polymtl.ca/pluginfile.php/226238/mod_resource/content/22/faq_etud.html" target="_blank" title="FAQ pour ÉTUDIANTS">FAQ pour ÉTUDIANTS</a>
+                        <a class="dropdown-item" role="menuitem" href="https://moodle.polymtl.ca/pluginfile.php/226239/mod_resource/content/44/faq.html" target="_blank" title="FAQ pour ENSEIGNANTS">FAQ pour ENSEIGNANTS</a>
+                        <a class="dropdown-item" role="menuitem" href="https://moodle.polymtl.ca/course/view.php?name=SOUTIEN" title="Site de soutien pour éditeurs">Site de soutien pour éditeurs</a>
+                    </div>
+                </li>
+                <li class="dropdown nav-item">
+                    <a class="dropdown-toggle nav-link" id="drop-down-5cb9d5fbc63a45cb9d5fbbda7a6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#" aria-controls="drop-down-menu-5cb9d5fbc63a45cb9d5fbbda7a6">
+        Liens utiles
+    </a>
+                    <div class="dropdown-menu" role="menu" id="drop-down-menu-5cb9d5fbc63a45cb9d5fbbda7a6" aria-labelledby="drop-down-5cb9d5fbc63a45cb9d5fbbda7a6">
+                        <a class="dropdown-item" role="menuitem" href="https://polyfolio.polymtl.ca/" target="_blank" title="Polyfolio">Polyfolio</a>
+                        <a class="dropdown-item" role="menuitem" href="https://dossieretudiant.polymtl.ca/" target="_blank" title="Dossier étudiant">Dossier étudiant</a>
+                        <a class="dropdown-item" role="menuitem" href="https://www.polymtl.ca/etudes/programmes/qualites-developper-pour-les-etudiants-en-ingenierie" target="_blank" title="Les 12 qualités requises en génie">Les 12 qualités requises en génie</a>
+                        <a class="dropdown-item" role="menuitem" href="http://www.polymtl.ca/etudes/cours/index.php" target="_blank" title="Répertoire des cours">Répertoire des cours</a>
+                        <a class="dropdown-item" role="menuitem" href="http://www.polymtl.ca/biblio/" target="_blank" title="Bibliothèque">Bibliothèque</a>
+                        <a class="dropdown-item" role="menuitem" href="http://www.imp.polymtl.ca/horde-3.0.5/imp/login.php" target="_blank" title="Courriel IMP">Courriel IMP</a>
+                    </div>
+                </li>
+                <!-- page_heading_menu -->
+
+            </ul>
+            <ul class="nav navbar-nav ml-auto">
+                <div class="d-none d-lg-block">
+
+                </div>
+                <!-- navbar_plugin_output -->
+                <li class="nav-item">
+
+                </li>
+                <!-- user_menu -->
+                <li class="nav-item d-flex align-items-center">
+                    <div class="usermenu">
+                        <div class="action-menu moodle-actionmenu nowrap-items d-inline" id="action-menu-1" data-enhance="moodle-core-actionmenu">
+
+                            <div class="menubar d-flex " id="action-menu-1-menubar" role="menubar">
+
+
+
+
+                                <div class="action-menu-trigger">
+                                    <div class="dropdown">
+                                        <a href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#" tabindex="0" class=" dropdown-toggle icon-no-margin" id="dropdown-1" aria-label="Menu utilisateur" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+                                            aria-controls="action-menu-1-menu">
+
+                                            <span class="userbutton"><span class="usertext mr-1">User1</span><span class="avatars"><span class="avatar current"><img src="./Contrôle Périodique - INF8480 - H2019_files/f2" class="userpicture defaultuserpic" width="35" height="35" role="presentation" aria-hidden="true"></span></span>
+                                            </span>
+
+                                            <b class="caret"></b>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right menu  align-tr-br" id="action-menu-1-menu" data-rel="menu-content" aria-labelledby="action-menu-toggle-1" role="menu" data-align="tr-br">
+                                            <a href="https://moodlequiz.polymtl.ca/my/" class="dropdown-item menu-action" role="menuitem" data-title="mymoodle,admin" aria-labelledby="actionmenuaction-1">
+                                                <i class="icon fa fa-tachometer fa-fw " aria-hidden="true"></i>
+                                                <span class="menu-action-text" id="actionmenuaction-1">
+                                                Tableau de bord
+                                            </span>
+                                            </a>
+                                            <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
+                                            <a href="https://moodlequiz.polymtl.ca/user/profile.php?id=59136" class="dropdown-item menu-action" role="menuitem" data-title="profile,moodle" aria-labelledby="actionmenuaction-2">
+                                                <i class="icon fa fa-user fa-fw " aria-hidden="true"></i>
+                                                <span class="menu-action-text" id="actionmenuaction-2">
+                                                Profil
+                                            </span>
+                                            </a>
+                                            <a href="https://moodlequiz.polymtl.ca/grade/report/overview/index.php" class="dropdown-item menu-action" role="menuitem" data-title="grades,grades" aria-labelledby="actionmenuaction-3">
+                                                <i class="icon fa fa-table fa-fw " aria-hidden="true"></i>
+                                                <span class="menu-action-text" id="actionmenuaction-3">
+                                                Notes
+                                            </span>
+                                            </a>
+                                            <a href="https://moodlequiz.polymtl.ca/message/index.php" class="dropdown-item menu-action" role="menuitem" data-title="messages,message" aria-labelledby="actionmenuaction-4">
+                                                <i class="icon fa fa-comment fa-fw " aria-hidden="true"></i>
+                                                <span class="menu-action-text" id="actionmenuaction-4">
+                                                Messages personnels
+                                            </span>
+                                            </a>
+                                            <a href="https://moodlequiz.polymtl.ca/user/preferences.php" class="dropdown-item menu-action" role="menuitem" data-title="preferences,moodle" aria-labelledby="actionmenuaction-5">
+                                                <i class="icon fa fa-wrench fa-fw " aria-hidden="true"></i>
+                                                <span class="menu-action-text" id="actionmenuaction-5">
+                                                Préférences
+                                            </span>
+                                            </a>
+                                            <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
+                                            <a href="https://moodlequiz.polymtl.ca/login/logout.php?sesskey=hJMxVoDNkD" class="dropdown-item menu-action" role="menuitem" data-title="logout,moodle" aria-labelledby="actionmenuaction-6">
+                                                <i class="icon fa fa-sign-out fa-fw " aria-hidden="true"></i>
+                                                <span class="menu-action-text" id="actionmenuaction-6">
+                                                Déconnexion
+                                            </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <!-- search_box -->
+        </nav>
+
+
+        <div id="page" class="container-fluid">
+            <header id="page-header" class="row">
+                <div class="col-12 pt-3 pb-3" id="yui_3_17_2_1_1555682812132_1870">
+                    <div class="card " id="yui_3_17_2_1_1555682812132_1869">
+                        <div class="card-body " id="yui_3_17_2_1_1555682812132_1868">
+                            <div class="d-flex">
+                                <div class="mr-auto">
+                                    <div class="page-context-header">
+                                        <div class="page-header-headings">
+                                            <h1>INF8480 - Systèmes répartis et infonuagique</h1>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="d-flex flex-wrap">
+                                <div id="page-navbar">
+                                    <nav role="navigation">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="https://moodlequiz.polymtl.ca/my/">Tableau de bord</a>
+                                            </li>
+                                            <li class="breadcrumb-item">Mes cours</li>
+                                            <li class="breadcrumb-item">
+                                                <a href="https://moodlequiz.polymtl.ca/course/view.php?id=653" title="INF8480 - Systèmes répartis et infonuagique">INF8480 - Systèmes répartis et infonuagique</a>
+                                            </li>
+                                            <li class="breadcrumb-item">Contrôle périodique</li>
+                                            <li class="breadcrumb-item">
+                                                <a href="https://moodlequiz.polymtl.ca/mod/quiz/view.php?id=20879" title="Test">Contrôle Périodique - INF8480 - H2019</a>
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                                <div class="ml-auto d-flex">
+
+                                </div>
+                                <div id="course-header">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div id="page-content" class="row pb-3">
+                <div id="region-main-box" class="col-12">
+
+                    <section id="region-main" class="has-blocks mb-3">
+
+                        <span class="notifications" id="user-notifications"></span>
+                        <div role="main"><span id="maincontent"></span>
+                            <table class="generaltable generalbox quizreviewsummary">
+                                <tbody>
+                                    <tr>
+                                        <th class="cell" scope="row">Commencé le</th>
+                                        <td class="cell">lundi 18 février 2019, 17:00</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="cell" scope="row">État</th>
+                                        <td class="cell">Terminé</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="cell" scope="row">Terminé le</th>
+                                        <td class="cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="cell" scope="row">Temps mis</th>
+                                        <td class="cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="cell" scope="row">Points</th>
+                                        <td class="cell">xx,xx/40,00</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="cell" scope="row">Note</th>
+                                        <td class="cell"><b>xx,xx</b> sur 20,00 (<b>xx</b>%)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <form action="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879" method="post" class="questionflagsaveform" autocomplete="off" id="yui_3_17_2_1_1555682812132_1864">
+                                <div>
+                                    <div id="q1" class="que essay manualgraded complete">
+                                        <div class="info">
+                                            <h3 class="no">Question <span class="qno">1</span></h3>
+                                            <div class="state">Terminer</div>
+                                            <div class="grade">Note de 0,00 sur 3,00</div>
+                                            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_29"><input type="hidden" name="q59097:1_:flagged" value="0"><input type="hidden" value="qaid=691808&amp;qubaid=59097&amp;qid=1307771&amp;slot=1&amp;checksum=82b2acbe72e5382e8d9673e612c5d1bc&amp;sesskey=hJMxVoDNkD&amp;newstate="
+                                                    class="questionflagpostdata">
+                                                <input type="hidden" class="questionflagvalue" id="q59097:1_:flaggedcheckbox" name="q59097:1_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged"
+                                                    title="Marquer cette question pour référence" alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+                                        </div>
+                                        <div class="content">
+                                            <div class="formulation clearfix">
+                                                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:1_:sequencecheck" value="9">
+                                                <div class="qtext">
+                                                    <p>Les réseaux privés virtuels (VPN, <i>Virtual Private Network</i>) étaient déjà souvent utilisés par des entreprises pour donner accès à des resources privées, et sont aujourd'hui de plus en plus utilisés
+                                                        par le public pour anonymiser leurs connexions. Ils peuvent cependant être utilisés via TCP ou UDP. Sans considérer les limitations possibles imposées par des pare-feu ou équivalent, lequel de ces
+                                                        protocoles est le plus adapté à l'utilisation d'un VPN? Pourquoi?</p>
+                                                </div>
+                                                <div class="ablock">
+                                                    <div class="answer">
+                                                        <div class="qtype_essay_editor qtype_essay_response readonly">
+                                                            <p>Le protocole le plus adapté pour l'utilisation d'un VPN est TCP, puisqu'il permet d'établir une connexion constante entre l'utilisateur et le serveur. Cela permet ainsi de faire passer le traffic
+                                                                internet par le serveur en simulant une connexion directe ignorant que le traffic passe par plusieurs noeuds avant de se rendre au serveur. Cette connection permet aussi d'éviter la perte
+                                                                de paquet en assurant une confirmation.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="attachments"></div>
+                                                </div>
+                                            </div>
+                                            <div class="outcome clearfix">
+                                                <h4 class="accesshide">Feedback</h4>
+                                                <div class="feedback">
+                                                    <div class="generalfeedback">
+                                                        <p>Il est beaucoup plus intéressant d'utiliser un VPN par dessus UDP, car un VPN est une sorte de "proxy" pour des requêtes qui peuvent être en UDP ou en TCP elles-mêmes.</p>
+                                                        <p>Dans le cas d'un VPN en TCP, si la requête est en UDP, on s'assurera tout de même qu'elle arrive au moins jusqu'à la passerelle VPN, ce qui n'est pas nécessaire puisque le protocole étant UDP, on
+                                                            n'aurait pas dû s'inquiéter de l'arrivée de ce dernier nous-mêmes. Si la requête est en TCP, on s'assurera que la requête arrive jusqu'à la passerelle VPN, mais l'émetteur du paquet TCP est déjà
+                                                            en train de faire cette vérification par lui-même: on est donc en train de déployer deux fois plus d'efforts pour autant de garantie.</p>
+                                                        <p>Dans le cas d'un VPN en UDP, si la requête est en UDP, on n'aura aucune assurance que le paquet arrive à bon port, mais ce n'est de toutes façons pas ce qui nous était demandé (UDP). Si la requête
+                                                            est en TCP, le VPN ne s'assurera pas de l'arrivée de la requête, mais si elle est perdue (par le trajet dans le VPN ou après), l'émetteur du paquet l'émettra à nouveau de toute façons, puisqu'il
+                                                            se rendra compte qu'il n'a pas eu de confirmation de réception. La garantie de délivrance sera donc celle attendue.</p>
+                                                        <p>Se connecter à un VPN en UDP est donc beaucoup plus intéressant pour limiter le surcoût de la connexion au VPN.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="comment clearfix">
+                                                <h4 class="accesshide">Commentaires</h4>Commentaire&nbsp;:
+                                                <p></p>
+                                                <p></p>
+                                                <p></p>
+                                                <p>Puisqu'on parle de VPN, il est important de se poser la question des couches de protocoles appliquées les unes par dessus les autres: quel est l'impact de UDP sur UDP, UDP sur TCP, TCP sur TCP, TCP sur UDP
+                                                    ?
+                                                </p>Le fait que le VPN soit en UDP/TCP conserve le choix de protocole pour les autres systèmes qui transiteront par le VPN, il faut donc un protocole adapté pour éviter les "doublons", sachant qu'un protocole
+                                                offrant une garantie, même s'il passe par dessus un protocole qui n'en offre pas, s'assurera tout de même de maintenir ses garanties (TCP over UDP garantira toujours ce que TCP garantit).<br>
+                                                <p></p>
+                                                <p>L'UDP est donc beaucoup plus adapté dans ce contexte.</p><br>
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="q2" class="que multianswer deferredfeedback partiallycorrect">
+                                        <div class="info">
+                                            <h3 class="no">Question <span class="qno">2</span></h3>
+                                            <div class="state">Partiellement correct</div>
+                                            <div class="grade">Note de 1,33 sur 2,00</div>
+                                            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_38"><input type="hidden" name="q59097:2_:flagged" value="0"><input type="hidden" value="qaid=691809&amp;qubaid=59097&amp;qid=1307756&amp;slot=2&amp;checksum=eb525261b7f2e01914f9d533961fb6e2&amp;sesskey=hJMxVoDNkD&amp;newstate="
+                                                    class="questionflagpostdata">
+                                                <input type="hidden" class="questionflagvalue" id="q59097:2_:flaggedcheckbox" name="q59097:2_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged"
+                                                    title="Marquer cette question pour référence" alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+                                        </div>
+                                        <div class="content" id="yui_3_17_2_1_1555682812132_175">
+                                            <div class="formulation clearfix" id="yui_3_17_2_1_1555682812132_174">
+                                                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:2_:sequencecheck" value="3">
+                                                <p></p>
+                                                <p>En ignorant les problèmes gênants tels que les pare-feu pouvant bloquer certains protocoles, indiquez pour les applications suivantes s'il serait préférable d'utiliser UDP ou TCP.</p>
+                                                <li id="yui_3_17_2_1_1555682812132_173">Streaming d'une vidéo en direct sur Internet <span class="subquestion" id="yui_3_17_2_1_1555682812132_171"><label class="subq accesshide" for="q59097:2_sub1_answer">Réponse</label><select id="q59097:2_sub1_answer" disabled="disabled" class="select custom-select correct" name="q59097:2_sub1_answer"><option value=""></option><option value="0">TCP</option><option selected="selected" value="1">UDP</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_179" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 213.5px; top: 170px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_180">Correct<br>La réponse correcte est : UDP<br>Note de 1,00 sur 1,00</span></div>
+                                            </span>
+                                            </li>
+                                            <li id="yui_3_17_2_1_1555682812132_248">Messagerie instantanée / courriel <span class="subquestion" id="yui_3_17_2_1_1555682812132_246"><label class="subq accesshide" for="q59097:2_sub2_answer">Réponse</label><select id="q59097:2_sub2_answer" disabled="disabled" class="select custom-select correct" name="q59097:2_sub2_answer"><option value=""></option><option selected="selected" value="0">TCP</option><option value="1">UDP</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_252" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 314.5px; top: 199px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_253">Correct<br>La réponse correcte est : TCP<br>Note de 1,00 sur 1,00</span></div>
+                                        </span>
+                                        </li>
+                                        <li id="yui_3_17_2_1_1555682812132_303">Connexion au site Web de votre banque&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_301"><label class="subq accesshide" for="q59097:2_sub3_answer">Réponse</label><select id="q59097:2_sub3_answer" disabled="disabled" class="select custom-select correct" name="q59097:2_sub3_answer"><option value=""></option><option selected="selected" value="0">TCP</option><option value="1">UDP</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_307" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 202.5px; top: 264px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_308">Correct<br>La réponse correcte est : TCP<br>Note de 1,00 sur 1,00</span></div>
+                                    </span>
+                                    </li>
+                                    <li id="yui_3_17_2_1_1555682812132_358">Voice over IP&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_356"><label class="subq accesshide" for="q59097:2_sub4_answer">Réponse</label><select id="q59097:2_sub4_answer" disabled="disabled" class="select custom-select correct" name="q59097:2_sub4_answer"><option value=""></option><option value="0">TCP</option><option selected="selected" value="1">UDP</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_362" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 181.5px; top: 293px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_363">Correct<br>La réponse correcte est : UDP<br>Note de 1,00 sur 1,00</span></div>
+                                </span>
+                                </li>
+                                <li id="yui_3_17_2_1_1555682812132_413">Transferts de fichiers volumineux&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_411"><label class="subq accesshide" for="q59097:2_sub5_answer">Réponse</label><select id="q59097:2_sub5_answer" disabled="disabled" class="select custom-select incorrect" name="q59097:2_sub5_answer"><option value=""></option><option value="0">TCP</option><option selected="selected" value="1">UDP</option></select><i class="icon fa fa-remove text-danger fa-fw " title="Incorrect" aria-label="Incorrect"></i><div id="yui_3_17_2_1_1555682812132_417" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 313.5px; top: 329px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_418">Incorrect<br>La réponse correcte est : TCP<br>Note de 0,00 sur 1,00</span></div>
+                        </span>
+                        </li>
+                        <li id="yui_3_17_2_1_1555682812132_468">Recherche d'une valeur (de taille très faible) à partir d'un service d'annuaire&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_466"><label class="subq accesshide" for="q59097:2_sub6_answer">Réponse</label><select id="q59097:2_sub6_answer" disabled="disabled" class="select custom-select incorrect" name="q59097:2_sub6_answer"><option value=""></option><option selected="selected" value="0">TCP</option><option value="1">UDP</option></select><i class="icon fa fa-remove text-danger fa-fw " title="Incorrect" aria-label="Incorrect"></i><div id="yui_3_17_2_1_1555682812132_472" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 225.5px; top: 387px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_473">Incorrect<br>La réponse correcte est : UDP<br>Note de 0,00 sur 1,00</span></div>
+                </span>
+                </li><br>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <div id="q3" class="que multichoice deferredfeedback partiallycorrect">
+        <div class="info">
+            <h3 class="no">Question <span class="qno">3</span></h3>
+            <div class="state">Partiellement correct</div>
+            <div class="grade">Note de 0,67 sur 2,00</div>
+            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_47"><input type="hidden" name="q59097:3_:flagged" value="0"><input type="hidden" value="qaid=691810&amp;qubaid=59097&amp;qid=1307755&amp;slot=3&amp;checksum=11c1520b0af0407e9b808cfb0667b675&amp;sesskey=hJMxVoDNkD&amp;newstate=" class="questionflagpostdata">
+                <input type="hidden" class="questionflagvalue" id="q59097:3_:flaggedcheckbox" name="q59097:3_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged" title="Marquer cette question pour référence"
+                    alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+        </div>
+        <div class="content">
+            <div class="formulation clearfix">
+                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:3_:sequencecheck" value="4">
+                <div class="qtext">
+                    <p>RPC tente de faire en sorte que les appels de procédures distantes aient le même aspect que les appels de procédures locales. Mais l<span style="font-size: 1rem;">’illusion n’est pas parfaite. Sélectionnez toutes les options décrivant correctement les différences entre une fonction locale</span>
+                        <span style="font-size: 1rem;">&nbsp;et un RPC.</span>
+                    </p>
+                </div>
+                <div class="ablock">
+                    <div class="prompt">Veuillez choisir au moins une réponse&nbsp;:</div>
+                    <div class="answer">
+                        <div class="r0"><input type="checkbox" name="q59097:3_choice0" disabled="disabled" value="1" id="q59097:3_choice0"><label for="q59097:3_choice0" class="m-l-1"><span class="answernumber">a. </span>Les appels RPC sont facturés comme des appels interurbains</label>                            </div>
+                        <div class="r1 correct"><input type="checkbox" name="q59097:3_choice1" disabled="disabled" value="1" id="q59097:3_choice1" checked="checked"><label for="q59097:3_choice1" class="m-l-1"><span class="answernumber">b. </span>Les appels RPC peuvent avoir une latence plus élevée ou variable</label>                            <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></div>
+                        <div class="r0 incorrect"><input type="checkbox" name="q59097:3_choice2" disabled="disabled" value="1" id="q59097:3_choice2" checked="checked"><label for="q59097:3_choice2" class="m-l-1"><span class="answernumber">c. </span>Les appels RPC sont limités à l'appel par valeur</label>                            <i class="icon fa fa-remove text-danger fa-fw " title="Incorrect" aria-label="Incorrect"></i></div>
+                        <div class="r1"><input type="checkbox" name="q59097:3_choice3" disabled="disabled" value="1" id="q59097:3_choice3"><label for="q59097:3_choice3" class="m-l-1"><span class="answernumber">d. </span>Les appels RPC nécessitent un paramètre supplémentaire pour identifier le serveur</label>                            </div>
+                        <div class="r0"><input type="checkbox" name="q59097:3_choice4" disabled="disabled" value="1" id="q59097:3_choice4"><label for="q59097:3_choice4" class="m-l-1"><span class="answernumber">e. </span>Les appels de fonctions locales nécessitent un <span><i>malloc</i></span> d'un objet dans le tas pour représenter le pointeur de retour</label>                            </div>
+                        <div class="r1 correct"><input type="checkbox" name="q59097:3_choice5" disabled="disabled" value="1" id="q59097:3_choice5" checked="checked"><label for="q59097:3_choice5" class="m-l-1"><span class="answernumber">f. </span>Les appels RPC ont des erreurs différentes (plus nombreuses)</label>                            <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="outcome clearfix">
+                <h4 class="accesshide">Feedback</h4>
+                <div class="feedback">
+                    <div class="specificfeedback">Votre réponse est partiellement correcte.</div>
+                    <div class="numpartscorrect">Vous en avez sélectionné correctement 2.</div>
+                    <div class="rightanswer">Les réponses correctes sont&nbsp;: Les appels RPC nécessitent un paramètre supplémentaire pour identifier le serveur, Les appels RPC peuvent avoir une latence plus élevée ou variable, Les appels RPC ont des erreurs différentes (plus
+                        nombreuses)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="q4" class="que essay manualgraded complete">
+        <div class="info">
+            <h3 class="no">Question <span class="qno">4</span></h3>
+            <div class="state">Terminer</div>
+            <div class="grade">Note de 3,00 sur 3,00</div>
+            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_56"><input type="hidden" name="q59097:4_:flagged" value="0"><input type="hidden" value="qaid=691812&amp;qubaid=59097&amp;qid=1307763&amp;slot=4&amp;checksum=3c6ffcd968e5133630b22e53440b7500&amp;sesskey=hJMxVoDNkD&amp;newstate=" class="questionflagpostdata">
+                <input type="hidden" class="questionflagvalue" id="q59097:4_:flaggedcheckbox" name="q59097:4_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged" title="Marquer cette question pour référence"
+                    alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+        </div>
+        <div class="content">
+            <div class="formulation clearfix">
+                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:4_:sequencecheck" value="4">
+                <div class="qtext">
+                    <p>Des outils comme Sun RPC, ceux basés sur la norme CORBA ou utilisant gRPC par exemple introduisent la notion d'intergiciel, c'est à dire une couche logicielle qui se met entre le client et le serveur d'une requête. Donnez deux avantages
+                        de passer par un intergiciel pour les développeurs de systèmes distribués, en indiquant un exemple pour chaque avantage.</p>
+                </div>
+                <div class="ablock">
+                    <div class="answer">
+                        <div class="qtype_essay_editor qtype_essay_response readonly">
+                            <p>Un intergiciel permet de déclarer les procédures, les types et les exceptions nécessaires. Par exemple, en déclarant une interface, on peut s'assurer que le serveur aura la procédure nécessaire d'implémentée dans le langage
+                                choisit par le serveur et cette procédure pourra être appelée par le client à l'aide de la signature définit dans l'interface par l'intergiciel. Celui-ci permet aussi de générer du code dans le langage voulu pour les librairies
+                                du client et du serveur en se basant sur l'interface définie. Par exemple, l'interface pourrait définir que la procédure send() doit être implémentée et celle-ci pourrait être générée en C# pour le client et en C++ pour
+                                le serveur.</p>
+                        </div>
+                    </div>
+                    <div class="attachments"></div>
+                </div>
+            </div>
+            <div class="outcome clearfix">
+                <h4 class="accesshide">Feedback</h4>
+                <div class="feedback">
+                    <div class="generalfeedback">
+                        <p>Certains avantages sont:</p>
+                        <p></p>
+                        <ul>
+                            <li>Les intergiciels fournissent des abstractions de haut niveau qui facilitent le développement de systèmes distribués. Ces abstractions cachent certains des détails de la mise en œuvre du système. Par exemple, RPC cache le marshaling
+                                et le code de communication derrière une interface procédurale avec des procédures distantes.</li>
+                            <li>Les intergiciels isolent le programmeur du système d'exploitation. Les programmes peuvent être écrits pour communiquer avec la couche d'intergiciel et peuvent (plus facilement) être portés sur d’autres machines prenant en charge
+                                le même intergiciel (par exemple, les implémentations CORBA sont disponibles sur diverses machines).</li>
+                            <li>Les intergiciels fournissent automatiquement certaines formes de transparence au programmeur. Par exemple, les intergiciels peuvent gérer le problème de représentation des données en convertissant les données en messages afin
+                                qu'ils soient adaptés à l'architecture sur laquelle le processus de réception est en cours d'exécution.</li>
+                        </ul>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="comment clearfix">
+                <h4 class="accesshide">Commentaires</h4>Commentaire&nbsp;: </div>
+        </div>
+    </div>
+    <div id="q5" class="que multichoice deferredfeedback partiallycorrect">
+        <div class="info">
+            <h3 class="no">Question <span class="qno">5</span></h3>
+            <div class="state">Partiellement correct</div>
+            <div class="grade">Note de 1,00 sur 2,00</div>
+            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_65"><input type="hidden" name="q59097:5_:flagged" value="0"><input type="hidden" value="qaid=691814&amp;qubaid=59097&amp;qid=1307806&amp;slot=5&amp;checksum=a32bbeb441647423f829b5169ef6ed0e&amp;sesskey=hJMxVoDNkD&amp;newstate=" class="questionflagpostdata">
+                <input type="hidden" class="questionflagvalue" id="q59097:5_:flaggedcheckbox" name="q59097:5_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged" title="Marquer cette question pour référence"
+                    alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+        </div>
+        <div class="content">
+            <div class="formulation clearfix">
+                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:5_:sequencecheck" value="3">
+                <div class="qtext">
+                    <p>Parmi les éléments suivants concernant les interfaces SOAP et REST, sélectionnez celles qui sont vrai.</p>
+                </div>
+                <div class="ablock">
+                    <div class="prompt">Veuillez choisir au moins une réponse&nbsp;:</div>
+                    <div class="answer">
+                        <div class="r0"><input type="checkbox" name="q59097:5_choice0" disabled="disabled" value="1" id="q59097:5_choice0"><label for="q59097:5_choice0" class="m-l-1"><span class="answernumber">a. </span>REST est indépendant de l'architecture, ce qui n'est pas le cas de SOAP.</label>                            </div>
+                        <div class="r1"><input type="checkbox" name="q59097:5_choice1" disabled="disabled" value="1" id="q59097:5_choice1"><label for="q59097:5_choice1" class="m-l-1"><span class="answernumber">b. </span>REST doit utiliser JSON pour coder ses données.</label>                            </div>
+                        <div class="r0"><input type="checkbox" name="q59097:5_choice2" disabled="disabled" value="1" id="q59097:5_choice2"><label for="q59097:5_choice2" class="m-l-1"><span class="answernumber">c. </span>REST envoie et reçoit du contenu pendant que SOAP utilise des appels de procédure à distance.</label>                            </div>
+                        <div class="r1"><input type="checkbox" name="q59097:5_choice3" disabled="disabled" value="1" id="q59097:5_choice3"><label for="q59097:5_choice3" class="m-l-1"><span class="answernumber">d. </span>SOAP doit utiliser XML pour coder ses données.</label>                            </div>
+                        <div class="r0 correct"><input type="checkbox" name="q59097:5_choice4" disabled="disabled" value="1" id="q59097:5_choice4" checked="checked"><label for="q59097:5_choice4" class="m-l-1"><span class="answernumber">e. </span>Les opérations à effectuer sont codées dans le document avec SOAP mais dans l'URL avec REST.</label>                            <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i>
+                            <div class="specificfeedback">REST a été conçu pour utiliser le protocole HTTP et les URLs au mieux: on doit être capable de savoir ce que l'API fait juste en regardant l'URL.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="outcome clearfix">
+                <h4 class="accesshide">Feedback</h4>
+                <div class="feedback">
+                    <div class="specificfeedback">Votre réponse est partiellement correcte.</div>
+                    <div class="numpartscorrect">Vous en avez sélectionné correctement 1.</div>
+                    <div class="rightanswer">Les réponses correctes sont&nbsp;: Les opérations à effectuer sont codées dans le document avec SOAP mais dans l'URL avec REST., SOAP doit utiliser XML pour coder ses données.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="q6" class="que essay manualgraded complete">
+        <div class="info">
+            <h3 class="no">Question <span class="qno">6</span></h3>
+            <div class="state">Terminer</div>
+            <div class="grade">Note de 1,50 sur 3,00</div>
+            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_74"><input type="hidden" name="q59097:6_:flagged" value="0"><input type="hidden" value="qaid=691816&amp;qubaid=59097&amp;qid=1307765&amp;slot=6&amp;checksum=13dbbbdb223d58f53139b5c6a9b91ee3&amp;sesskey=hJMxVoDNkD&amp;newstate=" class="questionflagpostdata">
+                <input type="hidden" class="questionflagvalue" id="q59097:6_:flaggedcheckbox" name="q59097:6_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged" title="Marquer cette question pour référence"
+                    alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+        </div>
+        <div class="content">
+            <div class="formulation clearfix">
+                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:6_:sequencecheck" value="4">
+                <div class="qtext">
+                    <p>Java, C++, Python et d'autres langages supportent les exceptions, qui sont alors émises lorsqu'une erreur se produit.</p>
+                    <p>En considérant que vous pouvez écrire le code des <i>stub</i>&nbsp;du côté serveur et du <i>proxy</i>&nbsp;du côté client, comment est-ce que vous implémenteriez les exceptions lors d'un appel de procédure à distance?</p>
+                </div>
+                <div class="ablock">
+                    <div class="answer">
+                        <div class="qtype_essay_editor qtype_essay_response readonly">
+                            <p>Afin que les exceptions soient présentes autant du côté du serveur que du client, il serait nécessaire que ces exceptions soient définies dans un IDL. Cela permettrait par la suite de générer le code nécessaire pour implémenter
+                                ces exceptions dans les langages utilisés par le serveur et par le client même si ceux-ci sont différents.</p>
+                        </div>
+                    </div>
+                    <div class="attachments"></div>
+                </div>
+            </div>
+            <div class="outcome clearfix">
+                <h4 class="accesshide">Feedback</h4>
+                <div class="feedback">
+                    <div class="generalfeedback">
+                        <p>Dans le cas d'un appel de procédure à distance, les exceptions seront émises du côté du serveur, le&nbsp;<i>stub</i>&nbsp;du côté du serveur ne pourra alors que capturer l'exception et la structurer (via <i>marshalling</i>) dans
+                            un message d'erreur spécial retourné au client. Le proxy du côté du client pourra donc, sur réception du message, le démarshaller et émettre l'exception correspondante. Cette approche permettra de garder l'accès au serveur
+                            transparent pour l'utilisateur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="comment clearfix">
+                <h4 class="accesshide">Commentaires</h4>Commentaire&nbsp;:
+                <p>L'idée est bonne, et tu as l'étape de liaison. Maintenant, que se passe-t-il du côté du serveur ? Du côté du client ?</p>
+            </div>
+        </div>
+    </div>
+    <div id="q7" class="que multianswer deferredfeedback partiallycorrect">
+        <div class="info">
+            <h3 class="no">Question <span class="qno">7</span></h3>
+            <div class="state">Partiellement correct</div>
+            <div class="grade">Note de 2,63 sur 3,00</div>
+            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_83"><input type="hidden" name="q59097:7_:flagged" value="0"><input type="hidden" value="qaid=691818&amp;qubaid=59097&amp;qid=1307819&amp;slot=7&amp;checksum=e5b4de50c122ed95b9ca8bf1f444a72d&amp;sesskey=hJMxVoDNkD&amp;newstate=" class="questionflagpostdata">
+                <input type="hidden" class="questionflagvalue" id="q59097:7_:flaggedcheckbox" name="q59097:7_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged" title="Marquer cette question pour référence"
+                    alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+        </div>
+        <div class="content" id="yui_3_17_2_1_1555682812132_528">
+            <div class="formulation clearfix" id="yui_3_17_2_1_1555682812132_527">
+                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:7_:sequencecheck" value="4">
+                <p>Parmi les approches de virtualisation suivantes, indiquez lesquelles...<br></p>
+                <p></p>
+                <ul id="yui_3_17_2_1_1555682812132_526">
+                    <li>...demandent la coopération du système d’exploitation de la machine virtuelle</li>
+                    <ul id="yui_3_17_2_1_1555682812132_525">
+                        <li id="yui_3_17_2_1_1555682812132_524">paravirtualisation:&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_522"><label class="subq accesshide" for="q59097:7_sub1_answer">Réponse</label><select id="q59097:7_sub1_answer" disabled="disabled" class="select custom-select correct" name="q59097:7_sub1_answer"><option value=""></option><option selected="selected" value="0">Oui</option><option value="1">Non</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_532" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 220px; top: 133.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_533">Correct<br>La réponse correcte est : Oui<br>Note de 1,00 sur 1,00</span></div>
+            </span>
+            </li>
+            <li id="yui_3_17_2_1_1555682812132_583">virtualisation logicielle:&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_581"><label class="subq accesshide" for="q59097:7_sub2_answer">Réponse</label><select id="q59097:7_sub2_answer" disabled="disabled" class="select custom-select correct" name="q59097:7_sub2_answer"><option value=""></option><option value="0">Oui</option><option selected="selected" value="1">Non</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_587" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 252px; top: 169.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_588">Correct<br>La réponse correcte est : Non<br>Note de 1,00 sur 1,00</span></div>
+        </span>
+        </li>
+        <li id="yui_3_17_2_1_1555682812132_638">virtualisation matérielle:&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_636"><label class="subq accesshide" for="q59097:7_sub3_answer">Réponse</label><select id="q59097:7_sub3_answer" disabled="disabled" class="select custom-select incorrect" name="q59097:7_sub3_answer"><option value=""></option><option selected="selected" value="0">Oui</option><option value="1">Non</option></select><i class="icon fa fa-remove text-danger fa-fw " title="Incorrect" aria-label="Incorrect"></i><div id="yui_3_17_2_1_1555682812132_642" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 259px; top: 205.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_643">Incorrect<br>La réponse correcte est : Non<br>Note de 0,00 sur 1,00</span></div>
+    </span>
+    </li>
+    <li id="yui_3_17_2_1_1555682812132_693">conteneurs: <span class="subquestion" id="yui_3_17_2_1_1555682812132_691"><label class="subq accesshide" for="q59097:7_sub4_answer">Réponse</label><select id="q59097:7_sub4_answer" disabled="disabled" class="select custom-select correct" name="q59097:7_sub4_answer"><option value=""></option><option value="0">Oui</option><option selected="selected" value="1">Non</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_697" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 181px; top: 241.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_698">Correct<br>La réponse correcte est : Non<br>Note de 1,00 sur 1,00</span></div>
+        </span>
+    </li>
+    </ul>
+    </ul><br>
+    <ul id="yui_3_17_2_1_1555682812132_750">
+        <li>...permettent une performance native, ou presque native (pas plus de deux fois plus lent)</li>
+        <ul id="yui_3_17_2_1_1555682812132_749">
+            <li id="yui_3_17_2_1_1555682812132_748">paravirtualisation:&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_746"><label class="subq accesshide" for="q59097:7_sub5_answer">Réponse</label><select id="q59097:7_sub5_answer" disabled="disabled" class="select custom-select correct" name="q59097:7_sub5_answer"><option value=""></option><option selected="selected" value="0">Oui</option><option value="1">Non</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_754" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 220px; top: 359.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_755">Correct<br>La réponse correcte est : Oui<br>Note de 1,00 sur 1,00</span></div>
+                </span>
+            </li>
+            <li id="yui_3_17_2_1_1555682812132_805">virtualisation logicielle:&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_803"><label class="subq accesshide" for="q59097:7_sub6_answer">Réponse</label><select id="q59097:7_sub6_answer" disabled="disabled" class="select custom-select correct" name="q59097:7_sub6_answer"><option value=""></option><option value="0">Oui</option><option selected="selected" value="1">Non</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_809" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 252px; top: 395.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_810">Correct<br>La réponse correcte est : Non<br>Note de 1,00 sur 1,00</span></div>
+                </span>
+            </li>
+            <li id="yui_3_17_2_1_1555682812132_860">virtualisation matérielle:&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_858"><label class="subq accesshide" for="q59097:7_sub7_answer">Réponse</label><select id="q59097:7_sub7_answer" disabled="disabled" class="select custom-select correct" name="q59097:7_sub7_answer"><option value=""></option><option selected="selected" value="0">Oui</option><option value="1">Non</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_864" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 259px; top: 431.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_865">Correct<br>La réponse correcte est : Oui<br>Note de 1,00 sur 1,00</span></div>
+                </span>
+            </li>
+            <li id="yui_3_17_2_1_1555682812132_915">conteneurs: <span class="subquestion" id="yui_3_17_2_1_1555682812132_913"><label class="subq accesshide" for="q59097:7_sub8_answer">Réponse</label><select id="q59097:7_sub8_answer" disabled="disabled" class="select custom-select correct" name="q59097:7_sub8_answer"><option value=""></option><option selected="selected" value="0">Oui</option><option value="1">Non</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_919" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 181px; top: 467.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_920">Correct<br>La réponse correcte est : Oui<br>Note de 1,00 sur 1,00</span></div>
+                </span>
+            </li>
+        </ul>
+    </ul><br>
+    <ul id="yui_3_17_2_1_1555682812132_972">
+        <li>...permettent d’exécuter une architecture sur une autre<br></li>
+        <ul id="yui_3_17_2_1_1555682812132_971">
+            <li id="yui_3_17_2_1_1555682812132_970">paravirtualisation:&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_968"><label class="subq accesshide" for="q59097:7_sub9_answer">Réponse</label><select id="q59097:7_sub9_answer" disabled="disabled" class="select custom-select correct" name="q59097:7_sub9_answer"><option value=""></option><option value="0">Oui</option><option selected="selected" value="1">Non</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_976" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 220px; top: 563.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_977">Correct<br>La réponse correcte est : Non<br>Note de 1,00 sur 1,00</span></div>
+                </span><br></li>
+            <li id="yui_3_17_2_1_1555682812132_1027">virtualisation logicielle:&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_1025"><label class="subq accesshide" for="q59097:7_sub10_answer">Réponse</label><select id="q59097:7_sub10_answer" disabled="disabled" class="select custom-select correct" name="q59097:7_sub10_answer"><option value=""></option><option selected="selected" value="0">Oui</option><option value="1">Non</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_1031" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 252px; top: 599.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1032">Correct<br>La réponse correcte est : Oui<br>Note de 1,00 sur 1,00</span></div>
+                </span>
+            </li>
+            <li id="yui_3_17_2_1_1555682812132_1082">virtualisation matérielle:&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_1080"><label class="subq accesshide" for="q59097:7_sub11_answer">Réponse</label><select id="q59097:7_sub11_answer" disabled="disabled" class="select custom-select correct" name="q59097:7_sub11_answer"><option value=""></option><option value="0">Oui</option><option selected="selected" value="1">Non</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_1086" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 259px; top: 635.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1087">Correct<br>La réponse correcte est : Non<br>Note de 1,00 sur 1,00</span></div>
+                </span>
+            </li>
+            <li id="yui_3_17_2_1_1555682812132_1137">conteneurs: <span class="subquestion" id="yui_3_17_2_1_1555682812132_1135"><label class="subq accesshide" for="q59097:7_sub12_answer">Réponse</label><select id="q59097:7_sub12_answer" disabled="disabled" class="select custom-select correct" name="q59097:7_sub12_answer"><option value=""></option><option value="0">Oui</option><option selected="selected" value="1">Non</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_1141" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 181px; top: 671.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1142">Correct<br>La réponse correcte est : Non<br>Note de 1,00 sur 1,00</span></div>
+                </span><br></li>
+        </ul>
+    </ul><br>
+    <ul id="yui_3_17_2_1_1555682812132_1194">
+        <li>...permettent de choisir le système d’exploitation de la machine virtuelle<br></li>
+        <ul id="yui_3_17_2_1_1555682812132_1193">
+            <li id="yui_3_17_2_1_1555682812132_1192">paravirtualisation:&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_1190"><label class="subq accesshide" for="q59097:7_sub13_answer">Réponse</label><select id="q59097:7_sub13_answer" disabled="disabled" class="select custom-select correct" name="q59097:7_sub13_answer"><option value=""></option><option selected="selected" value="0">Oui</option><option value="1">Non</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_1198" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 220px; top: 789.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1199">Correct<br>La réponse correcte est : Oui<br>Note de 1,00 sur 1,00</span></div>
+                </span><br></li>
+            <li id="yui_3_17_2_1_1555682812132_1249">virtualisation logicielle:&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_1247"><label class="subq accesshide" for="q59097:7_sub14_answer">Réponse</label><select id="q59097:7_sub14_answer" disabled="disabled" class="select custom-select correct" name="q59097:7_sub14_answer"><option value=""></option><option selected="selected" value="0">Oui</option><option value="1">Non</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_1253" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 252px; top: 825.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1254">Correct<br>La réponse correcte est : Oui<br>Note de 1,00 sur 1,00</span></div>
+                </span>
+            </li>
+            <li id="yui_3_17_2_1_1555682812132_1304">virtualisation matérielle:&nbsp;<span class="subquestion" id="yui_3_17_2_1_1555682812132_1302"><label class="subq accesshide" for="q59097:7_sub15_answer">Réponse</label><select id="q59097:7_sub15_answer" disabled="disabled" class="select custom-select correct" name="q59097:7_sub15_answer"><option value=""></option><option selected="selected" value="0">Oui</option><option value="1">Non</option></select><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_1308" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 259px; top: 861.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1309">Correct<br>La réponse correcte est : Oui<br>Note de 1,00 sur 1,00</span></div>
+                </span>
+            </li>
+            <li id="yui_3_17_2_1_1555682812132_1359">conteneurs: <span class="subquestion" id="yui_3_17_2_1_1555682812132_1357"><label class="subq accesshide" for="q59097:7_sub16_answer">Réponse</label><select id="q59097:7_sub16_answer" disabled="disabled" class="select custom-select incorrect" name="q59097:7_sub16_answer"><option value=""></option><option selected="selected" value="0">Oui</option><option value="1">Non</option></select><i class="icon fa fa-remove text-danger fa-fw " title="Incorrect" aria-label="Incorrect"></i><div id="yui_3_17_2_1_1555682812132_1363" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 181px; top: 897.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1364">Incorrect<br>La réponse correcte est : Non<br>Note de 0,00 sur 1,00</span></div>
+                </span>
+            </li>
+        </ul>
+    </ul>
+    <p></p>
+    </div>
+    </div>
+    </div>
+    <div id="q8" class="que essay manualgraded complete">
+        <div class="info">
+            <h3 class="no">Question <span class="qno">8</span></h3>
+            <div class="state">Terminer</div>
+            <div class="grade">Note de 0,00 sur 3,00</div>
+            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_92"><input type="hidden" name="q59097:8_:flagged" value="0"><input type="hidden" value="qaid=691820&amp;qubaid=59097&amp;qid=1307766&amp;slot=8&amp;checksum=b540845afb85ae93047929f426684082&amp;sesskey=hJMxVoDNkD&amp;newstate=" class="questionflagpostdata">
+                <input type="hidden" class="questionflagvalue" id="q59097:8_:flaggedcheckbox" name="q59097:8_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged" title="Marquer cette question pour référence"
+                    alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+        </div>
+        <div class="content">
+            <div class="formulation clearfix">
+                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:8_:sequencecheck" value="5">
+                <div class="qtext">
+                    <p>L'un de vos amis, Jay Toukassey, a créé un petit site internet pour mettre des photos de sa passion pour la mise en équilibre de bouteilles. Lorsqu'un utilisateur va sur son site internet, le serveur web fait deux appels HTTP et chacun
+                        de ces appels fait un appel à une base de données. Tout est hébergé localement. Il s'est cependant rendu compte que parfois, certaines choses ne marchent pas comme il faudrait, et malgré son fichier journal contenant toutes les
+                        informations sur le serveur web et la base de données, il n'est pas toujours capable de retrouver la requête initiale ayant causé l'erreur.</p>
+                    <p><span style="font-size: 1rem;">Que lui conseilleriez-vous de faire afin d'être capable de suivre une requête d'un utilisateur du début à la fin?</span><br></p>
+                </div>
+                <div class="ablock">
+                    <div class="answer">
+                        <div class="qtype_essay_editor qtype_essay_response readonly">
+                            <p>Afin d'être capable de suivre une requête d'un utilisateur, je conseillerais d'utiliser le protocole TCP. Cela permettrait d'établir une connexion avec l'utilisateur et de suivre le déroulement de la requête effectué par ce
+                                dernier. Il serait donc ensuite plus facile de déterminer le type et le déroulement exacte de la requête qui a causé l'erreur. Du monitoring pourrait aussi être effectué à différent niveau tout au long de la requête.</p>
+                        </div>
+                    </div>
+                    <div class="attachments"></div>
+                </div>
+            </div>
+            <div class="outcome clearfix">
+                <h4 class="accesshide">Feedback</h4>
+                <div class="feedback">
+                    <div class="generalfeedback">
+                        <p>Si les requêtes sont peu et espacées, retrouver l'origine d'une requête est faisable, et dans le cas ou quelques requêtes peuvent être à l'origine de l'erreur, les essayer manuellement pourrait aider à trouver celle en tort.</p>
+                        <p>Cependant, si le nombre de requêtes est plus élevé, ou si on veut pouvoir détecter une erreur rapidement sans ajouter de grosse latence, alors on pourrait assigner à chaque requête un identifiant unique, et transmettre cet identifiant
+                            aux sous-requêtes via les entêtes HTTP. Il serait possible de pousser la chose plus loin en assignant des identifiants uniques aux sous-requêtes pour s'assurer que si deux sous-requêtes font des appels similaires, on est capable
+                            de les distinguer. En utilisant une commande comme <i>grep</i> sur les fichiers journaux, on peut alors retracer précisément une requête.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="comment clearfix">
+                <h4 class="accesshide">Commentaires</h4>Commentaire&nbsp;:
+                <p>Sauf qu'on veut lier la requête de l'utilisateur à celles qui sont provoquées par cette requête initiale... mais qui ne sont pas entre l'utilisateur et le serveur</p>
+            </div>
+        </div>
+    </div>
+    <div id="q9" class="que essay manualgraded complete">
+        <div class="info">
+            <h3 class="no">Question <span class="qno">9</span></h3>
+            <div class="state">Terminer</div>
+            <div class="grade">Note de 3,00 sur 3,00</div>
+            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_101"><input type="hidden" name="q59097:9_:flagged" value="0"><input type="hidden" value="qaid=691822&amp;qubaid=59097&amp;qid=1307767&amp;slot=9&amp;checksum=ed548d8cfa3edd623c97867ddd3f3371&amp;sesskey=hJMxVoDNkD&amp;newstate=" class="questionflagpostdata">
+                <input type="hidden" class="questionflagvalue" id="q59097:9_:flaggedcheckbox" name="q59097:9_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged" title="Marquer cette question pour référence"
+                    alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+        </div>
+        <div class="content">
+            <div class="formulation clearfix">
+                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:9_:sequencecheck" value="5">
+                <div class="qtext">
+                    <p>Le site de Jay commence à bien marcher, et il envisage de déployer son site sur une architecture répartie. Il veut cependant garder sa capacité à analyser les requêtes, et ce bien que celles-ci puissent se faire sur différents serveurs.</p>
+                    <p>Il aimerait donc que l'un de ses serveurs ait la responsabilité de réunir les journaux d'activité pour l'ensemble du système.</p>
+                    <p>Y a-t-il quelque chose à modifier? Si oui, quoi? Si non, pourquoi?</p>
+                </div>
+                <div class="ablock">
+                    <div class="answer">
+                        <div class="qtype_essay_editor qtype_essay_response readonly">
+                            <p>Oui, afin que tous les journaux d'activité soient réunis sur le même serveur, il est nécessaire de modifier une des instances du serveur pour qu'elle soit en mesure de recevoir les journaux d'activité des autres serveurs et
+                                de les réunir au même endroit. De plus, les autres instances devront être modifiées afin de pouvoir envoyer leur journal d'activité au serveur responsable de la mise en commun. De plus, il serait intéressant que les activités
+                                soient ordonnancés afin d'être en mesure de déterminer l'ordre des évènements si une erreur se produisait.</p>
+                        </div>
+                    </div>
+                    <div class="attachments"></div>
+                </div>
+            </div>
+            <div class="outcome clearfix">
+                <h4 class="accesshide">Feedback</h4>
+                <div class="feedback">
+                    <div class="generalfeedback">
+                        <p>Sur la façon de transmettre l'information, utiliser les headers est toujours adéquat et fonctionnera toujours très bien.</p>
+                        <p>Cependant, toute l'information doit être envoyée vers un serveur central qui va avoir pour rôle de réunir les fichiers journaux. Plusieurs approches sont possibles ici, allant de la rapatriation régulière des fichiers journaux
+                            depuis les différentes machines vers la machine principale, à l'utilisation d'un module réseau pour "surveiller" les communications et enregistrer l'activité. Une méthode intermédiaire pourrait-être de forcer le passage par
+                            un proxy qui aurait pour rôle de surveiller l'activité et la transmettre au serveur de journalisation.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="comment clearfix">
+                <h4 class="accesshide">Commentaires</h4>Commentaire&nbsp;: </div>
+        </div>
+    </div>
+    <div id="q10" class="que essay manualgraded complete">
+        <div class="info">
+            <h3 class="no">Question <span class="qno">10</span></h3>
+            <div class="state">Terminer</div>
+            <div class="grade">Note de 1,50 sur 3,00</div>
+            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_110"><input type="hidden" name="q59097:10_:flagged" value="0"><input type="hidden" value="qaid=691823&amp;qubaid=59097&amp;qid=1307768&amp;slot=10&amp;checksum=a1236ed807f1fda0b22ed39a85f349eb&amp;sesskey=hJMxVoDNkD&amp;newstate=" class="questionflagpostdata">
+                <input type="hidden" class="questionflagvalue" id="q59097:10_:flaggedcheckbox" name="q59097:10_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged" title="Marquer cette question pour référence"
+                    alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+        </div>
+        <div class="content">
+            <div class="formulation clearfix">
+                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:10_:sequencecheck" value="4">
+                <div class="qtext">
+                    <p>Jay veut absolument assurer la transmission des évènements avec le minimum de délai possible afin de pouvoir surveiller l'état de son système et pouvoir réagir aux échecs de requêtes dans le meilleur temps.</p>
+                    <p>Il se rend compte cependant que certains évènements sont perdus dans la communication avec le serveur de journalisation. Ces pertes correspondent particulièrement aux moments où le volume des requêtes est important.</p>
+                    <p>Comment modifier le système pour assurer la propagation des messages tout en en évitant la perte? <i>On notera que l'on veut éviter de surcharger les processus serveurs utilisés pour traiter les requêtes.</i></p>
+                </div>
+                <div class="ablock">
+                    <div class="answer">
+                        <div class="qtype_essay_editor qtype_essay_response readonly">
+                            <p>Pour assurer la propagation des messages, il pourrait mettre en place un système de confirmation. Ainsi, lors de la communication avec le serveur de journalisation, un accusé de réception serait attendu. Il serait ensuite possible,
+                                à l'aide d'une minuterie de déterminer qu'un message ne s'est jamais rendu au serveur de journalisation(lorsque la minuterie s'est écoulée et qu'aucun accusé de réception n'est reçu). Il serait ensuite possible de renvoyé
+                                ce message perdu, ce qui garantierais que tous les messages soient livrés au serveur de journalisation.</p>
+                        </div>
+                    </div>
+                    <div class="attachments"></div>
+                </div>
+            </div>
+            <div class="outcome clearfix">
+                <h4 class="accesshide">Feedback</h4>
+                <div class="feedback">
+                    <div class="generalfeedback">
+                        <p>Si les journaux sont transmis directement depuis les processus serveur vers le serveur de stockage, n'importe quelle méthode de transmission directe des fichiers journaux ajouterait de la charge aux processus serveurs, ce qui ne
+                            serait pas acceptable. On est donc ici obligés de se rabattre sur une méthode externe.</p>
+                        <p>Parmi les solutions proposées à la question précédente, l'utilisation d'un module de surveillance réseau pourrait être fonctionnelle, mais ne garantirait pas la bonne transmission des données si celles-ci sont perdues avant même
+                            d'arriver jusqu'au module. La rapatriation des fichiers journaux ne poserait pas ce problème mais ajouterait toujours un délai avant d'avoir tous les fichiers journaux à corréler, et nécessiterait de plus de mettre en place
+                            un moyen efficace de ne pas récupérer de multiples fois les données déjà lues des fichiers journaux. L'utilisation du proxy serait ici une bonne méthode, facile à faire évoluer pour mettre en place un cache qui pourrait s'assurer
+                            que chacune des informations envoyées soit bien arrivée jusqu'au serveur de journalisation.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="comment clearfix">
+                <h4 class="accesshide">Commentaires</h4>Commentaire&nbsp;:
+                <p>Ça règle le problème d'en éviter la perte, mais ça ne limite pas la charge des serveurs!</p>
+            </div>
+        </div>
+    </div>
+    <div id="q11" class="que essay manualgraded complete">
+        <div class="info">
+            <h3 class="no">Question <span class="qno">11</span></h3>
+            <div class="state">Terminer</div>
+            <div class="grade">Note de 0,50 sur 3,00</div>
+            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_119"><input type="hidden" name="q59097:11_:flagged" value="0"><input type="hidden" value="qaid=691825&amp;qubaid=59097&amp;qid=1307769&amp;slot=11&amp;checksum=d5476e5fcc2dba7d4e359db4c7d77aa8&amp;sesskey=hJMxVoDNkD&amp;newstate=" class="questionflagpostdata">
+                <input type="hidden" class="questionflagvalue" id="q59097:11_:flaggedcheckbox" name="q59097:11_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged" title="Marquer cette question pour référence"
+                    alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+        </div>
+        <div class="content">
+            <div class="formulation clearfix">
+                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:11_:sequencecheck" value="5">
+                <div class="qtext">
+                    <p>Le passage controversé de&nbsp;Jay Toukassé à Canada Has Faculty&nbsp;avec son numéro de jonglage d'assiettes a provoqué&nbsp;beaucoup d'affluence sur son site. Il s'est alors rendu compte qu'avec le volume très important des requêtes
+                        reçues sur son site, les fichiers journaux sont devenus gigantesques. De plus, ses outils déployés pour la réconciliation des journaux participent à la charge des machines ayant d'autres tâches, nécessitant alors de déployer d'autres
+                        machines, ce qui engendre de nouveaux coûts.</p>
+                    <p>Après avoir analysé le comportement de son site, Jay a décidé de ne journaliser que 10% des requêtes pour remédier à ce problème. Comment pourrait-il s'y prendre pour mettre ceci en place, à la fois pour la sélection des requêtes à
+                        conserver, mais aussi sur les changements nécessaires sur l'ensemble du système? Justifiez vos choix.</p>
+                </div>
+                <div class="ablock">
+                    <div class="answer">
+                        <div class="qtype_essay_editor qtype_essay_response readonly">
+                            <p>Afin de sélectionner les requêtes à conserver, il pourrait utiliser différentes stratégies lui permettant de réduire la quantité de requêtes journalisées. D'abord, il pourrait ignorer toutes les requêtes identiques. En effet,
+                                il est généralement inutile de sauvegarder plusieurs requêtes identiques, puisque celles-ci auront le même résultat. De plus, afin de de conserver les requêtes les plus pertinentes à la résolution de problème, il serait
+                                judicieux de sauvegarder les requêtes qui ont générées des erreurs ou encore qui ont renvoyé des réponses douteuses. Chacune des instances devrait donc journaliser seulement une partie des requêtes reçues afin que la mise
+                                en commun soit représentative des requêtes que chaque instance a reçues.</p>
+                        </div>
+                    </div>
+                    <div class="attachments"></div>
+                </div>
+            </div>
+            <div class="outcome clearfix">
+                <h4 class="accesshide">Feedback</h4>
+                <div class="feedback">
+                    <div class="generalfeedback">
+                        <p>On peut tout d'abord se poser la question de la sélection des requêtes à enregistrer. Une façon simple de faire serait de considérer que l'on ne conserve qu'une requête sur 10 (on en conserve une, on en ignore 9, et on répète),
+                            mais cela nécessiterait de mettre en cache les identifiants des requêtes pour s'assurer d'en ignorer le bon nombre.&nbsp;Une manière plus propre serait de "hasher" les identifiants générés avec une fonction de hashage qui aurait
+                            10 valeurs résultantes différentes (0-9 par exemple), ce qui permettrait de ne conserver que les requêtes rentrant dans une de ces cases (0 par exemple), sans avoir à cacher quoi que ce soit.&nbsp;</p>
+                        <p>La deuxième question à se poser concerne l'endroit où la sélection devrait se faire. La façon la plus directe serait de faire ça au niveau du serveur de journalisation. On sélectionnerait à ce niveau là les requêtes à conserver,
+                            et on ne journaliserait que celles-ci. Cependant, on continuerait à charger notre réseau interne et les machines, ne permettant alors de résoudre qu'un des problèmes. Une solution alternative et plus performante serait de faire
+                            la sélection dès la réception initiale d'une requête utilisateur. Lors de l'attribution de l'identifiant de cette requête, on pourrait alors décider si elle doit ou non être journalisée (par exemple en définissant ou non l'entête
+                            HTTP, ou simplement en ajoutant un drapeau dans cet entête). L'avantage de cette approche est que ces requêtes pourraient simplement être ignorées par notre proxy de journalisation, qui n'aurait alors besoin ni de les cacher,
+                            ni de s'assurer de la bonne transmission de l'entrée de journal correspondante.</p>
+                        <p>Dans le cas de cette dernière approche, la sélection de 1 requête sur 10 par ordre d'arrivée serait aussi pertinente et plus facile à mettre en place: si la requête est sélectionnée dès son arrivée, il n'est pas nécessaire de cacher
+                            l'information sur les requêtes à conserver au journal ou non. De plus, une approche par ordre d'arrivée permettrait ici de mieux équilibrer la répartition des requêtes journalisées sur les serveurs faisant face aux utilisateurs,
+                            alors qu'une approche par hashage pourrait causer un déséquilibre par périodes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="comment clearfix">
+                <h4 class="accesshide">Commentaires</h4>Commentaire&nbsp;:
+                <p>Il y a de l'idée, mais ça ne répond pas à la question... comment tu assures le 10% ?</p>
+            </div>
+        </div>
+    </div>
+    <div id="q12" class="que essay manualgraded complete">
+        <div class="info">
+            <h3 class="no">Question <span class="qno">12</span></h3>
+            <div class="state">Terminer</div>
+            <div class="grade">Note de 0,50 sur 2,00</div>
+            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_128"><input type="hidden" name="q59097:12_:flagged" value="0"><input type="hidden" value="qaid=691826&amp;qubaid=59097&amp;qid=1307770&amp;slot=12&amp;checksum=fb3be7c5e1cb661d58465c0c16ba7ed9&amp;sesskey=hJMxVoDNkD&amp;newstate=" class="questionflagpostdata">
+                <input type="hidden" class="questionflagvalue" id="q59097:12_:flaggedcheckbox" name="q59097:12_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged" title="Marquer cette question pour référence"
+                    alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+        </div>
+        <div class="content">
+            <div class="formulation clearfix">
+                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:12_:sequencecheck" value="4">
+                <div class="qtext">
+                    <p></p>
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div data-tooltip-content="16 h 43" data-hover="tooltip" data-tooltip-position="left" id="js_yk6" aria-describedby="js_ca">
+                                        <div tabindex="0" aria-label="Dernière question: Jay à tout fait manuellement pour instrumenter chacun de ses services. Sa collègue Théa Louest lui fait remarquer qu’il y avait plus simple étant donné que chacun de ses services utilisait gRPC. Pourquoi Théa a-t-elle fait la remarque?">Jay a instrumenté chacun de ses services manuellement pour transmettre les informations nécessaires pour la journalisation. Son amie, Ella Pator, lui fait remarquer qu'étant donné qu'il utilise des gRPC pour nombre
+                                            de communications dans son infrastructure, il aurait pu faire plus simple. Quelle est la solution à laquelle Ella pense?</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div data-tooltip-content="16 h 45" data-hover="tooltip" data-tooltip-position="right"><span data-hover="none"></span></div>
+                        </div>
+                    </div>
+                    <p></p>
+                </div>
+                <div class="ablock">
+                    <div class="answer">
+                        <div class="qtype_essay_editor qtype_essay_response readonly">
+                            <p>Il aurait pu utiliser un générateur de code afin de générer le code pour les librairies de chacun de ses services plutôt que de les implémenter manuellement. Il aurait ainsi pu seulement définir son interface IDL.</p>
+                        </div>
+                    </div>
+                    <div class="attachments"></div>
+                </div>
+            </div>
+            <div class="outcome clearfix">
+                <h4 class="accesshide">Feedback</h4>
+                <div class="feedback">
+                    <div class="generalfeedback">Il pourrait être plus simple d'instrumenter directement les gRPC plutôt que les services. On aurait alors dans les messages déjà toutes les informations nécessaires pour la journalisation.</div>
+                </div>
+            </div>
+            <div class="comment clearfix">
+                <h4 class="accesshide">Commentaires</h4>Commentaire&nbsp;:
+                <p>Tu as un début d'idée...</p>
+            </div>
+        </div>
+    </div>
+    <div id="q13" class="que calculated deferredfeedback correct">
+        <div class="info">
+            <h3 class="no">Question <span class="qno">13</span></h3>
+            <div class="state">Correct</div>
+            <div class="grade">Note de 2,00 sur 2,00</div>
+            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_137"><input type="hidden" name="q59097:13_:flagged" value="0"><input type="hidden" value="qaid=691828&amp;qubaid=59097&amp;qid=1307779&amp;slot=13&amp;checksum=02577d7750231b537849648db57c0acc&amp;sesskey=hJMxVoDNkD&amp;newstate=" class="questionflagpostdata">
+                <input type="hidden" class="questionflagvalue" id="q59097:13_:flaggedcheckbox" name="q59097:13_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged" title="Marquer cette question pour référence"
+                    alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+        </div>
+        <div class="content">
+            <div class="formulation clearfix">
+                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:13_:sequencecheck" value="3">
+                <div class="qtext">
+                    <p>Un serveur reçoit des requêtes qui se font en plusieurs étapes:</p>
+                    <p></p>
+                    <ol>
+                        <li>ouverture d’une connexion TCP</li>
+                        <li>Répéter 5 fois les étapes suivantes:</li>
+                        <ol>
+                            <li>réception d’une commande et envoi de la réponse en 35ms de CPU,</li>
+                            <li>attente de 40ms,</li>
+                        </ol>
+                        <li>fermeture de la connexion TCP, ce qui indique la fin de la requête.</li>
+                    </ol><b><span style="font-size: 1rem;">Si le serveur
+s’exécute avec un seul fil d’exécution qui traite séquentiellement les requêtes, combien de
+requêtes par seconde peut-il traiter?<br></span><br></b><i>N'écrivez que le résultat pour cette question.</i><br>
+                    <p></p>
+                </div>
+                <div class="ablock form-inline"><label for="q59097:13_answer">Réponse&nbsp;:</label><span class="answer"><input type="text" name="q59097:13_answer" value="2.66" id="q59097:13_answer" size="30" class="form-control d-inline correct" readonly="readonly"><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></span></div>
+            </div>
+            <div class="outcome clearfix">
+                <h4 class="accesshide">Feedback</h4>
+                <div class="feedback">
+                    <div class="generalfeedback">
+                        <p>Chaque requête prend un total de 5*(35ms+40ms)=375ms, un seul thread peut donc en traiter 1000ms/375ms = 2,6666666666667 par seconde.</p>
+                        <p style="display:none"><i>(100% des points pour une valeur valide à deux chiffres après la virgule ou plus, 75% des points pour un chiffre après la virgule, 50% des points pour la valeur tronquée)</i><br></p>
+                    </div>
+                    <div class="rightanswer">La réponse correcte est : 2,66</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="q14" class="que calculated deferredfeedback correct">
+        <div class="info">
+            <h3 class="no">Question <span class="qno">14</span></h3>
+            <div class="state">Correct</div>
+            <div class="grade">Note de 2,00 sur 2,00</div>
+            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_146"><input type="hidden" name="q59097:14_:flagged" value="0"><input type="hidden" value="qaid=691830&amp;qubaid=59097&amp;qid=1307780&amp;slot=14&amp;checksum=a6145fc173db7647eaa2c7c6aa25d826&amp;sesskey=hJMxVoDNkD&amp;newstate=" class="questionflagpostdata">
+                <input type="hidden" class="questionflagvalue" id="q59097:14_:flaggedcheckbox" name="q59097:14_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged" title="Marquer cette question pour référence"
+                    alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+        </div>
+        <div class="content">
+            <div class="formulation clearfix">
+                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:14_:sequencecheck" value="3">
+                <div class="qtext">
+                    <p>Un serveur reçoit des requêtes qui se font en plusieurs étapes:</p>
+                    <p></p>
+                    <ol>
+                        <li>ouverture d’une connexion TCP</li>
+                        <li>Répéter 5 fois les étapes suivantes:</li>
+                        <ol>
+                            <li>réception d’une commande et envoi de la réponse en 35ms de CPU,</li>
+                            <li>attente de 40ms,</li>
+                        </ol>
+                        <li>fermeture de la connexion TCP, ce qui indique la fin de la requête.</li>
+                    </ol>
+                    <p></p>
+                    <p></p><span><b>Si le serveur exécute de nombreux fils d'exécution qui se partagent les requêtes, mais roulent sur un seul coeur de CPU, combien de requêtes par seconde peut-il traiter?</b><br></span><br><i>N'écrivez que le résultat pour cette question.</i>
+                    <p></p>
+                </div>
+                <div class="ablock form-inline"><label for="q59097:14_answer">Réponse&nbsp;:</label><span class="answer"><input type="text" name="q59097:14_answer" value="5.71" id="q59097:14_answer" size="30" class="form-control d-inline correct" readonly="readonly"><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></span></div>
+            </div>
+            <div class="outcome clearfix">
+                <h4 class="accesshide">Feedback</h4>
+                <div class="feedback">
+                    <div class="generalfeedback">
+                        <p>Puisque chaque requête ne prend que&nbsp;5 * 35ms = 175ms de CPU, avec plusieurs threads on peut en traiter 1000ms/175ms = 5,7142857142857 par seconde.</p>
+                        <p style="display: none"><i>(100% des points pour une valeur valide à deux chiffres après la virgule ou plus, 75% des points pour un chiffre après la virgule, 50% des points pour la valeur tronquée)</i><br></p>
+                    </div>
+                    <div class="rightanswer">La réponse correcte est : 5,71</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="q15" class="que multianswer deferredfeedback partiallycorrect">
+        <div class="info">
+            <h3 class="no">Question <span class="qno">15</span></h3>
+            <div class="state">Partiellement correct</div>
+            <div class="grade">Note de 3,29 sur 4,00</div>
+            <div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1555682812132_155"><input type="hidden" name="q59097:15_:flagged" value="0"><input type="hidden" value="qaid=691831&amp;qubaid=59097&amp;qid=1307781&amp;slot=15&amp;checksum=67de5c8642fede690eba1126c05c8c13&amp;sesskey=hJMxVoDNkD&amp;newstate=" class="questionflagpostdata">
+                <input type="hidden" class="questionflagvalue" id="q59097:15_:flaggedcheckbox" name="q59097:15_:flagged" value="0"><input type="image" class="questionflagimage" src="./Contrôle Périodique - INF8480 - H2019_files/unflagged" title="Marquer cette question pour référence"
+                    alt="Non marquée"><span class="questionflagtext" title="Marquer cette question pour référence">Marquer la question</span></div>
+        </div>
+        <div class="content" id="yui_3_17_2_1_1555682812132_1419">
+            <div class="formulation clearfix" id="yui_3_17_2_1_1555682812132_1418">
+                <h4 class="accesshide">Texte de la question</h4><input type="hidden" name="q59097:15_:sequencecheck" value="7">
+                <p>Au Pays des Merveilles, les Lutins collectent et collectionnent les muffins.<br><span style="font-size: 1rem;">Des lutins veulent communiquer des informations sur le nombre de muffins collectés par chaque Lutin, par rapport à leur nombre d'heures de travail accumulées jusque là.<br></span>
+                    <span style="font-size: 1rem;">Pour avoir les informations sur un lutin donné, ils passent par la procédure à distance suivante:</span>
+                </p><pre>void muffins(in string lutin,
+             out unsigned long nbmuffins,
+             out unsigned long heurestravail);</pre>
+                <p>Les lutins que nous allons considérer&nbsp;ont des noms de 14 caractères, ont collecté un nombre de muffins <i>nbmuffins</i>&nbsp;aux alentours de 600 (utilisez 600 pour vos calculs), et les heures de travail sont comptées en nombre de
+                    secondes pour la journée et sont d'environ 28800 (utilisez 28800 pour vos calculs).<br><span style="font-size: 1rem;">Les lutins vous demandent s'ils devraient implémenter leur système en utilisant CORBA ou gRPC.<br></span><span style="font-size: 1rem;">Sans tenir compte des entêtes, mais seulement de l'encodage des arguments (CDR vs. protobuf), calculez la taille occupée par chacun en octets.</span></p>
+                <p><i>Écrivez directement le résultat des calculs pour cette question.</i><br></p>
+                <h4><b>CDR:</b></h4>
+                <ul id="yui_3_17_2_1_1555682812132_1417">
+                    <ul id="yui_3_17_2_1_1555682812132_1416">
+                        <li id="yui_3_17_2_1_1555682812132_1415">Nombre d'octets occupés pour encoder le nom du lutin:&nbsp;<span class="subquestion form-inline d-inline" id="yui_3_17_2_1_1555682812132_1413"><label class="subq accesshide" for="q59097:15_sub1_answer">Réponse</label><input type="text" name="q59097:15_sub1_answer" value="24" id="q59097:15_sub1_answer" size="3" class="form-control mb-1 incorrect" readonly="readonly"><i class="icon fa fa-remove text-danger fa-fw " title="Incorrect" aria-label="Incorrect"></i><div id="yui_3_17_2_1_1555682812132_1423" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 130px; top: 670.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1424">Incorrect<br>La réponse correcte est : 20<br>Note de 0,00 sur 10,00</span></div>
+            </span>
+            </li>
+            <li id="yui_3_17_2_1_1555682812132_1474">Nombre d'octets occupés&nbsp;pour encoder le nombre de muffins:&nbsp;<span class="subquestion form-inline d-inline" id="yui_3_17_2_1_1555682812132_1472"><label class="subq accesshide" for="q59097:15_sub2_answer">Réponse</label><input type="text" name="q59097:15_sub2_answer" value="8" id="q59097:15_sub2_answer" size="2" class="form-control mb-1 correct" readonly="readonly"><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_1478" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 147px; top: 732.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1479">Correct<br>Un long en CDR ne fait que 4 octets, ce sont les long long qui en font 8<br>La réponse correcte est : 4<br>Note de 10,00 sur 10,00</span></div>
+        </span>
+        </li>
+        <li id="yui_3_17_2_1_1555682812132_1529">Nombre d'octets occupés&nbsp;pour encoder le nombre d'heures de travail:&nbsp;<span class="subquestion form-inline d-inline" id="yui_3_17_2_1_1555682812132_1527"><label class="subq accesshide" for="q59097:15_sub3_answer">Réponse</label><input type="text" name="q59097:15_sub3_answer" value="8" id="q59097:15_sub3_answer" size="2" class="form-control mb-1 correct" readonly="readonly"><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_1533" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 221px; top: 794.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1534">Correct<br>Un long en CDR ne fait que 4 octets, ce sont les long long qui en font 8<br>La réponse correcte est : 4<br>Note de 10,00 sur 10,00</span></div>
+    </span>
+    </li>
+    </ul>
+    </ul>Nombre d'octets occupés par l'ensemble de l'encodage des arguments en représentation CDR: <span class="subquestion form-inline d-inline" id="yui_3_17_2_1_1555682812132_1582"><label class="subq accesshide" for="q59097:15_sub4_answer">Réponse</label><input type="text" name="q59097:15_sub4_answer" value="40" id="q59097:15_sub4_answer" size="3" class="form-control mb-1 incorrect" readonly="readonly"><i class="icon fa fa-remove text-danger fa-fw " title="Incorrect" aria-label="Incorrect"></i><div id="yui_3_17_2_1_1555682812132_1587" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 328px; top: 872.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1588">Incorrect<br>La réponse correcte est : 28<br>Note de 0,00 sur 1,00</span></div>
+    </span><br><br>
+    <h4><b>protobuf:</b></h4>
+    <ul id="yui_3_17_2_1_1555682812132_1640">
+        <ul id="yui_3_17_2_1_1555682812132_1639">
+            <li id="yui_3_17_2_1_1555682812132_1638">Nombre d'octets occupés&nbsp;pour encoder le nom du lutin:&nbsp;<span class="subquestion form-inline d-inline" id="yui_3_17_2_1_1555682812132_1636"><label class="subq accesshide" for="q59097:15_sub5_answer">Réponse</label><input type="text" name="q59097:15_sub5_answer" value="16" id="q59097:15_sub5_answer" size="3" class="form-control mb-1 correct" readonly="readonly"><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_1644" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 130px; top: 987.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1645">Correct<br>La réponse correcte est : 16<br>Note de 10,00 sur 10,00</span></div>
+                </span>
+            </li>
+            <li id="yui_3_17_2_1_1555682812132_1695">Nombre d'octets occupés&nbsp;pour encoder le nombre de muffins:&nbsp;<span class="subquestion form-inline d-inline" id="yui_3_17_2_1_1555682812132_1693"><label class="subq accesshide" for="q59097:15_sub6_answer">Réponse</label><input type="text" name="q59097:15_sub6_answer" value="3" id="q59097:15_sub6_answer" size="2" class="form-control mb-1 correct" readonly="readonly"><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_1699" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 147px; top: 1049.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1700">Correct<br>La réponse correcte est : 3<br>Note de 10,00 sur 10,00</span></div>
+                </span>
+            </li>
+            <li id="yui_3_17_2_1_1555682812132_1750">Nombre d'octets occupés&nbsp;pour encoder le nombre d'heures de travail:&nbsp;<span class="subquestion form-inline d-inline" id="yui_3_17_2_1_1555682812132_1748"><label class="subq accesshide" for="q59097:15_sub7_answer">Réponse</label><input type="text" name="q59097:15_sub7_answer" value="4" id="q59097:15_sub7_answer" size="2" class="form-control mb-1 correct" readonly="readonly"><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_1754" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 221px; top: 1111.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1755">Correct<br>La réponse correcte est : 4<br>Note de 10,00 sur 10,00</span></div>
+                </span>
+            </li>
+        </ul>
+    </ul><span id="yui_3_17_2_1_1555682812132_1805">Nombre d'octets occupés par l'ensemble de l'encodage des arguments en représentation protobuf: <span class="subquestion form-inline d-inline" id="yui_3_17_2_1_1555682812132_1803"><label class="subq accesshide" for="q59097:15_sub8_answer">Réponse</label><input type="text" name="q59097:15_sub8_answer" value="23" id="q59097:15_sub8_answer" size="3" class="form-control mb-1 correct" readonly="readonly"><i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i><div id="yui_3_17_2_1_1555682812132_1809" class="yui3-widget yui3-overlay yui3-widget-positioned yui3-widget-stacked yui3-overlay-hidden" style="left: 350px; top: 1189.5px; z-index: 1;"><span class="feedbackspan yui3-overlay-content yui3-widget-stdmod" id="yui_3_17_2_1_1555682812132_1810">Correct<br>La réponse correcte est : 23<br>Note de 1,00 sur 1,00</span></div>
+    </span>
+    </span><br>
+    <p></p>
+    </div>
+    <div class="outcome clearfix">
+        <h4 class="accesshide">Feedback</h4>
+        <div class="feedback">
+            <div class="generalfeedback">
+                <p>Avec le CDR:</p>
+                <p></p>
+                <ul>
+                    <li>Le nombre d'octets occupés par le nom du lutin correspondra à la longueur de la chaine (14) arrondie au multiple de 4 octets supérieur (16) plus 4 octets pour stocker la longueur (20)</li>
+                    <li>Le nombre d'octets occupés par le nombre de muffins sera de 4 octets</li>
+                    <li>Le nombre d'octets occupés par le nombre d'heures de travail sera de 4 octets</li>
+                    <li>Le nombre total d'octets sera donc de 20 + 4 + 4 soit <b>28 octets</b>.</li>
+                </ul>Avec protobuf:
+                <p></p>
+                <p></p>
+                <ul>
+                    <li>Le nombre d'octets occupés par le nom du lutin correspondra à 1 octet pour identifier le champ et le type combinés, 1 octet pour la longueur, et 1 octet par caractère (14), soit un total de 16 octets</li>
+                    <li>Le nombre d'octets occupés par le nombre de muffins sera de 1 octet pour le champ et le type combinés, et 2 octets pour la valeur, soit un total de 3 octets.</li>
+                    <ul>
+                        <li><span style="font-size: 1rem;">En effet, la valeur est 600 = 512 + 64 + 16 + 8, soit 1001011000 en binaire.</span></li>
+                        <li><span style="font-size: 1rem;">Avec protobuf, on ne garde que 7 bits dans un byte pour encoder la valeur, le 1er bit étant utilisé pour indiquer s'il y a un autre byte à lire, on aura donc <span class="" style="color: rgb(204, 51, 255);">100</span>
+                            <span class="" style="color: rgb(0, 61, 245);">1011000</span> découpé en <span class="" style="color: rgb(255, 51, 102);">0</span>0000<span class="" style="color: rgb(204, 51, 255);">100</span>&nbsp;<span class="" style="color: rgb(255, 51, 102);">1</span>
+                            <span class="" style="color: rgb(0, 61, 245);">1011000</span>
+                            </span>
+                        </li>
+                        <li>Ce qui nécessitera donc deux octets</li>
+                    </ul>
+                    <li><span style="font-size: 1rem;">Le nombre d'octets occupés par le nombre d'heures de travail sera de 1 octet pour le champ et le type combinés, et 3 octets pour la valeur, soit un total de 4 octets.</span></li>
+                    <ul>
+                        <li>En effet, la valeur est 28800 = 16384 + 8192 + 4096 + 128, soit 111000010000000 en binaire.</li>
+                        <li>Avec protobuf, on ne garde que 7 bits dans un byte pour encoder la valeur, le 1er bit étant utilisé pour indiquer s'il y a un autre byte à lire, on aura donc&nbsp;<span style="font-size: 1rem;"></span><span class="" style="color: rgb(140, 200, 60);">1</span>
+                            <span class="" style="color: rgb(204, 51, 255);">1100001</span><span class="" style="color: rgb(0, 61, 245);">0000000</span><span style="font-size: 1rem;"></span><span style="font-size: 1rem;">&nbsp;découpé en <span class="" style="color: rgb(255, 51, 102);">0</span>000000</span>
+                            <span style="font-size: 1rem;"></span><span><span class="" style="color: rgb(140, 200, 60);">1</span> <span class="" style="color: rgb(255, 51, 102);">1</span></span><span><span class="" style="color: rgb(204, 51, 255);">1100001</span>                            <span class="" style="color: rgb(255, 51, 102);">1</span></span><span class="" style="color: rgb(0, 61, 245);">0000000</span><span style="font-size: 1rem;"></span></li>
+                        <li>Ce qui nécessitera donc trois octets</li>
+                    </ul>
+                    <li><span style="font-size: 1rem;">Le nombre total d'oictets sera donc de 16 + 3 + 4 soit <b>23 octets</b>.</span></li>
+                </ul>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div><input type="hidden" name="sesskey" value="hJMxVoDNkD">
+    <div class="submitbtns"></div>
+    </div>
+    </form>
+    <div class="submitbtns"><a class="mod_quiz-next-nav" href="https://moodlequiz.polymtl.ca/mod/quiz/view.php?id=20879">Terminer la relecture</a></div>
+    </div>
+    <div class="m-t-2 m-b-1 activity-navigation">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="pull-left">
+                    <a href="https://moodlequiz.polymtl.ca/mod/forum/view.php?id=20793&amp;forceview=1" id="prev-activity-link" class="btn btn-link" title="Annonces">◄ Annonces</a>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mdl-align">
+                    <div class="urlselect">
+                        <form method="post" action="https://moodlequiz.polymtl.ca/course/jumpto.php" class="form-inline" id="url_select_f5cb9d5fbbda7a15">
+                            <input type="hidden" name="sesskey" value="hJMxVoDNkD">
+                            <label for="jump-to-activity" class="sr-only">
+                Aller à...
+            </label>
+                            <select id="jump-to-activity" class="custom-select urlselect" name="jump">
+                    <option value="" selected="">Aller à...</option>
+                    <option value="/mod/forum/view.php?id=20793&amp;forceview=1">Annonces</option>
+        </select>
+                            <noscript>
+                &lt;input type="submit" class="btn btn-secondary" value="Valider"&gt;
+            </noscript>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pull-right">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </section>
+    <section data-region="blocks-column" class="d-print-none">
+        <aside id="block-region-side-pre" class="block-region" data-blockregion="side-pre" data-droptarget="1"><a href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#sb-1" class="sr-only sr-only-focusable">Passer &lt;span id="mod_quiz_navblock_title"&gt;Navigation du test&lt;/span&gt;</a>
+
+            <section id="mod_quiz_navblock" class=" block block__fake  card mb-3" role="navigation" data-block="_fake" aria-labelledby="instance-0-header">
+
+                <div class="card-body p-3">
+
+                    <h5 id="instance-0-header" class="card-title d-inline"><span id="mod_quiz_navblock_title">Navigation du test</span></h5>
+
+
+                    <div class="card-text content mt-3">
+                        <div class="qn_buttons clearfix allquestionsononepage">
+                            <h3 class="mod_quiz-section-heading">Questions en vrac</h3>
+                            <a class="qnbutton incorrect free btn btn-secondary thispage" id="quiznavbutton1" title="Incorrect" data-quiz-page="0" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>1<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                            </a>
+                            <a class="qnbutton partiallycorrect free btn btn-secondary thispage" id="quiznavbutton2" title="Partiellement correct" data-quiz-page="0" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#q2"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>2<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                            </a>
+                            <a class="qnbutton partiallycorrect free btn btn-secondary thispage" id="quiznavbutton3" title="Partiellement correct" data-quiz-page="1" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#q3"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>3<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                            </a>
+                            <a class="qnbutton correct free btn btn-secondary thispage" id="quiznavbutton4" title="Correct" data-quiz-page="1" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#q4"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>4<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                            </a>
+                            <a class="qnbutton partiallycorrect free btn btn-secondary thispage" id="quiznavbutton5" title="Partiellement correct" data-quiz-page="1" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#q5"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>5<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                                </a>
+                            <a class="qnbutton partiallycorrect free btn btn-secondary thispage" id="quiznavbutton6" title="Partiellement correct" data-quiz-page="2" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#q6"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>6<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                                </a>
+                            <a class="qnbutton partiallycorrect free btn btn-secondary thispage" id="quiznavbutton7" title="Partiellement correct" data-quiz-page="2" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#q7"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>7<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                                </a>
+                            <h3 class="mod_quiz-section-heading">Moi, Distribué et Performant</h3>
+                            <a class="qnbutton incorrect free btn btn-secondary thispage" id="quiznavbutton8" title="Incorrect" data-quiz-page="3" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#q8"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>8<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                                </a>
+                            <a class="qnbutton correct free btn btn-secondary thispage" id="quiznavbutton9" title="Correct" data-quiz-page="3" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#q9"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>9<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                            </a>
+                            <a class="qnbutton partiallycorrect free btn btn-secondary thispage" id="quiznavbutton10" title="Partiellement correct" data-quiz-page="3" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#q10"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>10<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                                    </a>
+                            <a class="qnbutton partiallycorrect free btn btn-secondary thispage" id="quiznavbutton11" title="Partiellement correct" data-quiz-page="3" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#q11"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>11<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                                    </a>
+                            <a class="qnbutton partiallycorrect free btn btn-secondary thispage" id="quiznavbutton12" title="Partiellement correct" data-quiz-page="3" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#q12"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>12<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                                    </a>
+                            <h3 class="mod_quiz-section-heading">Ma thématique</h3>
+                            <a class="qnbutton correct free btn btn-secondary thispage" id="quiznavbutton13" title="Correct" data-quiz-page="4" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#q13"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>13<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                                    </a>
+                            <a class="qnbutton correct free btn btn-secondary thispage" id="quiznavbutton14" title="Correct" data-quiz-page="4" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#q14"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>14<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                            </a>
+                            <a class="qnbutton partiallycorrect free btn btn-secondary thispage" id="quiznavbutton15" title="Partiellement correct" data-quiz-page="5" href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879#q15"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>15<span class="accesshide"> Cette page <span class="flagstate"></span></span>
+                                        </a>
+                        </div>
+                        <div class="othernav"><a href="https://moodlequiz.polymtl.ca/mod/quiz/review.php?attempt=44625&amp;cmid=20879&amp;showall=0">Afficher une page à la fois</a><a class="mod_quiz-next-nav" href="https://moodlequiz.polymtl.ca/mod/quiz/view.php?id=20879">Terminer la relecture</a></div>
+                        <div class="footer"></div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <span id="sb-1"></span></aside>
+    </section>
+    </div>
+    </div>
+    </div>
+
+    <div id="nav-drawer" data-region="drawer" class="d-print-none moodle-has-zindex " aria-hidden="false" tabindex="-1">
+        <nav class="list-group">
+            <a class="list-group-item list-group-item-action " href="https://moodlequiz.polymtl.ca/course/view.php?id=653" data-key="coursehome" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="0" data-forceopen="0"
+                data-isactive="0" data-hidden="0" data-preceedwithhr="0">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">INF8480 - Systèmes répartis et infonuagique</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://moodlequiz.polymtl.ca/user/index.php?id=653" data-key="participants" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="90" data-nodetype="1" data-collapse="0" data-forceopen="0"
+                data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="653">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-users fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Participants</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://moodlequiz.polymtl.ca/grade/report/index.php?id=653" data-key="grades" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="70" data-nodetype="0" data-collapse="0" data-forceopen="0"
+                data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="653">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-table fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Notes</span>
+                    </div>
+                </div>
+            </a>
+        </nav>
+        <nav class="list-group m-t-1">
+            <a class="list-group-item list-group-item-action " href="https://moodlequiz.polymtl.ca/my/" data-key="myhome" data-isexpandable="0" data-indent="0" data-showdivider="1" data-type="1" data-nodetype="1" data-collapse="0" data-forceopen="1" data-isactive="0"
+                data-hidden="0" data-preceedwithhr="0">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-tachometer fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Tableau de bord</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://moodlequiz.polymtl.ca/?redirect=0" data-key="home" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="70" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0"
+                data-hidden="0" data-preceedwithhr="0" data-parent-key="myhome">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-home fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Accueil du site</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://moodlequiz.polymtl.ca/calendar/view.php?view=month&amp;course=653" data-key="calendar" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="0"
+                data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-calendar fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Calendrier</span>
+                    </div>
+                </div>
+            </a>
+            <div class="list-group-item" data-key="mycourses" data-isexpandable="1" data-indent="0" data-showdivider="0" data-type="0" data-nodetype="1" data-collapse="0" data-forceopen="1" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="myhome">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body">Mes cours</span>
+                    </div>
+                </div>
+            </div>
+            <a class="list-group-item list-group-item-action " href="https://moodlequiz.polymtl.ca/course/view.php?id=653" data-key="653" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="1"
+                data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="mycourses">
+                <div class="m-l-1">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">INF8480 - Systèmes répartis et infonuagique</span>
+                    </div>
+                </div>
+            </a>
+        </nav>
+    </div>
+    <footer id="page-footer" class="py-3 bg-dark text-light">
+        <div class="container">
+            <div id="course-footer"></div>
+
+
+            <div class="logininfo">Connecté sous le nom «&nbsp;<a href="https://moodlequiz.polymtl.ca/user/profile.php?id=59136" title="Consulter le profil">User1</a>&nbsp;» (<a href="https://moodlequiz.polymtl.ca/login/logout.php?sesskey=hJMxVoDNkD">Déconnexion</a>)</div>
+            <div class="tool_usertours-resettourcontainer"></div>
+            <div class="homelink"><a href="https://moodlequiz.polymtl.ca/course/view.php?id=653">INF8480</a></div>
+            <nav class="nav navbar-nav d-md-none">
+                <ul class="list-unstyled pt-3">
+                    <li>Cours</li>
+                    <li>
+                        <ul class="list-unstyled ml-3">
+                            <li><a href="https://moodlequiz.polymtl.ca/my" title="Mes cours">Mes cours</a></li>
+                            <li><a href="https://moodlequiz.polymtl.ca/course/index.php" title="Liste complète de cours">Liste complète de cours</a></li>
+                        </ul>
+                    </li>
+                    <li>Aide</li>
+                    <li>
+                        <ul class="list-unstyled ml-3">
+                            <li><a href="https://moodle.polymtl.ca/pluginfile.php/226238/mod_resource/content/22/faq_etud.html" target="_blank" title="FAQ pour ÉTUDIANTS">FAQ pour ÉTUDIANTS</a></li>
+                            <li><a href="https://moodle.polymtl.ca/pluginfile.php/226239/mod_resource/content/44/faq.html" target="_blank" title="FAQ pour ENSEIGNANTS">FAQ pour ENSEIGNANTS</a></li>
+                            <li><a href="https://moodle.polymtl.ca/course/view.php?name=SOUTIEN" title="Site de soutien pour éditeurs">Site de soutien pour éditeurs</a></li>
+                        </ul>
+                    </li>
+                    <li>Liens utiles</li>
+                    <li>
+                        <ul class="list-unstyled ml-3">
+                            <li><a href="https://polyfolio.polymtl.ca/" target="_blank" title="Polyfolio">Polyfolio</a></li>
+                            <li><a href="https://dossieretudiant.polymtl.ca/" target="_blank" title="Dossier étudiant">Dossier étudiant</a></li>
+                            <li><a href="https://www.polymtl.ca/etudes/programmes/qualites-developper-pour-les-etudiants-en-ingenierie" target="_blank" title="Les 12 qualités requises en génie">Les 12 qualités requises en génie</a></li>
+                            <li><a href="http://www.polymtl.ca/etudes/cours/index.php" target="_blank" title="Répertoire des cours">Répertoire des cours</a></li>
+                            <li><a href="http://www.polymtl.ca/biblio/" target="_blank" title="Bibliothèque">Bibliothèque</a></li>
+                            <li><a href="http://www.imp.polymtl.ca/horde-3.0.5/imp/login.php" target="_blank" title="Courriel IMP">Courriel IMP</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <script type="text/javascript">
+                //<![CDATA[
+                var require = {
+                    baseUrl: 'https://moodlequiz.polymtl.ca/lib/requirejs.php/1552497931/',
+                    // We only support AMD modules with an explicit define() statement.
+                    enforceDefine: true,
+                    skipDataMain: true,
+                    waitSeconds: 0,
+
+                    paths: {
+                        jquery: 'https://moodlequiz.polymtl.ca/lib/javascript.php/1552497931/lib/jquery/jquery-3.2.1.min',
+                        jqueryui: 'https://moodlequiz.polymtl.ca/lib/javascript.php/1552497931/lib/jquery/ui-1.12.1/jquery-ui.min',
+                        jqueryprivate: 'https://moodlequiz.polymtl.ca/lib/javascript.php/1552497931/lib/requirejs/jquery-private'
+                    },
+
+                    // Custom jquery config map.
+                    map: {
+                        // '*' means all modules will get 'jqueryprivate'
+                        // for their 'jquery' dependency.
+                        '*': {
+                            jquery: 'jqueryprivate'
+                        },
+                        // Stub module for 'process'. This is a workaround for a bug in MathJax (see MDL-60458).
+                        '*': {
+                            process: 'core/first'
+                        },
+
+                        // 'jquery-private' wants the real jQuery module
+                        // though. If this line was not here, there would
+                        // be an unresolvable cyclic dependency.
+                        jqueryprivate: {
+                            jquery: 'jquery'
+                        }
+                    }
+                };
+
+                //]]>
+            </script>
+            <script type="text/javascript" src="./Contrôle Périodique - INF8480 - H2019_files/require.min.js"></script>
+            <script type="text/javascript">
+                //<![CDATA[
+                require(['core/first'], function() {;
+                    require(["media_videojs/loader"], function(loader) {
+                        loader.setUp(function(videojs) {
+                            videojs.options.flash.swf = "https://moodlequiz.polymtl.ca/media/player/videojs/videojs/video-js.swf";
+                            videojs.addLanguage("fr", {
+                                "Audio Player": "Lecteur audio",
+                                "Video Player": "Lecteur vidéo",
+                                "Play": "Lecture",
+                                "Pause": "Pause",
+                                "Replay": "Revoir",
+                                "Current Time": "Temps actuel",
+                                "Duration Time": "Durée",
+                                "Remaining Time": "Temps restant",
+                                "Stream Type": "Type de flux",
+                                "LIVE": "EN DIRECT",
+                                "Loaded": "Chargé",
+                                "Progress": "Progression",
+                                "Progress Bar": "Barre de progression",
+                                "progress bar timing: currentTime={1} duration={2}": "{1} de {2}",
+                                "Fullscreen": "Plein écran",
+                                "Non-Fullscreen": "Fenêtré",
+                                "Mute": "Sourdine",
+                                "Unmute": "Son activé",
+                                "Playback Rate": "Vitesse de lecture",
+                                "Subtitles": "Sous-titres",
+                                "subtitles off": "Sous-titres désactivés",
+                                "Captions": "Sous-titres transcrits",
+                                "captions off": "Sous-titres transcrits désactivés",
+                                "Chapters": "Chapitres",
+                                "Descriptions": "Descriptions",
+                                "descriptions off": "descriptions désactivées",
+                                "Audio Track": "Piste audio",
+                                "Volume Level": "Niveau de volume",
+                                "You aborted the media playback": "Vous avez interrompu la lecture de la vidéo.",
+                                "A network error caused the media download to fail part-way.": "Une erreur de réseau a interrompu le téléchargement de la vidéo.",
+                                "The media could not be loaded, either because the server or network failed or because the format is not supported.": "Cette vidéo n'a pas pu être chargée, soit parce que le serveur ou le réseau a échoué ou parce que le format n'est pas reconnu.",
+                                "The media playback was aborted due to a corruption problem or because the media used features your browser did not support.": "La lecture de la vidéo a été interrompue à cause d'un problème de corruption ou parce que la vidéo utilise des fonctionnalités non prises en charge par votre navigateur.",
+                                "No compatible source was found for this media.": "Aucune source compatible n'a été trouvée pour cette vidéo.",
+                                "The media is encrypted and we do not have the keys to decrypt it.": "Le média est chiffré et nous n'avons pas les clés pour le déchiffrer.",
+                                "Play Video": "Lire la vidéo",
+                                "Close": "Fermer",
+                                "Close Modal Dialog": "Fermer la boîte de dialogue modale",
+                                "Modal Window": "Fenêtre modale",
+                                "This is a modal window": "Ceci est une fenêtre modale",
+                                "This modal can be closed by pressing the Escape key or activating the close button.": "Ce modal peut être fermé en appuyant sur la touche Échap ou activer le bouton de fermeture.",
+                                ", opens captions settings dialog": ", ouvrir les paramètres des sous-titres transcrits",
+                                ", opens subtitles settings dialog": ", ouvrir les paramètres des sous-titres",
+                                ", opens descriptions settings dialog": ", ouvrir les paramètres des descriptions",
+                                ", selected": ", sélectionné",
+                                "captions settings": "Paramètres des sous-titres transcrits",
+                                "subtitles settings": "Paramètres des sous-titres",
+                                "descriptions settings": "Paramètres des descriptions",
+                                "Text": "Texte",
+                                "White": "Blanc",
+                                "Black": "Noir",
+                                "Red": "Rouge",
+                                "Green": "Vert",
+                                "Blue": "Bleu",
+                                "Yellow": "Jaune",
+                                "Magenta": "Magenta",
+                                "Cyan": "Cyan",
+                                "Background": "Arrière-plan",
+                                "Window": "Fenêtre",
+                                "Transparent": "Transparent",
+                                "Semi-Transparent": "Semi-transparent",
+                                "Opaque": "Opaque",
+                                "Font Size": "Taille des caractères",
+                                "Text Edge Style": "Style des contours du texte",
+                                "None": "Aucun",
+                                "Raised": "Élevé",
+                                "Depressed": "Enfoncé",
+                                "Uniform": "Uniforme",
+                                "Dropshadow": "Ombre portée",
+                                "Font Family": "Famille de polices",
+                                "Proportional Sans-Serif": "Polices à chasse variable sans empattement (Proportional Sans-Serif)",
+                                "Monospace Sans-Serif": "Polices à chasse fixe sans empattement (Monospace Sans-Serif)",
+                                "Proportional Serif": "Polices à chasse variable avec empattement (Proportional Serif)",
+                                "Monospace Serif": "Polices à chasse fixe avec empattement (Monospace Serif)",
+                                "Casual": "Manuscrite",
+                                "Script": "Scripte",
+                                "Small Caps": "Petites capitales",
+                                "Reset": "Réinitialiser",
+                                "restore all settings to the default values": "Restaurer tous les paramètres aux valeurs par défaut",
+                                "Done": "Terminé",
+                                "Caption Settings Dialog": "Boîte de dialogue des paramètres des sous-titres transcrits",
+                                "Beginning of dialog window. Escape will cancel and close the window.": "Début de la fenêtre de dialogue. La touche d'échappement annulera et fermera la fenêtre.",
+                                "End of dialog window.": "Fin de la fenêtre de dialogue."
+                            });
+
+                        });
+                    });;
+
+                    require(['jquery'], function($) {
+                        $('#jump-to-activity').change(function() {
+                            if (!$(this).val()) {
+                                return false;
+                            }
+                            $('#url_select_f5cb9d5fbbda7a15').submit();
+                        });
+                    });;
+
+                    require(['theme_boost/loader']);
+                    require(['theme_boost/drawer'], function(mod) {
+                        mod.init();
+                    });;
+                    require(["core/notification"], function(amd) {
+                        amd.init(145958, []);
+                    });;
+                    require(["core/log"], function(amd) {
+                        amd.setConfig({
+                            "level": "warn"
+                        });
+                    });;
+                    require(["core/page_global"], function(amd) {
+                        amd.init();
+                    });
+                });
+                //]]>
+            </script>
+            <script type="text/javascript">
+                //<![CDATA[
+                M.yui.add_module({
+                    "qtype_multianswer": {
+                        "name": "qtype_multianswer",
+                        "fullpath": "https:\/\/moodlequiz.polymtl.ca\/lib\/javascript.php\/1552497931\/question\/type\/multianswer\/module.js",
+                        "requires": ["base", "node", "event", "overlay"]
+                    },
+                    "core_question_engine": {
+                        "name": "core_question_engine",
+                        "fullpath": "https:\/\/moodlequiz.polymtl.ca\/lib\/javascript.php\/1552497931\/question\/qengine.js",
+                        "requires": ["node", "event"]
+                    },
+                    "mod_quiz": {
+                        "name": "mod_quiz",
+                        "fullpath": "https:\/\/moodlequiz.polymtl.ca\/lib\/javascript.php\/1552497931\/mod\/quiz\/module.js",
+                        "requires": ["base", "dom", "event-delegate", "event-key", "core_question_engine", "moodle-core-formchangechecker"]
+                    }
+                });
+
+                //]]>
+            </script>
+            <script type="text/javascript">
+                //<![CDATA[
+                M.str = {
+                    "moodle": {
+                        "lastmodified": "Modifi\u00e9 le",
+                        "name": "Nom",
+                        "error": "Erreur",
+                        "info": "Information",
+                        "yes": "Oui",
+                        "no": "Non",
+                        "ok": "OK",
+                        "cancel": "Annuler",
+                        "changesmadereallygoaway": "Vous avez effectu\u00e9 des modifications. Voulez-vous vraiment quitter cette page et perdre vos modifications\u00a0?",
+                        "confirm": "Confirmer",
+                        "areyousure": "En \u00eates-vous bien s\u00fbr\u00a0?",
+                        "closebuttontitle": "Fermer",
+                        "unknownerror": "Erreur inconnue"
+                    },
+                    "repository": {
+                        "type": "Type",
+                        "size": "Taille",
+                        "invalidjson": "Cha\u00eene JSON non valide",
+                        "nofilesattached": "Aucun fichier joint",
+                        "filepicker": "S\u00e9lecteur de fichiers",
+                        "logout": "D\u00e9connexion",
+                        "nofilesavailable": "Aucun fichier disponible",
+                        "norepositoriesavailable": "D\u00e9sol\u00e9, aucun de vos d\u00e9p\u00f4ts actuels ne peut retourner de fichiers dans le format requis.",
+                        "fileexistsdialogheader": "Le fichier existe",
+                        "fileexistsdialog_editor": "Un fichier de ce nom a d\u00e9j\u00e0 \u00e9t\u00e9 joint au texte que vous modifiez.",
+                        "fileexistsdialog_filemanager": "Un fichier de ce nom a d\u00e9j\u00e0 \u00e9t\u00e9 joint",
+                        "renameto": "Renommer \u00e0 {$a}",
+                        "referencesexist": "Ce fichier est utilis\u00e9 comme source par {$a} alias.",
+                        "select": "S\u00e9lectionnez"
+                    },
+                    "admin": {
+                        "confirmdeletecomments": "Voulez-vous vraiment supprimer des commentaires\u00a0?",
+                        "confirmation": "Confirmation"
+                    },
+                    "question": {
+                        "flagged": "Marqu\u00e9e"
+                    },
+                    "quiz": {
+                        "functiondisabledbysecuremode": "Cette fonctionnalit\u00e9 est actuellement d\u00e9sactiv\u00e9e",
+                        "startattempt": "D\u00e9marrer une tentative",
+                        "timesup": "Le chrono est enclench\u00e9\u00a0!"
+                    }
+                };
+                //]]>
+            </script>
+            <script type="text/javascript">
+                //<![CDATA[
+                (function() {
+                    Y.use("moodle-filter_glossary-autolinker", function() {
+                        M.filter_glossary.init_filter_autolinking({
+                            "courseid": 0
+                        });
+                    });
+                    Y.use("moodle-filter_mathjaxloader-loader", function() {
+                        M.filter_mathjaxloader.configure({
+                            "mathjaxconfig": "\nMathJax.Hub.Config({\n    config: [\"Accessible.js\", \"Safe.js\"],\n    errorSettings: { message: [\"!\"] },\n    skipStartupTypeset: true,\n    messageStyle: \"none\"\n});\n",
+                            "lang": "fr"
+                        });
+                    });
+                    M.util.js_pending('random5cb9d5fbbda7a1');
+                    Y.use('core_question_flags', function(Y) {
+                        M.core_question_flags.init(Y, "https:\/\/moodlequiz.polymtl.ca\/question\/toggleflag.php", [{
+                            "src": "https:\/\/moodlequiz.polymtl.ca\/theme\/image.php\/boost\/core\/1551712393\/i\/unflagged",
+                            "title": "Marquer cette question pour r\u00e9f\u00e9rence",
+                            "alt": "Non marqu\u00e9e"
+                        }, {
+                            "src": "https:\/\/moodlequiz.polymtl.ca\/theme\/image.php\/boost\/core\/1551712393\/i\/flagged",
+                            "title": "Retirer la marque",
+                            "alt": "Marqu\u00e9e"
+                        }], ["Marquer la question", "Retirer la marque"]);
+                        M.util.js_complete('random5cb9d5fbbda7a1');
+                    });
+                    M.util.js_pending('random5cb9d5fbbda7a2');
+                    Y.use('mod_quiz', function(Y) {
+                        M.mod_quiz.nav.init(Y);
+                        M.util.js_complete('random5cb9d5fbbda7a2');
+                    });
+                    M.util.help_popups.setup(Y);
+                    M.util.js_pending('random5cb9d5fbbda7a16');
+                    Y.use('qtype_multianswer', function(Y) {
+                        M.qtype_multianswer.init(Y, "#q2");
+                        M.util.js_complete('random5cb9d5fbbda7a16');
+                    });
+                    M.util.js_pending('random5cb9d5fbbda7a17');
+                    Y.use('qtype_multianswer', function(Y) {
+                        M.qtype_multianswer.init(Y, "#q7");
+                        M.util.js_complete('random5cb9d5fbbda7a17');
+                    });
+                    M.util.js_pending('random5cb9d5fbbda7a18');
+                    Y.use('qtype_multianswer', function(Y) {
+                        M.qtype_multianswer.init(Y, "#q15");
+                        M.util.js_complete('random5cb9d5fbbda7a18');
+                    });
+                    M.util.js_pending('random5cb9d5fbbda7a19');
+                    Y.use('mod_quiz', function(Y) {
+                        M.mod_quiz.init_review_form(Y);
+                        M.util.js_complete('random5cb9d5fbbda7a19');
+                    });
+                    M.util.js_pending('random5cb9d5fbbda7a20');
+                    Y.on('domready', function() {
+                        M.util.js_complete("init");
+                        M.util.js_complete('random5cb9d5fbbda7a20');
+                    });
+                })();
+                //]]>
+            </script>
+
+        </div>
+    </footer>
+    </div>
+    <div id="yui3-css-stamp" style="position: absolute !important; visibility: hidden !important" class=""></div>
+
+
+</body>
+
+</html>

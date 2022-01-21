@@ -1,0 +1,4 @@
+#!/bin/bash
+
+pdfgrep -r --with-filename -i --cache "$1"
+grep -rnw . -e "$1"

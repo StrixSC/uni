@@ -1,0 +1,3 @@
+#!/bin/bash
+
+fdupes -r -1 . -d -N

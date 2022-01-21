@@ -1,0 +1,4 @@
+#!/bin/bash
+
+md5sum * | sort -k1 | uniq -w 32 -d
+fdupes -r -1 -m .

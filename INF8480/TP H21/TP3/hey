@@ -1,0 +1,47 @@
+sudo docker run -t -d --privileged=true --name gluster1 --hostname gluster1 -p 24007 -p 49152-49160 ubuntu
+sudo docker run -t -d --privileged=true --name gluster2 --hostname gluster2 -p 24007 -p 49152-49160 ubuntu
+sudo docker run -t -d --privileged=true --name client --hostname client -p 24007 -p 49152-49160 ubuntu
+
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 1521  bytes 17460122 (17.4 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1033  bytes 60151 (60.1 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+apt-get install software-properties-common && add-apt-repository ppa:gluster/glusterfs-6 && apt-get update && apt-get install glusterfs-server && /usr/sbin/glusterd -p /var/run/glusterd.pid && mkdir /home/disk1/
+
+
+gluster peer probe gluster2
+gluster volume create replicated1 replica 2 gluster1:/home/disk1/ gluster2:/home/disk1/ force
+gluster volume start replicated1
+
+apt-get update
+apt-get install software-properties-common
+add-apt-repository ppa:gluster/glusterfs-6
+apt-get update
+apt-get install glusterfs-client
+mkdir /mnt/replicated1
+mount.glusterfs gluster1:/replicated1 /mnt/replicated1
+
+real	0m1.057s
+user	0m0.005s
+sys	        0m0.139s
+
+real	0m0.180s
+user	0m0.004s
+sys	    0m0.176s
+
+sudo docker run -t -d --privileged=true --name gluster3 --hostname gluster3 -p 24007 -p 49152-49160 glusterfs_tp3
+
+172.17.0.5      gluster3

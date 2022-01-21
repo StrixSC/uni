@@ -1,0 +1,70 @@
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get update
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo docker run hello-world
+
+# reste du tp ici
+sudo  docker  run -t -d --privileged=true --name  gluster1  --hostname  gluster1  -p 24007  -p 49152-49160   ubuntu
+sudo  docker  run -t -d --privileged=true --name  gluster2  --hostname  gluster2  -p 24007  -p 49152-49160   ubuntu
+sudo  docker  run -t -d --privileged=true --name  client  --hostname client  -p 24007 -p 49152-49160   ubuntu
+
+# connection docker gluster 1
+# sudo docker exec -it gluster1 /bin/bash
+# install net-tools
+# ifconfig
+
+#etape 5
+
+apt-get install software-properties-common
+add-apt-repository  ppa:gluster/glusterfs-6
+apt-get update
+apt-get  install  glusterfs-server
+/usr/sbin/glusterd -p /var/run/glusterd.pid
+mkdir /home/disk1/
+
+#etape 6
+gluster peer probe gluster2
+gluster volume create replicated1 replica 2 gluster1:/home/disk1/ gluster2:/home/disk1/ force
+gluster volume start replicated1
+
+
+#etape 7
+apt-get install software-properties-common
+add-apt-repository ppa:gluster/glusterfs-6
+apt-get update
+apt-get install glusterfs-client
+mkdir /mnt/replicated1
+mount.glusterfs gluster1:/replicated1 /mnt/replicated1
+
+# etape 8
+watch  ls /home/disk1/
+
+#etape 9
+touch /mnt/replicated1/bob.txt 
+head -c 200M </dev/urandom >bigfile1
+
+#etape 10
+time cp  bigfile1 /mnt/replicated1
+time cp  bigfile1  copie
+
+#etape 11
+for (( i=1; i <= 20; i++ )); dotouch  $i; done
+
+
+
+
+
+

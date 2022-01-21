@@ -1,0 +1,501 @@
+systemd-+-ModemManager-+-{ModemManager}
+        |              `-{ModemManager}
+        |-NetworkManager-+-{NetworkManager}
+        |                `-{NetworkManager}
+        |-accounts-daemon-+-{accounts-daemon}
+        |                 `-{accounts-daemon}
+        |-acpid
+        |-avahi-daemon---avahi-daemon
+        |-bluetoothd
+        |-boltd-+-{boltd}
+        |       `-{boltd}
+        |-colord-+-{colord}
+        |        `-{colord}
+        |-cron
+        |-dbus-daemon
+        |-dnsmasq
+        |-dnsmasq---dnsmasq
+        |-gdm3-+-gdm-session-wor-+-gdm-x-session-+-Xorg-+-{Xorg}
+        |      |                 |               |      |-{Xorg}
+        |      |                 |               |      `-{Xorg}
+        |      |                 |               |-gnome-session-b-+-ssh-agent
+        |      |                 |               |                 |-{gnome-session-b}
+        |      |                 |               |                 `-{gnome-session-b}
+        |      |                 |               |-{gdm-x-session}
+        |      |                 |               `-{gdm-x-session}
+        |      |                 |-{gdm-session-wor}
+        |      |                 `-{gdm-session-wor}
+        |      |-{gdm3}
+        |      `-{gdm3}
+        |-irqbalance---{irqbalance}
+        |-kerneloops
+        |-kerneloops
+        |-networkd-dispat
+        |-polkitd-+-{polkitd}
+        |         `-{polkitd}
+        |-rpcbind
+        |-rsyslogd-+-{rsyslogd}
+        |          |-{rsyslogd}
+        |          `-{rsyslogd}
+        |-systemd-+-(sd-pam)
+        |         |-at-spi-bus-laun-+-dbus-daemon
+        |         |                 |-{at-spi-bus-laun}
+        |         |                 |-{at-spi-bus-laun}
+        |         |                 `-{at-spi-bus-laun}
+        |         |-at-spi2-registr-+-{at-spi2-registr}
+        |         |                 `-{at-spi2-registr}
+        |         |-dbus-daemon
+        |         |-dconf-service-+-{dconf-service}
+        |         |               `-{dconf-service}
+        |         |-evinced-+-{evinced}
+        |         |         `-{evinced}
+        |         |                 |-update-notifier-+-{update-notifier}
+        |         |                 |                 |-{update-notifier}
+        |         |                 |                 `-{update-notifier}
+        |         |                 |-zeitgeist-datah-+-{zeitgeist-datah}
+        |         |                 |                 |-{zeitgeist-datah}
+        |         |                 |                 |-{zeitgeist-datah}
+        |         |                 |                 |-{zeitgeist-datah}
+        |         |                 |                 |-{zeitgeist-datah}
+        |         |                 |                 `-{zeitgeist-datah}
+        |         |                 |-{gnome-session-b}
+        |         |                 |-{gnome-session-b}
+        |         |                 `-{gnome-session-b}
+        |         |-gnome-session-c---{gnome-session-c}
+        |         |-gnome-shell-+-chromium-browse-+-chromium-browse---chromium-browse-+-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 |-{chromium-browse}
+        |         |             |                 |                                   |                 `-{chromium-browse}
+        |         |             |                 |                                   `-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                                                     |-{chromium-browse}
+        |         |             |                 |                                                     |-{chromium-browse}
+        |         |             |                 |                                                     |-{chromium-browse}
+        |         |             |                 |                                                     |-{chromium-browse}
+        |         |             |                 |                                                     |-{chromium-browse}
+        |         |             |                 |                                                     |-{chromium-browse}
+        |         |             |                 |                                                     `-{chromium-browse}
+        |         |             |                 |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                 |-{chromium-browse}
+        |         |             |                 |                 |-{chromium-browse}
+        |         |             |                 |                 |-{chromium-browse}
+        |         |             |                 |                 |-{chromium-browse}
+        |         |             |                 |                 `-{chromium-browse}
+        |         |             |                 |-chromium-browse-+-{chromium-browse}
+        |         |             |                 |                 |-{chromium-browse}
+        |         |             |                 |                 |-{chromium-browse}
+        |         |             |                 |                 |-{chromium-browse}
+        |         |             |                 |                 |-{chromium-browse}
+        |         |             |                 |                 |-{chromium-browse}
+        |         |             |                 |                 `-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 |-{chromium-browse}
+        |         |             |                 `-{chromium-browse}
+        |         |             |-ibus-daemon-+-ibus-engine-sim-+-{ibus-engine-sim}
+        |         |             |             |                 `-{ibus-engine-sim}
+        |         |             |             |-ibus-extension--+-{ibus-extension-}
+        |         |             |             |                 |-{ibus-extension-}
+        |         |             |             |                 `-{ibus-extension-}
+        |         |             |             |-ibus-memconf-+-{ibus-memconf}
+        |         |             |             |              `-{ibus-memconf}
+        |         |             |             |-{ibus-daemon}
+        |         |             |             `-{ibus-daemon}
+        |         |             |-{gnome-shell}
+        |         |             |-{gnome-shell}
+        |         |             |-{gnome-shell}
+        |         |             |-{gnome-shell}
+        |         |             |-{gnome-shell}
+        |         |             |-{gnome-shell}
+        |         |             |-{gnome-shell}
+        |         |             |-{gnome-shell}
+        |         |             |-{gnome-shell}
+        |         |             `-{gnome-shell}
+        |         |-gnome-terminal--+-bash-+-evince-+-{evince}
+        |         |                 |      |        |-{evince}
+        |         |                 |      |        |-{evince}
+        |         |                 |      |        |-{evince}
+        |         |                 |      |        `-{evince}
+        |         |                 |      `-pstree
+        |         |                 |-{gnome-terminal-}
+        |         |                 |-{gnome-terminal-}
+        |         |                 |-{gnome-terminal-}
+        |         |                 `-{gnome-terminal-}
+        |-systemd-journal
+        |-systemd-logind
+        |-systemd-resolve
+        |-systemd-timesyn---{systemd-timesyn}
+        |-systemd-udevd
+        |-thermald---{thermald}
+        |-udisksd-+-{udisksd}
+        |         |-{udisksd}
+        |         |-{udisksd}
+        |         `-{udisksd}
+        |-unattended-upgr---{unattended-upgr}
+        |-upowerd-+-{upowerd}
+        |         `-{upowerd}
+        `-wpa_supplicant
