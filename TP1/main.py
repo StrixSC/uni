@@ -3,6 +3,7 @@ import sys
 import os
 import time
 
+# Total: n*log(n) + n^2 => n^2 E O(n^2)
 def brute(inputs):
     critical_points = []
     saved_points = []
@@ -14,18 +15,20 @@ def brute(inputs):
     from operator import itemgetter
     critical_points = sorted(critical_points, key=itemgetter('x')) 
     
-    saved_points.append(critical_points[0])
+    saved_points.append(critical_points[0]) 
     for i in range(1, len(critical_points)):
         critical_point = critical_points[i]
-        for building in inputs:
+        for building in inputs: # m
             # On regarde si le critical point est contenu dans le batiment
             if critical_point['x'] >= building['x1'] and critical_point['x'] < building['x2']:
                 # On regarde la hauteur, si la hauteur est plus elevee, on sureleve le point critique
                 if critical_point['y'] < building['height']:
                     critical_point['y'] = building['height']
         
+        # On verifie si le point est redondant:
         if critical_point['y'] != saved_points[len(saved_points) - 1]['y']:
             saved_points.append(critical_point)
+            
     return saved_points
 
 def divide(inputs):
@@ -88,8 +91,8 @@ def main():
     if p:
         for output in results:
             print(output['x'], output['y'], sep=' ')
-        if t:   
-            print("Temps d'execution: ", t1 - t0, sep=" ")
+    if t:   
+        print("Temps d'execution: ", t1 - t0, sep=" ")
     
 if __name__ == "__main__":
     main()
