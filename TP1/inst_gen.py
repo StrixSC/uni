@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
     # Generate
     for i in range(args.nb_exemplaires):
-        with open('N' + str(args.taille) + '_' + str(i),'w') as inst:
+        with open('N' + str(args.taille) + '_' + str(i) + '.txt','w') as inst:
             last_l = 0
             inst.write("%d\n" % args.taille)
             for _ in range(args.taille):
