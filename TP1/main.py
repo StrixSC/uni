@@ -1,15 +1,35 @@
 import argparse
 import sys
 import os
+import time
 
-def brute(inputs, p, t):
-    print(inputs)
+def brute(inputs):
+    critical_points = []
+    saved_points = []
+
+    for input in inputs:
+        critical_points.append({"x": input["x1"], "y": input["height"]})
+        critical_points.append({"x": input["x2"], "y": 0})
+
+    saved_points.append(critical_points[0])
+    for i in range(1, len(critical_points)):
+        critical_point = critical_points[i]
+        for building in inputs:
+            # On regarde si le critical point est contenu dans le building
+            if critical_point['x'] >= building['x1'] and critical_point['x'] <= building['x2']:
+                # On regarde la hauteur, si la hauteur est plus elevee sureleve le point critique
+                if critical_point['y'] < building['height']:
+                    critical_point['y'] = building['height']
+        
+        if critical_point['y'] != saved_points[len(saved_points) - 1]['y']:
+            saved_points.append(critical_point)
+            
+    return saved_points
+
+def divide(inputs):
     pass
 
-def divide(inputs, p, t):
-    pass
-
-def seuil(inputs, p, t):
+def seuil(inputs):
     pass
 
 def main():
@@ -45,7 +65,7 @@ def main():
         lines = f.readlines()
         total = int(lines[0])
         for i in range(1, len(lines)):
-            line = lines[i]
+            line = lines[i].strip()
             split = line.split(' ')
             inputs.append({
                 "x1": int(split[0]),
@@ -53,12 +73,21 @@ def main():
                 "height": int(split[2])
             })
     
+    results = []
+    t0 = time.time()
     if algo == 'brute':
-        brute(inputs, p, t)
+        results = brute(inputs)
     elif algo == 'divide':
-        divide(inputs, p, t)
+        results = divide(inputs)
     elif algo == 'seuil':
-        seuil(inputs, p, t)
-        
+        results = seuil(inputs)
+    t1 = time.time()
+    
+    if p:
+        for output in results:
+            print(output['x'], output['y'], sep=' ')
+        if t:   
+            print("Temps d'execution: ", t1 - t0, sep=" ")
+    
 if __name__ == "__main__":
     main()

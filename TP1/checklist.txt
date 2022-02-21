@@ -1,9 +1,0 @@
-Checklist: 
-
-- CLI sur python - DONE
-- cli sur bash - ALMOST DONE (Finish the bug with -t)
-
-- code brute force
-- code divide
-- code divide 2 
-
