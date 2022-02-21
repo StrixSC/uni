@@ -2,8 +2,15 @@ import argparse
 import sys
 import os
 
-def checkFile(file: str) -> bool:
-    return os.path.isfile(file)
+def brute(inputs, p, t):
+    print(inputs)
+    pass
+
+def divide(inputs, p, t):
+    pass
+
+def seuil(inputs, p, t):
+    pass
 
 def main():
     parser = argparse.ArgumentParser(description='TP1 INF8775')
@@ -32,7 +39,26 @@ def main():
         print("Input file is not good.")
         sys.exit(-1)
     
-    print("Algo: ", algo, "Input: ", input, "p: ", p, "t: ", t)
-
+    inputs = []
+    
+    with open(input, mode='r') as f:
+        lines = f.readlines()
+        total = int(lines[0])
+        for i in range(1, len(lines)):
+            line = lines[i]
+            split = line.split(' ')
+            inputs.append({
+                "x1": int(split[0]),
+                "x2": int(split[1]),
+                "height": int(split[2])
+            })
+    
+    if algo == 'brute':
+        brute(inputs, p, t)
+    elif algo == 'divide':
+        divide(inputs, p, t)
+    elif algo == 'seuil':
+        seuil(inputs, p, t)
+        
 if __name__ == "__main__":
     main()
