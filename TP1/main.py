@@ -10,20 +10,22 @@ def brute(inputs):
     for input in inputs:
         critical_points.append({"x": input["x1"], "y": input["height"]})
         critical_points.append({"x": input["x2"], "y": 0})
-
+    
+    from operator import itemgetter
+    critical_points = sorted(critical_points, key=itemgetter('x')) 
+    
     saved_points.append(critical_points[0])
     for i in range(1, len(critical_points)):
         critical_point = critical_points[i]
         for building in inputs:
-            # On regarde si le critical point est contenu dans le building
-            if critical_point['x'] >= building['x1'] and critical_point['x'] <= building['x2']:
-                # On regarde la hauteur, si la hauteur est plus elevee sureleve le point critique
+            # On regarde si le critical point est contenu dans le batiment
+            if critical_point['x'] >= building['x1'] and critical_point['x'] < building['x2']:
+                # On regarde la hauteur, si la hauteur est plus elevee, on sureleve le point critique
                 if critical_point['y'] < building['height']:
                     critical_point['y'] = building['height']
         
         if critical_point['y'] != saved_points[len(saved_points) - 1]['y']:
             saved_points.append(critical_point)
-            
     return saved_points
 
 def divide(inputs):
