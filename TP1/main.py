@@ -1,8 +1,14 @@
 import argparse
 import sys
 import os
+import math
 import time
+from types import coroutine
 
+def sort_by_xcoords(inputs):
+    from operator import itemgetter
+    return sorted(inputs, key=itemgetter('x')) 
+    
 # Total: n*log(n) + n^2 => n^2 E O(n^2)
 def brute(inputs):
     critical_points = []
@@ -12,8 +18,7 @@ def brute(inputs):
         critical_points.append({"x": input["x1"], "y": input["height"]})
         critical_points.append({"x": input["x2"], "y": 0})
     
-    from operator import itemgetter
-    critical_points = sorted(critical_points, key=itemgetter('x')) 
+    critical_points = sort_by_xcoords(critical_points)
     
     saved_points.append(critical_points[0]) 
     for i in range(1, len(critical_points)):
@@ -31,8 +36,49 @@ def brute(inputs):
             
     return saved_points
 
-def divide(inputs):
-    pass
+def merge_dnc_points(points_1, points_2):    
+    index_1 = 0
+    index_2 = 0
+    len1 = len(points_1)
+    len2 = len(points_2)
+    h_blue = 0
+    h_green = 0
+    merged = []
+
+    while (index_1 < len1 and index_2 < len2):
+        blue_point = points_1[index_1]
+        green_point = points_2[index_2]
+
+        if green_point['x'] >= blue_point['x']:
+            h_blue = blue_point['y']
+            blue_point['y'] = max(h_green, blue_point['y'])
+            index_1 += 1
+        else:
+            h_green = green_point['y']
+            green_point['y'] = max(h_blue, green_point['y'])
+            index_2 += 1
+
+        merge_point = blue_point if h_blue > h_green else green_point
+        if len(merged) == 0:
+            merged.append(merge_point)
+        elif merged[-1]['y'] != merge_point['y']:
+            merged.append(merge_point)
+
+    return merged
+
+def recursif(inputs):
+    if len(inputs) == 0:
+        return []
+    
+    if len(inputs) == 1:
+        return [
+            {'x': inputs[0]['x1'], 'y': inputs[0]['height']},
+            {'x': inputs[0]['x2'], 'y': 0}
+        ]
+
+    b1 = recursif(inputs[: len(inputs) // 2])
+    b2 = recursif(inputs[len(inputs) // 2:])
+    return merge_dnc_points(b1, b2)
 
 def seuil(inputs):
     pass
@@ -82,8 +128,8 @@ def main():
     t0 = time.time()
     if algo == 'brute':
         results = brute(inputs)
-    elif algo == 'divide':
-        results = divide(inputs)
+    elif algo == 'recursif':
+        results = recursif(inputs)
     elif algo == 'seuil':
         results = seuil(inputs)
     t1 = time.time()
