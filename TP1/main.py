@@ -49,21 +49,24 @@ def merge_dnc_points(points_1, points_2):
         blue_point = points_1[index_1]
         green_point = points_2[index_2]
 
-        if green_point['x'] >= blue_point['x']:
+        if  blue_point['x'] < green_point['x']:
             h_blue = blue_point['y']
-            blue_point['y'] = max(h_green, blue_point['y'])
+            blue_point['y'] = max(h_green, h_blue)
+            merge_point = blue_point
             index_1 += 1
         else:
             h_green = green_point['y']
-            green_point['y'] = max(h_blue, green_point['y'])
+            green_point['y'] = max(h_blue, h_green)
+            merge_point = green_point
             index_2 += 1
 
-        merge_point = blue_point if h_blue > h_green else green_point
         if len(merged) == 0:
             merged.append(merge_point)
         elif merged[-1]['y'] != merge_point['y']:
             merged.append(merge_point)
 
+    merged.extend(points_1[index_1:])
+    merged.extend(points_2[index_2:])
     return merged
 
 def recursif(inputs):
