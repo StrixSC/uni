@@ -1,6 +1,7 @@
 .vs
 .idea
 .vscode
+__pycache__/
 venv/
 
 **/N*_*
