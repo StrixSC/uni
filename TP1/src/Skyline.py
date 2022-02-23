@@ -13,7 +13,7 @@ class Skyline:
         elif algorithm == 'recursif':
             skyline = self.solve_recursively(buildings=self.buildings)
         elif algorithm == 'seuil':
-            skyline = self.solve_recursively(has_seuil=True, seuil=seuil)
+            skyline = self.solve_recursively(buildings=self.buildings, has_seuil=True, seuil=seuil)
         t1 = time()
         return skyline, t1 - t0
 
@@ -37,8 +37,7 @@ class Skyline:
                     # We match the critical point's height with the building's height if they do not correspond
                     if cp.height < building.height:
                         cp.height = building.height
-            if cp.height != skyline[-1].height:
-                skyline.append(cp)
+            self.append(skyline, cp)
 
         return skyline
     
