@@ -9,8 +9,8 @@ from Skyline import Skyline
 
 def parse_args():
     parser = argparse.ArgumentParser(description='TP1 INF8775')
-    parser.add_argument('-a', '--algorithm', dest='algo', type=str, help="Algorithme à utiliser. Choix disponibles: 'brute', 'recursif', 'seuil'")
-    parser.add_argument('-e', '--exemplaire', dest='input', type=str, help="Fichier contenant l'exemplaire à utiliser.")
+    parser.add_argument('-a', '--algorithm', dest='algo', required=True, type=str, help="Algorithme à utiliser. Choix disponibles: 'brute', 'recursif', 'seuil'")
+    parser.add_argument('-e', '--exemplaire', dest='input', required=True, type=str, help="Fichier contenant l'exemplaire à utiliser.")
     parser.add_argument('-p', action='store_true', dest='p', help="""
                         Afficher, sur chaque ligne, les couples définissant la silhouette de bâtiments, triés selon l’abscisse
                     """)
@@ -37,7 +37,7 @@ def generate_buildings(file):
 
 def main():
     args = parse_args()
-    
+   
     if(not (os.path.isfile(args.input))):
         print("Le fichier entré n'est pas valid ou n'existe pas...")
         sys.exit(-1)
