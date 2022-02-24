@@ -15,6 +15,7 @@ def parse_args():
                         Afficher, sur chaque ligne, les couples définissant la silhouette de bâtiments, triés selon l’abscisse
                     """)
     parser.add_argument('-t', action='store_true', dest='t', help="Affiche le temps d’exécution en millisecondes")
+    parser.add_argument('-s', '--seuil', dest='seuil', help="Seuil à utiliser pour l'algorithme recursif avec seuil.")
 
     if len(sys.argv) <= 1:
         parser.print_help()
@@ -22,6 +23,9 @@ def parse_args():
 
     return parser.parse_args()
 
+"""_summary_
+Retourne une liste de Buildings contenant les valeurs de x1, x2 et hauteur pour chaque batiment obtenu par les données des exemplaires.
+"""
 def generate_buildings(file):
     buildings = []
     
@@ -37,16 +41,17 @@ def main():
     if(not (os.path.isfile(args.input))):
         print("Le fichier entré n'est pas valid ou n'existe pas...")
         sys.exit(-1)
-    
+
+    # On créer un Skyline avec la liste de batîments que nous avons pu créer à partir du fichier exemplaire.    
     skyline = Skyline(generate_buildings(args.input))
     solved, time = skyline.solve(algorithm=args.algo, p=args.p, seuil=100)
+    
+    if args.t:
+        print("Temps: ", time * 1000)
     
     if args.p:
         for cp in solved:
             print(cp.x, cp.height)
-    
-    if args.t:
-        print("Temps: ", time * 1000)
     
     exit(0)
     
