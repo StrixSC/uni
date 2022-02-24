@@ -35,6 +35,9 @@ class Skyline:
         # On trie les points critiques en terme d'abcisses ascendants.
         critical_points.sort(key=lambda cp: cp.x)
         
+        if len(critical_points) == 0:
+            return []
+
         # Le point critique le plus à gauche du premier bâtiment apparaîtra toujours dans la ligne d'horizon finale.
         skyline.append(critical_points[0])
         
