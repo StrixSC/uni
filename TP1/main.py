@@ -47,7 +47,7 @@ def main():
     solved, time = skyline.solve(algorithm=args.algo, p=args.p, seuil=100)
     
     if args.t:
-        print("Temps: ", time * 1000, "ms")
+        print(time * 1000)
     
     if args.p:
         for cp in solved:
