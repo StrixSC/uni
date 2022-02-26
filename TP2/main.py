@@ -7,8 +7,8 @@ from Tower import Tower
 from Block import Block
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='TP1 INF8775')
-    parser.add_argument('-a', '--algorithm', dest='algo', required=True, type=str, help="Algorithme à utiliser. Choix disponibles: 'brute', 'recursif', 'seuil'")
+    parser = argparse.ArgumentParser(description='TP2 INF8775')
+    parser.add_argument('-a', '--algorithm', dest='algo', required=True, type=str, help="Algorithme à utiliser. Choix disponibles: 'glouton', 'progdyn', 'tabou'")
     parser.add_argument('-e', '--exemplaire', dest='input', required=True, type=str, help="Fichier contenant l'exemplaire à utiliser.")
     parser.add_argument('-p', action='store_true', dest='p', help="""
                         Afficher, sur chaque ligne, les couples définissant la silhouette de bâtiments, triés selon l’abscisse
@@ -42,14 +42,16 @@ def main():
 
 
     tower = Tower()
-    solved, time = tower.solve(blocks=generate_blocks(args.input), algorithm=args.algo)
+    solved, height, time = tower.solve(blocks=generate_blocks(args.input), algorithm=args.algo)
+    
+    print("Total Height:", height)
     
     if args.t:
         print(time * 1000)
     
     if args.p:
-        for cp in solved:
-            print(cp.x, cp.height)
+        for block in solved:
+            block.print()
     
     exit(0)
     

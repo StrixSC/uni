@@ -6,3 +6,6 @@ class Block:
         self.l = l
         self.p = p
         self.h = h
+        
+    def print(self):
+        print(self.l, self.p, self.h)
