@@ -5,7 +5,7 @@ class Tower:
     def solve(self, blocks: list[Block], algorithm="glouton"):
         t0 = time()
         if algorithm == "glouton":
-            solved, height = self.solve_greedy(blocks)
+            solved, height, _ = self.solve_greedy(blocks)
         elif algorithm == "progdyn":
             solved, height = self.solve_dynprog(blocks)
         elif algorithm == "tabou":
@@ -15,7 +15,7 @@ class Tower:
             exit(-1)
         return solved, height, (time() - t0)
     
-    def solve_greedy(self, blocks: list[Block]):
+    def solve_greedy(self, blocks: list[Block], keep_unused_blocks=False):
         # Tout d'abord, on trie selon la longueur de chaque bloc, en ordre decroissant.
         # TODO: Better sorting method that takes into account not only the length of the block
         tower = []
@@ -25,16 +25,17 @@ class Tower:
         # On pose la hauteur de se dernier comme la hauteur initiale de la tour.
         tower.append(blocks[0])
         hauteur = tower[-1].h
-
+        unused_blocks = []
         # Pour chaque block restant, on verifie si la longueur et la profondeur sont strictement inférieur à celle du dernier block ajouté à la tour.    
-        for i in range(1, len(blocks)):
-            block = blocks[i]
+        for block in blocks[1:]:
             if block.is_smaller(tower[-1]):
                 # Si oui, on l'ajoute à la tour et on augmente la hauteur totale de la tour.
                 tower.append(block)
                 hauteur += block.h
-
-        return tower, hauteur
+            elif keep_unused_blocks:
+                unused_blocks.append(block)
+                
+        return tower, hauteur, unused_blocks
         
     def solve_dynprog(self, blocks: list[Block]):
         blocks.sort(key=lambda x: x.l*x.p, reverse=True)
@@ -58,4 +59,31 @@ class Tower:
         return list(reversed(tower)), heights[max_height_index]
 
     def solve_tabu(self, blocks: list[Block]):
-        return []
+        greedy_tower, _, unused_blocks = self.solve_greedy(blocks, keep_unused_blocks=True)
+        max_height = 0
+        max_neighbour = []
+        for block in unused_blocks:
+            neighbour, height = self.create_neighbour(block, greedy_tower)
+            if max_height < height:
+                max_height = height
+                max_neighbour = neighbour
+
+        return max_neighbour, max_height
+    
+    def create_neighbour(self, unused_block: Block, tower: list[Block]):
+        neighbour = []
+        for i, block in reversed(list(enumerate(tower))):
+            if unused_block.is_smaller(block):
+                neighbour.extend(tower[:i+1])
+                neighbour.append(unused_block)
+                for j, remaining_block in enumerate(tower[i:]):
+                    if remaining_block.is_smaller(unused_block):
+                        neighbour.extend(tower[j:])
+                        break
+                break
+        
+        height = 0
+        for block in neighbour:
+            height += block.h
+        
+        return neighbour, height

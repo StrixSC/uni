@@ -14,7 +14,7 @@ def parse_args():
                         Afficher, sur chaque ligne, les couples définissant la silhouette de bâtiments, triés selon l’abscisse
                     """)
     parser.add_argument('-t', action='store_true', dest='t', help="Affiche le temps d’exécution en millisecondes")
-
+    parser.add_argument('-H', '--height', action='store_true', dest='height', help="Affiche la taille total de la tour finale")
     if len(sys.argv) <= 1:
         parser.print_help()
         sys.exit(0)
@@ -43,7 +43,8 @@ def main():
     tower = Tower()
     solved, height, time = tower.solve(blocks=generate_blocks(args.input), algorithm=args.algo)
     
-    print("Total Height:", height)
+    if args.height:
+        print("Total Height:", height)
     
     if args.t:
         print(time * 1000)
