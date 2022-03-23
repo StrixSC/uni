@@ -109,7 +109,7 @@ class Skyline:
             final_cp.height = max(left_cp_height, right_cp_height)
             self.append(merged_skyline, final_cp)
         
-        # Tout les points critiques des deux listes qui n'ont pas été évalué lors de la boucle vont inévitablement 
+        # Tous les points critiques des deux listes qui n'ont pas été évalué lors de la boucle vont inévitablement 
         # faire partie du Skyline final.
         merged_skyline.extend(left_skyline[left_index:])
         merged_skyline.extend(right_skyline[right_index:])

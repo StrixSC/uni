@@ -7,5 +7,8 @@ class Block:
         self.p = p
         self.h = h
         
+    def is_smaller(self, block):
+        return self.l < block.l and self.p < block.p
+        
     def print(self):
         print(self.l, self.p, self.h)

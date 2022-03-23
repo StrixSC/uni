@@ -7,11 +7,11 @@ class Tower:
         if algorithm == "glouton":
             solved, height = self.solve_greedy(blocks)
         elif algorithm == "progdyn":
-            solved, height = self.solve_dynamic_programming(blocks)
+            solved, height = self.solve_dynprog(blocks)
         elif algorithm == "tabou":
             solved, height = self.solve_tabu(blocks)
         else:
-            print("Algorithm pas implémenté")
+            print("Algorithme pas implémenté")
             exit(-1)
         return solved, height, (time() - t0)
     
@@ -29,20 +29,33 @@ class Tower:
         # Pour chaque block restant, on verifie si la longueur et la profondeur sont strictement inférieur à celle du dernier block ajouté à la tour.    
         for i in range(1, len(blocks)):
             block = blocks[i]
-            if block.l < tower[-1].l and block.p < tower[-1].p:
+            if block.is_smaller(tower[-1]):
                 # Si oui, on l'ajoute à la tour et on augmente la hauteur totale de la tour.
                 tower.append(block)
                 hauteur += block.h
 
         return tower, hauteur
         
-    def solve_dynamic_programming(self, blocks: list[Block]):
-        # Tout d'abord, on trie la liste de block selon l'aire des blocs en ordre decroissant
-        blocks.sort(key=lambda x: x.l*x.p) 
-        hauteur = 0
+    def solve_dynprog(self, blocks: list[Block]):
+        blocks.sort(key=lambda x: x.l*x.p, reverse=True)
+        heights = [0 for b in blocks]
+        lasts = [None for b in blocks]
+        for i, current_block in enumerate(blocks):
+            heights[i] = current_block.h
+            max_potential_height = 0
+            for j, previous_block in enumerate(blocks[0:i]):
+                if current_block.is_smaller(previous_block) and max_potential_height < heights[j]:
+                    max_potential_height = heights[j]
+                    lasts[i] = j
+            heights[i] += max_potential_height
+
+        tower = []
+        max_height_index = next = max(range(len(heights)), key=heights.__getitem__)
+        while next is not None:
+            tower.append(blocks[next])
+            next = lasts[next]
         
-        
-        return []
-    
+        return list(reversed(tower)), heights[max_height_index]
+
     def solve_tabu(self, blocks: list[Block]):
         return []

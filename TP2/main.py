@@ -28,7 +28,7 @@ def generate_blocks(file):
     blocks = []
     
     with open(file, mode='r') as f:
-        for line in f.readlines()[1:]:
+        for line in f.readlines():
             split = line.strip().split(' ')
             blocks.append(Block(int(split[0]), int(split[1]), int(split[2])))
     return blocks
@@ -36,10 +36,9 @@ def generate_blocks(file):
 def main():
     args = parse_args()
 
-    if(not (os.path.isfile(args.input))):
+    if not (os.path.isfile(args.input)):
         print("Le fichier entré n'est pas valid ou n'existe pas...")
         sys.exit(-1)
-
 
     tower = Tower()
     solved, height, time = tower.solve(blocks=generate_blocks(args.input), algorithm=args.algo)
