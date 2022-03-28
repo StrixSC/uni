@@ -22,8 +22,8 @@ def parse_args():
 
     return parser.parse_args()
 
-"""_summary_
-Retourne une liste de Blocks contenant les valeurs de longueur, profondeur et hauteur pour chaque donnée obtenu par l'exemplaire.
+"""
+@description: Retourne une liste de Blocks contenant les valeurs de longueur, profondeur et hauteur pour chaque donnée obtenu par l'exemplaire.
 """
 def generate_blocks(file):
     blocks = []
@@ -41,6 +41,7 @@ def benchmark(algo):
             for j in range(1, 11):
                 tower = Tower()
                 _, height, time = tower.solve(blocks=generate_blocks(f'test-data/b{val}_{j}.txt'), algorithm=algo)
+                print(f"b{val}_{j}.txt: ", height, time) 
                 file.write(f"{height},{time}\n")
     
 def main():
