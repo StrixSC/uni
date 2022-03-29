@@ -23,7 +23,7 @@ def parse_args():
     return parser.parse_args()
 
 """
-@description: Retourne une liste de Blocks contenant les valeurs de longueur, profondeur et hauteur pour chaque donnée obtenu par l'exemplaire.
+@description: Returns a list of Blocks containing the length, depth and height values for each data item obtained by the copy.
 """
 def generate_blocks(file):
     blocks = []
