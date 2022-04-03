@@ -1,0 +1,7 @@
+build/
+.vscode/
+*.out
+*.o
+*.obj
+*.dump
+N*_*_*
