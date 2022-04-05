@@ -1,10 +1,8 @@
-all:
-	mkdir -p build
-	g++ -Wall -Wextra -Werror main.cpp -o ./build/main
+all: *.o
+	g++ -Wall -Wextra -Werror $^ -o build/$@
 
-dev: 
-	mkdir -p build
-	g++ -Wall -Wextra main.cpp -o ./build/main
+%.o: %.cpp
+	g++ -Wall -Wextra -Werror $< -o build/$@
 
 clean:
 	rm -rf *.o *.out build/* main

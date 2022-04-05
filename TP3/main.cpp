@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <map>
 
+#include "Site.cpp"
+
 using namespace std;
 
 void print_matrix(const vector<vector<int>>& matrix)
@@ -68,25 +70,21 @@ vector<pair<int, int>> get_atom_type_energy_sums(const vector<vector<int>>& ener
     return energy_bond_sum;
 }
 
-// EDIT: THIS WILL NOT WORK OUT XDD
-size_t solve_greedy(
-    unsigned int site_count,
-    unsigned int type_count,
-    const vector<int> atom_type_counts,
-    const vector<vector<int>>& graph, 
-    const vector<vector<int>>& energy_matrix
-)
-{
-    vector<pair<int, int>> link_counts = get_link_counts(graph);    // O(n^2)
-    vector<pair<int, int>> atom_type_energy_sums = get_atom_type_energy_sums(energy_matrix);    // O(n^2)
+size_t compute_total_energy_consumption(vector<pair<int, int>>& solution, vector<vector<int>>& energy_matrix) {
     return 0;
+}
+
+vector<pair<int, int>> bnb_solve(int lowest_cost_index, vector<vector<int>>& graph) {
+    vector<pair<int, int>> solution;
+
+    return solution;
 }
 
 int main(int argc, char* argv[]) {
 
     if (argc == 1)
     {
-        cout << "Utilisation: tp.sh -e [chemin_vers_exemplaire]" << endl;
+        printf("Utilisation: tp.sh -e [chemin_vers_exemplaire]\n");
         return -1;
     }
 
@@ -99,7 +97,7 @@ int main(int argc, char* argv[]) {
     }
     else
     {
-        cout << "Fichier d'exemplaire non valide ou manquant..." << endl;
+        printf("Fichier d'exemplaire non valide ou manquant...\n");
         return -1;
     }
 
@@ -107,7 +105,7 @@ int main(int argc, char* argv[]) {
 
     if(!file.is_open())
     {
-        cout << "Fichier non valide" << endl;
+        printf("Fichier non valide\n");
         return -1;
     }
 
@@ -140,16 +138,53 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    // Initialize and fill the adjacency matrix to plot the graph;
-    vector<vector<int>> graph(site_count, vector<int>(site_count));
+    // Initialize, create and fill the graph with all the sites;
+    vector<Site*> graph(site_count);
     int vertex_a, vertex_b; 
     for(int i = 0; i < edges_count; i++)
     {
         file >> vertex_a >> vertex_b;
-        graph[vertex_a][vertex_b] = 1;
+        Site* site_ptr = graph[vertex_a];
+        Site* neighbour_ptr = graph[vertex_b];
+        
+        if(site_ptr == NULL)
+        {
+            graph[vertex_a] = new Site(vertex_a);
+        }
+
+        if (neighbour_ptr == NULL)
+        {
+            graph[vertex_b] = new Site(vertex_b);
+        }
+
+        graph[vertex_a]->add_neighbour_site(graph[vertex_b]);
+        graph[vertex_b]->add_neighbour_site(graph[vertex_a]);
     }
 
-    const size_t sum = solve_greedy(site_count, types_count, atom_counts, graph, bond_energies_matrix);
+    for (Site* site : graph)
+    {
+        site->print_site();
+    }
+
+    
+    // int lowest_cost_index = 0;
+    // size_t sum = UINT64_MAX;
+    // vector<pair<int, int>> solution;
+
+    // do
+    // {
+        
+    //     vector<pair<int, int>> new_solution = bnb_solve(lowest_cost_index, graph);
+    //     const size_t new_sum = compute_total_energy_consumption(solution, bond_energies_matrix);
+        
+    //     if(sum <= new_sum)
+    //     {
+    //         sum = new_sum;
+    //         solution = new_solution;
+    //         printf("Total Energy: %lu\n", sum);
+    //     }
+
+    // } while(true);
 
     return 0;
 }
