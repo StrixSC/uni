@@ -1,8 +1,8 @@
-all: *.o
-	g++ -Wall -Wextra -Werror $^ -o build/$@
+tp: main.cpp Site.cpp
+	g++ -Wall -Wextra $^ -o build/$@
 
-%.o: %.cpp
-	g++ -Wall -Wextra -Werror $< -o build/$@
+# %.o: %.cpp
+# 	g++ -Wall -Wextra -Werror $< -o $@
 
 clean:
-	rm -rf *.o *.out build/* main
+	rm -rf *.o *.out build/main

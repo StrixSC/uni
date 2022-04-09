@@ -4,8 +4,8 @@
 
 using namespace std;
 
-#ifndef SITE;
-#define SITE;
+#ifndef SITE
+#define SITE
 
 class Site {
     public:
