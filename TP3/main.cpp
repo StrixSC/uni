@@ -3,81 +3,19 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <queue>
 #include <map>
+#include <set>
+#include <list>
 
-#include "Site.cpp"
+#include "Node.cpp"
 
 using namespace std;
 
-void print_matrix(const vector<vector<int>>& matrix)
+template <typename S>
+void print_array(vector<S> array)
 {
-    unsigned i = 0;
-    for (auto v1 : matrix)
-    {
-        printf("%d [ ", i);
-        for (auto v2 : v1)
-            v2 ? printf("1 ") : printf("0 ");
-        i++;
-        printf("] \n");
-    }
-}
 
-vector<pair<int, int>> get_link_counts(const vector<vector<int>>& graph)
-{
-    vector<pair<int, int>> link_counts;
-    unsigned int index = 0;
-    for(auto v : graph)
-    {
-        unsigned int count = 0;
-        for (auto itr = v.begin(); itr != v.end(); itr++)
-        {
-            if(*itr) count++;
-        }
-        link_counts.push_back(make_pair(index, count));
-        index++;
-    }
-    
-    sort(link_counts.begin(), link_counts.end(), 
-        [&](pair<int, int>& a, pair<int, int>& b)
-        {
-            return a.second > b.second;
-        }
-    );
-
-    return link_counts;
-}
-
-vector<pair<int, int>> get_atom_type_energy_sums(const vector<vector<int>>& energy_matrix)
-{
-    vector<pair<int, int>> energy_bond_sum(energy_matrix.size());
-    unsigned int index = 0;
-    for(auto v : energy_matrix)
-    {
-        energy_bond_sum[index].first = index;
-        for (auto itr = v.begin(); itr != v.end(); itr++)
-        {
-            energy_bond_sum[index].second += *itr;
-        }
-        index++;
-    }
-
-    sort(energy_bond_sum.begin(), energy_bond_sum.end(), 
-        [&](pair<int, int>& a, pair<int, int>& b)
-        {
-            return a.second < b.second;
-        }
-    );
-    return energy_bond_sum;
-}
-
-size_t compute_total_energy_consumption(vector<pair<int, int>>& solution, vector<vector<int>>& energy_matrix) {
-    return 0;
-}
-
-vector<pair<int, int>> bnb_solve(int lowest_cost_index, vector<vector<int>>& graph) {
-    vector<pair<int, int>> solution;
-
-    return solution;
 }
 
 int main(int argc, char* argv[]) {
@@ -110,81 +48,87 @@ int main(int argc, char* argv[]) {
     }
 
     /* Parse input */
-
     // Get the list of sites, the type counts and the count for the number of edges. (Respectively: t, k, |A|)
-    int site_count, types_count, edges_count;
-    file >> site_count >> types_count >> edges_count;
+    int site_count, type_count, edges_count;
+    file >> site_count >> type_count >> edges_count;
     
-    vector<int> atom_counts;
-    int atom_count;
+    vector<int> type_counts;
+    int count;
 
     // Get the count of atoms per type 
-    for(int i = 0; i < types_count; i++)
+    for(int i = 0; i < type_count; i++)
     {
-        file >> atom_count;
-        atom_counts.push_back(atom_count);
+        file >> count;
+        type_counts.push_back(count);
     }
 
     // Initialize and fill a matrix containing the bond energies between each site.
-    vector<vector<int>> bond_energies_matrix(types_count, vector<int>(0));
+    vector<vector<int>> cost_matrix(type_count, vector<int>(0));
 
     int energy;
-    for(int i = 0; i < types_count; i++)
+    for(int i = 0; i < type_count; i++)
     {
-        for(int j = 0; j < types_count; j++)
+        for(int j = 0; j < type_count; j++)
         {
             file >> energy;
-            bond_energies_matrix[i].push_back(energy);
+            cost_matrix[i].push_back(energy);
         }
     }
 
     // Initialize, create and fill the graph with all the sites;
-    vector<Site*> graph(site_count);
     int vertex_a, vertex_b; 
+    unordered_map<int, vector<int>> graph;
     for(int i = 0; i < edges_count; i++)
     {
         file >> vertex_a >> vertex_b;
-        Site* site_ptr = graph[vertex_a];
-        Site* neighbour_ptr = graph[vertex_b];
-        
-        if(site_ptr == NULL)
-        {
-            graph[vertex_a] = new Site(vertex_a);
-        }
-
-        if (neighbour_ptr == NULL)
-        {
-            graph[vertex_b] = new Site(vertex_b);
-        }
-
-        graph[vertex_a]->add_neighbour_site(graph[vertex_b]);
-        graph[vertex_b]->add_neighbour_site(graph[vertex_a]);
+        graph[vertex_a].push_back(vertex_b);
     }
 
-    for (Site* site : graph)
+    int starting_site = 0;
+    priority_queue<Node*, vector<Node*>> nodes;
+    vector<vector<int>> default_state(site_count, vector<int>(type_count, NULL));
+    for (int type = 0; type < type_count; type++)
     {
-        site->print_site();
+        Node* node = new Node(default_state, starting_site, type);
+        node->compute_cost(cost_matrix, graph);
+        node->check_validity(type_counts, type_count);
+        nodes.push(node);
     }
 
+    for(int i = 0; i < nodes.size(); ++i) {
+        nodes.top()->print();
+        nodes.pop();
+    }
+
+    Node* best = nullptr;
+    int min_energy = INT64_MAX;
+
+    while(!nodes.empty()) 
+    {
+        Node* next_node = nodes.top();
+
+        for(int type = 0; type < type_count; type++)
+        {
+            Node* node = new Node(next_node->state, next_node->site + 1, type);
+            node->compute_cost(cost_matrix, graph);
+            node->check_validity(type_counts, type_count);
+            if(node->site == (site_count - 1) && node->is_valid && node->total_cost <= min_energy)
+            {
+                best = node;
+                min_energy = node->total_cost;
+                best->print();
+                break;
+            }
+
+            if (node->is_valid && node->site < (site_count - 1))
+            {
+                nodes.push(node);
+            }
+        }
+        
+        nodes.pop();
+        delete next_node;
+    }
     
-    // int lowest_cost_index = 0;
-    // size_t sum = UINT64_MAX;
-    // vector<pair<int, int>> solution;
-
-    // do
-    // {
-        
-    //     vector<pair<int, int>> new_solution = bnb_solve(lowest_cost_index, graph);
-    //     const size_t new_sum = compute_total_energy_consumption(solution, bond_energies_matrix);
-        
-    //     if(sum <= new_sum)
-    //     {
-    //         sum = new_sum;
-    //         solution = new_solution;
-    //         printf("Total Energy: %lu\n", sum);
-    //     }
-
-    // } while(true);
-
     return 0;
 }

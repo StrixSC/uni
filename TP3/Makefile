@@ -1,4 +1,4 @@
-tp: main.cpp Site.cpp
+tp: main.cpp Node.cpp
 	g++ -Wall -Wextra $^ -o build/$@
 
 # %.o: %.cpp

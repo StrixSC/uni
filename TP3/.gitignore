@@ -1,5 +1,7 @@
 build/
 .vscode/
+.idea/
+.vs/
 *.out
 *.o
 *.obj
