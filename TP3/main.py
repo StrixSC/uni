@@ -1,4 +1,5 @@
 import math
+from pprint import pprint
 from time import time
 import heapq
 import sys
@@ -6,20 +7,62 @@ import copy
 import os
 import argparse
 
-def parse_args():
-    parser = argparse.ArgumentParser(description='TP1 INF8775')
-    parser.add_argument('-e', '--exemplaire', dest='input', required=True, type=str, help="Fichier contenant l'exemplaire à utiliser.")
-    parser.add_argument('-p', action='store_true', dest='p', help="""
-                        Afficher, sur chaque ligne, les couples définissant la silhouette de bâtiments, triés selon l’abscisse
-                    """)
-    parser.add_argument('-t', action='store_true', dest='t', help="Affiche le temps d’exécution en millisecondes")
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="TP1 INF8775")
+    parser.add_argument(
+        "-e",
+        "--exemplaire",
+        dest="input",
+        required=True,
+        type=str,
+        help="Fichier contenant l'exemplaire à utiliser.",
+    )
+    parser.add_argument(
+        "-p",
+        action="store_true",
+        dest="p",
+        help="""
+                        Afficher, sur chaque ligne, les couples définissant la silhouette de bâtiments, triés selon l’abscisse
+                    """,
+    )
+    parser.add_argument(
+        "-t",
+        action="store_true",
+        dest="t",
+        help="Affiche le temps d’exécution en millisecondes",
+    )
+    parser.add_argument(
+        "-b", action="store_true", dest="b", help="Print both energy and solution."
+    )
     if len(sys.argv) <= 1:
         parser.print_help()
         sys.exit(0)
 
     return parser.parse_args()
 
+def parse_input(file):
+    with open(file, "+r") as input_file:
+        lines = [l for l in (line.strip() for line in input_file) if l]
+        site_count, type_count, edge_count = map(lambda x: int(x), lines[0].split(" "))
+        type_amounts = [int(x) for x in lines[1].split(" ")]
+
+        cost_matrix = []
+        link_graph = {}
+
+        for i in range(site_count):
+            link_graph[i] = []
+
+        for i in range(type_count):
+            cost_matrix.append([int(x) for x in lines[2 + i].split(" ")])
+
+        for i in range(edge_count):
+            edge = lines[type_count + i + 2].split(" ")
+            first_vertex, second_vertex = int(edge[0]), int(edge[1])
+            link_graph[first_vertex].append(second_vertex)
+            link_graph[second_vertex].append(first_vertex)
+
+        return site_count, type_count, type_amounts, cost_matrix, link_graph
 
 class Node:
     def __init__(self, state: list[list[int]], site: int, type: int):
@@ -78,19 +121,31 @@ class Node:
     def __lt__(self, other_node):
         return self.total_cost < other_node.total_cost
 
-def main():
-    site_count = 5
-    type_count = 2
-    type_amounts = [4, 1]
-    cost_matrix = [[3, -4], [-4, 1]]
-    link_graph = {0: [1, 3], 1: [0, 2], 2: [1, 4], 3: [0], 4: [2]}
 
+def print_solution(best, args, start_time):
+    if args.b:
+        print("Solution:")
+        best.print()
+        print(f"Total cost: {best.total_cost}\n")
+    elif args.p:
+        best.print()
+    else:
+        print(best.total_cost)
+
+    if args.t:
+        print("Time: ", (time() - start_time) * 1000, "ms\n")
+
+
+def main():
     args = parse_args()
 
-    if(not (os.path.isfile(args.input))):
+    if not (os.path.isfile(args.input)):
         print("Le fichier entré n'est pas valid ou n'existe pas...")
         sys.exit(-1)
 
+    site_count, type_count, type_amounts, cost_matrix, link_graph = parse_input(
+        args.input
+    )
     default_state = [[None for _ in range(type_count)] for _ in range(site_count)]
     starting_site = 0
     nodes = []
@@ -105,29 +160,24 @@ def main():
     best = None
     min_energy = math.inf
     start_time = time()
-    while True:
-        if len(nodes) == 0:
-            break
-
+    while len(nodes) > 0:
         next_node: Node = heapq.heappop(nodes)
         for type in range(type_count):
             node = Node(copy.deepcopy(next_node.state), next_node.site + 1, type)
             node.check_validity(type_amounts, type_count)
             node.compute_cost(cost_matrix, link_graph)
-            if node.site == (site_count - 1) and node.valid and node.total_cost <= min_energy:
+            if (
+                node.site == (site_count - 1)
+                and node.valid
+                and node.total_cost <= min_energy
+            ):
                 best = node
                 min_energy = node.total_cost
-                
-                if args.p:
-                    best.print()
-                print(min_energy)
+                print_solution(best, args, start_time)
 
-                if args.t:
-                    print("Time: ", (time() - start_time) * 1000, "ms")
-                break
-            
             if node.valid and node.site < (site_count - 1):
                 heapq.heappush(nodes, node)
+
 
 if __name__ == "__main__":
     main()
