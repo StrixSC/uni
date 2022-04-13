@@ -118,7 +118,23 @@ def main():
         args.input
     )
 
-    best = solve_bnb(site_count, cost_matrix, link_graph, type_amounts, type_count)
+    all_types = copy.deepcopy(type_amounts)
+    print(all_types)
+    random_solution = {}
+    for i in range(site_count):
+        random_solution[i] = -1
+
+    for site in range(site_count):
+        random_type = randint(0, type_count - 1)
+        while(all_types[random_type] == 0):
+            random_type = randint(0, type_count - 1)
+        random_solution[site] = random_type
+        all_types[random_type] -= 1
+
+    best = Node(random_solution, 0, 0, is_root=True)
+    best.compute_cost(cost_matrix, link_graph)
+    best.check_validity(type_amounts, type_count)
+    print(best.get_solution())
     print(best.total_cost)
     while True:
         for vertex, edges in link_graph.items():    
