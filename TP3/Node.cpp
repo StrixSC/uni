@@ -2,6 +2,8 @@
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include <string>
+#include <sstream>
 #include <iterator>
 using namespace std;
 
@@ -10,106 +12,135 @@ using namespace std;
 
 class Node
 {
-    public:
-        vector<vector<int>> state;
-        int site;
-        int type;
-        bool is_valid;
-        int total_cost;
+public:
+    unordered_map<int, int> state;
+    int site;
+    int type;
+    bool is_valid;
+    string solution;
+    int total_cost;
 
-        Node(vector<vector<int>> state, int site, int type)
+    Node(int site_count)
+    {
+        for (int i = 0; i < site_count; i++)
         {
-            this->site = site;
-            this->type = type;
-            this->state = state;
-            this->set_state();
+            this->state.insert(make_pair(i, -1));
         }
+    }
 
-        void set_state()
+    Node(unordered_map<int, int> state)
+    {
+        this->state = state;
+        this->solution = "";
+        this->site = 0;
+        this->type = 0;
+        this->is_valid = true;
+        this->total_cost = UINT64_MAX;
+    }
+
+    Node(unordered_map<int, int> state, int site, int type)
+    {
+        this->site = site;
+        this->type = type;
+        this->state = state;
+        this->solution = "";
+        this->state[site] = type;
+    }
+
+    void compute_cost(const vector<vector<int>>& cost_matrix, const unordered_map<int, vector<int>>& graph)
+    {
+        this->total_cost = 0;
+        int index = 0;
+        for (auto& it : graph)
         {
-            for(int i = 0; i < this->state[this->site].size(); i++)
+            int vertex = it.first;
+            vector<int> connected_vertices = it.second;
+            if (this->state[it.first] == -1)
             {
-                this->state[this->site][i] = (this->type == i) ? 1 : 0;
+                continue;
             }
-        }
 
-        vector<int> get_site_types() const
-        {
-            vector<int> site_types(this->state.size(), NULL);
-            for (int i = 0; i < this->state.size(); i++)
+            for (auto connected_vertex : connected_vertices)
             {
-                for (int j = 0; j < this->state[i].size(); j++)
-                {
-                    if(this->state[i][j] != NULL && this->state[i][j] == 1)
-                    {
-                        site_types[i] = j;
-                    } 
-                }
-            }
-            return site_types;
-        }
-
-        void compute_cost(const vector<vector<int>>& cost_matrix, const unordered_map<int, vector<int>>& graph) 
-        {
-            this->total_cost = 0;
-            vector<int> site_types = this->get_site_types();
-            int index = 0; 
-            for (auto vertex : graph)
-            {
-                vector<int> edges = vertex.second;
-                if (site_types[vertex.first] == NULL)
+                if (connected_vertex <= index || this->state[connected_vertex] == -1)
                 {
                     continue;
                 }
 
-                for (auto edge : edges)
-                {
-                    if (edge <= index || site_types[edge] == NULL)
-                    {
-                        continue;
-                    }
-
-                    this->total_cost += cost_matrix[site_types[vertex.first]][site_types[edge]];
-                    index++;
-                }
+                this->total_cost += cost_matrix[this->state[vertex]][this->state[connected_vertex]];
+                index++;
             }
         }
+    }
 
-        void check_validity(const vector<int>& type_amounts, const int type_count)
+    void check_validity(const vector<int>& type_amounts, const int type_count)
+    {
+        vector<int> site_type_counts = vector<int>(type_count, 0);
+
+        for (size_t i = 0; i < this->state.size(); i++)
         {
-            vector<int> site_types = this->get_site_types();
-            vector<int> site_type_counts = vector<int>(type_count, 0);
-
-            for (int i = 0; i < site_types.size(); i++)
+            if (this->state[i] != -1)
             {
-                if (site_types[i] != NULL)
-                {
-                    site_type_counts[site_types[i]] += 1;
-                }
+                site_type_counts[this->state[i]]++;
             }
+        }
 
-            for (int i = 0; i < site_type_counts.size(); i++)
+        for (size_t i = 0; i < site_type_counts.size(); i++)
+        {
+            if (site_type_counts[i] > type_amounts[i])
             {
-                if (site_type_counts[i] > type_amounts[i])
-                {
-                    this->is_valid = false;
-                    return;
-                }
+                this->is_valid = false;
+                return;
             }
-            
-            this->is_valid = true;
         }
 
-        void print() const
+        this->is_valid = true;
+    }
+
+    string get_solution()
+    {
+        if (this->solution != "")
         {
-            vector<int> site_types = this->get_site_types();
-            string str_site_types(site_types.begin(), site_types.end());
-            printf("%s", str_site_types);
+            return this->solution;
         }
 
-        bool is_lower_cost(const Node* other) const
+        string solution;
+        for (auto& it : this->state)
         {
-            return this->total_cost < other->total_cost;
+            solution += to_string(it.second);
+        };
+
+        this->solution = solution;
+        return solution;
+    }
+
+    bool operator<(const Node& rhs)
+    {
+        return this->total_cost < rhs.total_cost;
+    }
+
+    vector<Node*> create_neighbours(int vertex, vector<int>& edges)
+    {
+        vector<Node*> nodes;
+        for (auto edge : edges)
+        {
+            if (edge < vertex)
+            {
+                continue;
+            }
+
+            Node* node = new Node(this->state);
+            int tmp = node->state[vertex];
+            node->state[vertex] = node->state[edge];
+            node->state[edge] = tmp;
+
+            if (node->get_solution() != this->get_solution())
+            {
+                nodes.push_back(node);
+            }
         }
+
+        return nodes;
+    }
 };
 #endif

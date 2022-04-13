@@ -127,24 +127,25 @@ int main(int argc, char* argv[]) {
     }
 
     unordered_map<int, int> random_solution;
-    vector<int> all_types;
+    vector<int> all_types(type_count, 0);
     copy(type_counts.begin(), type_counts.end(), all_types.begin());
     for (int site = 0; site < site_count; site++)
     {
-        int random_type;
+        int random_type = 0;
         do {
             random_type = floor((rand() % type_count));
-            all_types[random_type]--;
-        } while(all_types[random_type] == 0);
+        } while (all_types[random_type] == 0);
+        random_solution.insert(make_pair(site, (int) random_type));
+        all_types[random_type]--;
     }
 
-    Node * best = new Node(random_solution);
+    Node* best = new Node(random_solution);
     best->compute_cost(cost_matrix, graph);
     best->check_validity(type_counts, type_count);
-    
-    while(true)
+
+    while (true)
     {
-        for(auto &it : graph)
+        for (auto& it : graph)
         {
             vector<Node*> neighbours = best->create_neighbours(it.first, it.second);
             for (auto n : neighbours)
@@ -156,7 +157,8 @@ int main(int argc, char* argv[]) {
                     best = n;
                     cout << best->get_solution() << endl;
                     cout << best->total_cost << endl;
-                } else 
+                }
+                else
                 {
                     delete n;
                 }

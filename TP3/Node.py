@@ -1,3 +1,5 @@
+from pprint import pprint
+import copy
 class Node:
     def __init__(self, state: dict, site: int, type: int, is_root=False):
         self.site = site
@@ -42,8 +44,26 @@ class Node:
 
         self.valid = True
 
-    def print(self):
-        print("".join([str(type + 1) for _, type in self.state.items()]))
+    def create_neighbour(self, k: int, edges: list):
+        nodes = []
+        for edge in edges:
+            if edge < k:
+                continue
+
+            node = Node(copy.deepcopy(self.state), 0, 0, is_root=True)
+            tmp = node.state[k]
+            node.state[k] = node.state[edge]
+            node.state[edge] = tmp
+            attempting_solution = node.get_solution()
+            solution = self.get_solution()
+
+            if attempting_solution != solution:
+                nodes.append(node)
+
+        return nodes
+        
+    def get_solution(self):
+        return " ".join([str(type) for _, type in self.state.items()])
         
     def __lt__(self, other_node):
         return self.total_cost < other_node.total_cost

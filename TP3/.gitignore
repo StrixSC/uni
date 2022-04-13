@@ -7,3 +7,4 @@ build/
 *.obj
 *.dump
 N*_*_*
+__pycache__/

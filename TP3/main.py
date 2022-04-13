@@ -1,4 +1,6 @@
 from cmath import inf
+from multiprocessing.spawn import get_preparation_data
+from operator import ne
 from random import randint
 from time import time
 import heapq
@@ -75,10 +77,35 @@ def print_solution(best, args, start_time):
         best.print()
     else:
         print(best.total_cost)
-
     if args.t:
         print("Time: ", (time() - start_time) * 1000, "ms\n")
 
+def solve_bnb(site_count, cost_matrix, link_graph, type_amounts, type_count):
+    default_state = {}
+    for i in range(site_count):
+        default_state[i] = None
+
+    min = inf
+    best = None
+
+    next_node = Node(copy.deepcopy(default_state), 0, 0, is_root=True)
+    next_node.compute_cost(cost_matrix, link_graph)
+    next_node.check_validity(type_amounts, type_count)
+
+    for site in range(site_count):
+        nodes = []
+        for type in range(type_count):
+            node = Node(copy.deepcopy(next_node.state), site, type, is_root=False)
+            node.check_validity(type_amounts, type_count)
+            node.compute_cost(cost_matrix, link_graph)
+            if node.valid:
+                heapq.heappush(nodes, node)
+        next_node = heapq.heappop(nodes)
+    if next_node.total_cost < min:
+        best = next_node
+        min = best.total_cost
+    
+    return best
 
 def main():
     args = parse_args()
@@ -91,41 +118,17 @@ def main():
         args.input
     )
 
-    default_state = {}
-    for i in range(site_count):
-        default_state[i] = None
-
-    # Create the first set of state nodes, expanded for each type and check their validity and cost.
-    # TODO FIX:
-
-    visited_nodes = []
-    start_time = time()
-    best = None
-    min = inf
+    best = solve_bnb(site_count, cost_matrix, link_graph, type_amounts, type_count)
+    print(best.total_cost)
     while True:
-        next_node = Node(copy.deepcopy(default_state), 0, 0, is_root=True)
-        next_node.compute_cost(cost_matrix, link_graph)
-        next_node.check_validity(type_amounts, type_count)
-
-        for site in range(site_count):
-            nodes = []
-            for type in range(type_count):
-                node = Node(copy.deepcopy(next_node.state), site, type, is_root=False)
-                node.check_validity(type_amounts, type_count)
-                node.compute_cost(cost_matrix, link_graph)
-                if node.valid:
-                    heapq.heappush(nodes, node)
-            next_node = nodes[randint(0, len(nodes) - 1)]
-            # while next_node.id in visited_nodes:
-            # if len(nodes) == 0:
-            # print("No more solutions")
-            # return
-            # next_node = heapq.heappop(nodes)
-        if next_node.total_cost < min:
-            best = next_node
-            min = best.total_cost
-            print_solution(best, args, start_time)
-
+        for vertex, edges in link_graph.items():    
+            neighbours = best.create_neighbour(vertex, edges)
+            for n in neighbours:
+                n.compute_cost(cost_matrix, link_graph)
+                if n.total_cost < best.total_cost:
+                    best = n
+                    print(best.get_solution())
+                    print(best.total_cost)
 
 if __name__ == "__main__":
     main()
