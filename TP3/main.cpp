@@ -7,59 +7,57 @@
 #include <map>
 #include <set>
 #include <random>
+#include <unordered_map>
 #include <list>
-
-#include "Node.cpp"
+#include <ctime>
+#include <iterator>
 
 using namespace std;
 
-bool operator<(Node& n1, Node& n2) {
-    return n1.total_cost < n2.total_cost;
-}
 
-Node* solve_bnb(int site_count, vector<vector<int>>& cost_matrix, unordered_map<int, vector<int>>& link_graph, vector<int> type_amounts, int type_count)
+vector<vector<int>> create_neighbours(vector<int> &solution, int site, vector<int> &connected_vertices)
 {
-    int min = INT64_MAX;
-
-    Node* next_node = new Node(site_count); // Create root node
-
-    for (int site = 0; site < site_count; site++)
+    vector<vector<int>> neighbours;
+    for (auto &connected_vertex : connected_vertices)
     {
-        priority_queue<Node*, vector<Node*>> nodes;
-        for (int type = 0; type < type_count; type++)
+        if (connected_vertex < site)
         {
-            Node* node = new Node(next_node->state, site, type);
-            node->check_validity(type_amounts, type_count);
-            node->compute_cost(cost_matrix, link_graph);
-            if (node->is_valid)
-            {
-                nodes.push(node);
-            }
-            else
-            {
-                delete node;
-            }
+            continue;
         }
 
-        if (nodes.top())
+        vector<int> neighbour(solution.size(), 0);
+        copy(solution.begin(), solution.end(), neighbour.begin());
+        int tmp = neighbour[site];
+        neighbour[site] = neighbour[connected_vertex];
+        neighbour[connected_vertex] = tmp;
+        bool is_equal = equal(solution.begin(), solution.end(), neighbour.begin());
+        if (!is_equal)
         {
-            delete next_node;
-            next_node = nodes.top();
-            nodes.pop();
-        }
-
-        while (!nodes.empty())
-        {
-            Node* node = nodes.top();
-            nodes.pop();
-            delete node;
+            neighbours.push_back(neighbour);
         }
     }
-
-    return next_node;
+    return neighbours;
 }
 
-int main(int argc, char* argv[]) {
+int compute_cost(vector<int> &solution, vector<vector<int>> &cost_matrix, unordered_map<int, vector<int>> &graph)
+{
+    int total_cost = 0;
+    int index = 0;
+    for (auto &it : graph)
+    {
+        int vertex = it.first;
+        vector<int> connected_vertices = it.second;
+        for (auto connected_vertex : connected_vertices)
+        {
+            total_cost += cost_matrix[solution[vertex]][solution[connected_vertex]];
+            index++;
+        }
+    };
+    return total_cost;
+}
+
+int main(int argc, char *argv[])
+{
 
     if (argc == 1)
     {
@@ -70,7 +68,7 @@ int main(int argc, char* argv[]) {
     string file_path;
     string file_arg(argv[1]);
 
-    if (file_arg == "-e" && argc == 3)
+    if (file_arg == "-e" && argc >= 3)
     {
         file_path = argv[2];
     }
@@ -96,8 +94,7 @@ int main(int argc, char* argv[]) {
     vector<int> type_counts;
     int count;
 
-
-    // Get the count of atoms per type 
+    // Get the count of atoms per type
     for (int i = 0; i < type_count; i++)
     {
         file >> count;
@@ -126,42 +123,56 @@ int main(int argc, char* argv[]) {
         graph[vertex_a].push_back(vertex_b);
     }
 
-    unordered_map<int, int> random_solution;
-    vector<int> all_types;
+    vector<int> best_solution;
+    vector<int> all_types(type_count, 0);
     copy(type_counts.begin(), type_counts.end(), all_types.begin());
     for (int site = 0; site < site_count; site++)
     {
-        int random_type;
-        do {
-            random_type = floor((rand() % type_count));
-            all_types[random_type]--;
-        } while(all_types[random_type] == 0);
+        for (int i = 0; i < type_count; i++)
+        {
+            if (all_types[i] > 0)
+            {
+                best_solution.push_back(i);
+                all_types[i]--;
+                break;
+            }
+        }
     }
 
-    Node * best = new Node(random_solution);
-    best->compute_cost(cost_matrix, graph);
-    best->check_validity(type_counts, type_count);
-    
-    while(true)
+    auto rng = std::default_random_engine{};
+    int best_cost = compute_cost(best_solution, cost_matrix, graph);
+    bool changed = false;
+    while (true)
     {
-        for(auto &it : graph)
+        for (auto &it : graph)
         {
-            vector<Node*> neighbours = best->create_neighbours(it.first, it.second);
+            vector<vector<int>> neighbours = create_neighbours(best_solution, it.first, it.second);
+
             for (auto n : neighbours)
             {
-                n->compute_cost(cost_matrix, graph);
-                if (n->total_cost < best->total_cost)
+                int cost = compute_cost(n, cost_matrix, graph);
+                if (cost < best_cost)
                 {
-                    delete best;
-                    best = n;
-                    cout << best->get_solution() << endl;
-                    cout << best->total_cost << endl;
-                } else 
-                {
-                    delete n;
+                    best_solution = n;
+                    best_cost = cost;
+                    changed = true;
+                    // copy(best_solution.begin(), best_solution.end(), std::ostream_iterator<int>(std::cout, " "));
+                    for (auto &v : best_solution)
+                    {
+                        cout << v << " ";
+                    }
+                    cout << endl;
+                    // cout << cost << endl;
                 }
             }
         }
+
+        if (!changed)
+        {
+            shuffle(best_solution.begin(), best_solution.end(), rng);
+        }
+
+        changed = false;
     }
 
     return 0;
