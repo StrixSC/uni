@@ -21,11 +21,7 @@
 
 import sys
 import re
-import math
 import argparse
-
-from numpy import size
-
 
 def load_instance(instance_path):
     with open(instance_path,'r') as instance_stream:

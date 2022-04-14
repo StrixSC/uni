@@ -42,7 +42,6 @@ vector<vector<int>> create_neighbours(vector<int> &solution, int site, vector<in
 int compute_cost(vector<int> &solution, vector<vector<int>> &cost_matrix, unordered_map<int, vector<int>> &graph)
 {
     int total_cost = 0;
-    int index = 0;
     for (auto &it : graph)
     {
         int vertex = it.first;
@@ -50,7 +49,6 @@ int compute_cost(vector<int> &solution, vector<vector<int>> &cost_matrix, unorde
         for (auto connected_vertex : connected_vertices)
         {
             total_cost += cost_matrix[solution[vertex]][solution[connected_vertex]];
-            index++;
         }
     };
     return total_cost;
@@ -140,6 +138,7 @@ int main(int argc, char *argv[])
     }
 
     auto rng = std::default_random_engine{};
+    shuffle(best_solution.begin(), best_solution.end(), rng);
     int best_cost = compute_cost(best_solution, cost_matrix, graph);
     bool changed = false;
     while (true)
