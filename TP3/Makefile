@@ -1,8 +1,5 @@
 tp: main.cpp
-	g++ -Wall -Wextra $^ -o build/$@
-
-# %.o: %.cpp
-# 	g++ -Wall -Wextra -Werror $< -o $@
+	g++ -Wall -Wextra $^ -o $@
 
 clean:
-	rm -rf *.o *.out build/main
+	rm -rf *.o *.out tp
