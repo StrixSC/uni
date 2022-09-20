@@ -1,6 +1,6 @@
-% Pritam Patel - 1933097
-% Victor Kim - 1954607
-% Jean Huy Dao - 1960503
+% Patel, Pritam - 1933097
+% Kim, Victor - 1954607
+% Dao, Jean Huy - 1960503
 % Mohammed Amin, Nawras - 1962832
 
 function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
@@ -86,4 +86,57 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
   bras_cm_z = bras_masse * bras_cm_z * 6;
   moteur_cm_z = moteur_masse * moteur_cm_z * 6;
   cm_z = (sphere_masse * sphere_cm_z + bras_cm_z + moteur_cm_z + colis_masse * colis_cm_z)
+
+
+ % Partie 2: Le moment d'inertie
+
+ % On commence par le calcul du moment d'inertie des composantes individuelles
+ % par rapport à leurs propres centre de masse
+
+ % Colis:
+ moment_inertie_colis = colis_masse * [
+              (colis_longueur^2+colis_hauteur^2)/12, 0, 0;
+              0, (colis_largeur^2+colis_hauteur^2)/12, 0;
+              0, 0, (colis_longueur^2+colis_largeur^2)/12
+            ];
+
+ % Moteurs:
+ % Chaque moteurs est représenté par un cylindre plein
+ moteur_intertie_xx_yy = (
+  (moteur_masse/4*rayon_moteur^2) + (moteur_masse/12 * moteur_hauteur^2)
+ );
+
+ moment_inertie_moteur = [
+              moteur_intertie_xx_yy, 0, 0;
+              0, moteur_intertie_xx_yy, 0;
+              0, 0, (moteur_masse/2 * rayon_moteur^2);
+            ];
+
+ % Bras:
+ % Chaque bras est représenté par un cylindre creux
+
+ bras_inertie_xx_yy = (
+  (bras_masse/2 * bras_rayon^2) + (bras_masse/12 * bras_longueur^2)
+ );
+ moment_inertie_bras = [
+        bras_inertie_xx_yy, 0, 0;
+        0, bras_inertie_xx_yy, 0;
+        0, 0, (bras_masse/2 * bras_rayon^2);
+      ];
+
+ % Demi-Sphere:
+ moment_inertie_demi_sphere = (sphere_masse * sphere_rayon^2) * [
+                                83/320, 0, 0;
+                                0, 83/320, 0;
+                                0, 0, 2/5;
+                              ];
+
+ % Translation des moments d'inerties calculée pour chaque partie afin d'avoir
+ % le moment d'inertie selon le centre de masse du drone, plutôt que selon leurs
+ % centre de masse.
+
+ % Colis:
+
+
+
 
