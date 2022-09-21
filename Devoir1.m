@@ -5,10 +5,6 @@
 
 function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
 
-  %matrice_rotation_x = [ cos(ar),  0, sin(ar);
-  %                       0,        1, 0;
-  %                      -sin(ar),  0, cos(ar); ];
-
   % Demie sphere pleine (corps du drone)
   sphere_masse = 1.5;
   sphere_rayon = 0.30;
@@ -90,9 +86,7 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
 
  % Partie 2: Le moment d'inertie
 
- % On commence par le calcul du moment d'inertie des composantes individuelles
- % par rapport à leurs propres centre de masse
-
+ % On calcul d'abord le moment d'inertie des sous-objets par rapport à leurs centre de masse
  % Colis:
  moment_inertie_colis = colis_masse * [
               (colis_longueur^2+colis_hauteur^2)/12, 0, 0;
@@ -101,11 +95,12 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
             ];
 
  % Moteurs:
- % Chaque moteurs est représenté par un cylindre plein
+
  moteur_intertie_xx_yy = (
   (moteur_masse/4*rayon_moteur^2) + (moteur_masse/12 * moteur_hauteur^2)
  );
 
+ ar = 0.0
  moment_inertie_moteur = [
               moteur_intertie_xx_yy, 0, 0;
               0, moteur_intertie_xx_yy, 0;
@@ -113,7 +108,6 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
             ];
 
  % Bras:
- % Chaque bras est représenté par un cylindre creux
 
  bras_inertie_xx_yy = (
   (bras_masse/2 * bras_rayon^2) + (bras_masse/12 * bras_longueur^2)
@@ -135,7 +129,68 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
  % le moment d'inertie selon le centre de masse du drone, plutôt que selon leurs
  % centre de masse.
 
- % Colis:
+ r_c = [cm_x, cm_y, cm_z];
+
+ % I_c + mT(d_c)
+
+
+  function [translated_inertia_matrix] =  translate_inertia(moment_matrix, object_mass, subobject_com)
+    d_c = transpose(r_c) - subobject_com;
+    X = 1;
+    Y = 2;
+    Z = 3;
+    translated_inertia_matrix = moment_matrix + (object_mass * [
+      d_c(Y)^2+d_c(Z)^2,-1*d_c(X)*d_c(Y),-1*d_c(X)*d_c(Z);
+      -1*d_c(Y)*d_c(X),d_c(X)^2+d_c(Z)^2,-1*d_c(Y)*d_c(Z);
+      -1*d_c(Z)*d_c(X),-1*d_c(Z)*d_c(Y),d_c(X)^2+d_c(Y)^2;
+    ]);
+  end
+
+  inertia_moteur1 = translate_inertia(moment_inertie_moteur, moteur_masse, [moteur1_cm_x; moteur1_cm_y; moteur_cm_z]);
+  inertia_moteur2 = translate_inertia(moment_inertie_moteur, moteur_masse, [moteur2_cm_x; moteur2_cm_y; moteur_cm_z]);
+  inertia_moteur3 = translate_inertia(moment_inertie_moteur, moteur_masse, [moteur3_cm_x; moteur3_cm_y; moteur_cm_z]);
+  inertia_moteur4 = translate_inertia(moment_inertie_moteur, moteur_masse, [moteur4_cm_x; moteur4_cm_y; moteur_cm_z]);
+  inertia_moteur5 = translate_inertia(moment_inertie_moteur, moteur_masse, [moteur5_cm_x; moteur5_cm_y; moteur_cm_z]);
+  inertia_moteur6 = translate_inertia(moment_inertie_moteur, moteur_masse, [moteur6_cm_x; moteur6_cm_y; moteur_cm_z]);
+
+  inertia_moteurs_total = inertia_moteur1 + inertia_moteur2 + inertia_moteur3 + inertia_moteur4 + inertia_moteur5 + inertia_moteur6
+
+  inertia_bras1 = translate_inertia(moment_inertie_bras, bras_masse, [bras1_cm_x; bras1_cm_y; bras_cm_z]);
+  inertia_bras2 = translate_inertia(moment_inertie_bras, bras_masse, [bras2_cm_x; bras2_cm_y; bras_cm_z]);
+  inertia_bras3 = translate_inertia(moment_inertie_bras, bras_masse, [bras3_cm_x; bras3_cm_y; bras_cm_z]);
+  inertia_bras4 = translate_inertia(moment_inertie_bras, bras_masse, [bras4_cm_x; bras4_cm_y; bras_cm_z]);
+  inertia_bras5 = translate_inertia(moment_inertie_bras, bras_masse, [bras5_cm_x; bras5_cm_y; bras_cm_z]);
+  inertia_bras6 = translate_inertia(moment_inertie_bras, bras_masse, [bras6_cm_x; bras6_cm_y; bras_cm_z]);
+
+  inertia_bras_total = inertia_bras1 + inertia_bras2 + inertia_bras3 + inertia_bras4 + inertia_bras5 + inertia_bras6;
+
+  inertia_demi_sphere = translate_inertia(moment_inertie_demi_sphere, sphere_masse, [sphere_cm_x; sphere_cm_y; sphere_cm_z]);
+  inertia_colis = translate_inertia(moment_inertie_colis, colis_masse, [colis_cm_x; colis_cm_y; colis_cm_z]);
+
+  composite_inertia = inertia_moteurs_total + inertia_bras_total + inertia_demi_sphere + inertia_colis;
+
+  % Utilisation de la matrice de rotation OY afin de calculer le moment d'inertie finale:
+
+  % I_g = R^(G<-L)*I^L*Transpose((R^(G<-L)))
+  % Moment d'inertie du système globale = Matrice Rotation du système local vers le système global * Matrice du moment d'inertie du système local * transposée de la matrice de rotation
+  % du système local vers le système global.
+
+  % à commenter lorsque terminé:
+  ar = 0.0;
+
+  % Tiré du document de réference:
+  matrice_rotation_y = [ cos(ar),  0, sin(ar);
+                         0,        1, 0;
+                        -sin(ar),  0, cos(ar); ];
+
+  MI = matrice_rotation_y * composite_inertia * transpose(matrice_rotation_y)
+
+
+  % Partie 3: Calcul de l'accélération angulaire
+
+
+end
+
 
 
 
