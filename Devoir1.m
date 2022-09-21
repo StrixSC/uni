@@ -68,7 +68,7 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
   colis_cm_z = -0.15;
 
   % Masse totale
-  masse_totale = sphere_masse + bras_masse*6 + moteur_masse*6 + colis_masse
+  masse_totale = sphere_masse + bras_masse*6 + moteur_masse*6 + colis_masse;
 
   % Position du centre de masse
   bras_cm_x = bras_masse * (bras1_cm_x + bras2_cm_x + bras3_cm_x + bras4_cm_x + bras5_cm_x + bras6_cm_x);
@@ -153,7 +153,7 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
   inertia_moteur5 = translate_inertia(moment_inertie_moteur, moteur_masse, [moteur5_cm_x; moteur5_cm_y; moteur_cm_z]);
   inertia_moteur6 = translate_inertia(moment_inertie_moteur, moteur_masse, [moteur6_cm_x; moteur6_cm_y; moteur_cm_z]);
 
-  inertia_moteurs_total = inertia_moteur1 + inertia_moteur2 + inertia_moteur3 + inertia_moteur4 + inertia_moteur5 + inertia_moteur6
+  inertia_moteurs_total = inertia_moteur1 + inertia_moteur2 + inertia_moteur3 + inertia_moteur4 + inertia_moteur5 + inertia_moteur6;
 
   inertia_bras1 = translate_inertia(moment_inertie_bras, bras_masse, [bras1_cm_x; bras1_cm_y; bras_cm_z]);
   inertia_bras2 = translate_inertia(moment_inertie_bras, bras_masse, [bras2_cm_x; bras2_cm_y; bras_cm_z]);
@@ -167,23 +167,23 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
   inertia_demi_sphere = translate_inertia(moment_inertie_demi_sphere, sphere_masse, [sphere_cm_x; sphere_cm_y; sphere_cm_z]);
   inertia_colis = translate_inertia(moment_inertie_colis, colis_masse, [colis_cm_x; colis_cm_y; colis_cm_z]);
 
-  composite_inertia = inertia_moteurs_total + inertia_bras_total + inertia_demi_sphere + inertia_colis;
+  I = inertia_moteurs_total + inertia_bras_total + inertia_demi_sphere + inertia_colis;
 
   % Utilisation de la matrice de rotation OY afin de calculer le moment d'inertie finale:
-
-  % I_g = R^(G<-L)*I^L*Transpose((R^(G<-L)))
-  % Moment d'inertie du système globale = Matrice Rotation du système local vers le système global * Matrice du moment d'inertie du système local * transposée de la matrice de rotation
-  % du système local vers le système global.
 
   % à commenter lorsque terminé:
   ar = 0.0;
 
   % Tiré du document de réference:
-  matrice_rotation_y = [ cos(ar),  0, sin(ar);
-                         0,        1, 0;
-                        -sin(ar),  0, cos(ar); ];
+  R = [ cos(ar),  0, sin(ar);
+         0,        1, 0;
+        -sin(ar),  0, cos(ar); ];
 
-  MI = matrice_rotation_y * composite_inertia * transpose(matrice_rotation_y)
+  % I_g = R^(G<-L)*I^L*Transpose((R^(G<-L)))
+  % Moment d'inertie du système globale = Matrice Rotation du système local vers le système global * Matrice du moment d'inertie du système local * transposée de la matrice de rotation
+  % du système local vers le système global.
+
+  MI = R * I * transpose(R)
 
 
   % Partie 3: Calcul de l'accélération angulaire
