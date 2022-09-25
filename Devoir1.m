@@ -99,7 +99,7 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
         0,         1, 0;
         -sin(ar),  0, cos(ar); ];
 
-  pcm_finale = (R * pcm_initial) + pos
+  pcm = (R * pcm_initial) + pos
 
 
 
@@ -203,10 +203,26 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
 
   % Partie 3: Calcul de l'accélération angulaire
 
+  % Moment de force
+  force_max = 20;
+  force_totale = lambda * force_max;
+  moteur1_moment_force = cross(([moteur1_cm_x; moteur1_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(1)]);
+  moteur2_moment_force = cross(([moteur2_cm_x; moteur2_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(2)]);
+  moteur3_moment_force = cross(([moteur3_cm_x; moteur3_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(3)]);
+  moteur4_moment_force = cross(([moteur4_cm_x; moteur4_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(4)]);
+  moteur5_moment_force = cross(([moteur5_cm_x; moteur5_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(5)]);
+  moteur6_moment_force = cross(([moteur6_cm_x; moteur6_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(6)]);
+
+  moment_force = moteur1_moment_force + moteur2_moment_force + moteur3_moment_force + moteur4_moment_force + moteur5_moment_force + moteur6_moment_force
+
+  % Moment cinetique
+  L = MI * va;
+
+  % Acceleration angulaire
+  aa = MI\(moment_force + cross(L, va))
+
   % Return variables temporaires
-  pcm = r_c;
   acm = [0; 0; 0];
-  aa = [0; 0; 0];
 
 end
 
