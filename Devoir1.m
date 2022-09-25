@@ -3,9 +3,11 @@
 % Dao, Jean Huy - 1960503
 % Mohammed Amin, Nawras - 1962832
 
-function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
+function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
+  % Partie 1: La position du centre de masse
 
   % Demie sphere pleine (corps du drone)
+
   sphere_masse = 1.5;
   sphere_rayon = 0.30;
 
@@ -15,6 +17,7 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
 
 
   % Cylindre creux (bras du drone)
+
   bras_longueur = 0.5;
   bras_masse = 0.2;
   bras_rayon = 0.025;
@@ -37,7 +40,8 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
   bras_cm_z = bras_rayon;
 
 
- % Cylindre pleins (moteurs du drone)
+  % Cylindre pleins (moteurs du drone)
+
   moteur_hauteur = 0.10;
   moteur_masse = 0.4;
   rayon_moteur = 0.05;
@@ -59,6 +63,7 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
   moteur_cm_z = moteur_hauteur/2;
 
   % Colis
+
   colis_masse = 0.8;
   colis_longueur = 0.7;
   colis_largeur = 0.4;
@@ -68,20 +73,34 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
   colis_cm_z = -0.15;
 
   % Masse totale
+
   masse_totale = sphere_masse + bras_masse*6 + moteur_masse*6 + colis_masse;
 
-  % Position du centre de masse
+  % Position du centre de masse dans la situation initiale
+
   bras_cm_x = bras_masse * (bras1_cm_x + bras2_cm_x + bras3_cm_x + bras4_cm_x + bras5_cm_x + bras6_cm_x);
   moteur_cm_x = moteur_masse * (moteur1_cm_x + moteur2_cm_x + moteur3_cm_x + moteur4_cm_x + moteur5_cm_x + moteur6_cm_x);
-  cm_x = (sphere_masse * sphere_cm_x + bras_cm_x + moteur_cm_x + colis_masse * colis_cm_x)
+  cm_x = (sphere_masse * sphere_cm_x + bras_cm_x + moteur_cm_x + colis_masse * colis_cm_x)/masse_totale
 
   bras_cm_y = bras_masse * (bras1_cm_y + bras2_cm_y + bras3_cm_y + bras4_cm_y + bras5_cm_y + bras6_cm_y);
   moteur_cm_y = moteur_masse * (moteur1_cm_y + moteur2_cm_y + moteur3_cm_y + moteur4_cm_y + moteur5_cm_y + moteur6_cm_y);
-  cm_y = (sphere_masse * sphere_cm_y + bras_cm_y + moteur_cm_y + colis_masse * colis_cm_y)
+  cm_y = (sphere_masse * sphere_cm_y + bras_cm_y + moteur_cm_y + colis_masse * colis_cm_y)/masse_totale
 
   bras_cm_z = bras_masse * bras_cm_z * 6;
   moteur_cm_z = moteur_masse * moteur_cm_z * 6;
-  cm_z = (sphere_masse * sphere_cm_z + bras_cm_z + moteur_cm_z + colis_masse * colis_cm_z)
+  cm_z = (sphere_masse * sphere_cm_z + bras_cm_z + moteur_cm_z + colis_masse * colis_cm_z)/masse_totale
+
+  pcm_initial = transpose([cm_x, cm_y, cm_z])
+
+  % Position du centre de masse dans la situation finale
+
+  % Tiré du document de réference:
+  R = [ cos(ar),   0, sin(ar);
+        0,         1, 0;
+        -sin(ar),  0, cos(ar); ];
+
+  pcm_finale = (R * pcm_initial) + pos
+
 
 
  % Partie 2: Le moment d'inertie
@@ -100,7 +119,7 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
   (moteur_masse/4*rayon_moteur^2) + (moteur_masse/12 * moteur_hauteur^2)
  );
 
- ar = 0.0
+ ar = 0.0;
  moment_inertie_moteur = [
               moteur_intertie_xx_yy, 0, 0;
               0, moteur_intertie_xx_yy, 0;
@@ -174,10 +193,6 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
   % à commenter lorsque terminé:
   ar = 0.0;
 
-  % Tiré du document de réference:
-  R = [ cos(ar),  0, sin(ar);
-         0,        1, 0;
-        -sin(ar),  0, cos(ar); ];
 
   % I_g = R^(G<-L)*I^L*Transpose((R^(G<-L)))
   % Moment d'inertie du système globale = Matrice Rotation du système local vers le système global * Matrice du moment d'inertie du système local * transposée de la matrice de rotation
@@ -188,6 +203,10 @@ function [pcm acm MI aa]=Devoir1(pos,ar,va,lambda)
 
   % Partie 3: Calcul de l'accélération angulaire
 
+  % Return variables temporaires
+  pcm = r_c;
+  acm = [0; 0; 0];
+  aa = [0; 0; 0];
 
 end
 
