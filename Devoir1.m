@@ -214,7 +214,7 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
   moteur6_moment_force = cross(([moteur6_cm_x; moteur6_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(6)]);
 
   moment_force = moteur1_moment_force + moteur2_moment_force + moteur3_moment_force + moteur4_moment_force + moteur5_moment_force + moteur6_moment_force
-
+  moment_force;
   % Moment cinetique
   L = MI * va;
 
@@ -222,7 +222,17 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
   aa = MI\(moment_force + cross(L, va))
 
   % Return variables temporaires
-  acm = [0; 0; 0];
+
+  % Partie 4: Calcul de l'acceleration linéaire
+  % Accélération linéaire résulte directement de la force appliquée sur l'objet. Utilisation de la formule 2.68 du recueil:
+  a_moteur1 = [0, 0, force_totale(1)]/masse_totale;
+  a_moteur2 = [0, 0, force_totale(2)]/masse_totale;
+  a_moteur3 = [0, 0, force_totale(3)]/masse_totale;
+  a_moteur4 = [0, 0, force_totale(4)]/masse_totale;
+  a_moteur5 = [0, 0, force_totale(5)]/masse_totale;
+  a_moteur6 = [0, 0, force_totale(6)]/masse_totale;
+
+  acm = a_moteur1 + a_moteur2 + a_moteur3 + a_moteur4 + a_moteur5 + a_moteur6;
 
 end
 
