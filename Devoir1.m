@@ -131,10 +131,12 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
  bras_inertie_xx_yy = (
   (bras_masse/2 * bras_rayon^2) + (bras_masse/12 * bras_longueur^2)
  );
+ bras_inertie_zz = (bras_masse * bras_rayon^2)
+
  moment_inertie_bras = [
         bras_inertie_xx_yy, 0, 0;
         0, bras_inertie_xx_yy, 0;
-        0, 0, (bras_masse/2 * bras_rayon^2);
+        0, 0, bras_inertie_zz;
       ];
 
  % Demi-Sphere:
@@ -191,7 +193,7 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
   % Utilisation de la matrice de rotation OY afin de calculer le moment d'inertie finale:
 
   % à commenter lorsque terminé:
-  ar = 0.0;
+
 
 
   % I_g = R^(G<-L)*I^L*Transpose((R^(G<-L)))
@@ -214,12 +216,12 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
   moteur6_moment_force = cross(([moteur6_cm_x; moteur6_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(6)]);
 
   moment_force = moteur1_moment_force + moteur2_moment_force + moteur3_moment_force + moteur4_moment_force + moteur5_moment_force + moteur6_moment_force
-  moment_force;
+
   % Moment cinetique
   L = MI * va;
 
   % Acceleration angulaire
-  aa = MI\(moment_force + cross(L, va))
+  aa = MI\(moment_force + cross(L, va));
 
   % Return variables temporaires
 
