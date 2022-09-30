@@ -80,17 +80,17 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
 
   bras_cm_x = bras_masse * (bras1_cm_x + bras2_cm_x + bras3_cm_x + bras4_cm_x + bras5_cm_x + bras6_cm_x);
   moteur_cm_x = moteur_masse * (moteur1_cm_x + moteur2_cm_x + moteur3_cm_x + moteur4_cm_x + moteur5_cm_x + moteur6_cm_x);
-  cm_x = (sphere_masse * sphere_cm_x + bras_cm_x + moteur_cm_x + colis_masse * colis_cm_x)/masse_totale
+  cm_x = (sphere_masse * sphere_cm_x + bras_cm_x + moteur_cm_x + colis_masse * colis_cm_x)/masse_totale;
 
   bras_cm_y = bras_masse * (bras1_cm_y + bras2_cm_y + bras3_cm_y + bras4_cm_y + bras5_cm_y + bras6_cm_y);
   moteur_cm_y = moteur_masse * (moteur1_cm_y + moteur2_cm_y + moteur3_cm_y + moteur4_cm_y + moteur5_cm_y + moteur6_cm_y);
-  cm_y = (sphere_masse * sphere_cm_y + bras_cm_y + moteur_cm_y + colis_masse * colis_cm_y)/masse_totale
+  cm_y = (sphere_masse * sphere_cm_y + bras_cm_y + moteur_cm_y + colis_masse * colis_cm_y)/masse_totale;
 
   bras_cm_z = bras_masse * bras_cm_z * 6;
   moteur_cm_z = moteur_masse * moteur_cm_z * 6;
-  cm_z = (sphere_masse * sphere_cm_z + bras_cm_z + moteur_cm_z + colis_masse * colis_cm_z)/masse_totale
+  cm_z = (sphere_masse * sphere_cm_z + bras_cm_z + moteur_cm_z + colis_masse * colis_cm_z)/masse_totale;
 
-  pcm_initial = transpose([cm_x, cm_y, cm_z])
+  pcm_initial = transpose([cm_x, cm_y, cm_z]);
 
   % Position du centre de masse dans la situation finale
 
@@ -99,7 +99,7 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
         0,         1, 0;
         -sin(ar),  0, cos(ar); ];
 
-  pcm = (R * pcm_initial) + pos
+  pcm = (R * pcm_initial) + pos;
 
 
 
@@ -131,7 +131,7 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
  bras_inertie_xx_yy = (
   (bras_masse/2 * bras_rayon^2) + (bras_masse/12 * bras_longueur^2)
  );
- bras_inertie_zz = (bras_masse * bras_rayon^2)
+ bras_inertie_zz = (bras_masse * bras_rayon^2);
 
  moment_inertie_bras = [
         bras_inertie_xx_yy, 0, 0;
@@ -200,7 +200,7 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
   % Moment d'inertie du système globale = Matrice Rotation du système local vers le système global * Matrice du moment d'inertie du système local * transposée de la matrice de rotation
   % du système local vers le système global.
 
-  MI = R * I * transpose(R)
+  MI = R * I * transpose(R);
 
 
   % Partie 3: Calcul de l'accélération angulaire
@@ -215,7 +215,7 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
   moteur5_moment_force = cross(([moteur5_cm_x; moteur5_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(5)]);
   moteur6_moment_force = cross(([moteur6_cm_x; moteur6_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(6)]);
 
-  moment_force = moteur1_moment_force + moteur2_moment_force + moteur3_moment_force + moteur4_moment_force + moteur5_moment_force + moteur6_moment_force
+  moment_force = moteur1_moment_force + moteur2_moment_force + moteur3_moment_force + moteur4_moment_force + moteur5_moment_force + moteur6_moment_force;
 
   % Moment cinetique
   L = MI * va;
@@ -225,16 +225,21 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
 
   % Return variables temporaires
 
-  % Partie 4: Calcul de l'acceleration linéaire
+  % Partie 4: Calcul de l'acceleration linéaire (ACM)
   % Accélération linéaire résulte directement de la force appliquée sur l'objet. Utilisation de la formule 2.68 du recueil:
-  a_moteur1 = [0, 0, force_totale(1)]/masse_totale;
-  a_moteur2 = [0, 0, force_totale(2)]/masse_totale;
-  a_moteur3 = [0, 0, force_totale(3)]/masse_totale;
-  a_moteur4 = [0, 0, force_totale(4)]/masse_totale;
-  a_moteur5 = [0, 0, force_totale(5)]/masse_totale;
-  a_moteur6 = [0, 0, force_totale(6)]/masse_totale;
+  % a(t) = F(t)/masse, où F(t) représente l'entièreté des forces appliquées sur l'objet.
 
-  acm = a_moteur1 + a_moteur2 + a_moteur3 + a_moteur4 + a_moteur5 + a_moteur6;
+  f_moteur_1 = [0; 0; force_totale(1)];
+  f_moteur_2 = [0; 0; force_totale(2)];
+  f_moteur_3 = [0; 0; force_totale(3)];
+  f_moteur_4 = [0; 0; force_totale(4)];
+  f_moteur_5 = [0; 0; force_totale(5)];
+  f_moteur_6 = [0; 0; force_totale(6)];
+  f_moteurs = f_moteur_1 + f_moteur_2 + f_moteur_3 + f_moteur_4 + f_moteur_5 + f_moteur_6;
+  f_gravitationnelle = [0; 0; -1 * 9.81 * masse_totale];
+  F = f_gravitationnelle + f_moteurs;
+
+  acm = F/masse_totale;
 
 end
 
