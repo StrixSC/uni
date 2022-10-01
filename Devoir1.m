@@ -229,14 +229,15 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
   % Accélération linéaire résulte directement de la force appliquée sur l'objet. Utilisation de la formule 2.68 du recueil:
   % a(t) = F(t)/masse, où F(t) représente l'entièreté des forces appliquées sur l'objet.
 
-  f_moteur_1 = [0; 0; force_totale(1)];
-  f_moteur_2 = [0; 0; force_totale(2)];
-  f_moteur_3 = [0; 0; force_totale(3)];
-  f_moteur_4 = [0; 0; force_totale(4)];
-  f_moteur_5 = [0; 0; force_totale(5)];
-  f_moteur_6 = [0; 0; force_totale(6)];
+  f_moteur_1 = [sin(ar)*force_totale(1), 0, cos(ar)*force_totale(1)];
+  f_moteur_2 = [sin(ar)*force_totale(2), 0, cos(ar)*force_totale(2)];
+  f_moteur_3 = [sin(ar)*force_totale(3), 0, cos(ar)*force_totale(3)];
+  f_moteur_4 = [sin(ar)*force_totale(4), 0, cos(ar)*force_totale(4)];
+  f_moteur_5 = [sin(ar)*force_totale(5), 0, cos(ar)*force_totale(5)];
+  f_moteur_6 = [sin(ar)*force_totale(6), 0, cos(ar)*force_totale(6)];
   f_moteurs = f_moteur_1 + f_moteur_2 + f_moteur_3 + f_moteur_4 + f_moteur_5 + f_moteur_6;
-  f_gravitationnelle = [0; 0; -1 * 9.81 * masse_totale];
+  g = 9.81;
+  f_gravitationnelle = [0, 0, -1 * g * masse_totale];
   F = f_gravitationnelle + f_moteurs;
 
   acm = F/masse_totale;
