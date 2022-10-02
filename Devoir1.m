@@ -119,7 +119,6 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
   (moteur_masse/4*rayon_moteur^2) + (moteur_masse/12 * moteur_hauteur^2)
  );
 
- ar = 0.0;
  moment_inertie_moteur = [
               moteur_intertie_xx_yy, 0, 0;
               0, moteur_intertie_xx_yy, 0;
@@ -151,7 +150,6 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
  % centre de masse.
 
  r_c = [cm_x, cm_y, cm_z];
-
  % I_c + mT(d_c)
 
 

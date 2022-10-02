@@ -23,6 +23,7 @@ fprintf('  acc angulaire (r/s^2) = ( %10.5f,  %10.5f,  %10.5f ) \n\n',aaCas1(1),
 %
 % Cas 2
 posCas2=[-3.5;2.0;40.0];
+%posCas2=[0;0;0];
 acmCas2=[0;0;0];
 arCas2=0.2;
 vaCas2=[0.0; 0.05; 0.01];
