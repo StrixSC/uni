@@ -219,7 +219,7 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
   L = MI * va;
 
   % Acceleration angulaire
-  aa = MI\(moment_force + cross(L, va));
+  aa = transpose(MI) * (moment_force + cross(L, va));
 
   % Return variables temporaires
 
