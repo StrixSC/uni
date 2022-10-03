@@ -21,17 +21,17 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
   bras_longueur = 0.5;
   bras_masse = 0.2;
   bras_rayon = 0.025;
-  angle_separation = 60;
+  angle_separation = pi/3;
 
   bras1_cm_x = sphere_rayon + bras_longueur/2;
-  bras2_cm_x = bras1_cm_x*cosd(60);
+  bras2_cm_x = bras1_cm_x*cos(angle_separation);
   bras3_cm_x = -bras2_cm_x;
   bras4_cm_x = -bras1_cm_x;
   bras5_cm_x = bras3_cm_x;
   bras6_cm_x = bras2_cm_x;
 
   bras1_cm_y = 0;
-  bras2_cm_y = bras1_cm_x*sind(60);
+  bras2_cm_y = bras1_cm_x*sin(angle_separation);
   bras3_cm_y = bras2_cm_y;
   bras4_cm_y = 0;
   bras5_cm_y = -bras2_cm_y;
@@ -47,14 +47,14 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
   rayon_moteur = 0.05;
 
   moteur1_cm_x = sphere_rayon + bras_longueur + rayon_moteur;
-  moteur2_cm_x = moteur1_cm_x*cosd(60);
+  moteur2_cm_x = moteur1_cm_x*cos(angle_separation);
   moteur3_cm_x = -moteur2_cm_x;
   moteur4_cm_x = -moteur1_cm_x;
   moteur5_cm_x = moteur3_cm_x;
   moteur6_cm_x = moteur2_cm_x;
 
   moteur1_cm_y = 0;
-  moteur2_cm_y = moteur1_cm_x*sind(60);
+  moteur2_cm_y = moteur1_cm_x*sin(angle_separation);
   moteur3_cm_y = moteur2_cm_y;
   moteur4_cm_y = 0;
   moteur5_cm_y = -moteur2_cm_y;
@@ -206,20 +206,19 @@ function [pcm acm MI aa]=Devoir1(pos, ar, va, lambda)
   % Moment de force
   force_max = 20;
   force_totale = lambda * force_max;
-  moteur1_moment_force = cross(([moteur1_cm_x; moteur1_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(1)]);
-  moteur2_moment_force = cross(([moteur2_cm_x; moteur2_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(2)]);
-  moteur3_moment_force = cross(([moteur3_cm_x; moteur3_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(3)]);
-  moteur4_moment_force = cross(([moteur4_cm_x; moteur4_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(4)]);
-  moteur5_moment_force = cross(([moteur5_cm_x; moteur5_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(5)]);
-  moteur6_moment_force = cross(([moteur6_cm_x; moteur6_cm_y; moteur_cm_z] - pcm), [0; 0; force_totale(6)]);
-
-  moment_force = moteur1_moment_force + moteur2_moment_force + moteur3_moment_force + moteur4_moment_force + moteur5_moment_force + moteur6_moment_force;
+  moteur1_moment_force = cross((([moteur1_cm_x; moteur1_cm_y; moteur_cm_z]) - pcm_initial), [0; 0; force_totale(1)]);
+  moteur2_moment_force = cross((([moteur2_cm_x; moteur2_cm_y; moteur_cm_z]) - pcm_initial), [0; 0; force_totale(2)]);
+  moteur3_moment_force = cross((([moteur3_cm_x; moteur3_cm_y; moteur_cm_z]) - pcm_initial), [0; 0; force_totale(3)]);
+  moteur4_moment_force = cross((([moteur4_cm_x; moteur4_cm_y; moteur_cm_z]) - pcm_initial), [0; 0; force_totale(4)]);
+  moteur5_moment_force = cross((([moteur5_cm_x; moteur5_cm_y; moteur_cm_z]) - pcm_initial), [0; 0; force_totale(5)]);
+  moteur6_moment_force = cross((([moteur6_cm_x; moteur6_cm_y; moteur_cm_z]) - pcm_initial), [0; 0; force_totale(6)]);
+  moment_force = R * (moteur1_moment_force + moteur2_moment_force + moteur3_moment_force + moteur4_moment_force + moteur5_moment_force + moteur6_moment_force);
 
   % Moment cinetique
   L = MI * va;
 
   % Acceleration angulaire
-  aa = transpose(MI) * (moment_force + cross(L, va));
+  aa = inverse(MI) * (moment_force + cross(L, va));
 
   % Return variables temporaires
 
