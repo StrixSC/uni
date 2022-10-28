@@ -81,6 +81,22 @@ function [Vf t x y z] = Devoir2(theta)
         g = [a(1); a(2); a(3); velocity(1); velocity(2); velocity(3)];
     end
 
+    function [m] = compute_rocket_mass_at_time(t) 
+      m = 320 * 1000 - 1200 * t;
+    end
+
+    function [MI] = compute_moment_of_inertia(t) 
+      rocket_mass = compute_rocket_mass_at_time(t);
+      I_zz = rocket_mass/2 * rocket_radius^2;
+      I_xx = I_yy = (rocket_mass/4 * rocket_radius^2)+(rocket_mass/12 * rocket_height^2);
+      I = [
+        I_xx, 0, 0;
+        0, I_yy, 0;
+        0, 0, I_zz;
+      ];
+      MI = R*I*transpose(R);
+    end
+
     dT = 0.1; % Set delta t to an arbitrairy 0.01 seconds.
     current_q = [0; 0; 0; x(1); y(1); z(1); ];
     current_t = 0;
@@ -114,7 +130,7 @@ function [Vf t x y z] = Devoir2(theta)
         z = [z; current_rocket_CoM(3)];
         t = [t; current_t];
         current_t = current_t + dT;
-        masse_totale = 320 * 1000 - 1200 * t(end);
+        masse_totale = compute_rocket_mass_at_time(t(end));
         % if (masse_totale <= rocket_mass - fuel_mass)
         % end
     end
