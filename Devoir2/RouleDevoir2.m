@@ -10,7 +10,7 @@ axis equal;
   xlabel('y(m)')
   ylabel('z(m)')
 % Valeur de th�ta � modifier
-  theta=1;
+  theta=0.0005;
 [Vf t x y z]=Devoir2(theta);
   sz=size(t,1);
   plot(y,z,'r')

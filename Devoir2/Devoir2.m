@@ -58,7 +58,7 @@ function [Vf t x y z] = Devoir2(theta)
             ];
     end
 
-    function [Fp] = compute_propulsion(r, thX, mass)
+    function [Fp] = compute_propulsion(r, mass)
         v_gas = -1 * initial_v_gas * [0; sin(theta); cos(theta)];
         Fp = -1 * mu * v_gas;
 
@@ -84,14 +84,19 @@ function [Vf t x y z] = Devoir2(theta)
 
     function [ang_acc] = compute_angular_acceleration(q, t)
         r = [0; q(3); q(4)];
+        w = [q(5); 0; 0];
         thX = q(6);
         mass = compute_rocket_mass_at_time(t);
-        propulsion_force = compute_propulsion(r, thX, mass);
-        tau = cross(r_oxyz, propulsion_force);
-        I_local = compute_moment_of_inertia(mass);
+        
         Rx = R(thX);
+        fp_oxyz = compute_propulsion(r, mass);
+        
+        I_local = compute_moment_of_inertia(mass);
+        tau = cross(r_oxyz, fp_oxyz);
         MI = Rx * I_local * transpose(Rx);
-        ang_acc = inv(MI) * tau;
+        L = MI * w;
+        
+        ang_acc = inv(MI) * tau + cross(L, w);
     end
 
     function [lin_acc] = compute_linear_acceleration(q, t)
@@ -101,12 +106,8 @@ function [Vf t x y z] = Devoir2(theta)
         thX = q(6);
         mass = compute_rocket_mass_at_time(t);
         alpha = compute_alpha(v, thX);
-
-        if (mass <= rocket_mass)
-            Fp = [0; 0; 0];
-        else
-            Fp = compute_propulsion(r, thX, mass);
-        end
+        fp_oxyz = compute_propulsion(r,mass);
+        Fp = R(thX) * fp_oxyz;
 
         Fg = compute_gravitational(r, mass);
         Fvis = compute_friction(r, v, alpha);
@@ -116,6 +117,7 @@ function [Vf t x y z] = Devoir2(theta)
 
     function [g] = compute_g(q, t)
         v = [0; q(1); q(2)];
+        w = [q(5); 0; 0];
         lin_acc = compute_linear_acceleration(q, t);
         ang_acc = compute_angular_acceleration(q, t);
         g = [lin_acc(2), lin_acc(3), v(2), v(3), ang_acc(1), q(5)];
@@ -163,7 +165,7 @@ function [Vf t x y z] = Devoir2(theta)
     completed = false;
     % Starting positions:
     dT = 0.01; % Set delta t to an arbitrairy value;
-    snapshot_timer = dT * 100;
+    snapshot_timer = dT * 10;
     printf("[*] Using deltaT: %f and recording the position of the rocket every: %f seconds.\n", dT, snapshot_timer);
 
     time = 0;
