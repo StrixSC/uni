@@ -82,7 +82,7 @@ function [Vf t x y z] = Devoir2(theta)
         tau = cross(r_oxyz, propulsion_force); 
         I_local = compute_moment_of_inertia(mass);
         Rx = R(thX);
-        MI = Rx * I_local;
+        MI = Rx * I_local * transpose(Rx);
         ang_acc = inv(MI) * tau;
     end
 
@@ -156,8 +156,8 @@ function [Vf t x y z] = Devoir2(theta)
     completed = false;
     % Starting positions:
     dT = 0.5; % Set delta t to an arbitrairy value;
-    snapshot_timer = 10;
-    printf("[*] Using deltaT: %f and snapshot's timer: %f\n", dT, snapshot_timer);
+    snapshot_timer = 2;
+    printf("[*] Using deltaT: %f and recording the position of the rocket every: %f seconds.\n", dT, snapshot_timer);
 
     time = 0;
     time_since_last_snapshot = 0;
