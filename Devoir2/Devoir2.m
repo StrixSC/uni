@@ -31,7 +31,7 @@ function [Vf t x y z] = Devoir2(theta)
         Rx = [
             1, 0, 0; 
             0, cos(thX), -sin(thX); 
-            0 sin(thX) cos(thX)
+            0, sin(thX), cos(thX)
         ];
     end
 
@@ -82,7 +82,7 @@ function [Vf t x y z] = Devoir2(theta)
         tau = cross(r_oxyz, propulsion_force); 
         I_local = compute_moment_of_inertia(mass);
         Rx = R(thX);
-        MI = Rx * I * transpose(Rx);
+        MI = Rx * I_local;
         ang_acc = inv(MI) * tau;
     end
 
@@ -107,10 +107,11 @@ function [Vf t x y z] = Devoir2(theta)
     
 
     function [g] = compute_g(q, t)
+        v = [0; q(1); q(2)];
         lin_acc = compute_linear_acceleration(q, t);
-        ang_acc = compute_angular_acceleration(q, t);
         %   [  acc_y;      acc_z ; vit_y; vit_z; ang_acc_x; thX ]
-        g = [lin_acc(2), lin_acc(3), q(1), q(2), ang_acc(1), q(6)];
+        ang_acc = compute_angular_acceleration(q, t);
+        g = [lin_acc(2), lin_acc(3), v(2), v(3), ang_acc(1), q(6)];
     end
     
     % Definitions of constants
@@ -154,14 +155,14 @@ function [Vf t x y z] = Devoir2(theta)
     
     completed = false;
     % Starting positions:
-    dT = 0.005; % Set delta t to an arbitrairy value;
-    snapshot_timer = 0.010;
+    dT = 0.5; % Set delta t to an arbitrairy value;
+    snapshot_timer = 10;
     printf("[*] Using deltaT: %f and snapshot's timer: %f\n", dT, snapshot_timer);
 
     time = 0;
     time_since_last_snapshot = 0;
 
-    counter = 1;
+    iterations = 1;
     snapshots_saved = 1;
     printf("[*] Computing simulation...\n");
 
@@ -170,7 +171,7 @@ function [Vf t x y z] = Devoir2(theta)
         time = time + dT;
         g = @compute_g;
         q = SEDRK4t0(q, time, dT, g);
-        counter = counter + 1;
+        iterations = iterations + 1;
         r = [0; q(3); q(4)];
         if(abs(time - time_since_last_snapshot) >= snapshot_timer)
             snapshots_saved = snapshots_saved + 1;
@@ -182,18 +183,18 @@ function [Vf t x y z] = Devoir2(theta)
         end
 
         if (snapshots_saved >= 1000)
-            printf("[!] Reached above 1000 snapshots")
+            printf("[!] Reached above 1000 snapshots\n")
             break;
         end
 
         completed = verify_completion([0; q(3); q(4)]);
     end
 
-    if (counter <= 100)
+    if (iterations <= 100)
         printf("[!] Change deltaT, because snapshot count is too low...\n")
     end
 
-    printf("[*] We got %i iterations\n", counter)
-    printf("[*] We got %i snapshots\n", snapshots_saved)
-    Vf = [v0(1); q(2); q(3)];
+    printf("[*] We have %i iterations\n", iterations)
+    printf("[*] We have %i snapshots\n", snapshots_saved)
+    Vf = [v0(1); q(1); q(2)];
 end
