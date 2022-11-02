@@ -164,8 +164,8 @@ function [Vf t x y z] = Devoir2(theta)
 
     completed = false;
     % Starting positions:
-    dT = 0.01; % Set delta t to an arbitrairy value;
-    snapshot_timer = dT * 10;
+    dT = 0.1; % Set delta t to an arbitrairy value;
+    snapshot_timer = dT * 50; % Snapshots are taken at intervals, rather than at every incrementation.
     printf("[*] Using deltaT: %f and recording the position of the rocket every: %f seconds.\n", dT, snapshot_timer);
 
     time = 0;

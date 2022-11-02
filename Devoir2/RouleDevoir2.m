@@ -10,11 +10,11 @@ axis equal;
   xlabel('y(m)')
   ylabel('z(m)')
 % Valeur de th�ta � modifier
-  theta=0.0005;
+  theta=0.000017;
 [Vf t x y z]=Devoir2(theta);
   sz=size(t,1);
   plot(y,z,'r')
- fprintf('Angle tetha          %10.9f rad \n',theta);
+ fprintf('Angle theta          %10.9f rad \n',theta);
  fprintf('Temps final          %10.6f s \n',t(sz));
  fprintf('Vitesse finale          %10.6f m/s \n',Vf);
  fprintf('Position finale        ( %10.0f   , %10.0f   ,%10.0f )m \n',x(sz),y(sz),z(sz));
