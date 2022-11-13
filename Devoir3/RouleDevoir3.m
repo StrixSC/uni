@@ -58,7 +58,7 @@ for vit=1:4
   plot3([Sx(4),Sx(8)],[Sy(4),Sy(8)],[Sz(4),Sz(8)],'color','r');
 %  plot3(Posf1(1),Posf1(2),Posf1(3),'b+');
   fprintf('Temps final          %10.6f s \n',tt(sz));
-  fprintf('Position finale du dé    (%8.4f,%8.4f,%8.4f)  m \n',xx(sz),yy(sz),zz(sz));
+  fprintf('Position finale du dï¿½    (%8.4f,%8.4f,%8.4f)  m \n',xx(sz),yy(sz),zz(sz));
   fprintf('\n\n');
   hold;
   pause;
