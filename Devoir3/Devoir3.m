@@ -30,9 +30,9 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         end
     end
 
-    function [collides] = compute_collision(q, t)
+    function [collides] = detect_collision(q)
         r = [q(1); q(2); q(3)];
-        bottom_of_cube = r(3) - l;
+        bottom_of_cube = r(3) - radius_sphere;
         if (bottom_of_cube <= 0)
             collides = true
         else
@@ -68,6 +68,29 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         g = [v(1) v(2) v(3) a(1) a(2) a(3) aa(1) aa(2) aa(3) w(1) w(2) w(3)];
     end
 
+    function [q] = compute_post_collision_q(q)
+        r0 = [q(1); q(2); q(3)];
+        v0 = [q(4); q(5); q(6)];
+        w0 = [q(7); q(8); q(9)];
+        has_friction = detect_collision(r0);
+        n = -1 * compute_gravitational();
+        u = cross(v0, n)/norm(cross(v0, n));
+        t = cross(n, u);
+        j = -m * (1 + epsilon) * dot(n, v0);
+        G_a = dot(t, (inv(MI) * cross(cross(r0, t), r0)));
+        alpha = 1/((1/m) + G_a);
+        jt = 0;
+        if (mu_s * (1 + epsilon) * abs(dot(n, v0)) < abs(dot(t, v0)))
+            jt = alpha * mu_c * (1 + epsilon) * dot(n, v0);
+        else
+            jt = -1 * alpha * abs(dot(t, v0));
+        end
+        J = n * j + t * jt;
+        vf = v0 + (J/m);
+        wf = w0 + (inv(MI) * cross(r0, J));
+        q = [q(1); q(2); q(3); vf(1); vf(2); vf(3); wf(1); wf(2); wf(3); q(10); q(11); q(12)];
+    end
+
     function [vertices] = compute_vertices(q ,t)
     end
 
@@ -78,6 +101,8 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
     I = I_dice * [1, 0, 0; 0, 1, 0; 0, 0, 1];
     MI = MatR0 * I * transpose(MatR0);
     grav = 9.81;
+    radius_sphere = 1/2 * sqrt(3*(l^2)); % In meters
+    epsilon = 0.5;
 
     % Define constants:
     mu_s = 0.5;
@@ -112,39 +137,41 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
     
     iterations = 1;
     snapshots_saved = 1;
-    while !completed
-        % Update return arrays:
-        time = time + dT;
-        g = @compute_g;
-        q = SEDRK4t0(q, time, dT, g);
-        iterations = iterations + 1;
-        r = [q(1); q(2); q(3)];
-        if (abs(time - time_since_last_snapshot) >= snapshot_timer)
-            snapshots_saved = snapshots_saved + 1;
-            time_since_last_snapshot = time;
-            t = [t; time];
-            x = [x; r(1)];
-            y = [y; r(2)];
-            z = [z; r(3)];
-        end
 
-        if (snapshots_saved >= 1000)
-            printf("[!] Reached above 1000 snapshots\n")
-            break;
-        end
+    compute_post_collision_q(q)
+    % while !completed
+    %     % Update return arrays:
+    %     time = time + dT;
+    %     g = @compute_g;
+    %     q = SEDRK4t0(q, time, dT, g);
+    %     iterations = iterations + 1;
+    %     r = [q(1); q(2); q(3)];
+    %     if (abs(time - time_since_last_snapshot) >= snapshot_timer)
+    %         snapshots_saved = snapshots_saved + 1;
+    %         time_since_last_snapshot = time;
+    %         t = [t; time];
+    %         x = [x; r(1)];
+    %         y = [y; r(2)];
+    %         z = [z; r(3)];
+    %     end
 
-        v = [q(4); q(5); q(6)];
-        w = [q(7); q(8); q(9)];
-        z = q(3);
+    %     if (snapshots_saved >= 1000)
+    %         printf("[!] Reached above 1000 snapshots\n")
+    %         break;
+    %     end
 
-        completed = verify_completion(v, w, z);
-    end
+    %     v = [q(4); q(5); q(6)];
+    %     w = [q(7); q(8); q(9)];
+    %     z = q(3);
 
-    if (iterations <= 100)
-        printf("[!] Change deltaT, because snapshot count is too low...\n")
-    end
+    %     completed = verify_completion(v, w, z);
+    % end
 
-    printf("[*] We have %i iterations\n", iterations)
-    printf("[*] We have %i snapshots\n", snapshots_saved)
+    % if (iterations <= 100)
+    %     printf("[!] Change deltaT, because snapshot count is too low...\n")
+    % end
+
+    % printf("[*] We have %i iterations\n", iterations)
+    % printf("[*] We have %i snapshots\n", snapshots_saved)
 end
 
