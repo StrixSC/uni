@@ -92,6 +92,24 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
     end
 
     function [vertices] = compute_vertices(q ,t)
+        p = [q(1); q(2); q(3)];
+        r = [q(10); q(11); q(12)];
+        vertices0 = [
+            [
+                p(1) + l/2, p(1) + -l/2, p(1) + -l/2, p(1) + l/2, p(1) + l/2, p(1) + -l/2, p(1) + -l/2, p(1) + l/2;
+                p(2) + l/2, p(2) + l/2, p(2) + -l/2, p(2) + -l/2, p(2) + l/2, p(2) + l/2, p(2) + -l/2, p(2) + -l/2;
+                p(3) + -l/2, p(3) + -l/2, p(3) + -l/2, p(3) + -l/2, p(3) + l/2, p(3) + l/2, p(3) + l/2, p(3) + l/2;
+            ]
+        ];
+        rot = [sind(r(1)); sind(r(2)); sind(r(3))];
+        trans = zeros(3, 8);
+
+        for rows = 1:3
+            for col = 1:8
+                trans(rows, col) = l/2 * rot(rows);
+                vertices(rows, col) = vertices0(rows, col) + trans(rows, col);
+            end
+        end
     end
 
     % Define dice data:
