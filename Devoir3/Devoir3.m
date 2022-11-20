@@ -16,69 +16,69 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         Fg = [0; 0; -1 * m * grav];
     end
 
-    function [Ffs] = compute_friction_static()
+    function [Ffs] = compute_friction_static(N)
         Fg = compute_gravitational();
-        N = -1 * Fg;
         Ffs = -1 * mu_s * N;
     end
 
-    function [Ffc] = compute_friction_kinetic(v)
+    function [Ffc] = compute_friction_kinetic(v, N)
         norm_v = norm(v);
 
         if norm_v <= 0
             Ffc = 0;
         elseif norm_v > 0
-            Fg = compute_gravitational();
-            N = -1 * Fg;
             Ffc = -1 * mu_c * transpose(N) * (v / norm_v);
         end
 
     end
 
-    function [vertices] = compute_final_vertices(q)
+    function [vertices] = compute_vertices(q)
         r = [q(1); q(2); q(3)];
         MatRot = [
             q(10) q(11) q(12);
             q(13) q(14) q(15);
             q(16) q(17) q(18);
-        ];
-        vertices = MatRot * [
-            r(1) + l / 2, r(1) + -l / 2, r(1) + -l / 2, r(1) + l / 2, r(1) + l / 2, r(1) + -l / 2, r(1) + -l / 2, r(1) + l / 2;
-            r(2) + l / 2, r(2) + l / 2, r(2) + -l / 2, r(2) + -l / 2, r(2) + l / 2, r(2) + l / 2, r(2) + -l / 2, r(2) + -l / 2;
-            r(3) + -l / 2, r(3) + -l / 2, r(3) + -l / 2, r(3) + -l / 2, r(3) + l / 2, r(3) + l / 2, r(3) + l / 2, r(3) + l / 2;
-        ];
+            ];
+        vertices = (r + MatRot) * [
+                                l / 2, -l / 2, -l / 2, l / 2, l / 2, -l / 2, -l / 2, l / 2;
+                                l / 2, l / 2, -l / 2, -l / 2, l / 2, l / 2, -l / 2, -l / 2;
+                                -l / 2, -l / 2, -l / 2, -l / 2, l / 2, l / 2, l / 2, l / 2;
+                                ];
     end
 
-    function [collides, touches_ground] = detect_collision(q, t)
+    function [collides, vertex] = detect_collision(q, t)
         % This method will detect if there is a collision in the experiment. It will return 1 if there is a collision (or about to be a collision) by using the sphere method
         % If the sphere method detects a collision is about to happen, we check for collisions using AABB method. If a collision occurs then, we return 2.
         % If no collisions occurred, we return 0;
 
         % q is the q matrix containing the required information and t is the total time lapsed in the experiment
         r = [q(1); q(2); q(3)];
+        vertex = [];
 
         % Check with methode de sphere first:
         collides = 0;
-        bottom_of_sphere = r(3) - radius_sphere;
+        dist_sphere_ground = r(3) - radius_sphere;
 
-        if bottom_of_sphere <= 0
-            collides = 1; % We have reached the threshold where we could have/already have a collision.
+        if dist_sphere_ground <= 0
+            collides = 1; % We have reached the threshold where we could have
         end
 
         if collides == 0
             return;
         end
 
-        rotated_vertices_OXYZ = transpose(compute_final_vertices(q));
-        touches_ground = [];
+        rotated_vertices_OXYZ = transpose(compute_vertices(q));
 
         for i = 1:size(rotated_vertices_OXYZ, 1)
             vertex = [rotated_vertices_OXYZ(i, 1); rotated_vertices_OXYZ(i, 2); rotated_vertices_OXYZ(i, 3)];
+
             if vertex(3) <= 0
                 collides = 2;
-                touches_ground = [touches_ground; vertex];
+                return
             end
+
         end
+
     end
 
     function [a] = compute_acceleration(q, t)
@@ -86,69 +86,22 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         v = [q(4); q(5); q(6)];
         z_unit = [0 0 1];
         Fg = compute_gravitational();
-        N = -1 * Fg;
 
-        Ffs = compute_friction_static();
-        Ffc = compute_friction_kinetic(v);
+        if r(3) <= 0
+            N = -1 * Fg;
+        else
+            N = 0;
+        end
+
+        Ffs = compute_friction_static(N);
+        Ffc = compute_friction_kinetic(v, N);
 
         F = Fg + N + Ffs + Ffc;
         a = F / m;
     end
 
-    function [Rx] = RX(thX)
-        Rx = [
-            1, 0, 0;
-            0, cos(thX), -sin(thX);
-            0, sin(thX), cos(thX)
-            ];
-    end
-
-    function [Ry] = RY(thY)
-        Ry = [
-            cos(thY), 0, sin(thY);
-            0, 1, 0;
-            -sin(thY), 0, cos(thY)
-            ];
-    end
-
-    function [Rz] = RZ(thZ)
-        Rz = [
-            cos(thZ), -sin(thZ), 0;
-            sin(thZ), cos(thZ), 0;
-            0, 0, 1
-            ];
-    end
-
     function [ang_acc] = compute_angular_acceleration(q, t)
-        % % theta = [q(10)];
-        % % initial angular velocity
-        % w = [q(7); q(8); q(9)];
-        % % initial position
-        % r = [q(1); q(2); q(3)];
-        % r_oxyz = [l / 2; l / 2; l / 2];
-        % % local inertia matrix
-        % Ilocal = I;
-
-        % thX = q(10);
-
-        % % tourne x y z ?
-        % Rx = RX(thX);
-        % Ry = RY(thY);
-        % Rz = RZ(thZ);
-
-        % % matrice de rotation
-        % Rt = Rx * Ry * Rz;
-
-        % % force normal au point de la collision
-        % n = [0; 0; 1];
-
-        % Ilocal = compute_moment_of_inertia(mass);
-        % tau = cross(r_oxyz, n);
-        % MI = Rx * Ilocal * transpose(Rx);
-        % L = MI * w;
-
-        % ang_acc = inv(MI) * tau + cross(L, w);
-        ang_acc = [0;0;0];
+        ang_acc = [0; 0; 0];
     end
 
     function [g] = compute_g(q, t)
@@ -195,74 +148,32 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
             dR_xz_dt,
             dR_yz_dt,
             dR_zz_dt
-        ];
+            ];
 
     end
 
-    function [q] = compute_post_collision_q(q)
-        r0 = [q(1); q(2); q(3)];
+    function [vf, wf] = compute_post_collision_q(q, colliding_vertex)
+        r0 = [q(1); q(2); q(3)] - colliding_vertex;
         v0 = [q(4); q(5); q(6)];
         w0 = [q(7); q(8); q(9)];
-        n = -1 * compute_gravitational();
-        u = cross(v0, n) / norm(cross(v0, n));
+        n = [0; 0; 1];
+        v_minus = v0 + cross(w0, colliding_vertex);
+        u = cross(v_minus, n) / norm(cross(v_minus, n));
         t = cross(n, u);
         j = -m * (1 + epsilon) * dot(n, v0);
-        G_a = dot(t, (inv(MI) * cross(cross(r0, t), r0)));
-        alpha = 1 / ((1 / m) + G_a);
-        jt = 0;
+        G_a_t = dot(t, (inv(MI) * cross(cross(r0, t), r0)));
+        alpha = 1 / ((1 / m) + G_a_t);
 
-        if (mu_s * (1 + epsilon) * abs(dot(n, v0)) < abs(dot(t, v0)))
+        if (mu_s * (1 + epsilon) * abs(dot(n, v_minus)) < abs(dot(t, v_minus)))
             jt = alpha * mu_c * (1 + epsilon) * dot(n, v0);
         else
             jt = -1 * alpha * abs(dot(t, v0));
         end
 
+        j = -alpha * (1 + epsilon) * dot(n, v_minus);
         J = n * j + t * jt;
         vf = v0 + (J / m);
         wf = w0 + (inv(MI) * cross(r0, J));
-        q = [q(1),
-            q(2),
-            q(3),
-            vf(1),
-            vf(2),
-            vf(3),
-            wf(1),
-            wf(2),
-            wf(3),
-            q(10),
-            q(11),
-            q(12),
-            q(13),
-            q(14),
-            q(15),
-            q(16),
-            q(17),
-            q(18)
-        ];
-    end
-
-    function [vertices] = compute_vertices(q, t)
-        p = [q(1); q(2); q(3)];
-        r = [q(10); q(11); q(12)];
-        vertices0 = [
-                [
-            p(1) + l / 2, p(1) + -l / 2, p(1) + -l / 2, p(1) + l / 2, p(1) + l / 2, p(1) + -l / 2, p(1) + -l / 2, p(1) + l / 2;
-            p(2) + l / 2, p(2) + l / 2, p(2) + -l / 2, p(2) + -l / 2, p(2) + l / 2, p(2) + l / 2, p(2) + -l / 2, p(2) + -l / 2;
-            p(3) + -l / 2, p(3) + -l / 2, p(3) + -l / 2, p(3) + -l / 2, p(3) + l / 2, p(3) + l / 2, p(3) + l / 2, p(3) + l / 2;
-            ]
-        ];
-        rot = [sind(r(1)); sind(r(2)); sind(r(3))];
-        trans = zeros(3, 8);
-
-        for rows = 1:3
-
-            for col = 1:8
-                trans(rows, col) = l / 2 * rot(rows);
-                vertices(rows, col) = vertices0(rows, col) + trans(rows, col);
-            end
-
-        end
-
     end
 
     % Define dice data:
@@ -270,9 +181,16 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
     l = 4/100; % in meters
     I_dice = m * (l^2) * 1/6;
     I = I_dice * [1, 0, 0; 0, 1, 0; 0, 0, 1];
+    relative_vertices = [
+                    l / 2, -l / 2, -l / 2, l / 2, l / 2, -l / 2, -l / 2, l / 2;
+                    l / 2, l / 2, -l / 2, -l / 2, l / 2, l / 2, -l / 2, -l / 2;
+                    -l / 2, -l / 2, -l / 2, -l / 2, l / 2, l / 2, l / 2, l / 2;
+                    ];
     MI = MatR0 * I * transpose(MatR0);
     grav = 9.81;
     radius_sphere = 1/2 * sqrt(3 * (l^2)); % In meters
+    MIN_SPHERE_THRESHOLD = -l/2;
+    MAX_SPHERE_THRESHOLD = -MIN_SPHERE_THRESHOLD;
     epsilon = 0.5;
 
     % Define constants:
@@ -311,40 +229,60 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
     time_since_last_snapshot = 0;
 
     completed = false;
-    dT = 0.1; % Set delta t to an arbitrairy value;
-    snapshot_timer = dT * 50; % Snapshots are taken at intervals, rather than at every incrementation.
-    printf("[*] Using deltaT: %f and recording the position of the rocket every: %f seconds.\n", dT, snapshot_timer);
+    original_dT = 0.01;
+    dT = original_dT; % Set delta t to an arbitrairy value;
+    printf("[*] Using deltaT: %f.\n", dT);
 
     iterations = 1;
     snapshots_saved = 1;
-    collide_counter = 0;
+    collision_counter = 0;
+
     while !completed
-        % Update return arrays:
         time = time + dT;
         g = @compute_g;
-        q = SEDRK4t0(q, time, dT, g);
         iterations = iterations + 1;
 
-        collides = detect_collision(q, time);
-
-        if collides == 2
-            printf("[!] Collide with ground");
-            % q = compute_post_collision_q(q);
-            collide_counter = collide_counter + 1;
-        end
-
         r = [q(1); q(2); q(3)];
-        if (abs(time - time_since_last_snapshot) >= snapshot_timer)
-            snapshots_saved = snapshots_saved + 1;
-            time_since_last_snapshot = time;
-            t = [t; time];
-            x = [x; r(1)];
-            y = [y; r(2)];
-            z = [z; r(3)];
+        v = [q(4); q(5); q(6)];
+
+        is_falling = (v(3) < 0);
+        edge_of_sphere_z = r(3) - radius_sphere;
+
+        if(is_falling && edge_of_sphere_z <= MAX_SPHERE_THRESHOLD)
+            % Collision occurred, so we decrease dT and revert the snapshot to before the collision.
+            iterations = iterations - 1;
+            time = time - dT;
+            dT = dT/2
+            continue
+        elseif (is_falling && 
+            edge_of_sphere_z <= MAX_SPHERE_THRESHOLD && 
+            edge_of_sphere_z >= MIN_SPHERE_THRESHOLD)
+            % At this stage, we can safely assume that a collision is happening or is about to happen.
+            q = SEDRK4t0(q, time, dT, g);
+            MatRot = [
+                q(10) q(11) q(12);
+                q(13) q(14) q(15);
+                q(16) q(17) q(18);
+            ];
+            vertices = transpose(((r+MatRot) * relative_vertices));
+            vertices_z = vertices(:, [3]);
+            [minimum_z, index] = min(vertices_z);
+            lowest_vertex = vertices(index, [1:3]);
+            [vf, wf] = compute_post_collision_q(q, lowest_vertex);
+            for i=1:3
+                q(i+3) = vf(i)
+                q(i+6) = wf(i)
+            end
+        else
+            q = SEDRK4t0(q, time, dT, g);
         end
 
+        t = [t; time];
+        x = [x; r(1)];
+        y = [y; r(2)];
+        z = [z; r(3)];
 
-        if (snapshots_saved >= 1000)
+        if (size(t, 1) >= 1000)
             printf("[!] Reached above 1000 snapshots\n")
             break;
         end
@@ -352,12 +290,13 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         completed = verify_completion(q);
     end
 
-    if (iterations <= 100)
+    if (size(t, 1) <= 100)
         printf("[!] Change deltaT, because snapshot count is too low...\n")
     end
 
-    sommets = compute_final_vertices(q);
+    sommets = compute_vertices(q);
 
-    printf("[*] We have %i iterations\n", iterations)
-    printf("[*] We have %i snapshots\n", snapshots_saved)
+    printf("[*] Collided this amount of times: %i\n", collision_counter);
+    printf("[*] We have %i iterations\n", iterations);
+    printf("[*] We have %i snapshots\n", snapshots_saved);
 end
