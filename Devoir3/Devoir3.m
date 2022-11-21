@@ -142,7 +142,7 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         landed_face = index;
     end
 
-    function [vf, wf] = compute_post_collision_q(q, colliding_vertex)
+    function [vf, wf] = compute_post_collision_q(q, colliding_vertex, collision_counter)
         r0 = [q(1); q(2); q(3)] - transpose(colliding_vertex);
         v0 = [q(4); q(5); q(6)];
         w0 = [q(7); q(8); q(9)];
@@ -160,7 +160,12 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
             jt = -1 * alpha * abs(dot(t_, v0));
         end
 
+        if (collision_counter <= MAX_COLLISION)
+            jt = 0;
+        end
+
         j = -alpha * (1 + epsilon) * dot(n, v_minus);
+
         J = n * j + t_ * jt;
         vf = v0 + (J / m);
         wf = w0 + (inv(I) * cross(r0, J));
@@ -179,6 +184,7 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
     grav = 9.81;
     radius_sphere = 1/2 * sqrt(3 * (l^2)); % In meters
     ERROR_RANGE = 1/1000;
+    MAX_COLLISION = 3;
     epsilon = 0.5;
 
     % Define constants:
@@ -199,7 +205,7 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         MatR0(1, 1), % R_xx, q(10)
         MatR0(2, 1), % R_xy, q(11)
         MatR0(3, 1), % R_xz, q(12)
-        MatR0(1, 2), % R_yy, q(13)
+        MatR0(1, 2), % R_yx, q(13)
         MatR0(2, 2), % R_yy, q(14)
         MatR0(3, 2), % R_yz, q(15)
         MatR0(1, 3), % R_zx, q(16)
@@ -211,8 +217,8 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
     face = 1;
     time = 0;
     time_since_last_snapshot = 0;
-    dT_divider = 10;
-    original_dT = 0.0009;
+    dT_divider = 10000;
+    original_dT = 0.001;
     dT = original_dT; % Set delta t to an arbitrairy value;
     snapshot_timer = dT * 10;
     t = [time];
@@ -241,12 +247,14 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
             [minimum_z, index] = min(vertices_z);
             
             if(minimum_z <= (-1 * ERROR_RANGE))
+                % This is a failsafe in case the change in dT was not able to capture a position that fits the bounds of 1mm (-0.0001 < z < 0.0001) set in the assignment handout.
                 force_collision = true;
             end
 
             if(force_collision || (minimum_z <= ERROR_RANGE && minimum_z >= (-1 * ERROR_RANGE)))
+                % Here we can assume that the dice has officially impacted the ground and a collision is happening.
                 lowest_vertex = vertices(index, [1:3]);
-                [vf, wf]= compute_post_collision_q(q, lowest_vertex);
+                [vf, wf]= compute_post_collision_q(q, lowest_vertex, collision_counter);
                 for i=1:3
                     q(i+3) = vf(i);
                     q(i+6) = wf(i);
@@ -259,7 +267,7 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
             else
                 % At this stage, the sphere surrounding the dice has enterred the zone at which we must reduce the delta T to precisely pinpoint the moment of the collision.
                 % slightly reduce dT;
-                dT = dT - original_dT/1000;
+                dT = dT - original_dT/dT_divider;
                 % After a certain level, the dT becomes way too low to impact the change of q, thus we must force a collision.
                 if dT <= original_dT/1000
                     force_collision = true;    
