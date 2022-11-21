@@ -212,9 +212,9 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
     time = 0;
     time_since_last_snapshot = 0;
     dT_divider = 10;
-    original_dT = 0.001;
+    original_dT = 0.0009;
     dT = original_dT; % Set delta t to an arbitrairy value;
-    snapshot_timer = dT * 5;
+    snapshot_timer = dT * 10;
     t = [time];
     x = [Pos0(1)];
     y = [Pos0(2)];
@@ -223,6 +223,7 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
     snapshots_saved = 1;
     collision_counter = 0;
     g = @compute_g;
+    force_collision = false;
 
     while !completed
         v_z = q(6);
@@ -238,15 +239,39 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
             vertices = transpose(compute_vertices(q));
             vertices_z = vertices(:, [3]);
             [minimum_z, index] = min(vertices_z);
-            lowest_vertex = vertices(index, [1:3]);
-            [vf, wf]= compute_post_collision_q(q, lowest_vertex);
-            for i=1:3
-                q(i+3) = vf(i);
-                q(i+6) = wf(i);
+            
+            if(minimum_z <= (-1 * ERROR_RANGE))
+                force_collision = true;
             end
-            q(6) = abs(q(6));
-            collision_counter = collision_counter + 1;
+
+            if(force_collision || (minimum_z <= ERROR_RANGE && minimum_z >= (-1 * ERROR_RANGE)))
+                lowest_vertex = vertices(index, [1:3]);
+                [vf, wf]= compute_post_collision_q(q, lowest_vertex);
+                for i=1:3
+                    q(i+3) = vf(i);
+                    q(i+6) = wf(i);
+                end
+                q(6) = abs(q(6));
+                % reset dT:
+                dT = original_dT;
+                force_collision = false;
+                collision_counter = collision_counter + 1;
+            else
+                % At this stage, the sphere surrounding the dice has enterred the zone at which we must reduce the delta T to precisely pinpoint the moment of the collision.
+                % slightly reduce dT;
+                dT = dT - original_dT/1000;
+                % After a certain level, the dT becomes way too low to impact the change of q, thus we must force a collision.
+                if dT <= original_dT/1000
+                    force_collision = true;    
+                end
+
+                % recompute q;
+                q = SEDRK4t0(q, time, dT, g);
+                % restart this same iteration (iteration count has not changed).
+                continue;
+            end
         end
+
 
         time = time + dT;
         q = SEDRK4t0(q, time, dT, g);
