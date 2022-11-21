@@ -51,13 +51,13 @@ for vit=1:1
   xsommet=[Sx(1),Sx(2),Sx(3),Sx(4),Sx(1),Sx(5),Sx(6),Sx(7),Sx(8),Sx(5)];
   ysommet=[Sy(1),Sy(2),Sy(3),Sy(4),Sy(1),Sy(5),Sy(6),Sy(7),Sy(8),Sy(5)];
   zsommet=[Sz(1),Sz(2),Sz(3),Sz(4),Sz(1),Sz(5),Sz(6),Sz(7),Sz(8),Sz(5)];
-%  Posf1=(sommet(:,1)+sommet(:,2)+sommet(:,3)+sommet(:,4))/4; % position du centre de la face 1 est la moyenne des positions des sommets 1,2,3 et4
+  % Posf1=(sommet(:,1)+sommet(:,2)+sommet(:,3)+sommet(:,4))/4; % position du centre de la face 1 est la moyenne des positions des sommets 1,2,3 et4
   plot3(xx(1:sz),yy(1:sz),zz(1:sz),'b');
   plot3(xsommet,ysommet,zsommet,'color','r');
   plot3([Sx(2),Sx(6)],[Sy(2),Sy(6)],[Sz(2),Sz(6)],'color','r');
   plot3([Sx(3),Sx(7)],[Sy(3),Sy(7)],[Sz(3),Sz(7)],'color','r');
   plot3([Sx(4),Sx(8)],[Sy(4),Sy(8)],[Sz(4),Sz(8)],'color','r');
-%  plot3(Posf1(1),Posf1(2),Posf1(3),'b+');
+  % plot3(Posf1(1),Posf1(2),Posf1(3),'b+');
   fprintf('Temps final          %10.6f s \n',tt(sz));
   fprintf('Position finale du d�    (%8.4f,%8.4f,%8.4f)  m \n',xx(sz),yy(sz),zz(sz));
   fprintf('\n\n');

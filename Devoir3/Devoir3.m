@@ -8,9 +8,9 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
     function [is_completed] = verify_completion(q)
         v = [q(4); q(5); q(6)];
         w = [q(7); q(8); q(9)];
-        z = q(3);
+        pos_z = q(3);
         is_completed = false;
-        if ((1/2 * m * dot(v, v)) + (1/2 * I * dot(w, w)) + (m * grav * z)) < (sqrt(2) * m * grav * l)
+        if ((1/2 * m * dot(v, v)) + (1/2 * I * dot(w, w)) + (m * grav * pos_z)) < (sqrt(2) * m * grav * l)
             is_completed = true;
         end
     end
@@ -49,7 +49,7 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
     function [a] = compute_acceleration(q, t)
         r = [q(1); q(2); q(3)];
         v = [q(4); q(5); q(6)];
-        z_unit = [0 0 1];
+        pos_z_unit = [0 0 1];
         Fg = compute_gravitational();
 
         N = [0; 0; 0];
@@ -124,19 +124,19 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         n = [0; 0; 1];
         v_minus = v0 + cross(w0, r0);
         u = cross(v_minus, n) / norm(cross(v_minus, n));
-        t = cross(n, u);
+        t_ = cross(n, u);
         j = -m * (1 + epsilon) * dot(n, v0);
-        G_a_t = dot(t, (inv(I) * cross(cross(r0, t), r0)));
+        G_a_t = dot(t_, (inv(I) * cross(cross(r0, t_), r0)));
         alpha = 1 / ((1 / m) + G_a_t);
 
-        if (mu_s * (1 + epsilon) * abs(dot(n, v_minus)) < abs(dot(t, v_minus)))
+        if (mu_s * (1 + epsilon) * abs(dot(n, v_minus)) < abs(dot(t_, v_minus)))
             jt = alpha * mu_c * (1 + epsilon) * dot(n, v0);
         else
-            jt = -1 * alpha * abs(dot(t, v0));
+            jt = -1 * alpha * abs(dot(t_, v0));
         end
 
         j = -alpha * (1 + epsilon) * dot(n, v_minus);
-        J = n * j + t * jt;
+        J = n * j + t_ * jt;
         vf = v0 + (J / m);
         wf = w0 + (inv(I) * cross(r0, J));
     end
@@ -185,14 +185,17 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
     completed = false;
     face = 1;
     time = 0;
+    time_since_last_snapshot = 0;
     dT_divider = 10;
     original_dT = 0.001;
     dT = original_dT; % Set delta t to an arbitrairy value;
+    snapshot_timer = dT * 5;
     t = [time];
     x = [Pos0(1)];
     y = [Pos0(2)];
     z = [Pos0(3)];
     iterations = 1;
+    snapshots_saved = 1;
     collision_counter = 0;
     g = @compute_g;
 
@@ -210,45 +213,43 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
             vertices = transpose(compute_vertices(q));
             vertices_z = vertices(:, [3]);
             [minimum_z, index] = min(vertices_z);
-            lowest_vertex = vertices(index, [1:3])
+            lowest_vertex = vertices(index, [1:3]);
             [vf, wf]= compute_post_collision_q(q, lowest_vertex);
-            printf("OLD Q:\n")
-            q
             for i=1:3
                 q(i+3) = vf(i);
                 q(i+6) = wf(i);
             end
-            printf("NEW Q:\n")
             q(6) = abs(q(6));
-            q
             collision_counter = collision_counter + 1;
-            % else
-            %     dT = dT - original_dT/dT_divider
-            %     q = SEDRK4t0(q, time, dT, g);
-            %     continue;
-            % end
         end
-
-        % if (edge_of_sphere_z < -1)
-        %     dT = original_dT
-        %     dT_divider/10
-        %     continue
-        % end
-        
 
         time = time + dT;
         q = SEDRK4t0(q, time, dT, g);
         iterations = iterations + 1;
         r = [q(1); q(2); q(3)];
-        t = [t; time];
-        x = [x; r(1)];
-        y = [y; r(2)];
-        z = [z; r(3)];
+        if (abs(time - time_since_last_snapshot) >= snapshot_timer)
+            snapshots_saved = snapshots_saved + 1;
+            time_since_last_snapshot = time;
+            t = [t time];
+            x = [x r(1)];
+            y = [y r(2)];
+            z = [z r(3)];
+        end
+
+        if (snapshots_saved >= 1000)
+            printf("[!] Reached above 1000 snapshots\n")
+            break;
+        end
+
         completed = verify_completion(q);
     end
 
-    sommets = compute_vertices(q)
+    if (snapshots_saved <= 100)
+        printf("[!] Change deltaT, because snapshot count is too low...\n")
+    end
 
+    sommets = compute_vertices(q);
     printf("[*] Collided this amount of times: %i\n", collision_counter);
     printf("[*] We have %i iterations\n", iterations);
+    printf("[*] We have %i snapshots\n", snapshots_saved);
 end

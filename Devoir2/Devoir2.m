@@ -199,7 +199,7 @@ function [Vf t x y z] = Devoir2(theta)
         completed = verify_completion([0; q(3); q(4)]);
     end
 
-    if (iterations <= 100)
+    if (snapshots_saved <= 100)
         printf("[!] Change deltaT, because snapshot count is too low...\n")
     end
 
