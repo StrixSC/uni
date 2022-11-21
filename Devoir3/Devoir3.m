@@ -117,6 +117,31 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
 
     end
 
+    function [landed_face] = compute_landed_face(vertices)
+        % position of face 1 is the average of positions of vertices 1, 2, 3 and 4
+        pos_face_1 = (vertices(:, 1)+vertices(:, 2)+vertices(:, 3)+vertices(:,4))/4;
+
+        % position of face 2 is the average of positions of vertices 3, 4, 7 and 8
+        pos_face_2 = (vertices(:, 3)+vertices(:, 4)+vertices(:, 7)+vertices(:,8))/4;
+
+        % position of face 3 is the average of positions of vertices 1, 2, 3 and 4
+        pos_face_3 = (vertices(:, 2)+vertices(:, 3)+vertices(:, 6)+vertices(:,7))/4;
+
+        % position of face 4 is the average of positions of vertices 1, 4, 5 and 8
+        pos_face_4 = (vertices(:, 1)+vertices(:, 4)+vertices(:, 5)+vertices(:,8))/4;
+
+        % position of face 5 is the average of positions of vertices 1, 2, 5 and 6
+        pos_face_5 = (vertices(:, 1)+vertices(:, 2)+vertices(:, 5)+vertices(:, 6))/4;
+
+        % position of face 6 is the average of positions of vertices 5, 6, 7 and 8
+        pos_face_6 = (vertices(:, 5)+vertices(:, 6)+vertices(:, 7)+vertices(:, 8))/4;
+
+        % The highest (in terms of z position) valued face is the face that it has landed on (or appears to have landed on in the final result of the simulation):
+        face_positions = [pos_face_1(3) pos_face_2(3) pos_face_3(3) pos_face_4(3) pos_face_5(3) pos_face_6(3)];
+        [maximum_value, index] = max(face_positions);
+        landed_face = index;
+    end
+
     function [vf, wf] = compute_post_collision_q(q, colliding_vertex)
         r0 = [q(1); q(2); q(3)] - transpose(colliding_vertex);
         v0 = [q(4); q(5); q(6)];
@@ -249,6 +274,8 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
     end
 
     sommets = compute_vertices(q);
+    landed_face = compute_landed_face(sommets);
+    printf("[*] Landed on: %i\n", landed_face);
     printf("[*] Collided this amount of times: %i\n", collision_counter);
     printf("[*] We have %i iterations\n", iterations);
     printf("[*] We have %i snapshots\n", snapshots_saved);
