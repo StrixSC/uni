@@ -76,13 +76,13 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         aa = compute_angular_acceleration(q, t);
 
         R_xx = q(10);
-        R_yx = q(11);
-        R_zx = q(12);
-        R_xy = q(13);
+        R_xy = q(11);
+        R_xz = q(12);
+        R_yx = q(13);
         R_yy = q(14);
-        R_zy = q(15);
-        R_xz = q(16);
-        R_yz = q(17);
+        R_yz = q(15);
+        R_zx = q(16);
+        R_zy = q(17);
         R_zz = q(18);
 
         dR_xx_dt = w(2) * R_zx - w(3) * R_yx;
@@ -113,7 +113,7 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
             dR_xz_dt,
             dR_yz_dt,
             dR_zz_dt
-            ];
+        ];
 
     end
 
@@ -122,8 +122,6 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         v0 = [q(4); q(5); q(6)];
         w0 = [q(7); q(8); q(9)];
         n = [0; 0; 1];
-        r0
-        w0
         v_minus = v0 + cross(w0, r0);
         u = cross(v_minus, n) / norm(cross(v_minus, n));
         t = cross(n, u);
@@ -174,13 +172,13 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         W0(2), % w z, q(8)
         W0(3), % w z, q(9)
         MatR0(1, 1), % R_xx, q(10)
-        MatR0(2, 1), % R_yx, q(11)
-        MatR0(3, 1), % R_zx, q(12)
-        MatR0(1, 2), % R_xy, q(13)
+        MatR0(2, 1), % R_xy, q(11)
+        MatR0(3, 1), % R_xz, q(12)
+        MatR0(1, 2), % R_yy, q(13)
         MatR0(2, 2), % R_yy, q(14)
-        MatR0(3, 2), % R_zy, q(15)
-        MatR0(1, 3), % R_xz, q(16)
-        MatR0(2, 3), % R_yz, q(17)
+        MatR0(3, 2), % R_yz, q(15)
+        MatR0(1, 3), % R_zx, q(16)
+        MatR0(2, 3), % R_zy, q(17)
         MatR0(3, 3), % R_zz, q(18)
         ];
 
@@ -212,24 +210,23 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
             vertices = transpose(compute_vertices(q));
             vertices_z = vertices(:, [3]);
             [minimum_z, index] = min(vertices_z);
-            if (minimum_z <= ERROR_RANGE && minimum_z >= -ERROR_RANGE)
-                lowest_vertex = vertices(index, [1:3])
-                [vf, wf]= compute_post_collision_q(q, lowest_vertex);
-                printf("OLD Q:\n")
-                q
-                for i=1:3
-                    q(i+3) = vf(i);
-                    q(i+6) = wf(i);
-                end
-                printf("NEW Q:\n")
-                q(6) = abs(q(6));
-                q
-                collision_counter = collision_counter + 1;
-            else
-                dT = dT - original_dT/dT_divider
-                q = SEDRK4t0(q, time, dT, g);
-                continue;
+            lowest_vertex = vertices(index, [1:3])
+            [vf, wf]= compute_post_collision_q(q, lowest_vertex);
+            printf("OLD Q:\n")
+            q
+            for i=1:3
+                q(i+3) = vf(i);
+                q(i+6) = wf(i);
             end
+            printf("NEW Q:\n")
+            q(6) = abs(q(6));
+            q
+            collision_counter = collision_counter + 1;
+            % else
+            %     dT = dT - original_dT/dT_divider
+            %     q = SEDRK4t0(q, time, dT, g);
+            %     continue;
+            % end
         end
 
         % if (edge_of_sphere_z < -1)
@@ -254,5 +251,4 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
 
     printf("[*] Collided this amount of times: %i\n", collision_counter);
     printf("[*] We have %i iterations\n", iterations);
-    printf("[*] We have %i snapshots\n", snapshots_saved);
 end

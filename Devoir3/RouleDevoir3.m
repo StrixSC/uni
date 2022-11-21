@@ -7,7 +7,7 @@ ysol=[-0.25   -0.25   0.5   0.5   -0.25];
 zsol=[0   0   0   0   0];
 Pos0=[0; 0; 1];
 
-for vit=4:4
+for vit=1:1
   clf;
   hold;
   xlabel('x(m)');
