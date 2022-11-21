@@ -10,7 +10,7 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         w = [q(7); q(8); q(9)];
         z = q(3);
         is_completed = false;
-        if ((1/2 * m * norm(v)^2) + (1/2 * I * norm(w)^2) + (m * grav * z)) < (2^(1/2) * m * grav * l)
+        if ((1/2 * m * dot(v, v)) + (1/2 * I * dot(w, w)) + (m * grav * z)) < (sqrt(2) * m * grav * l)
             is_completed = true;
         end
     end
@@ -128,7 +128,7 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         u = cross(v_minus, n) / norm(cross(v_minus, n));
         t = cross(n, u);
         j = -m * (1 + epsilon) * dot(n, v0);
-        G_a_t = dot(t, (inv(MI) * cross(cross(r0, t), r0)));
+        G_a_t = dot(t, (inv(I) * cross(cross(r0, t), r0)));
         alpha = 1 / ((1 / m) + G_a_t);
 
         if (mu_s * (1 + epsilon) * abs(dot(n, v_minus)) < abs(dot(t, v_minus)))
@@ -140,7 +140,7 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         j = -alpha * (1 + epsilon) * dot(n, v_minus);
         J = n * j + t * jt;
         vf = v0 + (J / m);
-        wf = w0 + (inv(MI) * cross(r0, J));
+        wf = w0 + (inv(I) * cross(r0, J));
     end
 
     % Define dice data:
@@ -153,11 +153,9 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
                     l / 2, l / 2, -l / 2, -l / 2, l / 2, l / 2, -l / 2, -l / 2;
                     -l / 2, -l / 2, -l / 2, -l / 2, l / 2, l / 2, l / 2, l / 2;
                     ];
-    MI = MatR0 * I * transpose(MatR0);
     grav = 9.81;
     radius_sphere = 1/2 * sqrt(3 * (l^2)); % In meters
-    MIN_SPHERE_THRESHOLD = 0.001;
-    MAX_SPHERE_THRESHOLD = -MIN_SPHERE_THRESHOLD;
+    ERROR_RANGE = 1/1000;
     epsilon = 0.5;
 
     % Define constants:
@@ -186,29 +184,21 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         MatR0(3, 3), % R_zz, q(18)
         ];
 
+    completed = false;
     face = 1;
-    t = [0];
+    time = 0;
+    dT_divider = 10;
+    original_dT = 0.001;
+    dT = original_dT; % Set delta t to an arbitrairy value;
+    t = [time];
     x = [Pos0(1)];
     y = [Pos0(2)];
     z = [Pos0(3)];
-
-    time = 0;
-    time_since_last_snapshot = 0;
-
-    completed = false;
-    original_dT = 0.0005;
-    dT = original_dT; % Set delta t to an arbitrairy value;
-    printf("[*] Using deltaT: %f.\n", dT);
-
     iterations = 1;
-    snapshots_saved = 1;
     collision_counter = 0;
+    g = @compute_g;
 
     while !completed
-        time = time + dT;
-        g = @compute_g;
-        iterations = iterations + 1;
-        r = [q(1); q(2); q(3)]
         v_z = q(6);
         r_z = q(3);
         is_falling = true;
@@ -217,51 +207,50 @@ function [face t x y z sommets] = Devoir3(Pos0, MatR0, V0, W0)
         end
         edge_of_sphere_z = q(3) - radius_sphere;
 
-        if (is_falling && 
-            edge_of_sphere_z >= MAX_SPHERE_THRESHOLD && 
-            edge_of_sphere_z <= MIN_SPHERE_THRESHOLD)
+        if (is_falling && edge_of_sphere_z <= 0)
             % At this stage, we can safely assume that a collision is happening or is about to happen.
-            q = SEDRK4t0(q, time, dT, g);
             vertices = transpose(compute_vertices(q));
             vertices_z = vertices(:, [3]);
-            [minimum_z, index] = min(vertices_z)
-            lowest_vertex = vertices(index, [1:3])
-            [vf, wf] = compute_post_collision_q(q, lowest_vertex);
-            for i=1:3
-                q(i+3) = vf(i);
-                q(i+6) = wf(i);
+            [minimum_z, index] = min(vertices_z);
+            if (minimum_z <= ERROR_RANGE && minimum_z >= -ERROR_RANGE)
+                lowest_vertex = vertices(index, [1:3])
+                [vf, wf]= compute_post_collision_q(q, lowest_vertex);
+                printf("OLD Q:\n")
+                q
+                for i=1:3
+                    q(i+3) = vf(i);
+                    q(i+6) = wf(i);
+                end
+                printf("NEW Q:\n")
+                q(6) = abs(q(6));
+                q
+                collision_counter = collision_counter + 1;
+            else
+                dT = dT - original_dT/dT_divider
+                q = SEDRK4t0(q, time, dT, g);
+                continue;
             end
-            collision_counter = collision_counter + 1;
-        elseif(is_falling && edge_of_sphere_z <= MAX_SPHERE_THRESHOLD)
-            % % Collision occurred, so we decrease dT and revert the snapshot to before the collision.
-            % iterations = iterations - 1;
-            % time = time - dT;
-            % dT = dT/2;
-            % q = SEDRK4t0(q, time, dT, g);
-            % continue
-        else
-            q = SEDRK4t0(q, time, dT, g);
         end
 
+        % if (edge_of_sphere_z < -1)
+        %     dT = original_dT
+        %     dT_divider/10
+        %     continue
+        % end
+        
+
+        time = time + dT;
+        q = SEDRK4t0(q, time, dT, g);
+        iterations = iterations + 1;
         r = [q(1); q(2); q(3)];
         t = [t; time];
         x = [x; r(1)];
         y = [y; r(2)];
         z = [z; r(3)];
         completed = verify_completion(q);
-
-        if (size(t, 1) >= 1000)
-            printf("[!] Reached above 1000 snapshots\n")
-            completed = true;
-        end
-
     end
 
-    if (size(t, 1) <= 100)
-        printf("[!] Change deltaT, because snapshot count is too low...\n")
-    end
-
-    sommets = compute_vertices(q);
+    sommets = compute_vertices(q)
 
     printf("[*] Collided this amount of times: %i\n", collision_counter);
     printf("[*] We have %i iterations\n", iterations);
