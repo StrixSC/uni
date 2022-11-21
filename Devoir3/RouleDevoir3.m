@@ -1,26 +1,26 @@
 %
 % Definir terrain
 %
+clear;
 xsol=[-0.25   0.5   0.5   -0.25   -0.25];
 ysol=[-0.25   -0.25   0.5   0.5   -0.25];
 zsol=[0   0   0   0   0];
 Pos0=[0; 0; 1];
 
-for vit=3:4
+for vit=4:4
   clf;
   hold;
   xlabel('x(m)');
   ylabel('y(m)');
   zlabel('z(m)');
 %
-%  Tracer terrain 
+%  Tracer terrain
 %
   fprintf('\nSimulation %3d\n',vit);
 %Lancer 1
   if vit==1
     V0=[0.5;0;0.5];
     W0=[0.1;0.1;0];
-    % MatR0=[0.5,0.83205029,0.2401922;0.75,-0.5547002,0.3602883;0.4330127,0,-0.9013878];
     MatR0=[1,0,0;0,1,0;0,0,1];
   elseif vit==2
 %Lancer 2
@@ -33,7 +33,7 @@ for vit=3:4
     W0=[0.2;0.1;0];
     MatR0=[1,0,0;0,1,0;0,0,1];
   else
-%Lancer 4 
+%Lancer 4
     V0=[0.5;0;0.5];
     W0=[0.1;0.1;0];
     MatR0=[0.5,0.83205029,0.2401922;0.75,-0.5547002,0.3602883;0.4330127,0,-0.9013878];
@@ -61,6 +61,4 @@ for vit=3:4
   fprintf('Temps final          %10.6f s \n',tt(sz));
   fprintf('Position finale du d�    (%8.4f,%8.4f,%8.4f)  m \n',xx(sz),yy(sz),zz(sz));
   fprintf('\n\n');
-  hold;
-  pause;
 end
