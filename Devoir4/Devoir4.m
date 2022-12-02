@@ -5,6 +5,7 @@ function [xi yi zi face]=Devoir4(Robs,nint,next)
     len_box_side_b = 2; % in cm
     len_box_side_c = 4; % in cm
     box_height = len_box_side_c; % in cm;
+    critical_angle = abs(asin(nint/next));
 
     com_sphere_OXYZ = [0;0;0]; % in cm
     com_box_OXYZ = [0;0;box_height/2]; % in cm
@@ -122,8 +123,8 @@ function [xi yi zi face]=Devoir4(Robs,nint,next)
 
     %% Step 2: Ray Tracing
     % N and M represent the amount of theta and phi angles we will trace
-    T = 100;
-    P = 50;
+    T = 1;
+    P = 1;
 
     % We must now create rays (N*M rays to be exact) that will each have a unique
     % phi and theta angle composing it.
@@ -138,31 +139,88 @@ function [xi yi zi face]=Devoir4(Robs,nint,next)
         phi_m = phi_plus + ((phi_end - phi_start)/(2*count))*((2*m) - 1);
     end
 
-    function ray_vector = compute_ray_vector(theta, phi)
-        ray_vector = transpose([sin(theta)*cos(phi), sin(theta)*sin(phi), cos(theta)]);
+    function svi = compute_shortest_viable_intersection(all_intersections)
+        shortest_distance = Inf;
+        i = -1;
+        epsilon = 1e-6;
+        for j = 1:length(all_intersections)
+            intersection = all_intersections(j);
+            if (intersection < epsilon)
+                continue
+            end
+
+            if(intersection <= shortest_distance)
+                i = j;
+                svi = intersection;
+            end
+        end
+        svi = i;
     end
 
-    for i=0:T
-            theta_n = compute_theta_n(i, T);
-        for j=0:P
-            phi_m = compute_phi_m(j, P);
-            rv = compute_ray_vector(theta_n, phi_m);
-            rv_unit = (rv/norm(rv));
-            ray = Ray(Robs, rv_unit);
+    printf("========================STARTING...========================\n");
+    for thval=0:5:359
+            % theta_n = compute_theta_n(thval, T);
+        for phival=0:5:359
+            % phi_m = compute_phi_m(phival, P);
+            ray_origin = [sin(theta)*cos(phi); sin(theta)*sin(phi); cos(theta)];
+            ray_direction = (ray_origin/norm(ray_origin));
+            starting_ray = Ray(ray_origin, ray_direction);
+            ray = starting_ray;
+            total_travelled_distance = 0;
+            is_inside_sphere = false;
             for reflexions=0:4
                 % Intersections with planes:
-                int_cyan = cyan_plane.check_collision_with_ray(ray);
-                int_blue = blue_plane.check_collision_with_ray(ray);
-                int_red = red_plane.check_collision_with_ray(ray);
-                int_orange = orange_plane.check_collision_with_ray(ray);
-                int_green = green_plane.check_collision_with_ray(ray);
-                int_magenta = magenta_plane.check_collision_with_ray(ray);
-                int_sphere = sphere.check_collision_with_ray(ray);
-                % ray.compute_collision_point(int_sphere)
-                intersections = [int_cyan, int_blue, int_red, int_orange, int_magenta, int_green, int_sphere];
+                intersections = [];
+                distances = [];
+                [cyan_distance, cyan_plane_int] = cyan_plane.check_collision_with_ray(ray);
+                [blue_distance, blue_plane_int] = blue_plane.check_collision_with_ray(ray);
+                [red_distance, red_plane_int] = red_plane.check_collision_with_ray(ray);
+                [orange_distance, orange_plane_int] = orange_plane.check_collision_with_ray(ray);
+                [green_distance, green_plane_int] = green_plane.check_collision_with_ray(ray);
+                [magenta_distance, magenta_plane_int] = magenta_plane.check_collision_with_ray(ray);
+                [sphere_distance, sphere_int] = sphere.check_collision_with_ray(ray)
+                distances = [cyan_distance, blue_distance, red_distance, orange_distance, green_distance, magenta_distance, sphere_distance];
+                intersections = [cyan_plane_int, blue_plane_int, red_plane_int, orange_plane_int, green_plane_int, magenta_plane_int, sphere_int];
+                svi = compute_shortest_viable_intersection(intersections);
+                
+                if (svi < 0)
+                    % If there are no indices, then there are no intersections/collisions that are on the sphere or the planes, for this angle.
+                    break
+                end
+
+                total_travelled_distance = total_travelled_distance + distances(svi);
+                
+                if (svi < 6)
+                    % Intersection occurred with one of the 6 planes -> End the computation with this ray.
+                    %% Step 3: Image reconstitution.
+                    resulting_point = starting_ray.compute_collision_point(total_travelled_distance);
+                    svi
+                    xi = [xi; resulting_point(1)];
+                    yi = [xi; resulting_point(2)];
+                    zi = [xi; resulting_point(3)];
+                    face = [face; svi];
+                else
+                    % Intersection with the sphere:
+                    % https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-sphere-intersection#:~:text=The%20normal%20of%20a%20point,%7CP%E2%88%92C%7C%7C.
+                    intersection_point = ray.compute_collision_point(intersections(svi));
+                    np = intersection_point - sphere.center;
+                    np = np/norm(np);
+                    if (is_inside_sphere)
+                        np = -1 * np;
+                    end
+
+                    if (is_inside_sphere)
+                        [new_is_inside_sphere, new_ray] = ray.compute_new_ray(intersection_point, np, nint, next, critical_angle, is_inside_sphere);
+                        is_inside_sphere = new_is_inside_sphere;
+                        ray = new_ray;
+                        
+                    else
+                        [new_is_inside_sphere, new_ray] = ray.compute_new_ray(intersection_point, np, next, nint, critical_angle, is_inside_sphere);
+                        is_inside_sphere = new_is_inside_sphere;
+                        ray = new_ray;
+                    end
+                end
             end
         end
     end
-
-    %% Step 3: Image reconstitution.
 end
