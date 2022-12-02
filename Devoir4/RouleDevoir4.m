@@ -45,7 +45,7 @@ for itst=1:1
   line(Facezx,Facezy,[cc cc cc cc cc],'Color','g');
   axis equal
   [xi,yi,zi,face]=Devoir4(Robs(itst,:),nout(itst),nin(itst));
-  nbpoint=length(face);
+  nbpoint=length(face)
   for ipoint=1:nbpoint
     if face(ipoint) == 1
       plot3([xi(ipoint)],[yi(ipoint)],[zi(ipoint)],'c.');
