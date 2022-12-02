@@ -123,8 +123,8 @@ function [xi yi zi face]=Devoir4(Robs,nint,next)
 
     %% Step 2: Ray Tracing
     % N and M represent the amount of theta and phi angles we will trace
-    T = 1;
-    P = 1;
+    T = 10;
+    P = 5;
 
     % We must now create rays (N*M rays to be exact) that will each have a unique
     % phi and theta angle composing it.
@@ -151,18 +151,18 @@ function [xi yi zi face]=Devoir4(Robs,nint,next)
 
             if(intersection <= shortest_distance)
                 i = j;
-                svi = intersection;
+                shortest_distance = intersection;
             end
         end
         svi = i;
     end
 
     printf("========================STARTING...========================\n");
-    for thval=0:5:359
-            % theta_n = compute_theta_n(thval, T);
-        for phival=0:5:359
-            % phi_m = compute_phi_m(phival, P);
-            ray_origin = [sin(theta)*cos(phi); sin(theta)*sin(phi); cos(theta)];
+    for thval=0:T
+            theta_n = compute_theta_n(thval, T);
+        for phival=0:P
+            phi_m = compute_phi_m(phival, P);
+            ray_origin = [sin(theta_n)*cos(phi_m); sin(theta_n)*sin(phi_m); cos(theta_n)];
             ray_direction = (ray_origin/norm(ray_origin));
             starting_ray = Ray(ray_origin, ray_direction);
             ray = starting_ray;
@@ -172,16 +172,16 @@ function [xi yi zi face]=Devoir4(Robs,nint,next)
                 % Intersections with planes:
                 intersections = [];
                 distances = [];
-                [cyan_distance, cyan_plane_int] = cyan_plane.check_collision_with_ray(ray);
-                [blue_distance, blue_plane_int] = blue_plane.check_collision_with_ray(ray);
-                [red_distance, red_plane_int] = red_plane.check_collision_with_ray(ray);
-                [orange_distance, orange_plane_int] = orange_plane.check_collision_with_ray(ray);
-                [green_distance, green_plane_int] = green_plane.check_collision_with_ray(ray);
-                [magenta_distance, magenta_plane_int] = magenta_plane.check_collision_with_ray(ray);
-                [sphere_distance, sphere_int] = sphere.check_collision_with_ray(ray)
+                [cyan_distance, cyan_plane_collision_point] = cyan_plane.check_collision_with_ray(ray);
+                [blue_distance, blue_plane_collision_point] = blue_plane.check_collision_with_ray(ray);
+                [red_distance, red_plane_collision_point] = red_plane.check_collision_with_ray(ray);
+                [orange_distance, orange_plane_collision_point] = orange_plane.check_collision_with_ray(ray);
+                [green_distance, green_plane_collision_point] = green_plane.check_collision_with_ray(ray);
+                [magenta_distance, magenta_plane_collision_point] = magenta_plane.check_collision_with_ray(ray);
+                [sphere_distance, sphere_collision_point] = sphere.check_collision_with_ray(ray)
                 distances = [cyan_distance, blue_distance, red_distance, orange_distance, green_distance, magenta_distance, sphere_distance];
-                intersections = [cyan_plane_int, blue_plane_int, red_plane_int, orange_plane_int, green_plane_int, magenta_plane_int, sphere_int];
-                svi = compute_shortest_viable_intersection(intersections);
+                intersections = [cyan_plane_collision_point, blue_plane_collision_point, red_plane_collision_point, orange_plane_collision_point, green_plane_collision_point, magenta_plane_collision_point, sphere_collision_point];
+                svi = compute_shortest_viable_intersection(distances)
                 
                 if (svi < 0)
                     % If there are no indices, then there are no intersections/collisions that are on the sphere or the planes, for this angle.
@@ -194,7 +194,6 @@ function [xi yi zi face]=Devoir4(Robs,nint,next)
                     % Intersection occurred with one of the 6 planes -> End the computation with this ray.
                     %% Step 3: Image reconstitution.
                     resulting_point = starting_ray.compute_collision_point(total_travelled_distance);
-                    svi
                     xi = [xi; resulting_point(1)];
                     yi = [xi; resulting_point(2)];
                     zi = [xi; resulting_point(3)];
@@ -202,7 +201,7 @@ function [xi yi zi face]=Devoir4(Robs,nint,next)
                 else
                     % Intersection with the sphere:
                     % https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-sphere-intersection#:~:text=The%20normal%20of%20a%20point,%7CP%E2%88%92C%7C%7C.
-                    intersection_point = ray.compute_collision_point(intersections(svi));
+                    col_point = [intersection(svi * 3 - 2); intersection(svi * 3 - 1); intersection(svi * 3)];
                     np = intersection_point - sphere.center;
                     np = np/norm(np);
                     if (is_inside_sphere)
@@ -210,12 +209,11 @@ function [xi yi zi face]=Devoir4(Robs,nint,next)
                     end
 
                     if (is_inside_sphere)
-                        [new_is_inside_sphere, new_ray] = ray.compute_new_ray(intersection_point, np, nint, next, critical_angle, is_inside_sphere);
+                        [new_is_inside_sphere, new_ray] = ray.compute_new_ray(col_point, np, nint, next, critical_angle, is_inside_sphere);
                         is_inside_sphere = new_is_inside_sphere;
                         ray = new_ray;
-                        
                     else
-                        [new_is_inside_sphere, new_ray] = ray.compute_new_ray(intersection_point, np, next, nint, critical_angle, is_inside_sphere);
+                        [new_is_inside_sphere, new_ray] = ray.compute_new_ray(col_point, np, next, nint, critical_angle, is_inside_sphere);
                         is_inside_sphere = new_is_inside_sphere;
                         ray = new_ray;
                     end

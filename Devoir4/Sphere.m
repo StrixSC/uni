@@ -55,18 +55,17 @@ classdef Sphere
             distance = norm(dist_point - ray.origin);
         end
 
-        function [distance, collision] = check_collision_with_ray(sphere,ray)
+        function [distance, collision_point] = check_collision_with_ray(sphere,ray)
+            collision_point = [0;0;0];
             a = dot(ray.direction, ray.direction);
             b = 2 * dot(ray.direction, ray.origin - sphere.center);
             c = dot(ray.origin - sphere.center, ray.origin - sphere.center) - (sphere.radius*sphere.radius);
             [solvable, t] = SolveQuadratic(a, b, c);
             if (solvable)
-                intPoint = ray.compute_collision_point(t);
-                distance = norm(intPoint - ray.origin);
-                collision = t;
+                collision_point = ray.compute_collision_point(t);
+                distance = norm(collision_point - ray.origin);
             else
-                distance = 0;
-                collision = -1;
+                distance = -1;
             end
         end
 

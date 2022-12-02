@@ -9,10 +9,10 @@ classdef Plane
             plane.defining_value = defining_value;
         end
 
-        function [distance, collision] = check_collision_with_ray(plane, ray)
+        function [distance, collision_point] = check_collision_with_ray(plane, ray)
             t = plane.check_collision_infinite_plan(ray);
-            collision = -1;
-            distance = 0;
+            distance = -1;
+            collision_point = [0;0;0];
             if (t > 1e-6)
                 collision_point =  ray.compute_collision_point(t);
                 collision_base = collision_point(plane.indices(1));
@@ -21,7 +21,6 @@ classdef Plane
                 height_interval = plane.height_interval;
 
                 if (collision_base >= base_interval(1) && collision_base <= base_interval(2) && collision_height >= height_interval(1) && collision_height <= height_interval(2))
-                    collision = t;
                     distance = norm(collision_point - ray.origin);
                 end
             end
