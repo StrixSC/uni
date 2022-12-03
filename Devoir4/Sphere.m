@@ -54,15 +54,9 @@ classdef Sphere
                 distance = -1
                 collision_point = [0;0;0];
             end
-
-            printf("DISTANCES AND COLLISION POINT:\n")
-            t
-            rdir = ray.direction
-            collision_point
-            distance
         end
 
-        function [distance, collision_point] = check_collision_with_ray(sphere, ray)
+        function [distance, collision_point] = check_collision_with_ray2(sphere, ray)
             RayOrigin = ray.origin;
             RayDirection = ray.direction;
             SphereOrigin = sphere.center;
@@ -94,13 +88,29 @@ classdef Sphere
             end
             if (t > 0)
                 collision_point = ray.compute_collision_point(t);
-                distance = norm(collision_point - ray.origin);
+                distance = norm(collision_point - RayOrigin);
             else
                 distance = -1;
                 collision_point = [0;0;0];
             end
         end
 
+        function [distance, collision_point] = check_collision_with_ray(sphere, ray)
+            distance = -1;
+            collision_point = [0;0;0];
+            ray_start_to_sphere_center = sphere.center - ray.origin;
+            a = dot(ray.direction, ray.direction);
+            b = -2 * dot(ray_start_to_sphere_center, ray.direction);
+            c = dot(ray_start_to_sphere_center, ray_start_to_sphere_center) - (sphere.radius^2);
+            d = (b^2) - (4*a*c);
+            if (d >= 0)
+                t0 = -(1/2*a) * (-1 * b - (d^0.5));
+                if (t0 > 0)                    
+                    collision_point = ray.compute_collision_point(t0);
+                    distance = norm(collision_point - ray.origin);
+                end
+            end
+        end
     end
 
     properties

@@ -16,7 +16,7 @@ nout = [1 1   1   1.5];
 nin  = [1.5  1.5 1.5 1];
 Robs  = [20 20 10; 0 20 2; 0 0 10; 0 0 10];
 
-for itst=1:1
+for itst=4:4
   tic
   clf;
   hold;
@@ -47,12 +47,13 @@ for itst=1:1
   [xi,yi,zi,face]=Devoir4(Robs(itst,:),nout(itst),nin(itst));
   nbpoint=length(face)
   for ipoint=1:nbpoint
+    printf("Completion Percentage: %2.2f \n", ipoint/nbpoint*100)
     if face(ipoint) == 1
       plot3([xi(ipoint)],[yi(ipoint)],[zi(ipoint)],'c.');
     elseif face(ipoint) == 2
       plot3([xi(ipoint)],[yi(ipoint)],[zi(ipoint)],'b.');
     elseif face(ipoint) == 3
-      plot3([xi(ipoint)],[yi(ipoint)],[zi(ipoint)],'Color',[0.9290 0.6940 0.1250]);
+      plot3([xi(ipoint)],[yi(ipoint)],[zi(ipoint)],[0.9290 0.6940 0.1250]);
     elseif face(ipoint) == 4
       plot3([xi(ipoint)],[yi(ipoint)],[zi(ipoint)],'r.');
     elseif face(ipoint) == 5
@@ -61,6 +62,7 @@ for itst=1:1
       plot3([xi(ipoint)],[yi(ipoint)],[zi(ipoint)],'g.');
     end
   end
+  face
   hold;
   toc
   pause
