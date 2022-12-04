@@ -80,18 +80,24 @@ function [xi yi zi face]=Devoir4(Robs,nint,next)
     zi = [];
     face = [];
 
-    % N and M represent the amount of theta and phi angles we will trace
+    % T and P represent the amount of theta and phi angles we will use
     T = 359;
     P = 359;
+    theta_step = 1;
+    phi_step = 1;
+    ray_count = 0;
+    MAX_SAVED_POINTS_PER_THETA = 25;
 
     function svi = compute_shortest_viable_intersection(all_intersections)
-        %% TODO: CHANGER THIS FUNCITON A BIT
-        index = -1;
         distance = Inf;
+        index = -1;
         for i = 1:length(all_intersections)
-            if(distance >= all_intersections(i) && all_intersections(i) > 0.000001)
-                index = i;
+            c1 = (distance >= all_intersections(i));
+            % 1e-6 is Epsilon, a value used to filter out the inaccurate rays.
+            c2 = (all_intersections(i) > 1e-6);
+            if(c1 && c2)
                 distance = all_intersections(i);
+                index = i;
             end
         end
         svi = index;
@@ -102,15 +108,17 @@ function [xi yi zi face]=Devoir4(Robs,nint,next)
     end
 
     printf("========================STARTING...========================\n");
-    for theta_val=0:3:T
+    for theta_val=0:theta_step:T
         % theta_n = compute_theta_n(thval, T);
-        for phi_val=0:3:P
+        saved_points = 0;
+        for phi_val=0:phi_step:P
             % phi_m = compute_phi_m(phival, P);
             ray_origin = [Robs(1); Robs(2); Robs(3)];
             ray_direction = compute_direction_vector(theta_val, phi_val);
             ray_direction_unit = (ray_direction)/norm(ray_direction);
-            starting_ray = Ray(ray_origin, ray_direction_unit);
+            starting_ray = Ray(ray_origin, ray_direction_unit, nint, next);
             ray = starting_ray;
+            ray_count = ray_count + 1;
             total_travelled_distance = 0;
             is_inside_sphere = false;
             for bounce=0:4
@@ -136,12 +144,13 @@ function [xi yi zi face]=Devoir4(Robs,nint,next)
                 if (svi <= 6)
                     total_travelled_distance = total_travelled_distance + distances(svi);
                     % Intersection occurred with one of the 6 planes -> End the computation with this ray.
-                    if (total_travelled_distance < 50)
+                    if (total_travelled_distance < 50 && saved_points < MAX_SAVED_POINTS_PER_THETA)
                         resulting_point = starting_ray.compute_collision_point(total_travelled_distance);
                         xi = [xi; resulting_point(1)];
                         yi = [yi; resulting_point(2)];
                         zi = [zi; resulting_point(3)];
                         face = [face; svi];
+                        saved_points = saved_points + 1;
                     end
                     break;
                 elseif (svi == 7)
@@ -151,15 +160,17 @@ function [xi yi zi face]=Devoir4(Robs,nint,next)
                     col_point = [intersections(svi * 3 - 2); intersections(svi * 3 - 1); intersections(svi * 3)];
                     np = (col_point - sphere.center)/norm(col_point - sphere.center);
                     if (is_inside_sphere)
-                        ray = ray.compute_new_ray(col_point, np, nint, next, 1);
+                        ray = ray.compute_new_ray(col_point, np, nint, next, 0);
                     else
-                        ray = ray.compute_new_ray(col_point, np, next, nint, 0);
+                        ray = ray.compute_new_ray(col_point, np, next, nint, 1);
                         is_inside_sphere = true;
                     end
                 end
             end
         end
-        printf("Completion Percentage: %2.2f \n", (theta_val/T) * 100)
-        printf("Saved Points: %d\n", length(face))
+        printf("Completion Percentage: %2.2f \n", (theta_val/T) * 100);
+        printf("Saved Points: %d\n", length(face));
+        printf("Total rays casted from observer's location: %d\n", ray_count);
     end
+
 end

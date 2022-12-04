@@ -7,6 +7,7 @@ format long;
 close all ; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% D�finir les cas %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 rad=8;
 aa=2;
 bb=1;
@@ -45,15 +46,15 @@ for itst=4:4
   line(Facezx,Facezy,[cc cc cc cc cc],'Color','g');
   axis equal
   [xi,yi,zi,face]=Devoir4(Robs(itst,:),nout(itst),nin(itst));
-  nbpoint=length(face)
+  nbpoint=length(face);
   for ipoint=1:nbpoint
-    printf("Completion Percentage: %2.2f \n", ipoint/nbpoint*100)
+    printf("Rendering Percentage: %2.2f \(%d/%d\) \n", ipoint/nbpoint*100, ipoint, nbpoint);
     if face(ipoint) == 1
       plot3([xi(ipoint)],[yi(ipoint)],[zi(ipoint)],'c.');
     elseif face(ipoint) == 2
       plot3([xi(ipoint)],[yi(ipoint)],[zi(ipoint)],'b.');
     elseif face(ipoint) == 3
-      plot3([xi(ipoint)],[yi(ipoint)],[zi(ipoint)],[0.9290 0.6940 0.1250]);
+      plot3([xi(ipoint)],[yi(ipoint)],[zi(ipoint)],'Color',[0.9290 0.6940 0.1250]);
     elseif face(ipoint) == 4
       plot3([xi(ipoint)],[yi(ipoint)],[zi(ipoint)],'r.');
     elseif face(ipoint) == 5
@@ -62,7 +63,6 @@ for itst=4:4
       plot3([xi(ipoint)],[yi(ipoint)],[zi(ipoint)],'g.');
     end
   end
-  face
   hold;
   toc
   pause
