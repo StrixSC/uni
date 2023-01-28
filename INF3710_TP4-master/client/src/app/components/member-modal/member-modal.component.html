@@ -1,0 +1,18 @@
+<div>
+    <mat-card>
+        <mat-card-title>
+            {{selectedMemberService.selectedMember.nom}}
+        </mat-card-title>
+
+        <mat-card-content>
+        <div class="attr">Courriel: {{selectedMemberService.selectedMember.courriel}}</div>
+            <div class="attr">Rue: {{selectedMemberService.selectedMember.rue}}</div>
+            <div class="attr">Ville: {{selectedMemberService.selectedMember.ville}}</div>
+            <div class="attr">Code Postal: {{selectedMemberService.selectedMember.codepostal}}</div>
+            <div class="attr">Est administrateur: {{selectedMemberService.selectedMember.estAdmin}}</div>
+            <mat-card-actions>
+                <button mat-raised-button color="warn" (click)="deleteMember()" [disabled]="deleting"> Supprimer </button>
+            </mat-card-actions>
+        </mat-card-content>
+    </mat-card>
+</div>

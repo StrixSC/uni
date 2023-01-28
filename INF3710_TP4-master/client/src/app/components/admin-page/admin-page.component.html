@@ -1,0 +1,59 @@
+<div class="options">
+    <mat-card>
+        <mat-card-title>
+            Page administrateur
+        </mat-card-title>
+    
+        <button mat-raised-button (click)="showMembersList()" [class.selected]="selectedShowMembers"> Membres </button>
+        <button mat-raised-button (click)="showMoviesList()" [class.selected]="selectedShowMovies"> Filmes </button>
+    
+    </mat-card>
+</div>
+
+
+<div *ngIf="selectedShowMovies">
+    <mat-card>
+        <mat-card-title>
+           Filmes
+        </mat-card-title>
+        <mat-card-content class="movie-list">
+            <mat-card *ngFor="let movie of movies; index as i" (click)="showMovie(movie)">
+                <div class="movie-attr title">Titre: {{movie.titre}}</div>
+                <div class="movie-attr genre">Genre: {{movie.genre}}</div>
+                <div class="movie-attr date">Date: {{movie.date_production | date}}</div>
+                <div class="movie-attr duree">Duree: {{movie.duree}}</div>
+            </mat-card>
+
+        <mat-card class="addMovie" (click)="triggerAddMovieModal()">
+            <i class="material-icons icon md-48">
+                add
+            </i>
+        </mat-card>
+    </mat-card-content>
+
+    </mat-card>
+</div>
+
+<div *ngIf="selectedShowMembers">
+    <mat-card>
+        <mat-card-title>
+           Membres
+        </mat-card-title>
+        <mat-card-content class="movie-list">
+            <mat-card *ngFor="let member of members; index as i" (click)="showMember(member)">
+                <div class="member-attr">Nom: {{member.nom}}</div>
+                <div class="member-attr">Courriel: {{member.courriel}}</div>
+                <div class="member-attr">Rue: {{member.rue}}</div>
+                <div class="member-attr">Ville: {{member.ville}}</div>
+                <div class="member-attr">Code Postal: {{member.codepostal}}</div>
+                <div class="member-attr">Est administrateur: {{member.estAdmin}}</div>
+            </mat-card>
+            <mat-card class="addMovie" (click)="triggerAddMemberModal()">
+                <i class="material-icons icon md-48">
+                    add
+                </i>
+            </mat-card>
+        </mat-card-content>
+        
+    </mat-card>
+</div>

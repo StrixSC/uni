@@ -1,0 +1,84 @@
+<main>
+    <mat-card>
+        <mat-card-title>
+            Ajouter un membre
+        </mat-card-title>
+        <br>
+        <mat-card-content>
+        <div class="form">
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>
+                        Courriel
+                    </mat-label>
+                    <input matInput placeholder="Entrez votre courriel" [formControl]="courriel" required>
+                    <mat-error *ngIf="courriel.invalid">
+                        <p> Le courriel entré n'est pas valide </p>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Mot de passe
+                </mat-label>
+                <input matInput type="password" placeholder="Entrez votre mot de passe" [formControl]="motdepasse" required>
+                <mat-error *ngIf="motdepasse.invalid">
+                    {{getPassErrorMessage()}}
+                </mat-error>
+            </mat-form-field>
+            </div>
+            <div>
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Nom
+                </mat-label>
+                <input matInput placeholder="Entrez votre nom" [formControl]="nom" required>
+                <mat-error *ngIf="nom.invalid">
+                    <p>Le nom ne doit pas être vide</p>
+                </mat-error>
+            </mat-form-field>
+            </div>
+            <div>
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Rue
+                </mat-label>
+                <input matInput placeholder="Rue" [formControl]="rue">
+            </mat-form-field>
+            </div>
+            <div>
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Ville
+                </mat-label>
+                <input matInput placeholder="Ville" [formControl]="ville">
+            </mat-form-field>
+            </div>
+            <div>
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Code postal
+                </mat-label>
+                <input matInput placeholder="Code postal"  [formControl]="codepostal">
+            </mat-form-field>
+            </div>
+        </div>
+        <br>
+        <div class="checkbox">
+            <mat-checkbox [(ngModel)]="isAdmin">
+                Admin?
+            </mat-checkbox>
+        </div>
+        </mat-card-content>
+
+        <mat-card-actions class="buttons">
+            <button mat-raised-button (click)="cancel()">
+                Annuler
+            </button>
+            <button mat-raised-button color="primary" [disabled]="loading || !valideEntry()" (click)="addUser()">
+                Ajouter
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</main>

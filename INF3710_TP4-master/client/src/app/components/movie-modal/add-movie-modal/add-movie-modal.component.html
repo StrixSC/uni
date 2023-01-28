@@ -1,0 +1,61 @@
+<mat-card>
+    <mat-card-title>
+        Ajouter un filme
+    </mat-card-title>
+    <div class="form">
+        <mat-form-field appearance="outline">
+            <mat-label>
+                Titre: 
+            </mat-label>
+            <input matInput required placeholder="Nom du filme" type="text" [formControl]="titre"/>
+            <mat-error *ngIf="titre.invalid">
+                Entrez un titre valide. (A-Z, a-z, 0-9, ._-!?)
+            </mat-error>
+        </mat-form-field>
+
+        <div>
+            <mat-label>Genre: </mat-label>
+            <select required [(ngModel)]="selectedGenre">
+                <option *ngFor="let g of genres">{{g}}</option>
+            </select>
+        </div>
+
+        <mat-form-field appearance="outline">
+            <mat-label>
+                Date de production: 
+            </mat-label>
+            <input matInput required placeholder="2020-01-01" type="text" [formControl]="dateProduction"/>
+            <mat-error *ngIf="dateProduction.invalid">
+                Entrez une date valide. (AAAA-MM-JJ).
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>
+                Durée: 
+            </mat-label>
+            <input matInput required placeholder="01:36" type="text" [formControl]="duree"/>
+            <mat-error *ngIf="duree.invalid">
+                Entrez une duree valide. (HH:MM:SS).
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+</mat-card>
+
+
+<mat-card class="result">
+    <mat-card-content>
+        <div>Titre: {{titre.value}}</div>
+        <div>Genre: {{selectedGenre}}</div>
+        <div>Date de production: {{dateProduction.value}}</div>
+        <div>Durée: {{duree.value}}</div>
+    </mat-card-content>
+    <mat-action-list>
+        <div class="buttons">
+            <button mat-raised-button (click)="cancel()"> Annuler </button>
+            <button mat-raised-button color="primary" (click)="addFilm()" [disabled]="!validEntry() || loading"> Ajouter </button>
+        </div>
+    </mat-action-list>
+</mat-card>
+

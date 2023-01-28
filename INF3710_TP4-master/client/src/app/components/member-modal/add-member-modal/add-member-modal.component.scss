@@ -1,0 +1,17 @@
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50px;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 50px;
+}
+
+.buttons {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50px;
+}
+
+.checkbox {
+    text-align: center;
+}

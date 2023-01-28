@@ -1,0 +1,29 @@
+.main-container {
+    display: grid;
+    grid-template-columns: 0.1fr 0.9fr;
+    .movie-list-sidebar {
+        .subtitle {
+            margin-top: 10px;
+            text-align: center;
+        }
+        border-right: 5px solid black;
+        border-radius: 2px;
+        
+        .matcard {
+            font-family: monospace !important;
+            margin: 5px;
+        }
+        .matcard:hover {
+            cursor: pointer;
+            background-color: darken($color: white, $amount: 10);
+        }
+    }
+
+    .selected-movie-information-box {
+        padding: 10px;
+        .film-info {
+            text-align: center;
+        }
+    }
+
+}

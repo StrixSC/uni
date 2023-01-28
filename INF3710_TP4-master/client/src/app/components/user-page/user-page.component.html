@@ -1,0 +1,66 @@
+<main class="main-container">
+    <div class="movie-list-sidebar">
+        <div class="subtitle">
+            <h2>Films</h2>
+        </div>
+        <mat-card class="matcard" *ngFor="let film of films" (click)="getInfo(film)">
+            <mat-card-content>{{film.titre}}</mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="selected-movie-information-box">
+        <div class="film-info">
+            <mat-card>
+                <mat-card-content>
+                    <div><b>{{currentFilm.titre}}</b></div>
+                    <div><b>Genre: </b> {{currentFilm.genre}}</div>
+                    <div><b>Date de production: </b>{{currentFilm.date_production | date:'yyyy-LL-dd'}}</div>
+                    <div><b>Duree: </b>{{currentFilm.duree}}</div>
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" (click)="showOscars = !showOscars">
+                        Oscar et Nominations
+                    </button>
+                    <button mat-raised-button color="primary" (click)="showCrew = !showCrew">
+                        Équipe de tournage
+                    </button>
+                    <br>
+                    <br>
+                    <button mat-raised-button color="link" (click)="goToFilm()">
+                        Visionner ce film
+                    </button>
+                </mat-card-actions>
+
+            </mat-card>
+
+            <mat-card>
+                <mat-card-content *ngIf="showOscars">
+                    <div *ngFor="let oscar of currentFilmOscars; index as i">
+                        <div><b>Date de céremonie: </b>{{oscar.dateCeremonie | date}}</div>
+                        <div><b>Lieu: </b>{{oscar.lieu}}</div>
+                        <div><b>Maitre de la céremonie: </b>{{oscar.maitreCeremonie}}</div>
+                        <div><b>Nominé pour: </b>{{currentFilmNoms[i].nomination}}</div>
+                        <div><b>Gagnant? </b>{{currentFilmNoms[i].gagnant }}</div>
+                        <br>
+                    </div>
+                </mat-card-content>
+
+                <mat-card-content *ngIf="showCrew">
+                    <div *ngFor="let crewMate of currentFilmParticipants; index as i">
+                        <div><b>Participant {{i}}</b></div>
+                        <div><b>Nom: </b>{{crewMate.nom}}</div>
+                        <div><b>Age: </b>{{crewMate.age}}</div>
+                        <div><b>Sexe: </b>{{crewMate.sexe}}</div>
+                        <div><b>Nationalité: </b>{{crewMate.nationalite}}</div>
+                        <div><b>Role dans le film: </b>{{currentFilmCrew[i].role}}</div>
+                        <div><b>Salaire: </b>{{currentFilmCrew[i].salaire}}</div>
+                        <br>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            
+        </div>
+    </div>
+</main>
+
