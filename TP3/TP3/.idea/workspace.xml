@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c04c410c-8e02-475a-b148-4d86fcd6a08f" name="Default" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/log3210_20191_tp3_enonce$All_in_Template.ic" NAME="All in Template Coverage Results" MODIFIED="1550537287192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="VxxiNXVy" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1SLIyNHZPGJs1uhVdREG9EyZEsD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SearchEverywhereHistoryKey" value="ANT&#9;ACTION&#9;ActivateAntBuildToolWindow&#10;Ant&#9;ACTION&#9;ActivateAntBuildToolWindow" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550541774084" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test-suite/SemantiqueTest" />
+      <recent name="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest" />
+      <recent name="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest" />
+      <recent name="C:\Users\admin\Documents\Polytechnique\LOG3210\_H21\Historique_TP\Historique_TP\TP3-SDT_CodeIntermediaire\21Hiv\TP3_Source\test-suite\IntermediateCodeGenTest\expected" />
+      <recent name="C:\Users\admin\Documents\Polytechnique\LOG3210\_H21\Historique_TP\Historique_TP\TP3-SDT_CodeIntermediaire\21Hiv\TP3_Source\test-suite\IntermediateCodeGenFallTest\expected" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\admin\Documents\Polytechnique\LOG3210\_H21\Historique_TP\Historique_TP\TP3-SDT_CodeIntermediaire\21Hiv\TP3_Source\src\analyzer\visitors" />
+      <recent name="$PROJECT_DIR$/test-suite/CodeGenTest/result" />
+      <recent name="$PROJECT_DIR$/test-suite/CodeGenTest/expected" />
+      <recent name="$PROJECT_DIR$/test-suite/CodeGenTest/data" />
+      <recent name="$PROJECT_DIR$/test-suite/PrintTest/expected" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="analyzer.ast" />
+      <recent name="analyzer" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="analyzer.visitors" />
+      <recent name="analyzer.tests" />
+      <recent name="analyzer.ast" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.All in Template">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in Template" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Template" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IntermediateCodeGenFallTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Template" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="analyzer.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="analyzer.tests" />
+      <option name="MAIN_CLASS_NAME" value="analyzer.tests.IntermediateCodeGenFallTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="[./test-suite/IntermediateCodeGenFallTest/data/test_condif_3.txt]" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IntermediateCodeGenFallTest (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Template" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="analyzer.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="analyzer.tests" />
+      <option name="MAIN_CLASS_NAME" value="analyzer.tests.IntermediateCodeGenFallTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="[./test-suite/IntermediateCodeGenFallTest/data/test_arith_0.txt]" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IntermediateCodeGenFallTest (3)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Template" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="analyzer.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="analyzer.tests" />
+      <option name="MAIN_CLASS_NAME" value="analyzer.tests.IntermediateCodeGenFallTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="[./test-suite/IntermediateCodeGenFallTest/data/test_bool_6.txt]" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IntermediateCodeGenFallTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Template" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="analyzer.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="analyzer.tests" />
+      <option name="MAIN_CLASS_NAME" value="analyzer.tests.IntermediateCodeGenFallTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="[./test-suite/IntermediateCodeGenFallTest/data/test_bool_9.txt]" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.All in Template" />
+      <item itemvalue="JUnit.IntermediateCodeGenFallTest (2)" />
+      <item itemvalue="JUnit.IntermediateCodeGenFallTest (3)" />
+      <item itemvalue="JUnit.IntermediateCodeGenFallTest" />
+      <item itemvalue="JUnit.IntermediateCodeGenFallTest (1)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in Template" />
+        <item itemvalue="JUnit.IntermediateCodeGenFallTest" />
+        <item itemvalue="JUnit.IntermediateCodeGenFallTest (1)" />
+        <item itemvalue="JUnit.IntermediateCodeGenFallTest (3)" />
+        <item itemvalue="JUnit.IntermediateCodeGenFallTest (2)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c04c410c-8e02-475a-b148-4d86fcd6a08f" name="Default" comment="" />
+      <created>1508871855016</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1508871855016</updated>
+      <workItem from="1636399849746" duration="10000" />
+      <workItem from="1636400414103" duration="10925000" />
+      <workItem from="1636412627363" duration="9314000" />
+      <workItem from="1638568428444" duration="703000" />
+      <workItem from="1638570002603" duration="292000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.jjt" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/analyzer/Main.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="ex.getMessage()" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
