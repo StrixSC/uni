@@ -1,0 +1,198 @@
+{
+    "consumer.segment": [
+      {
+        "Consumer.Segment": "Digital Dynamos",
+        "Population": 0.18,
+        "Volume.Baseline.Recontract": 0.18,
+        "ARPU.Baseline.Recontract": 36.45,
+        "Volume.Scenario.Recontract": 0.18,
+        "ARPU.Scenario.Recontract": 36.46,
+        "Volume.Baseline.NewCustomers": 0.18,
+        "ARPU.Baseline.NewCustomers": 37.02,
+        "Volume.Scenario.NewCustomers": 0.18,
+        "ARPU.Scenario.NewCustomers": 37.03
+      },
+      {
+        "Consumer.Segment": "Top-end Techtastics",
+        "Population": 0.16,
+        "Volume.Baseline.Recontract": 0.17,
+        "ARPU.Baseline.Recontract": 38.15,
+        "Volume.Scenario.Recontract": 0.17,
+        "ARPU.Scenario.Recontract": 38.15,
+        "Volume.Baseline.NewCustomers": 0.18,
+        "ARPU.Baseline.NewCustomers": 38.78,
+        "Volume.Scenario.NewCustomers": 0.17,
+        "ARPU.Scenario.NewCustomers": 38.75
+      },
+      {
+        "Consumer.Segment": "Indulgent Imitators",
+        "Population": 0.19,
+        "Volume.Baseline.Recontract": 0.21,
+        "ARPU.Baseline.Recontract": 34.03,
+        "Volume.Scenario.Recontract": 0.21,
+        "ARPU.Scenario.Recontract": 33.98,
+        "Volume.Baseline.NewCustomers": 0.21,
+        "ARPU.Baseline.NewCustomers": 34.58,
+        "Volume.Scenario.NewCustomers": 0.21,
+        "ARPU.Scenario.NewCustomers": 34.45
+      },
+      {
+        "Consumer.Segment": "Savvy Surfers",
+        "Population": 0.19,
+        "Volume.Baseline.Recontract": 0.18,
+        "ARPU.Baseline.Recontract": 30.6,
+        "Volume.Scenario.Recontract": 0.18,
+        "ARPU.Scenario.Recontract": 30.59,
+        "Volume.Baseline.NewCustomers": 0.18,
+        "ARPU.Baseline.NewCustomers": 31.1,
+        "Volume.Scenario.NewCustomers": 0.18,
+        "ARPU.Scenario.NewCustomers": 31.06
+      },
+      {
+        "Consumer.Segment": "Price Prioritisers",
+        "Population": 0.16,
+        "Volume.Baseline.Recontract": 0.16,
+        "ARPU.Baseline.Recontract": 29.48,
+        "Volume.Scenario.Recontract": 0.16,
+        "ARPU.Scenario.Recontract": 29.43,
+        "Volume.Baseline.NewCustomers": 0.15,
+        "ARPU.Baseline.NewCustomers": 29.95,
+        "Volume.Scenario.NewCustomers": 0.15,
+        "ARPU.Scenario.NewCustomers": 29.85
+      },
+      {
+        "Consumer.Segment": "Hesitant Homebodies",
+        "Population": 0.12,
+        "Volume.Baseline.Recontract": 0.11,
+        "ARPU.Baseline.Recontract": 31.32,
+        "Volume.Scenario.Recontract": 0.11,
+        "ARPU.Scenario.Recontract": 31.29,
+        "Volume.Baseline.NewCustomers": 0.1,
+        "ARPU.Baseline.NewCustomers": 31.83,
+        "Volume.Scenario.NewCustomers": 0.11,
+        "ARPU.Scenario.NewCustomers": 31.75
+      }
+    ],
+    "estimated.usage": [
+      {
+        "Estimated.mobile.data.usage": "<250MB",
+        "Population": 0.13,
+        "Volume.Baseline.Recontract": 0.11,
+        "ARPU.Baseline.Recontract": 25.34,
+        "Volume.Scenario.Recontract": 0.11,
+        "ARPU.Scenario.Recontract": 25.28,
+        "Volume.Baseline.NewCustomers": 0.11,
+        "ARPU.Baseline.NewCustomers": 25.54,
+        "Volume.Scenario.NewCustomers": 0.11,
+        "ARPU.Scenario.NewCustomers": 25.43
+      },
+      {
+        "Estimated.mobile.data.usage": "250-500MB",
+        "Population": 0.7,
+        "Volume.Baseline.Recontract": 0.6,
+        "ARPU.Baseline.Recontract": 26.59,
+        "Volume.Scenario.Recontract": 0.6,
+        "ARPU.Scenario.Recontract": 26.53,
+        "Volume.Baseline.NewCustomers": 0.6,
+        "ARPU.Baseline.NewCustomers": 26.95,
+        "Volume.Scenario.NewCustomers": 0.6,
+        "ARPU.Scenario.NewCustomers": 26.84
+      },
+      {
+        "Estimated.mobile.data.usage": "0.5 - 1GB",
+        "Population": 0.12,
+        "Volume.Baseline.Recontract": 0.11,
+        "ARPU.Baseline.Recontract": 29.64,
+        "Volume.Scenario.Recontract": 0.11,
+        "ARPU.Scenario.Recontract": 29.61,
+        "Volume.Baseline.NewCustomers": 0.11,
+        "ARPU.Baseline.NewCustomers": 30.07,
+        "Volume.Scenario.NewCustomers": 0.11,
+        "ARPU.Scenario.NewCustomers": 30.01
+      },
+      {
+        "Estimated.mobile.data.usage": "1-2GB",
+        "Population": 0.18,
+        "Volume.Baseline.Recontract": 0.17,
+        "ARPU.Baseline.Recontract": 31.33,
+        "Volume.Scenario.Recontract": 0.17,
+        "ARPU.Scenario.Recontract": 31.29,
+        "Volume.Baseline.NewCustomers": 0.16,
+        "ARPU.Baseline.NewCustomers": 31.76,
+        "Volume.Scenario.NewCustomers": 0.16,
+        "ARPU.Scenario.NewCustomers": 31.69
+      },
+      {
+        "Estimated.mobile.data.usage": "2-3GB",
+        "Population": 0.11,
+        "Volume.Baseline.Recontract": 0.11,
+        "ARPU.Baseline.Recontract": 33.8,
+        "Volume.Scenario.Recontract": 0.11,
+        "ARPU.Scenario.Recontract": 33.79,
+        "Volume.Baseline.NewCustomers": 0.11,
+        "ARPU.Baseline.NewCustomers": 34.23,
+        "Volume.Scenario.NewCustomers": 0.11,
+        "ARPU.Scenario.NewCustomers": 34.21
+      },
+      {
+        "Estimated.mobile.data.usage": "3-4GB",
+        "Population": 0.9,
+        "Volume.Baseline.Recontract": 0.9,
+        "ARPU.Baseline.Recontract": 35.2,
+        "Volume.Scenario.Recontract": 0.9,
+        "ARPU.Scenario.Recontract": 35.18,
+        "Volume.Baseline.NewCustomers": 0.9,
+        "ARPU.Baseline.NewCustomers": 35.65,
+        "Volume.Scenario.NewCustomers": 0.9,
+        "ARPU.Scenario.NewCustomers": 35.64
+      },
+      {
+        "Estimated.mobile.data.usage": "4-6GB",
+        "Population": 0.12,
+        "Volume.Baseline.Recontract": 0.13,
+        "ARPU.Baseline.Recontract": 36.33,
+        "Volume.Scenario.Recontract": 0.13,
+        "ARPU.Scenario.Recontract": 36.31,
+        "Volume.Baseline.NewCustomers": 0.13,
+        "ARPU.Baseline.NewCustomers": 36.75,
+        "Volume.Scenario.NewCustomers": 0.13,
+        "ARPU.Scenario.NewCustomers": 36.73
+      },
+      {
+        "Estimated.mobile.data.usage": "6-8GB",
+        "Population": 0.7,
+        "Volume.Baseline.Recontract": 0.8,
+        "ARPU.Baseline.Recontract": 38.83,
+        "Volume.Scenario.Recontract": 0.8,
+        "ARPU.Scenario.Recontract": 38.8,
+        "Volume.Baseline.NewCustomers": 0.8,
+        "ARPU.Baseline.NewCustomers": 39.24,
+        "Volume.Scenario.NewCustomers": 0.8,
+        "ARPU.Scenario.NewCustomers": 39.21
+      },
+      {
+        "Estimated.mobile.data.usage": "8-10GB",
+        "Population": 0.4,
+        "Volume.Baseline.Recontract": 0.5,
+        "ARPU.Baseline.Recontract": 40.61,
+        "Volume.Scenario.Recontract": 0.5,
+        "ARPU.Scenario.Recontract": 40.62,
+        "Volume.Baseline.NewCustomers": 0.6,
+        "ARPU.Baseline.NewCustomers": 41.03,
+        "Volume.Scenario.NewCustomers": 0.6,
+        "ARPU.Scenario.NewCustomers": 41.05
+      },
+      {
+        "Estimated.mobile.data.usage": ">10GB",
+        "Population": 0.6,
+        "Volume.Baseline.Recontract": 0.8,
+        "ARPU.Baseline.Recontract": 44.51,
+        "Volume.Scenario.Recontract": 0.8,
+        "ARPU.Scenario.Recontract": 44.52,
+        "Volume.Baseline.NewCustomers": 0.9,
+        "ARPU.Baseline.NewCustomers": 45.02,
+        "Volume.Scenario.NewCustomers": 0.9,
+        "ARPU.Scenario.NewCustomers": 45.04
+      }
+    ]
+  }
