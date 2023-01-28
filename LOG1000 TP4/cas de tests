@@ -1,0 +1,10 @@
+SRS01 = <{client.id = 90034}, {rabais=0.2}>     
+SRS02 = <{client.id = 90034}, {rabais = 0.2}> 
+SRS03 = <{client.id = 90102, client.age = 66}, {rabais = 0.2}> 
+SRS04 = <{client.age = 78}, {rabais = 0.05}>
+SRS05 = <{client.zone = 'G0X', client.zone='H4l', client.zone='H2X'}, {rabais=0.02, rabais=0.01, rabais=0.01}>
+SRS06 = <{client.adhesion.tm_year=2016, client.adhesion.tm_month=01, client.adhesion.tm_days=01}, {rabais=0.03}>
+SRS07 = <{client.adhesion.tm_year=2000, client.adhesion.tm_month=01, client.adhesion.tm_days=01}, {rabais=0.05}>
+SRS08 = <{facture.items.size() = 150}, {rabais=0.01}>
+SRS09 = <{facture.items.size()= 500, facture.items.size()=600, facture.items.size() = 1000}, {rabais=0.05, rabais=0.05, rabais=0.05}>
+
