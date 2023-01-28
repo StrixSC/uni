@@ -1,0 +1,4 @@
+#!/bin/sh
+
+make
+./build/tp -e ./N10_K3_0

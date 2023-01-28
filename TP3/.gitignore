@@ -1,0 +1,10 @@
+build/
+.vscode/
+.idea/
+.vs/
+*.out
+*.o
+*.obj
+*.dump
+N*_*_*
+__pycache__/
