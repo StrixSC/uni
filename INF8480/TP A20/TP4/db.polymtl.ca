@@ -1,0 +1,17 @@
+$TTL 604800 ; 1 semaine
+$ORIGIN polymtl.ca.
+@ IN SOA ns1.polymtl.ca. dossieretudiant.polymtl.ca. (
+        2023031601 ; serial (CHANGE THIS LINE TO HAVE THE ACTUAL DATE)
+        3600 ; refresh (1 hour)
+        3000 ; retry (50 minutes)
+        4619200 ; expire (7 weeks)
+        604800 ; minimum (1 week)
+)
+@ IN NS ns1.polymtl.ca.
+@ IN NS ns2
+@ IN MX 10 mx1
+@ IN MX 20 mx2
+ns1 IN A 172.20.0.2
+ns2 IN A 172.20.0.3
+web IN A 172.20.0.4
+dossieretudiant IN A 172.20.0.5
